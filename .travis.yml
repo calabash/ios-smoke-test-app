@@ -5,7 +5,7 @@ before_script:
   - script/ci/travis/bundle-install.rb
 
 script:
-  - script/ci/travis/build-and-stage-app.rb
+  - script/ci/travis/build-and-stage-app.sh
   - script/ci/travis/cucumber-ci.rb --tags ~@no_ci
 
 rvm:
