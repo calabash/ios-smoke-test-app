@@ -1,0 +1,15 @@
+language: objective-c
+
+before_script:
+  - gem uninstall -Vax --force --no-abort-on-dependent calabash-cucumber
+  - script/ci/travis/bundle-install.rb
+
+script:
+  - script/ci/travis/build-and-stage-app.rb
+  - script/ci/travis/cucumber-ci.rb --tags ~@no_ci
+
+rvm:
+  - 2.1.1
+
+notifications:
+  email: true
