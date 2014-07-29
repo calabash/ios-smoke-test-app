@@ -12,4 +12,6 @@ rvm:
   - 2.1.1
 
 notifications:
-  email: true
+  email:
+    on_success: change
+    on_failure: always
