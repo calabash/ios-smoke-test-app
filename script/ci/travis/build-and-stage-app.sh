@@ -41,8 +41,9 @@ else
     echo "INFO: successfully built"
 fi
 
-
 APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
 
 echo "INFO: copying ${TARGET_NAME}.app to ./"
 cp -r "${APP_BUNDLE_PATH}" ./
+
+bundle exec calabash-ios sim reset

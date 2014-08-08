@@ -2,9 +2,10 @@ source 'https://rubygems.org'
 
 # use bundle and bundle config to specify local gem locations
 # bundle config local.GEM_NAME /path/to/local/git/repository
+gem 'calabash-cucumber', '>= 0.10.0.pre3'
+gem 'briar'
 
-# noinspection RailsParamDefResolve
-#gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'master'
-gem 'calabash-cucumber'
 gem 'xcpretty', '~> 0.1'
 gem 'rake', '~> 10.3'
+gem 'bundler', '~> 1.6'
+gem 'travis', '~> 1.7'
