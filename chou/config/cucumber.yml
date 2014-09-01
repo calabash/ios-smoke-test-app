@@ -9,7 +9,7 @@ xamarin_dir = "#{ENV['HOME']}/.xamarin"
 
 devices = {}
 
-device_list = ['pluto', 'neptune', 'venus', 'earp', 'mars', 'saturn']
+device_list = ['neptune', 'venus', 'earp', 'mars', 'saturn']
 
 device_list.each do |device|
   dir = "#{xamarin_dir}/devices/#{device}"
@@ -77,14 +77,12 @@ common: -f progress
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
 
 html_report:  -f 'Calabash::Formatters::Html' -o <%= default_report %>
-pluto_html:   -f 'Calabash::Formatters::Html' -o <%= devices[:pluto][:report] %>
 neptune_html: -f 'Calabash::Formatters::Html' -o <%= devices[:neptune][:report] %>
 venus_html:   -f 'Calabash::Formatters::Html' -o <%= devices[:venus][:report] %>
 earp_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:earp][:report] %>
 mars_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:mars][:report] %>
 saturn_html:  -f 'Calabash::Formatters::Html' -o <%= devices[:saturn][:report] %>
 
-pluto_ss:   SCREENSHOT_PATH=<%= devices[:pluto][:ss_path] %>
 neptune_ss: SCREENSHOT_PATH=<%= devices[:neptune][:ss_path] %>
 venus_ss:   SCREENSHOT_PATH=<%= devices[:venus][:ss_path] %>
 earp_ss:    SCREENSHOT_PATH=<%= devices[:earp][:ss_path] %>
@@ -145,10 +143,6 @@ no_uia:            -p common -p ss_path -p html_report -p no_launch -p no_reset_
 bundle_id:    BUNDLE_ID=com.lesspainful.example.LPSimpleExample-cal
 
 device_common:  -p bundle_id --tags ~@simulator --tags ~@simulator_only
-
-pluto_common:   DEVICE_TARGET=<%= devices[:pluto][:udid] %>   DEVICE_ENDPOINT=<%= devices[:pluto][:ip] %> -p device_common -p ipad   -p pluto_html     -p pluto_ss
-# cannot test collection views on iOS 5
-pluto:          -p pluto_common -p no_launch --tags ~@collection_view
 
 neptune_common: DEVICE_TARGET=<%= devices[:neptune][:udid] %> DEVICE_ENDPOINT=<%= devices[:neptune][:ip] %> -p device_common -p iphone -p neptune_html -p neptune_ss
 
