@@ -69,10 +69,18 @@ else
   sims[:iphone5s_71] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
 end
 
+if ENV["USER"] == "jenkins"
+  formatter = "progress"
+  keep_sim_open_after = "0"
+else
+  formatter = "Slowhandcuke::Formatter"
+  keep_sim_open_after = "1"
+end
+
 %>
 
 verbose: CALABASH_FULL_CONSOLE_OUTPUT=1 DEBUG=1
-common: -f progress
+common: -f <%= formatter %>
 
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
 
@@ -91,10 +99,7 @@ saturn_ss:  SCREENSHOT_PATH=<%= devices[:saturn][:ss_path] %>
 
 no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
-no_reset_btw: RESET_BETWEEN_SCENARIOS=0
 reset_btw:    RESET_BETWEEN_SCENARIOS=1
-stop:         NO_STOP=0
-no_stop:      NO_STOP=1
 
 ipad:   DEVICE=ipad   -p common --tags ~@iphone --tags ~@iphone_only
 iphone: DEVICE=iphone -p common --tags ~@ipad --tags ~@ipad_only
@@ -102,8 +107,8 @@ iphone: DEVICE=iphone -p common --tags ~@ipad --tags ~@ipad_only
 abp:           APP_BUNDLE_PATH=chou-cal.app
 
 simulator:     -p common -p ss_path -p html_report --tags ~@device_only --tags ~@device -p abp
-sim_launch:    -p simulator -p do_launch -p no_reset_btw -p no_stop
-sim_no_launch: -p simulator -p no_launch -p no_reset_btw
+sim_launch:    -p simulator -p do_launch NO_STOP=<%= keep_sim_open_after %>
+sim_no_launch: -p simulator -p no_launch
 
 sim61_4in:         -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 6.1'
 sim61_4in_nl:      -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 6.1'
@@ -137,7 +142,7 @@ iphone5s_71:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_71] %>"
 iphone5s_80:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_80] %>"
 
 default:           -p sim_launch DEVICE_TARGET="<%= sims[:default] %>"
-no_uia:            -p common -p ss_path -p html_report -p no_launch -p no_reset_btw -p sim61_4in
+no_uia:            -p common -p ss_path -p html_report -p no_launch -p sim61_4in
 
 # required only for devices
 bundle_id:    BUNDLE_ID=com.lesspainful.example.LPSimpleExample-cal
@@ -151,13 +156,13 @@ neptune:           -p neptune_common -p do_launch
 neptune_no_launch: -p neptune_common -p no_launch --tags ~@email
 
 venus_common:   DEVICE_TARGET=<%= devices[:venus][:udid] %>   DEVICE_ENDPOINT=<%= devices[:venus][:ip] %> -p device_common -p ipad   -p venus_html     -p venus_ss
-venus:          -p venus_common -p do_launch -p no_stop
+venus:          -p venus_common -p do_launch
 
 earp_common:   DEVICE_TARGET=<%= devices[:earp][:udid] %> DEVICE_ENDPOINT=<%= devices[:earp][:ip] %> -p device_common -p iphone -p earp_html -p earp_ss
-earp:          -p earp_common -p do_launch -p no_stop
+earp:          -p earp_common -p do_launch
 
 mars_common:   DEVICE_TARGET=<%= devices[:mars][:udid] %> DEVICE_ENDPOINT=<%= devices[:mars][:ip] %> -p device_common -p iphone -p mars_html -p mars_ss
-mars:          -p mars_common -p do_launch -p no_stop
+mars:          -p mars_common -p do_launch
 
 saturn_common:   DEVICE_TARGET=<%= devices[:saturn][:udid] %> DEVICE_ENDPOINT=<%= devices[:saturn][:ip] %> -p device_common -p iphone -p saturn_html -p saturn_ss
-saturn:          -p saturn_common -p do_launch -p no_stop
+saturn:          -p saturn_common -p do_launch
