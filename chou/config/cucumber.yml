@@ -9,7 +9,7 @@ xamarin_dir = "#{ENV['HOME']}/.xamarin"
 
 devices = {}
 
-device_list = ['neptune', 'venus', 'earp', 'mars', 'saturn']
+device_list = ['neptune', 'venus', 'earp', 'mars', 'saturn', 'pegasi']
 
 device_list.each do |device|
   dir = "#{xamarin_dir}/devices/#{device}"
@@ -90,12 +90,14 @@ venus_html:   -f 'Calabash::Formatters::Html' -o <%= devices[:venus][:report] %>
 earp_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:earp][:report] %>
 mars_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:mars][:report] %>
 saturn_html:  -f 'Calabash::Formatters::Html' -o <%= devices[:saturn][:report] %>
+pegasi_html:  -f 'Calabash::Formatters::Html' -o <%= devices[:pegasi][:report] %>
 
 neptune_ss: SCREENSHOT_PATH=<%= devices[:neptune][:ss_path] %>
 venus_ss:   SCREENSHOT_PATH=<%= devices[:venus][:ss_path] %>
 earp_ss:    SCREENSHOT_PATH=<%= devices[:earp][:ss_path] %>
 mars_ss:    SCREENSHOT_PATH=<%= devices[:mars][:ss_path] %>
 saturn_ss:  SCREENSHOT_PATH=<%= devices[:saturn][:ss_path] %>
+pegasi_ss:  SCREENSHOT_PATH=<%= devices[:pegasi][:ss_path] %>
 
 no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
@@ -166,3 +168,6 @@ mars:          -p mars_common -p do_launch
 
 saturn_common:   DEVICE_TARGET=<%= devices[:saturn][:udid] %> DEVICE_ENDPOINT=<%= devices[:saturn][:ip] %> -p device_common -p iphone -p saturn_html -p saturn_ss
 saturn:          -p saturn_common -p do_launch
+
+pegasi_common:   DEVICE_TARGET=<%= devices[:pegasi][:udid] %> DEVICE_ENDPOINT=<%= devices[:pegasi][:ip] %> -p device_common -p iphone -p pegasi_html -p pegasi_ss
+pegasi:          -p pegasi_common -p do_launch
