@@ -49,8 +49,8 @@
 /** Returns the Subview with the heighest Y value **/
 @property (nonatomic, strong, readonly) UIView *lastSubviewOnY;
 
-/** 
- Centers the view to its parent view (if exists) 
+/**
+ Centers the view to its parent view (if exists)
  */
 -(void) centerToParent;
 
