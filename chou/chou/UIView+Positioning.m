@@ -14,143 +14,147 @@
 @dynamic x, y, width, height, origin, size;
 
 // Setters
--(void)setX:(CGFloat)x{
-    CGRect r        = self.frame;
-    r.origin.x      = PIXEL_INTEGRAL(x);
-    self.frame      = r;
+-(void)setX:(CGFloat)x {
+  CGRect r        = self.frame;
+  r.origin.x      = PIXEL_INTEGRAL(x);
+  self.frame      = r;
 }
 
--(void)setY:(CGFloat)y{
-    CGRect r        = self.frame;
-    r.origin.y      = PIXEL_INTEGRAL(y);
-    self.frame      = r;
+-(void)setY:(CGFloat)y {
+  CGRect r        = self.frame;
+  r.origin.y      = PIXEL_INTEGRAL(y);
+  self.frame      = r;
 }
 
--(void)setWidth:(CGFloat)width{
-    CGRect r        = self.frame;
-    r.size.width    = PIXEL_INTEGRAL(width);
-    self.frame      = r;
+-(void)setWidth:(CGFloat)width {
+  CGRect r        = self.frame;
+  r.size.width    = PIXEL_INTEGRAL(width);
+  self.frame      = r;
 }
 
--(void)setHeight:(CGFloat)height{
-    CGRect r        = self.frame;
-    r.size.height   = PIXEL_INTEGRAL(height);
-    self.frame      = r;
+-(void)setHeight:(CGFloat)height {
+  CGRect r        = self.frame;
+  r.size.height   = PIXEL_INTEGRAL(height);
+  self.frame      = r;
 }
 
--(void)setOrigin:(CGPoint)origin{
-    self.x          = origin.x;
-    self.y          = origin.y;
+-(void)setOrigin:(CGPoint)origin {
+  self.x          = origin.x;
+  self.y          = origin.y;
 }
 
--(void)setSize:(CGSize)size{
-    self.width      = size.width;
-    self.height     = size.height;
+-(void)setSize:(CGSize)size {
+  self.width      = size.width;
+  self.height     = size.height;
 }
 
 -(void)setRight:(CGFloat)right {
-    self.x = right - self.width;
+  self.x = right - self.width;
 }
 
 -(void)setBottom:(CGFloat)bottom {
-    self.y = bottom - self.height;
+  self.y = bottom - self.height;
 }
 
 -(void)setCenterX:(CGFloat)centerX {
-    self.center = CGPointMake(centerX, self.center.y);
+  self.center = CGPointMake(centerX, self.center.y);
 }
 
 -(void)setCenterY:(CGFloat)centerY {
-    self.center = CGPointMake(self.center.x, centerY);
+  self.center = CGPointMake(self.center.x, centerY);
 }
 
 // Getters
--(CGFloat)x{
-    return self.frame.origin.x;
+-(CGFloat)x {
+  return self.frame.origin.x;
 }
 
--(CGFloat)y{
-    return self.frame.origin.y;
+-(CGFloat)y {
+  return self.frame.origin.y;
 }
 
--(CGFloat)width{
-    return self.frame.size.width;
+-(CGFloat)width {
+  return self.frame.size.width;
 }
 
--(CGFloat)height{
-    return self.frame.size.height;
+-(CGFloat)height {
+  return self.frame.size.height;
 }
 
--(CGPoint)origin{
-    return CGPointMake(self.x, self.y);
+-(CGPoint)origin {
+  return CGPointMake(self.x, self.y);
 }
 
--(CGSize)size{
-    return CGSizeMake(self.width, self.height);
+-(CGSize)size {
+  return CGSizeMake(self.width, self.height);
 }
 
 -(CGFloat)right {
-    return self.frame.origin.x + self.frame.size.width;
+  return self.frame.origin.x + self.frame.size.width;
 }
 
 -(CGFloat)bottom {
-    return self.frame.origin.y + self.frame.size.height;
+  return self.frame.origin.y + self.frame.size.height;
 }
 
 -(CGFloat)centerX {
-    return self.center.x;
+  return self.center.x;
 }
 
 -(CGFloat)centerY {
-    return self.center.y;
+  return self.center.y;
 }
 
--(UIView *)lastSubviewOnX{
-    if(self.subviews.count > 0){
-        UIView *outView = self.subviews[0];
+-(UIView *)lastSubviewOnX {
+  if(self.subviews.count > 0){
+    UIView *outView = self.subviews[0];
 
-        for(UIView *v in self.subviews)
-            if(v.x > outView.x)
-                outView = v;
+    for(UIView *v in self.subviews)
+      if(v.x > outView.x)
+        outView = v;
 
-        return outView;
-    }
+    return outView;
+  }
 
-    return nil;
+  return nil;
 }
 
--(UIView *)lastSubviewOnY{
-    if(self.subviews.count > 0){
-        UIView *outView = self.subviews[0];
+-(UIView *)lastSubviewOnY {
+  if(self.subviews.count > 0){
+    UIView *outView = self.subviews[0];
 
-        for(UIView *v in self.subviews)
-            if(v.y > outView.y)
-                outView = v;
+    for(UIView *v in self.subviews)
+      if(v.y > outView.y)
+        outView = v;
 
-        return outView;
-    }
+    return outView;
+  }
 
-    return nil;
+  return nil;
 }
 
 // Methods
--(void)centerToParent{
-    if(self.superview){
-        switch ([UIApplication sharedApplication].statusBarOrientation){
-            case UIInterfaceOrientationLandscapeLeft:
-            case UIInterfaceOrientationLandscapeRight:{
-                self.x  =   PIXEL_INTEGRAL((self.superview.height / 2.0) - (self.width / 2.0));
-                self.y  =   PIXEL_INTEGRAL((self.superview.width / 2.0) - (self.height / 2.0));
-                break;
-            }
-            case UIInterfaceOrientationPortrait:
-            case UIInterfaceOrientationPortraitUpsideDown:{
-                self.x  =   PIXEL_INTEGRAL((self.superview.width / 2.0) - (self.width / 2.0));
-                self.y  =   PIXEL_INTEGRAL((self.superview.height / 2.0) - (self.height / 2.0));
-                break;
-            }
-        }
+-(void)centerToParent {
+  if(self.superview){
+    switch ([UIApplication sharedApplication].statusBarOrientation){
+      case UIInterfaceOrientationLandscapeLeft:
+      case UIInterfaceOrientationLandscapeRight:{
+        self.x  =   PIXEL_INTEGRAL((self.superview.height / 2.0) - (self.width / 2.0));
+        self.y  =   PIXEL_INTEGRAL((self.superview.width / 2.0) - (self.height / 2.0));
+        break;
+      }
+      default: {
+        // UIInterfaceOrientationUnknown is an iOS 8 symbol.
+        // UIDeviceOrientationUnknown <==> UIInterfaceOrientationUnknown
+
+        // case UIInterfaceOrientationPortrait:
+        // case UIInterfaceOrientationPortraitUpsideDown:{
+        self.x  =   PIXEL_INTEGRAL((self.superview.width / 2.0) - (self.width / 2.0));
+        self.y  =   PIXEL_INTEGRAL((self.superview.height / 2.0) - (self.height / 2.0));
+        break;
+      }
     }
+  }
 }
 
 @end

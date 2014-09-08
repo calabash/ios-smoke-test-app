@@ -9,7 +9,7 @@ xamarin_dir = "#{ENV['HOME']}/.xamarin"
 
 devices = {}
 
-device_list = ['pluto', 'neptune', 'venus', 'earp', 'mars', 'saturn']
+device_list = ['neptune', 'venus', 'earp', 'mars', 'saturn', 'pegasi']
 
 device_list.each do |device|
   dir = "#{xamarin_dir}/devices/#{device}"
@@ -31,35 +31,77 @@ end
 default_report = "./reports/calabash-#{date}.html"
 ss_path = "./screenshots/"
 
+xcode_version = `xcrun xcodebuild -version`.split(/\s/)[1].split('.').first
+sims = {}
+if xcode_version.to_i >= 6
+  sims[:ipad2_70] = 'iPad 2 (7.0.3 Simulator)'
+  sims[:ipad2_71] = 'iPad 2 (7.1 Simulator)'
+  sims[:ipad2_80] = 'iPad 2 (8.0 Simulator)'
+  sims[:air_70] = 'iPad Air (7.0.3 Simulator)'
+  sims[:air_71] = 'iPad Air (7.1 Simulator)'
+  sims[:air_80] = 'iPad Air (8.0 Simulator)'
+  sims[:ipad_70] = 'iPad Retina (7.0.3 Simulator)'
+  sims[:ipad_71] = 'iPad Retina (7.1 Simulator)'
+  sims[:ipad_80] = 'iPad Retina (8.0 Simulator)'
+  sims[:iphone4s_70] = 'iPhone 4s (7.0.3 Simulator)'
+  sims[:iphone4s_71] = 'iPhone 4s (7.1 Simulator)'
+  sims[:iphone4s_80] = 'iPhone 4s (8.0 Simulator)'
+  sims[:iphone5_70] = 'iPhone 5s (7.0.3 Simulator)'
+  sims[:iphone5_71] = 'iPhone 5s (7.1 Simulator)'
+  sims[:iphone5_80] = 'iPhone 5s (8.0 Simulator)'
+  sims[:default] = 'iPhone 5s (8.0 Simulator)'
+  sims[:iphone5s_70] = 'iPhone 5s (7.0.3 Simulator)'
+  sims[:iphone5s_71] = 'iPhone 5s (7.1 Simulator)'
+  sims[:iphone5s_80] = 'iPhone 5s (8.0 Simulator)'
+else
+  sims[:ipad2_70] = 'iPad - Simulator - iOS 7.0'
+  sims[:ipad2_71] = 'iPad - Simulator - iOS 7.1'
+  sims[:air_70] = 'iPad Retina (64-bit) - Simulator - iOS 7.0'
+  sims[:air_71] = 'iPad Retina (64-bit) - Simulator - iOS 7.1'
+  sims[:ipad_70] = 'iPad Retina - Simulator - iOS 7.0'
+  sims[:ipad_71] = 'iPad Retina - Simulator - iOS 7.1'
+  sims[:iphone4s_70] = 'iPhone Retina (3.5-inch) - Simulator - iOS 7.0'
+  sims[:iphone4s_71] = 'iPhone Retina (3.5-inch) - Simulator - iOS 7.1'
+  sims[:iphone5_70] = 'iPhone Retina (4-inch) - Simulator - iOS 7.0'
+  sims[:iphone5_71] = 'iPhone Retina (4-inch) - Simulator - iOS 7.1'
+  sims[:default] = 'iPhone Retina (4-inch) - Simulator - iOS 7.1'
+  sims[:iphone5s_70] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.0'
+  sims[:iphone5s_71] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
+end
+
+if ENV["USER"] == "jenkins"
+  formatter = "progress"
+  keep_sim_open_after = "0"
+else
+  formatter = "Slowhandcuke::Formatter"
+  keep_sim_open_after = "1"
+end
 
 %>
 
 verbose: CALABASH_FULL_CONSOLE_OUTPUT=1 DEBUG=1
-common: -f progress
+common: -f <%= formatter %>
 
 ss_path: SCREENSHOT_PATH=<%= ss_path %>
 
 html_report:  -f 'Calabash::Formatters::Html' -o <%= default_report %>
-pluto_html:   -f 'Calabash::Formatters::Html' -o <%= devices[:pluto][:report] %>
 neptune_html: -f 'Calabash::Formatters::Html' -o <%= devices[:neptune][:report] %>
 venus_html:   -f 'Calabash::Formatters::Html' -o <%= devices[:venus][:report] %>
 earp_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:earp][:report] %>
 mars_html:    -f 'Calabash::Formatters::Html' -o <%= devices[:mars][:report] %>
 saturn_html:  -f 'Calabash::Formatters::Html' -o <%= devices[:saturn][:report] %>
+pegasi_html:  -f 'Calabash::Formatters::Html' -o <%= devices[:pegasi][:report] %>
 
-pluto_ss:   SCREENSHOT_PATH=<%= devices[:pluto][:ss_path] %>
 neptune_ss: SCREENSHOT_PATH=<%= devices[:neptune][:ss_path] %>
 venus_ss:   SCREENSHOT_PATH=<%= devices[:venus][:ss_path] %>
 earp_ss:    SCREENSHOT_PATH=<%= devices[:earp][:ss_path] %>
 mars_ss:    SCREENSHOT_PATH=<%= devices[:mars][:ss_path] %>
 saturn_ss:  SCREENSHOT_PATH=<%= devices[:saturn][:ss_path] %>
+pegasi_ss:  SCREENSHOT_PATH=<%= devices[:pegasi][:ss_path] %>
 
 no_launch:    NO_LAUNCH=1 --tags ~@launch
 do_launch:    NO_LAUNCH=0 --tags ~@no_launch
-no_reset_btw: RESET_BETWEEN_SCENARIOS=0
 reset_btw:    RESET_BETWEEN_SCENARIOS=1
-stop:         NO_STOP=0
-no_stop:      NO_STOP=1
 
 ipad:   DEVICE=ipad   -p common --tags ~@iphone --tags ~@iphone_only
 iphone: DEVICE=iphone -p common --tags ~@ipad --tags ~@ipad_only
@@ -67,50 +109,47 @@ iphone: DEVICE=iphone -p common --tags ~@ipad --tags ~@ipad_only
 abp:           APP_BUNDLE_PATH=chou-cal.app
 
 simulator:     -p common -p ss_path -p html_report --tags ~@device_only --tags ~@device -p abp
-sim_launch:    -p simulator -p do_launch -p no_reset_btw -p no_stop
-sim_no_launch: -p simulator -p no_launch -p no_reset_btw
+sim_launch:    -p simulator -p do_launch NO_STOP=<%= keep_sim_open_after %>
+sim_no_launch: -p simulator -p no_launch
 
-sim61:     -p sim_launch    DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 6.1'
-sim61_nl:  -p sim_no_launch DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 6.1'
-sim61_sl:  -p sim_launch LAUNCH_VIA=sim_launcher DEVICE_TARGET='iPhone (3.5-inch) - Simulator - iOS 6.1'
-
-sim61r:    -p sim_launch DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 6.1'
-sim61r_nl: -p sim_no_launch DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 6.1'
-sim70r:    -p sim_launch DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 7.0'
-sim71r:    -p sim_launch DEVICE_TARGET='iPhone Retina (3.5-inch) - Simulator - iOS 7.1'
-
-sim61_4in:    -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 6.1'
-sim61_4in_nl: -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 6.1'
-sim70_4in:    -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 7.0'
-sim71_4in:    -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 7.1'
-
-sim70_64b:    -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.0'
-sim71_64b:    -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
-
+sim61_4in:         -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 6.1'
+sim61_4in_nl:      -p sim_launch DEVICE_TARGET='iPhone Retina (4-inch) - Simulator - iOS 6.1'
 sim61_ipad:        -p sim_launch DEVICE_TARGET='iPad - Simulator - iOS 6.1'
 sim61_ipad_nl:     -p sim_no_launch DEVICE_TARGET='iPad - Simulator - iOS 6.1'
-sim70_ipad:        -p sim_launch DEVICE_TARGET='iPad - Simulator - iOS 7.0'
-sim71_ipad:        -p sim_launch DEVICE_TARGET='iPad - Simulator - iOS 7.1'
-
 sim61_ipad_r:      -p sim_launch DEVICE_TARGET='iPad Retina - Simulator - iOS 6.1'
 sim61_ipad_r_nl:   -p sim_no_launch DEVICE_TARGET='iPad Retina - Simulator - iOS 6.1'
-sim70_ipad_r:      -p sim_launch DEVICE_TARGET='iPad Retina - Simulator - iOS 7.0'
-sim71_ipad_r:      -p sim_launch DEVICE_TARGET='iPad Retina - Simulator - iOS 7.1'
 
-sim70_ipad_r_64b:  -p sim_launch DEVICE_TARGET='iPad Retina (64-bit) - Simulator - iOS 7.0'
-sim71_ipad_r_64b:  -p sim_launch DEVICE_TARGET='iPad Retina (64-bit) - Simulator - iOS 7.1'
+ipad2_70:          -p sim_launch DEVICE_TARGET="<%= sims[:ipad2_70] %>"
+ipad2_71:          -p sim_launch DEVICE_TARGET="<%= sims[:ipad2_71] %>"
+ipad2_80:          -p sim_launch DEVICE_TARGET="<%= sims[:ipad2_80] %>"
 
-default:    -p sim71_4in
-no_uia:   -p common -p ss_path -p html_report -p no_launch -p no_reset_btw            -p sim61_4in
+air_70:            -p sim_launch DEVICE_TARGET="<%= sims[:air_70] %>"
+air_71:            -p sim_launch DEVICE_TARGET="<%= sims[:air_71] %>"
+air_80:            -p sim_launch DEVICE_TARGET="<%= sims[:air_80] %>"
+
+ipad_70:           -p sim_launch DEVICE_TARGET="<%= sims[:ipad_70] %>"
+ipad_71:           -p sim_launch DEVICE_TARGET="<%= sims[:ipad_71] %>"
+ipad_80:           -p sim_launch DEVICE_TARGET="<%= sims[:ipad_80] %>"
+
+iphone4s_70:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone4s_70] %>"
+iphone4s_71:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone4s_71] %>"
+iphone4s_80:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone4s_80] %>"
+
+iphone5_70:        -p sim_launch DEVICE_TARGET="<%= sims[:iphone5_70] %>"
+iphone5_71:        -p sim_launch DEVICE_TARGET="<%= sims[:iphone5_71] %>"
+iphone5_80:        -p sim_launch DEVICE_TARGET="<%= sims[:iphone5_80] %>"
+
+iphone5s_70:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_70] %>"
+iphone5s_71:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_71] %>"
+iphone5s_80:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_80] %>"
+
+default:           -p sim_launch DEVICE_TARGET="<%= sims[:default] %>"
+no_uia:            -p common -p ss_path -p html_report -p no_launch -p sim61_4in
 
 # required only for devices
-bundle_id:    BUNDLE_ID=com.lesspainful.example.LPSimpleExample-cal
+bundle_id:    BUNDLE_ID=com.xamarin.chou-cal
 
 device_common:  -p bundle_id --tags ~@simulator --tags ~@simulator_only
-
-pluto_common:   DEVICE_TARGET=<%= devices[:pluto][:udid] %>   DEVICE_ENDPOINT=<%= devices[:pluto][:ip] %> -p device_common -p ipad   -p pluto_html     -p pluto_ss
-# cannot test collection views on iOS 5
-pluto:          -p pluto_common -p no_launch --tags ~@collection_view
 
 neptune_common: DEVICE_TARGET=<%= devices[:neptune][:udid] %> DEVICE_ENDPOINT=<%= devices[:neptune][:ip] %> -p device_common -p iphone -p neptune_html -p neptune_ss
 
@@ -119,13 +158,16 @@ neptune:           -p neptune_common -p do_launch
 neptune_no_launch: -p neptune_common -p no_launch --tags ~@email
 
 venus_common:   DEVICE_TARGET=<%= devices[:venus][:udid] %>   DEVICE_ENDPOINT=<%= devices[:venus][:ip] %> -p device_common -p ipad   -p venus_html     -p venus_ss
-venus:          -p venus_common -p do_launch -p no_stop
+venus:          -p venus_common -p do_launch
 
 earp_common:   DEVICE_TARGET=<%= devices[:earp][:udid] %> DEVICE_ENDPOINT=<%= devices[:earp][:ip] %> -p device_common -p iphone -p earp_html -p earp_ss
-earp:          -p earp_common -p do_launch -p no_stop
+earp:          -p earp_common -p do_launch
 
 mars_common:   DEVICE_TARGET=<%= devices[:mars][:udid] %> DEVICE_ENDPOINT=<%= devices[:mars][:ip] %> -p device_common -p iphone -p mars_html -p mars_ss
-mars:          -p mars_common -p do_launch -p no_stop
+mars:          -p mars_common -p do_launch
 
 saturn_common:   DEVICE_TARGET=<%= devices[:saturn][:udid] %> DEVICE_ENDPOINT=<%= devices[:saturn][:ip] %> -p device_common -p iphone -p saturn_html -p saturn_ss
-saturn:          -p saturn_common -p do_launch -p no_stop
+saturn:          -p saturn_common -p do_launch
+
+pegasi_common:   DEVICE_TARGET=<%= devices[:pegasi][:udid] %> DEVICE_ENDPOINT=<%= devices[:pegasi][:ip] %> -p device_common -p iphone -p pegasi_html -p pegasi_ss
+pegasi:          -p pegasi_common -p do_launch

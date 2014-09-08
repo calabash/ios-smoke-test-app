@@ -180,6 +180,14 @@
 				CLASSPREFIX = Xam;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Xamarin;
+				TargetAttributes = {
+					F52BFB0B1987EF8700299AEF = {
+						DevelopmentTeam = 7S6YLL52WH;
+					};
+					aa8f030ac9159ee56ef3af27 = {
+						DevelopmentTeam = 7S6YLL52WH;
+					};
+				};
 			};
 			buildConfigurationList = F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "chou" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -263,6 +271,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Joshua Moody (8QEQJFT59F)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -277,6 +286,7 @@
 					"-lstdc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1DF95D15-FC39-40F2-AC40-E0A48FD4A063";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -358,10 +368,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Joshua Moody (8QEQJFT59F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joshua Moody (8QEQJFT59F)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "chou/chou-Prefix.pch";
 				INFOPLIST_FILE = "chou/chou-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1DF95D15-FC39-40F2-AC40-E0A48FD4A063";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -371,10 +384,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Joshua Moody (8QEQJFT59F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joshua Moody (8QEQJFT59F)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "chou/chou-Prefix.pch";
 				INFOPLIST_FILE = "chou/chou-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1DF95D15-FC39-40F2-AC40-E0A48FD4A063";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -384,6 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Joshua Moody (8QEQJFT59F)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -398,6 +415,7 @@
 					"-lstdc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1DF95D15-FC39-40F2-AC40-E0A48FD4A063";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -412,7 +430,7 @@
 				491a6ef5af9d742e85958355 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "chou" */ = {
 			isa = XCConfigurationList;
@@ -421,7 +439,7 @@
 				F52BFB401987EF8700299AEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		F52BFB411987EF8700299AEF /* Build configuration list for PBXNativeTarget "chou" */ = {
 			isa = XCConfigurationList;
@@ -430,7 +448,7 @@
 				F52BFB431987EF8700299AEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
