@@ -143,11 +143,12 @@
         self.y  =   PIXEL_INTEGRAL((self.superview.width / 2.0) - (self.height / 2.0));
         break;
       }
-      // UIInterfaceOrientationUnknown is an iOS 8 symbol.
-      // UIDeviceOrientationUnknown <==> UIInterfaceOrientationUnknown
-      case UIDeviceOrientationUnknown:
-      case UIInterfaceOrientationPortrait:
-      case UIInterfaceOrientationPortraitUpsideDown:{
+      default: {
+        // UIInterfaceOrientationUnknown is an iOS 8 symbol.
+        // UIDeviceOrientationUnknown <==> UIInterfaceOrientationUnknown
+
+        // case UIInterfaceOrientationPortrait:
+        // case UIInterfaceOrientationPortraitUpsideDown:{
         self.x  =   PIXEL_INTEGRAL((self.superview.width / 2.0) - (self.width / 2.0));
         self.y  =   PIXEL_INTEGRAL((self.superview.height / 2.0) - (self.height / 2.0));
         break;
