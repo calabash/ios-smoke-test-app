@@ -55,7 +55,10 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.rootViewController = [[XamViewController alloc] initWithNibName:nil bundle:nil];
   [self.window makeKeyAndVisible];
+
+#if TARGET_IPHONE_SIMULATOR
   NSLog(@"%@", [self stringForPreferencesPath:nil]);
+#endif
   return YES;
 }
 							
