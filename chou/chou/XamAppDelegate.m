@@ -17,7 +17,6 @@
   NSString *plistName = [NSString stringWithFormat:@"%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
 
   // 1. get into the simulator's app support directory by fetching the sandboxed Library's path
-
   NSArray *userLibDirURLs = [[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask];
 
   NSURL *userDirURL = [userLibDirURLs lastObject];
@@ -44,7 +43,7 @@
   [defaults synchronize];
   NSDictionary *dictionary = [defaults dictionaryRepresentation];
   NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
-                                                 options:0
+                                                 options:NSJSONWritingPrettyPrinted
                                                    error:nil];
   NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
   return string;
@@ -56,9 +55,13 @@
   self.window.rootViewController = [[XamViewController alloc] initWithNibName:nil bundle:nil];
   [self.window makeKeyAndVisible];
 
+  [[NSUserDefaults standardUserDefaults] setObject:@"Hey!" forKey:@"com.example.set-in-uiapplication-delegate"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+
 #if TARGET_IPHONE_SIMULATOR
   NSLog(@"%@", [self stringForPreferencesPath:nil]);
 #endif
+  NSLog(@"%@", [self stringForDefaultsDictionary:nil]);
   return YES;
 }
 							
