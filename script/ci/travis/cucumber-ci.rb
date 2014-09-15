@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+require 'erb'
+require 'run_loop'
+require 'yaml'
+
 require File.expand_path(File.join(File.dirname(__FILE__), 'ci-helpers'))
 
 cucumber_args = "#{ARGV.join(' ')}"
@@ -19,23 +23,43 @@ Dir.chdir(working_directory) do
              :fail_msg => 'could not reset the simulator'})
 
 
-  # todo - parse the config/cucumber.yml file for this info
-  profiles =
-        {:sim61_4in => 'iPhone Retina (4-inch) - Simulator - iOS 6.1',
-         :sim71_4in => 'iPhone Retina (4-inch) - Simulator - iOS 7.1',
-         :sim61r => 'iPhone Retina (3.5-inch) - Simulator - iOS 6.1',
-         :sim71r => 'iPhone Retina (3.5-inch) - Simulator - iOS 7.1',
-         :sim61_ipad_r => 'iPad Retina - Simulator - iOS 6.1',
-         :sim71_ipad_r => 'iPad Retina - Simulator - iOS 7.1',
-         :sim61_sl => 'iPhone (3.5-inch) - Simulator - iOS 6.1 (launched with ios-sim)'
-        }
+  cucumber_profiles = File.expand_path('config/cucumber.yml')
+  evaled_erb = ERB.new(File.read cucumber_profiles)
+  # noinspection RubyResolve
+  parsed_yaml = YAML.load(evaled_erb.result)
+  simulators_str = parsed_yaml['simulators'].split('=')[1..-1].join(' =').gsub(/=>/, ' => ').gsub!(/\A"|"\Z/, '')
+  hash_ready = simulators_str[1..simulators_str.length-2]
+  tokens = hash_ready.split(',').map { |elm| elm.strip }
+  simulator_profiles = {}
+  tokens.each do |token|
+    key_value = token.split('=>').map { |elm| elm.strip }
+    simulator_profiles[key_value[0].tr(':', '').to_sym] = key_value[1].gsub!(/\A"|"\Z/, '')
+  end
 
-  if travis_ci?
-    profiles[:sim70_64b] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.0'
-    profiles[:sim70_ipad_r_64b] = 'iPad Retina (64-bit) - Simulator - iOS 7.0'
-  else
-    profiles[:sim71_64b] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
-    profiles[:sim71_ipad_r_64b] = 'iPad Retina (64-bit) - Simulator - iOS 7.1'
+  profiles =
+        {
+              :ipad2 => simulator_profiles[:ipad2],
+              :ipad2_mid => simulator_profiles[:ipad2_mid],
+
+              :air => simulator_profiles[:air],
+              :air_mid => simulator_profiles[:air_mid],
+
+              :ipad => simulator_profiles[:ipad],
+              :ipad_mid => simulator_profiles[:ipad_mid],
+
+              :iphone4s => simulator_profiles[:iphone4s],
+              :iphone4s_mid => simulator_profiles[:iphone4s_mid],
+
+              :iphone5s => simulator_profiles[:iphone5s],
+              :iphone5s_mid => simulator_profiles[:iphone5s_mid],
+
+              :iphone5 => simulator_profiles[:iphone5],
+              :iphone5_mid => simulator_profiles[:iphone5_mid]
+        }
+  xcode_tools = RunLoop::XCTools.new
+  if travis_ci? and not xcode_tools.xcode_version_gte_6?
+    profiles[:air] = simulator_profiles[:air_mid]
+    profiles[:iphone5s] = simulator_profiles[:iphone5s_mid]
   end
 
   # noinspection RubyStringKeysInHashInspection
