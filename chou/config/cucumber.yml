@@ -1,5 +1,7 @@
 <%
 
+require 'run_loop'
+
 date = Time.now.strftime('%Y-%m-%d-%H%M-%S')
 
 FileUtils.mkdir("./screenshots") unless File.exists?("./screenshots")
@@ -31,42 +33,58 @@ end
 default_report = "./reports/calabash-#{date}.html"
 ss_path = "./screenshots/"
 
-xcode_version = `xcrun xcodebuild -version`.split(/\s/)[1].split('.').first
+xcode_tools = RunLoop::XCTools.new
 sims = {}
-if xcode_version.to_i >= 6
-  sims[:ipad2_70] = 'iPad 2 (7.0.3 Simulator)'
-  sims[:ipad2_71] = 'iPad 2 (7.1 Simulator)'
-  sims[:ipad2_80] = 'iPad 2 (8.0 Simulator)'
-  sims[:air_70] = 'iPad Air (7.0.3 Simulator)'
-  sims[:air_71] = 'iPad Air (7.1 Simulator)'
-  sims[:air_80] = 'iPad Air (8.0 Simulator)'
-  sims[:ipad_70] = 'iPad Retina (7.0.3 Simulator)'
-  sims[:ipad_71] = 'iPad Retina (7.1 Simulator)'
-  sims[:ipad_80] = 'iPad Retina (8.0 Simulator)'
-  sims[:iphone4s_70] = 'iPhone 4s (7.0.3 Simulator)'
-  sims[:iphone4s_71] = 'iPhone 4s (7.1 Simulator)'
-  sims[:iphone4s_80] = 'iPhone 4s (8.0 Simulator)'
-  sims[:iphone5_70] = 'iPhone 5s (7.0.3 Simulator)'
-  sims[:iphone5_71] = 'iPhone 5s (7.1 Simulator)'
-  sims[:iphone5_80] = 'iPhone 5s (8.0 Simulator)'
-  sims[:default] = 'iPhone 5s (8.0 Simulator)'
-  sims[:iphone5s_70] = 'iPhone 5s (7.0.3 Simulator)'
-  sims[:iphone5s_71] = 'iPhone 5s (7.1 Simulator)'
-  sims[:iphone5s_80] = 'iPhone 5s (8.0 Simulator)'
+if xcode_tools.xcode_version_gte_6?
+  sims[:ipad2]     = 'iPad 2 (8.0 Simulator)'
+  sims[:ipad2_mid] = 'iPad 2 (7.1 Simulator)'
+  sims[:ipad2_min] = 'iPad 2 (7.0.3 Simulator)'
+
+  sims[:air] =     'iPad Air (8.0 Simulator)'
+  sims[:air_mid] = 'iPad Air (7.1 Simulator)'
+  sims[:air_min] = 'iPad Air (7.0.3 Simulator)'
+
+  sims[:ipad]     = 'iPad Retina (8.0 Simulator)'
+  sims[:ipad_mid] = 'iPad Retina (7.1 Simulator)'
+  sims[:ipad_min] = 'iPad Retina (7.0.3 Simulator)'
+
+  sims[:iphone4s]     = 'iPhone 4s (8.0 Simulator)'
+  sims[:iphone4s_mid] = 'iPhone 4s (7.1 Simulator)'
+  sims[:iphone4s_min] = 'iPhone 4s (7.0.3 Simulator)'
+
+  sims[:iphone5s]     = 'iPhone 5s (8.0 Simulator)'
+  sims[:iphone5s_mid] = 'iPhone 5s (7.1 Simulator)'
+  sims[:iphone5s_min] = 'iPhone 5s (7.0.3 Simulator)'
+
+  sims[:iphone5]     = 'iPhone 5 (8.0 Simulator)'
+  sims[:iphone5_mid] = 'iPhone 5 (7.1 Simulator)'
+  sims[:iphone5_min] = 'iPhone 5 (7.0.3 Simulator)'
+  sims[:default]     = 'iPhone 5 (8.0 Simulator)'
 else
-  sims[:ipad2_70] = 'iPad - Simulator - iOS 7.0'
-  sims[:ipad2_71] = 'iPad - Simulator - iOS 7.1'
-  sims[:air_70] = 'iPad Retina (64-bit) - Simulator - iOS 7.0'
-  sims[:air_71] = 'iPad Retina (64-bit) - Simulator - iOS 7.1'
-  sims[:ipad_70] = 'iPad Retina - Simulator - iOS 7.0'
-  sims[:ipad_71] = 'iPad Retina - Simulator - iOS 7.1'
-  sims[:iphone4s_70] = 'iPhone Retina (3.5-inch) - Simulator - iOS 7.0'
-  sims[:iphone4s_71] = 'iPhone Retina (3.5-inch) - Simulator - iOS 7.1'
-  sims[:iphone5_70] = 'iPhone Retina (4-inch) - Simulator - iOS 7.0'
-  sims[:iphone5_71] = 'iPhone Retina (4-inch) - Simulator - iOS 7.1'
-  sims[:default] = 'iPhone Retina (4-inch) - Simulator - iOS 7.1'
-  sims[:iphone5s_70] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.0'
-  sims[:iphone5s_71] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
+  sims[:ipad2]     = 'iPad - Simulator - iOS 7.1'
+  sims[:ipad2_mid] = 'iPad - Simulator - iOS 7.0'
+  sims[:ipad2_min] = 'iPad - Simulator - iOS 6.1'
+
+  sims[:air] =     'iPad Retina (64-bit) - Simulator - iOS 7.1'
+  sims[:air_mid] = 'iPad Retina (64-bit) - Simulator - iOS 7.0'
+  sims[:air_min] = 'iPad Retina (64-bit) - Simulator - iOS 7.0'
+
+  sims[:ipad]     = 'iPad Retina - Simulator - iOS 7.1'
+  sims[:ipad_mid] = 'iPad Retina - Simulator - iOS 7.0'
+  sims[:ipad_min] = 'iPad Retina - Simulator - iOS 6.1'
+
+  sims[:iphone4s]     = 'iPhone Retina (3.5-inch) - Simulator - iOS 7.1'
+  sims[:iphone4s_mid] = 'iPhone Retina (3.5-inch) - Simulator - iOS 7.0'
+  sims[:iphone4s_min] = 'iPhone Retina (3.5-inch) - Simulator - iOS 6.1'
+
+  sims[:iphone5s]     = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
+  sims[:iphone5s_mid] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.0'
+  sims[:iphone5s_min] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.0'
+
+  sims[:iphone5]     = 'iPhone Retina (4-inch) - Simulator - iOS 7.1'
+  sims[:iphone5_mid] = 'iPhone Retina (4-inch) - Simulator - iOS 7.0'
+  sims[:iphone5_min] = 'iPhone Retina (4-inch) - Simulator - iOS 6.1'
+  sims[:default]     = 'iPhone Retina (4-inch) - Simulator - iOS 7.1'
 end
 
 if ENV["USER"] == "jenkins"
@@ -119,32 +137,33 @@ sim61_ipad_nl:     -p sim_no_launch DEVICE_TARGET='iPad - Simulator - iOS 6.1'
 sim61_ipad_r:      -p sim_launch DEVICE_TARGET='iPad Retina - Simulator - iOS 6.1'
 sim61_ipad_r_nl:   -p sim_no_launch DEVICE_TARGET='iPad Retina - Simulator - iOS 6.1'
 
-ipad2_70:          -p sim_launch DEVICE_TARGET="<%= sims[:ipad2_70] %>"
-ipad2_71:          -p sim_launch DEVICE_TARGET="<%= sims[:ipad2_71] %>"
-ipad2_80:          -p sim_launch DEVICE_TARGET="<%= sims[:ipad2_80] %>"
+simulators:         SIMULATORS="<%= sims %>"
+ipad2:              -p sim_launch DEVICE_TARGET="<%= sims[:ipad2] %>"
+ipad2_mid:          -p sim_launch DEVICE_TARGET="<%= sims[:ipad2_mid] %>"
+ipad2_min:          -p sim_launch DEVICE_TARGET="<%= sims[:ipad2_min] %>"
 
-air_70:            -p sim_launch DEVICE_TARGET="<%= sims[:air_70] %>"
-air_71:            -p sim_launch DEVICE_TARGET="<%= sims[:air_71] %>"
-air_80:            -p sim_launch DEVICE_TARGET="<%= sims[:air_80] %>"
+air:                -p sim_launch DEVICE_TARGET="<%= sims[:air] %>"
+air_mid:            -p sim_launch DEVICE_TARGET="<%= sims[:air_mid] %>"
+air_min:            -p sim_launch DEVICE_TARGET="<%= sims[:air_min] %>"
 
-ipad_70:           -p sim_launch DEVICE_TARGET="<%= sims[:ipad_70] %>"
-ipad_71:           -p sim_launch DEVICE_TARGET="<%= sims[:ipad_71] %>"
-ipad_80:           -p sim_launch DEVICE_TARGET="<%= sims[:ipad_80] %>"
+ipad:               -p sim_launch DEVICE_TARGET="<%= sims[:ipad] %>"
+ipad_mid:           -p sim_launch DEVICE_TARGET="<%= sims[:ipad_mid] %>"
+ipad_min:           -p sim_launch DEVICE_TARGET="<%= sims[:ipad_min] %>"
 
-iphone4s_70:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone4s_70] %>"
-iphone4s_71:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone4s_71] %>"
-iphone4s_80:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone4s_80] %>"
+iphone4s:           -p sim_launch DEVICE_TARGET="<%= sims[:iphone4s] %>"
+iphone4s_mid:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone4s_mid] %>"
+iphone4s_min:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone4s_min] %>"
 
-iphone5_70:        -p sim_launch DEVICE_TARGET="<%= sims[:iphone5_70] %>"
-iphone5_71:        -p sim_launch DEVICE_TARGET="<%= sims[:iphone5_71] %>"
-iphone5_80:        -p sim_launch DEVICE_TARGET="<%= sims[:iphone5_80] %>"
+iphone5:            -p sim_launch DEVICE_TARGET="<%= sims[:iphone5] %>"
+iphone5_mid:        -p sim_launch DEVICE_TARGET="<%= sims[:iphone5_mid] %>"
+iphone5_min:        -p sim_launch DEVICE_TARGET="<%= sims[:iphone5_min] %>"
 
-iphone5s_70:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_70] %>"
-iphone5s_71:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_71] %>"
-iphone5s_80:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_80] %>"
+iphone5s:           -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s] %>"
+iphone5s_mid:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_mid] %>"
+iphone5s_min:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_min] %>"
 
-default:           -p sim_launch DEVICE_TARGET="<%= sims[:default] %>"
-no_uia:            -p common -p ss_path -p html_report -p no_launch -p sim61_4in
+default:            -p sim_launch DEVICE_TARGET="<%= sims[:default] %>"
+no_uia:             -p common -p ss_path -p html_report -p no_launch -p sim61_4in
 
 # required only for devices
 bundle_id:    BUNDLE_ID=com.xamarin.chou-cal
