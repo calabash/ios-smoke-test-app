@@ -8,8 +8,10 @@ script:
   - script/ci/travis/build-and-stage-app.sh
   - script/ci/travis/cucumber-ci.rb --tags ~@no_ci
 
-rvm:
-  - 2.1.1
+# Default to the default installed ruby (2.0.0).
+# Rvm is unstable ATM on Travis CI.
+#rvm:
+#  - 2.1.1
 
 notifications:
   email:
