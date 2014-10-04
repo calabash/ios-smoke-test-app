@@ -60,6 +60,10 @@ if xcode_tools.xcode_version_gte_6?
   sims[:iphone5_mid] = 'iPhone 5 (7.1 Simulator)'
   sims[:iphone5_min] = 'iPhone 5 (7.0.3 Simulator)'
   sims[:default]     = 'iPhone 5 (8.0 Simulator)'
+
+  sims[:iphone_latest] = 'iPhone 6 (8.0 Simulator)'
+  sims[:iphone_largest] = 'iPhone 6 Plus (8.0 Simulator)'
+
 else
   sims[:ipad2]     = 'iPad - Simulator - iOS 7.1'
   sims[:ipad2_mid] = 'iPad - Simulator - iOS 7.0'
@@ -85,6 +89,10 @@ else
   sims[:iphone5_mid] = 'iPhone Retina (4-inch) - Simulator - iOS 7.0'
   sims[:iphone5_min] = 'iPhone Retina (4-inch) - Simulator - iOS 6.1'
   sims[:default]     = 'iPhone Retina (4-inch) - Simulator - iOS 7.1'
+
+  sims[:iphone_latest] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
+  sims[:iphone_largest] = 'iPhone Retina (4-inch 64-bit) - Simulator - iOS 7.1'
+
 end
 
 if ENV["USER"] == "jenkins"
@@ -161,6 +169,9 @@ iphone5_min:        -p sim_launch DEVICE_TARGET="<%= sims[:iphone5_min] %>"
 iphone5s:           -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s] %>"
 iphone5s_mid:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_mid] %>"
 iphone5s_min:       -p sim_launch DEVICE_TARGET="<%= sims[:iphone5s_min] %>"
+
+iphone_latest:      -p sim_launch DEVICE_TARGET="<%= sims[:iphone_latest] %>"
+iphone_largest:     -p sim_launch DEVICE_TARGET="<%= sims[:iphone_largest] %>"
 
 default:            -p sim_launch DEVICE_TARGET="<%= sims[:default] %>"
 no_uia:             -p common -p ss_path -p html_report -p no_launch -p sim61_4in
