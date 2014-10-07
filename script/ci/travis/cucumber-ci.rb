@@ -40,8 +40,8 @@ Dir.chdir(working_directory) do
   if travis_ci?
     profiles =
           {
-                :iphone_latest => simulator_profiles[:iphone_latest],
-                :iphone_largest => simulator_profiles[:iphone_largest],
+                #:iphone_latest => simulator_profiles[:iphone_latest],
+                #:iphone_largest => simulator_profiles[:iphone_largest],
 
                 #:ipad2 => simulator_profiles[:ipad2],
                 # Not yet, maybe never
