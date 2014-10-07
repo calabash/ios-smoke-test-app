@@ -77,6 +77,9 @@ Dir.chdir(working_directory) do
   else
     profiles =
           {
+                :iphone_latest => simulator_profiles[:iphone_latest],
+                :iphone_largest => simulator_profiles[:iphone_largest],
+
                 :ipad2 => simulator_profiles[:ipad2],
                 :ipad2_mid => simulator_profiles[:ipad2_mid],
                 #:ipad2_min => simulator_profiles[:ipad2_min],
