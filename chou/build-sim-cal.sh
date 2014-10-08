@@ -23,7 +23,6 @@ set +o errexit
 xcrun xcodebuild \
     -SYMROOT=build \
     -derivedDataPath "${CAL_BUILD_DIR}" \
-    -resultBundlePath "${PWD}/${TARGET_NAME}.app" \
     -project "${XC_PROJECT}" \
     -scheme "${TARGET_NAME}" \
     -sdk iphonesimulator \
@@ -42,3 +41,5 @@ else
 fi
 
 bundle exec calabash-ios sim reset
+
+cp -r "${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app" ./
