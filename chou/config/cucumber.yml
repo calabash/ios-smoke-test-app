@@ -128,9 +128,9 @@ pegasi_ss:  SCREENSHOT_PATH=<%= devices[:pegasi][:ss_path] %>
 
 reset_btw:    RESET_BETWEEN_SCENARIOS=1
 
-#abp:           APP_BUNDLE_PATH=chou-cal.app
+app:           APP=chou-cal.app
 
-simulator:     -p common -p ss_path -p html_report --tags ~@device_only --tags ~@device #-p abp
+simulator:     -p app -p common -p ss_path -p html_report --tags ~@device_only --tags ~@device
 sim_launch:    -p simulator  NO_STOP=<%= keep_sim_open_after %>
 sim_no_launch: -p simulator NO_LAUNCH=1
 
