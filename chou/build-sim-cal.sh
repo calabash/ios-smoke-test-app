@@ -21,7 +21,7 @@ mkdir -p "${CAL_BUILD_DIR}"
 set +o errexit
 
 xcrun xcodebuild \
-    -SYMROOT=build \
+    -SYMROOT="${CAL_BUILD_DIR}" \
     -derivedDataPath "${CAL_BUILD_DIR}" \
     -project "${XC_PROJECT}" \
     -scheme "${TARGET_NAME}" \
