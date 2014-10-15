@@ -27,6 +27,7 @@ screenshots
 *screenshot*.png
 vendor
 Gemfile.lock
+.ruby-version
 
 # briar
 .env
