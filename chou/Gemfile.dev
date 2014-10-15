@@ -2,10 +2,11 @@ source 'https://rubygems.org'
 
 # use bundle and bundle config to specify local gem locations
 # bundle config local.GEM_NAME /path/to/local/git/repository
-gem 'run_loop', :github => 'calabash/run_loop', :branch => 'develop'
-gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'develop'
-gem 'briar', :github => 'jmoody/briar', :branch => 'master'
 
+gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'develop'
+gem 'run_loop', :github => 'calabash/run_loop', :branch => 'develop'
+
+gem 'briar'
 gem 'xcpretty', '~> 0.1'
 gem 'rake', '~> 10.3'
 gem 'bundler', '~> 1.6'
