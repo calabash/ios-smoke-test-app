@@ -37,66 +37,30 @@ Dir.chdir(working_directory) do
   end
 
 
-  if travis_ci?
-    profiles =
-          {
-                :ipad2 => simulator_profiles[:ipad2],
-                :ipad2_mid => simulator_profiles[:ipad2_mid],
+  profiles =
+        {
+              :ipad2 => simulator_profiles[:ipad2],
+              :ipad2_mid => simulator_profiles[:ipad2_mid],
 
-                :air => simulator_profiles[:air],
-                :air_mid => simulator_profiles[:air_mid],
+              :air => simulator_profiles[:air],
+              :air_mid => simulator_profiles[:air_mid],
 
-                :ipad => simulator_profiles[:ipad],
-                :ipad_mid => simulator_profiles[:ipad_mid],
+              :ipad => simulator_profiles[:ipad],
+              :ipad_mid => simulator_profiles[:ipad_mid],
 
-                :iphone4s => simulator_profiles[:iphone4s],
-                :iphone4s_mid => simulator_profiles[:iphone4s_mid],
+              :iphone4s => simulator_profiles[:iphone4s],
+              :iphone4s_mid => simulator_profiles[:iphone4s_mid],
 
-                :iphone5s => simulator_profiles[:iphone5s],
-                :iphone5s_mid => simulator_profiles[:iphone5s_mid],
+              :iphone5s => simulator_profiles[:iphone5s],
+              :iphone5s_mid => simulator_profiles[:iphone5s_mid],
 
-                :iphone5 => simulator_profiles[:iphone5],
-                :iphone5_mid => simulator_profiles[:iphone5_mid],
+              :iphone5 => simulator_profiles[:iphone5],
+              :iphone5_mid => simulator_profiles[:iphone5_mid],
 
-                :iphone_latest => simulator_profiles[:iphone_latest],
-                :iphone_largest => simulator_profiles[:iphone_largest],
-    }
-  else
-    profiles =
-          {
-                :ipad2 => simulator_profiles[:ipad2],
-                :ipad2_mid => simulator_profiles[:ipad2_mid],
-                #:ipad2_min => simulator_profiles[:ipad2_min],
+              :iphone_latest => simulator_profiles[:iphone_latest],
+              :iphone_largest => simulator_profiles[:iphone_largest],
+        }
 
-                :air => simulator_profiles[:air],
-                :air_mid => simulator_profiles[:air_mid],
-                #:air_min => simulator_profiles[:air_min],
-
-                :ipad => simulator_profiles[:ipad],
-                :ipad_mid => simulator_profiles[:ipad_mid],
-                #:ipad_min => simulator_profiles[:ipad_min],
-
-                :iphone4s => simulator_profiles[:iphone4s],
-                :iphone4s_mid => simulator_profiles[:iphone4s_mid],
-                #:iphone4s_min => simulator_profiles[:iphone4s_min],
-
-                :iphone5s => simulator_profiles[:iphone5s],
-                :iphone5s_mid => simulator_profiles[:iphone5s_mid],
-                #:iphone5s_min => simulator_profiles[:iphone5s_min],
-
-                :iphone5 => simulator_profiles[:iphone5],
-                :iphone5_mid => simulator_profiles[:iphone5_mid],
-                #:iphone5_min => simulator_profiles[:iphone5_min]
-          }
-
-  end
-
-  # Travis CI on Xcode 5.1.1 has a hard time with 64 bit simulators.
-  xcode_tools = RunLoop::XCTools.new
-  if travis_ci? and not xcode_tools.xcode_version_gte_6?
-    profiles[:air] = simulator_profiles[:air_mid]
-    profiles[:iphone5s] = simulator_profiles[:iphone5s_mid]
-  end
 
   # noinspection RubyStringKeysInHashInspection
   env_vars = {'APP_BUNDLE_PATH' => './chou-cal.app'}
