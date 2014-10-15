@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # use bundle and bundle config to specify local gem locations
 # bundle config local.GEM_NAME /path/to/local/git/repository
-gem 'calabash-cucumber', '~> 0.10.0'
+gem 'calabash-cucumber', '~> 0.11'
 gem 'briar'
 
 gem 'xcpretty', '~> 0.1'
