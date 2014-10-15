@@ -39,8 +39,14 @@ mkdir -p "${CAL_DISTRO_DIR}"
 
 set +o errexit
 
-xcrun xcodebuild archive -project "${XC_PROJECT}" -scheme "${XC_SCHEME}" \
-    -configuration "${CONFIG}" -archivePath "${ARCHIVE_BUNDLE}" \
+xcrun xcodebuild \
+    archive \
+    -project "${XC_PROJECT}" \
+    -scheme "${XC_SCHEME}" \
+    -configuration "${CONFIG}" \
+    -archivePath "${ARCHIVE_BUNDLE}" \
+    -SYMROOT="${CAL_DISTRO_DIR}" \
+    -derivedDataPath "${CAL_DISTRO_DIR}" \
     -sdk iphoneos | ${RBENV_EXEC} xcpretty -c
 
 RETVAL=${PIPESTATUS[0]}
