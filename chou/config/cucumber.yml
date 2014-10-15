@@ -175,7 +175,7 @@ no_uia:             -p common -p ss_path -p html_report -p no_launch -p sim61_4i
 # required only for devices
 bundle_id:    BUNDLE_ID=com.xamarin.chou-cal
 
-device_common:  -p bundle_id --tags ~@simulator --tags ~@simulator_only
+device_common:  -p common -p bundle_id --tags ~@simulator --tags ~@simulator_only
 
 neptune_common: DEVICE_TARGET=<%= devices[:neptune][:udid] %> DEVICE_ENDPOINT=<%= devices[:neptune][:ip] %> -p device_common  -p neptune_html -p neptune_ss
 
