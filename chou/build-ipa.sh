@@ -22,7 +22,7 @@ XC_PROJECT="chou.xcodeproj"
 XC_SCHEME="${TARGET_NAME}"
 CONFIG="Debug"
 
-CAL_DISTRO_DIR="${PWD}/build"
+CAL_DISTRO_DIR="${PWD}/build/ipa"
 ARCHIVE_BUNDLE="${CAL_DISTRO_DIR}/chou.xcarchive"
 APP_BUNDLE_PATH="${ARCHIVE_BUNDLE}/Products/Applications/${TARGET_NAME}.app"
 IPA_PATH="${CAL_DISTRO_DIR}/${TARGET_NAME}.ipa"
@@ -32,8 +32,14 @@ mkdir -p "${CAL_DISTRO_DIR}"
 
 set +o errexit
 
-xcrun xcodebuild archive -project "${XC_PROJECT}" -scheme "${XC_SCHEME}" \
-    -configuration "${CONFIG}" -archivePath "${ARCHIVE_BUNDLE}" \
+xcrun xcodebuild \
+    archive \
+    -SYMROOT="${CAL_DISTRO_DIR}" \
+    -derivedDataPath "${CAL_DISTRO_DIR}" \
+    -project "${XC_PROJECT}" \
+    -scheme "${XC_SCHEME}" \
+    -configuration "${CONFIG}" \
+    -archivePath "${ARCHIVE_BUNDLE}" \
     -sdk iphoneos | ${RBENV_EXEC} xcpretty -c
 
 RETVAL=${PIPESTATUS[0]}
