@@ -27,6 +27,9 @@ set +o errexit
 xcrun xcodebuild \
     -SYMROOT="${CAL_BUILD_DIR}" \
     -derivedDataPath "${CAL_BUILD_DIR}" \
+    ARCHS="i386 x86_64" \
+    VALID_ARCHS="i386 x86_64" \
+    ONLY_ACTIVE_ARCH=NO \
     -project "${XC_PROJECT}" \
     -scheme "${TARGET_NAME}" \
     -sdk iphonesimulator \

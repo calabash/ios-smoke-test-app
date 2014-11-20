@@ -40,6 +40,9 @@ xcrun xcodebuild \
     -scheme "${XC_SCHEME}" \
     -configuration "${CONFIG}" \
     -archivePath "${ARCHIVE_BUNDLE}" \
+    ARCHS="armv7 armv7s arm64" \
+    VALID_ARCHS="armv7 armv7s arm64" \
+    ONLY_ACTIVE_ARCH=NO \
     -sdk iphoneos | ${RBENV_EXEC} xcpretty -c
 
 RETVAL=${PIPESTATUS[0]}

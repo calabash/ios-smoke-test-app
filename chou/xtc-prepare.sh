@@ -47,6 +47,9 @@ xcrun xcodebuild \
     -archivePath "${ARCHIVE_BUNDLE}" \
     -SYMROOT="${CAL_DISTRO_DIR}" \
     -derivedDataPath "${CAL_DISTRO_DIR}" \
+    ARCHS="armv7 armv7s arm64" \
+    VALID_ARCHS="armv7 armv7s arm64" \
+    ONLY_ACTIVE_ARCH=NO \
     -sdk iphoneos | ${RBENV_EXEC} xcpretty -c
 
 RETVAL=${PIPESTATUS[0]}
