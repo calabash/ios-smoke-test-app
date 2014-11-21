@@ -57,8 +57,8 @@ Dir.chdir(working_directory) do
               :iphone5 => simulator_profiles[:iphone5],
               :iphone5_mid => simulator_profiles[:iphone5_mid],
 
-              :iphone_latest => simulator_profiles[:iphone_latest],
-              :iphone_largest => simulator_profiles[:iphone_largest],
+              :iphone6 => simulator_profiles[:iphone6],
+              :iphone6plus => simulator_profiles[:iphone6plus],
         }
 
 
