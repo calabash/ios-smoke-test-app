@@ -35,7 +35,12 @@ ss_path = "./screenshots/"
 
 xcode_tools = RunLoop::XCTools.new
 sims = {}
-if xcode_tools.xcode_version_gte_62?
+
+# xcode_tools.xcode_version_gte_62? is not available yet (Xcode 6.2 is in beta)
+xcode_build_output = `xcrun xcodebuild -version`.split(/\s/)[1]
+xcode_version = RunLoop::Version.new(xcode_build_output)
+
+if xcode_version >= RunLoop::Version.new('6.2')
   sims[:ipad2]     = 'iPad 2 (8.2 Simulator)'
   sims[:ipad2_mid] = 'iPad 2 (7.1 Simulator)'
 
