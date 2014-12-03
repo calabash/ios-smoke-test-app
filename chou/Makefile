@@ -12,19 +12,19 @@ clean:
 
 ipa:
 	rm -rf chou.ipa
-	build-ipa.sh
+	./build-ipa.sh
 
 ipa-cal:
-	xtc-prepare.sh
+	./xtc-prepare.sh
 	cp xtc-staging/chou-cal.ipa ./
 
 app:
 	rm -rf chou.app
-	build-sim.sh
+	./build-sim.sh
 
 app-cal:
 	rm -rf chou-cal.app
-	build-sim-cal.sh
+	./build-sim-cal.sh
 
 
 
