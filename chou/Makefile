@@ -26,5 +26,3 @@ app-cal:
 	rm -rf chou-cal.app
 	./build-sim-cal.sh
 
-
-
