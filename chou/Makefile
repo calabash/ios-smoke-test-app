@@ -26,3 +26,7 @@ app-cal:
 	rm -rf chou-cal.app
 	./build-sim-cal.sh
 
+install_test_binaries:
+	$(MAKE) all
+	./install-test-binaries.rb
+
