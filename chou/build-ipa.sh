@@ -25,7 +25,9 @@ CONFIG="Debug"
 CAL_DISTRO_DIR="${PWD}/build/ipa"
 ARCHIVE_BUNDLE="${CAL_DISTRO_DIR}/chou.xcarchive"
 APP_BUNDLE_PATH="${ARCHIVE_BUNDLE}/Products/Applications/${TARGET_NAME}.app"
+DYSM_PATH="${ARCHIVE_BUNDLE}/dSYMs/${TARGET_NAME}.app.dSYM"
 IPA_PATH="${CAL_DISTRO_DIR}/${TARGET_NAME}.ipa"
+
 
 rm -rf "${CAL_DISTRO_DIR}"
 mkdir -p "${CAL_DISTRO_DIR}"
@@ -71,6 +73,7 @@ fi
 rm -rf "${PWD}/${TARGET_NAME}.ipa"
 cp "${IPA_PATH}" "${PWD}/"
 
+cp -r "${DYSM_PATH}" "${PWD}/"
 
 
 exit 0
