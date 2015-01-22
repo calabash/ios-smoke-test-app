@@ -32,6 +32,7 @@ CONFIG="Debug"
 CAL_DISTRO_DIR="build/xtc"
 ARCHIVE_BUNDLE="${CAL_DISTRO_DIR}/chou-cal.xcarchive"
 APP_BUNDLE_PATH="${ARCHIVE_BUNDLE}/Products/Applications/${TARGET_NAME}.app"
+DYSM_PATH="${ARCHIVE_BUNDLE}/dSYMs/${TARGET_NAME}.app.dSYM"
 IPA_PATH="${CAL_DISTRO_DIR}/${TARGET_NAME}.ipa"
 
 rm -rf "${CAL_DISTRO_DIR}"
@@ -75,4 +76,6 @@ if [ $RETVAL != 0 ]; then
 fi
 
 cp "${IPA_PATH}" "${XAMARIN_DIR}/"
+cp -r "${DYSM_PATH}" "${XAMARIN_DIR}/"
+
 exit 0
