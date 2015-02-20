@@ -247,4 +247,4 @@ pegasi:          -p pegasi_common
 
 hatp:   DEVICE_TARGET=<%= devices[:hat][:udid] %> DEVICE_ENDPOINT=<%= devices[:hat][:ip] %> -p device_common
 erik:   DEVICE_TARGET=<%= devices[:erik][:udid] %> DEVICE_ENDPOINT=<%= devices[:erik][:ip] %> -p device_common
-denisp: DEVICE_TARGET=<%= devices[:denis][:udid] %> DEVICE_ENDPOINT=<%= devices[:denis][:ip] %> -p device_common
+denis: DEVICE_TARGET=<%= devices[:denis][:udid] %> DEVICE_ENDPOINT=<%= devices[:denis][:ip] %> -p device_common
