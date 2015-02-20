@@ -91,23 +91,18 @@ typedef enum : NSInteger {
 - (BOOL) textField:(UITextField *) aTextField shouldChangeCharactersInRange:(NSRange) aRange replacementString:(NSString *) aString {
   return YES;
 }
-
-
 @end
 
 
-@interface XamViewController () < UITextFieldDelegate>
-
-@end
 
 @implementation XamViewController
 
 #pragma mark - Memory Management
 
-- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-
+- (instancetype) init {
+  self = [super init];
+  if (self){
+    self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
   }
   return self;
 }
