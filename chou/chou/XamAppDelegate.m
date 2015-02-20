@@ -1,5 +1,6 @@
 #import "XamAppDelegate.h"
 #import "XamViewController.h"
+#import "XamCollectionViewController.h"
 
 
 @interface XamAppDelegate ()
@@ -52,7 +53,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  self.window.rootViewController = [[XamViewController alloc] initWithNibName:nil bundle:nil];
+  
+  XamViewController *firstController = [XamViewController new];
+  XamCollectionViewController *secondViewController = [XamCollectionViewController new];
+  
+  UITabBarController *tabController = [UITabBarController new];
+  tabController.tabBar.translucent = NO;
+  tabController.viewControllers = @[firstController, secondViewController];
+
+  self.window.rootViewController = tabController;
   [self.window makeKeyAndVisible];
 
   [[NSUserDefaults standardUserDefaults] setObject:@"Hey!" forKey:@"com.example.set-in-uiapplication-delegate"];
