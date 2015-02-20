@@ -46,3 +46,6 @@ fi
 bundle exec calabash-ios sim reset
 
 cp -r "${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app" ./
+
+echo "export APP=${PWD}/${TARGET_NAME}.app"
+
