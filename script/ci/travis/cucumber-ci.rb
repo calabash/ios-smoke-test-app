@@ -40,22 +40,22 @@ Dir.chdir(working_directory) do
   profiles =
         {
               :ipad2 => simulator_profiles[:ipad2],
-              :ipad2_mid => simulator_profiles[:ipad2_mid],
+              #:ipad2_mid => simulator_profiles[:ipad2_mid],
 
               :air => simulator_profiles[:air],
-              :air_mid => simulator_profiles[:air_mid],
+              #:air_mid => simulator_profiles[:air_mid],
 
               :ipad => simulator_profiles[:ipad],
-              :ipad_mid => simulator_profiles[:ipad_mid],
+              #:ipad_mid => simulator_profiles[:ipad_mid],
 
               :iphone4s => simulator_profiles[:iphone4s],
-              :iphone4s_mid => simulator_profiles[:iphone4s_mid],
+              #:iphone4s_mid => simulator_profiles[:iphone4s_mid],
 
               :iphone5s => simulator_profiles[:iphone5s],
-              :iphone5s_mid => simulator_profiles[:iphone5s_mid],
+              #:iphone5s_mid => simulator_profiles[:iphone5s_mid],
 
               :iphone5 => simulator_profiles[:iphone5],
-              :iphone5_mid => simulator_profiles[:iphone5_mid],
+              #:iphone5_mid => simulator_profiles[:iphone5_mid],
 
               :iphone6 => simulator_profiles[:iphone6],
               :iphone6plus => simulator_profiles[:iphone6plus],
