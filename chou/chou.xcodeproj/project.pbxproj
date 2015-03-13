@@ -162,7 +162,7 @@
 				F52BFB081987EF8700299AEF /* Sources */,
 				F52BFB091987EF8700299AEF /* Frameworks */,
 				F52BFB0A1987EF8700299AEF /* Resources */,
-				F51F2E8E1AB359A6002326D0 /* Run Script Code Sign Device Dylib */,
+				F51F2E8E1AB359A6002326D0 /* Run Script Add Calabash dylibs to Bundle */,
 			);
 			buildRules = (
 			);
@@ -243,27 +243,25 @@
 			files = (
 				F52BFB2B1987EF8700299AEF /* Images.xcassets in Resources */,
 				F52BFB1A1987EF8700299AEF /* InfoPlist.strings in Resources */,
-				F51F2E8C1AB34FA1002326D0 /* libCalabashDyn.dylib in Resources */,
-				F51F2E8D1AB34FA4002326D0 /* libCalabashDynSim.dylib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F51F2E8E1AB359A6002326D0 /* Run Script Code Sign Device Dylib */ = {
+		F51F2E8E1AB359A6002326D0 /* Run Script Add Calabash dylibs to Bundle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script Code Sign Device Dylib";
+			name = "Run Script Add Calabash dylibs to Bundle";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "script/xcode-build-phase/codesign-device-dylib.sh";
+			shellScript = "script/xcode-build-phase/add-calabash-dylibs-to-bundle.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
