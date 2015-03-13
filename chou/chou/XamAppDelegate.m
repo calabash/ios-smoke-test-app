@@ -8,6 +8,7 @@
 
 @implementation XamAppDelegate
 
+#if LOAD_CALABASH_DYLIB
 - (void) loadCalabashDylib {
   NSBundle *bundle = [NSBundle mainBundle];
   NSString *dylibPath;
@@ -33,6 +34,8 @@
     [alert show];
   }
 }
+#endif
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
