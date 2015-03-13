@@ -30,8 +30,8 @@ static const NSInteger kCollectionViewNumItems = 5;
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   XamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
   cell.backgroundColor = [UIColor whiteColor];
-  [cell setText:[NSString stringWithFormat:@"Cell number %i", indexPath.item + 1]];
-  [cell setAccessibilityIdentifier:[NSString stringWithFormat:@"cell %i", indexPath.item + 1]];
+  [cell setText:[NSString stringWithFormat:@"Cell number %@", @(indexPath.item + 1)]];
+  [cell setAccessibilityIdentifier:[NSString stringWithFormat:@"cell %@", @(indexPath.item + 1)]];
   return cell;
 }
 
