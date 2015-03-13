@@ -12,7 +12,7 @@ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8QEQJFT59F)"
 
 set -e
 
-if [ "${BUILD_CONFIGURATION}" != "Debug" ]; then
+if [ "${CONFIGURATION}" = "Debug" ]; then
   cp "${SRCROOT}/libCalabashDyn.dylib" "${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libCalabashDyn.dylib"
   cp "${SRCROOT}/libCalabashDynSim.dylib" "${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libCalabashDynSim.dylib"
   if [ -n "${CODE_SIGN_IDENTITY}" ]; then
