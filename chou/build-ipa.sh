@@ -77,8 +77,9 @@ fi
 
 rm -rf "${PWD}/${TARGET_NAME}.ipa"
 cp "${IPA_PATH}" "${PWD}/"
+echo "Created ${PWD}/${TARGET_NAME}.ipa"
 
 cp -r "${DYSM_PATH}" "${PWD}/"
-
+echo "Created "${PWD}/${TARGET_NAME}.app.dSYM""
 
 exit 0
