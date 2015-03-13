@@ -2,12 +2,37 @@
 #import "XamViewController.h"
 #import "XamCollectionViewController.h"
 
-
-@interface XamAppDelegate ()
-
-@end
+#if LOAD_CALABASH_DYLIB
+#import <dlfcn.h>
+#endif
 
 @implementation XamAppDelegate
+
+- (void) loadCalabashDylib {
+  NSBundle *bundle = [NSBundle mainBundle];
+  NSString *dylibPath;
+#if TARGET_IPHONE_SIMULATOR
+  dylibPath = [bundle pathForResource:@"libCalabashDynSim" ofType:@"dylib"];
+#else
+  dylibPath = [bundle pathForResource:@"libCalabashDyn" ofType:@"dylib"];
+#endif
+
+  NSLog(@"Attempting to load Calabash dylib: '%@'", dylibPath);
+  void *dylib = NULL;
+  dylib = dlopen([dylibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
+
+  if (dylib == NULL) {
+    char *error = dlerror();
+    NSString *message = @"Could not load the Calabash dylib.";
+    NSLog(@"%@: %s", message, error);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calabash"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+  }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -21,6 +46,10 @@
 
   self.window.rootViewController = tabController;
   [self.window makeKeyAndVisible];
+
+#if LOAD_CALABASH_DYLIB
+  [self loadCalabashDylib];
+#endif
 
   return YES;
 }
