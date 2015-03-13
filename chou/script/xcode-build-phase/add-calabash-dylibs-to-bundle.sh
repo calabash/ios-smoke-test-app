@@ -8,7 +8,6 @@
 #
 # Uncomment this line and update it with the correct credentials.
 # CODE_SIGN_IDENTITY="iPhone Developer: Person B (8<snip>F)"
-CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8QEQJFT59F)"
 
 set -e
 
