@@ -20,7 +20,12 @@ fi
 TARGET_NAME="chou"
 XC_PROJECT="chou.xcodeproj"
 XC_SCHEME="${TARGET_NAME}"
-CONFIG="Debug"
+
+if [ ! -z "${1}" ]; then
+  CONFIG="${1}"
+else
+  CONFIG=Debug
+fi
 
 CAL_DISTRO_DIR="${PWD}/build/ipa"
 ARCHIVE_BUNDLE="${CAL_DISTRO_DIR}/chou.xcarchive"
