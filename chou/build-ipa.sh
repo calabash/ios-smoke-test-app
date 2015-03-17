@@ -20,7 +20,12 @@ fi
 TARGET_NAME="chou"
 XC_PROJECT="chou.xcodeproj"
 XC_SCHEME="${TARGET_NAME}"
-CONFIG="Debug"
+
+if [ ! -z "${1}" ]; then
+  CONFIG="${1}"
+else
+  CONFIG=Debug
+fi
 
 CAL_DISTRO_DIR="${PWD}/build/ipa"
 ARCHIVE_BUNDLE="${CAL_DISTRO_DIR}/chou.xcarchive"
@@ -72,8 +77,9 @@ fi
 
 rm -rf "${PWD}/${TARGET_NAME}.ipa"
 cp "${IPA_PATH}" "${PWD}/"
+echo "Created ${PWD}/${TARGET_NAME}.ipa"
 
 cp -r "${DYSM_PATH}" "${PWD}/"
-
+echo "Created "${PWD}/${TARGET_NAME}.app.dSYM""
 
 exit 0

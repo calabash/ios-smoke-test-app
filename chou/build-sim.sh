@@ -13,11 +13,15 @@ else
     RBENV_EXEC=
 fi
 
+if [ ! -z "${1}" ]; then
+  CAL_BUILD_CONFIG="${1}"
+else
+  CAL_BUILD_CONFIG=Debug
+fi
 
 TARGET_NAME="chou"
 XC_PROJECT="chou.xcodeproj"
 XC_SCHEME="${TARGET_NAME}"
-CAL_BUILD_CONFIG=Debug
 CAL_BUILD_DIR="${PWD}/build"
 rm -rf "${CAL_BUILD_DIR}"
 mkdir -p "${CAL_BUILD_DIR}"

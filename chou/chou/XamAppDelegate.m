@@ -2,53 +2,39 @@
 #import "XamViewController.h"
 #import "XamCollectionViewController.h"
 
-
-@interface XamAppDelegate ()
-
-- (NSString *) stringForDefaultsDictionary:(NSString *) aIgnore;
-- (NSString *) stringForPreferencesPath:(NSString *) aIgnore;
-
-@end
-
+#if LOAD_CALABASH_DYLIB
+#import <dlfcn.h>
+#endif
 
 @implementation XamAppDelegate
 
-- (NSString *) stringForPreferencesPath:(NSString *) aIgnore {
-  NSString *plistRootPath = nil, *relativePlistPath = nil;
-  NSString *plistName = [NSString stringWithFormat:@"%@.plist", [[NSBundle mainBundle] bundleIdentifier]];
+#if LOAD_CALABASH_DYLIB
+- (void) loadCalabashDylib {
+  NSBundle *bundle = [NSBundle mainBundle];
+  NSString *dylibPath;
+#if TARGET_IPHONE_SIMULATOR
+  dylibPath = [bundle pathForResource:@"libCalabashDynSim" ofType:@"dylib"];
+#else
+  dylibPath = [bundle pathForResource:@"libCalabashDyn" ofType:@"dylib"];
+#endif
 
-  // 1. get into the simulator's app support directory by fetching the sandboxed Library's path
-  NSArray *userLibDirURLs = [[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask];
+  NSLog(@"Attempting to load Calabash dylib: '%@'", dylibPath);
+  void *dylib = NULL;
+  dylib = dlopen([dylibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
 
-  NSURL *userDirURL = [userLibDirURLs lastObject];
-  NSString *userDirectoryPath = [userDirURL path];
-
-  // 2. get out of our application directory, back to the root support directory for this system version
-  if ([userDirectoryPath rangeOfString:@"CoreSimulator"].location == NSNotFound) {
-    plistRootPath = [userDirectoryPath substringToIndex:([userDirectoryPath rangeOfString:@"Applications"].location)];
-  } else {
-    NSRange range = [userDirectoryPath rangeOfString:@"data"];
-    plistRootPath = [userDirectoryPath substringToIndex:range.location + range.length];
+  if (dylib == NULL) {
+    char *error = dlerror();
+    NSString *message = @"Could not load the Calabash dylib.";
+    NSLog(@"%@: %s", message, error);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calabash"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
   }
-
-  // 3. locate, relative to here, /Library/Preferences/[bundle ID].plist
-  relativePlistPath = [NSString stringWithFormat:@"Library/Preferences/%@", plistName];
-
-  // 4. and unescape spaces, if necessary (i.e. in the simulator)
-  NSString *unsanitizedPlistPath = [plistRootPath stringByAppendingPathComponent:relativePlistPath];
-  return [[unsanitizedPlistPath stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] copy];
 }
-
-- (NSString *) stringForDefaultsDictionary:(NSString *) aIgnore {
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  [defaults synchronize];
-  NSDictionary *dictionary = [defaults dictionaryRepresentation];
-  NSData *data = [NSJSONSerialization dataWithJSONObject:dictionary
-                                                 options:NSJSONWritingPrettyPrinted
-                                                   error:nil];
-  NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-  return string;
-}
+#endif
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -64,13 +50,10 @@
   self.window.rootViewController = tabController;
   [self.window makeKeyAndVisible];
 
-  [[NSUserDefaults standardUserDefaults] setObject:@"Hey!" forKey:@"com.example.set-in-uiapplication-delegate"];
-  [[NSUserDefaults standardUserDefaults] synchronize];
-
-#if TARGET_IPHONE_SIMULATOR
-  NSLog(@"%@", [self stringForPreferencesPath:nil]);
+#if LOAD_CALABASH_DYLIB
+  [self loadCalabashDylib];
 #endif
-  NSLog(@"%@", [self stringForDefaultsDictionary:nil]);
+
   return YES;
 }
 							
