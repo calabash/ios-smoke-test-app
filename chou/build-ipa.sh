@@ -39,18 +39,33 @@ mkdir -p "${CAL_DISTRO_DIR}"
 
 set +o errexit
 
-xcrun xcodebuild \
-    archive \
-    -SYMROOT="${CAL_DISTRO_DIR}" \
-    -derivedDataPath "${CAL_DISTRO_DIR}" \
-    -project "${XC_PROJECT}" \
-    -scheme "${XC_SCHEME}" \
-    -configuration "${CONFIG}" \
-    -archivePath "${ARCHIVE_BUNDLE}" \
-    ARCHS="armv7 armv7s arm64" \
-    VALID_ARCHS="armv7 armv7s arm64" \
-    ONLY_ACTIVE_ARCH=NO \
-    -sdk iphoneos | ${RBENV_EXEC} xcpretty -c
+
+if [ -z "${XAM_SMOKE_SIGNING_IDENTITY}" ]; then
+    xcrun xcodebuild archive \
+        -SYMROOT="${CAL_DISTRO_DIR}" \
+        -derivedDataPath "${CAL_DISTRO_DIR}" \
+        -project "${XC_PROJECT}" \
+        -scheme "${XC_SCHEME}" \
+        -configuration "${CONFIG}" \
+        -archivePath "${ARCHIVE_BUNDLE}" \
+        ARCHS="armv7 armv7s arm64" \
+        VALID_ARCHS="armv7 armv7s arm64" \
+        ONLY_ACTIVE_ARCH=NO \
+        -sdk iphoneos | xcpretty -c
+   else
+        xcrun xcodebuild archive \
+        CODE_SIGN_IDENTITY="${XAM_SMOKE_SIGNING_IDENTITY}" \
+        -SYMROOT="${CAL_DISTRO_DIR}" \
+        -derivedDataPath "${CAL_DISTRO_DIR}" \
+        -project "${XC_PROJECT}" \
+        -scheme "${XC_SCHEME}" \
+        -configuration "${CONFIG}" \
+        -archivePath "${ARCHIVE_BUNDLE}" \
+        ARCHS="armv7 armv7s arm64" \
+        VALID_ARCHS="armv7 armv7s arm64" \
+        ONLY_ACTIVE_ARCH=NO \
+        -sdk iphoneos | xcpretty -c
+   fi
 
 RETVAL=${PIPESTATUS[0]}
 
