@@ -3,8 +3,7 @@
 require 'erb'
 require 'run_loop'
 require 'yaml'
-
-require File.expand_path(File.join(File.dirname(__FILE__), 'ci-helpers'))
+require 'luffa'
 
 cucumber_args = "#{ARGV.join(' ')}"
 
@@ -13,14 +12,14 @@ working_directory = File.expand_path(File.join(File.dirname(__FILE__), '..', '..
 # on-simulator tests of features in test/cucumber
 Dir.chdir(working_directory) do
 
-  do_system('bundle install',
-            {:pass_msg => 'bundled',
-             :fail_msg => 'could not bundle'})
+  Luffa.unix_command('bundle install',
+                     {:pass_msg => 'bundled',
+                      :fail_msg => 'could not bundle'})
 
   # remove any stale targets
-  do_system('bundle exec calabash-ios sim reset',
-            {:pass_msg => 'reset the simulator',
-             :fail_msg => 'could not reset the simulator'})
+  Luffa.unix_command('bundle exec calabash-ios sim reset',
+                     {:pass_msg => 'reset the simulator',
+                      :fail_msg => 'could not reset the simulator'})
 
 
   cucumber_profiles = File.expand_path('config/cucumber.yml')
@@ -69,8 +68,8 @@ Dir.chdir(working_directory) do
   profiles.each do |profile, name|
     cucumber_cmd = "bundle exec cucumber -p #{profile.to_s} #{cucumber_args}"
 
-    exit_code = do_system(cucumber_cmd, {:exit_on_nonzero_status => false,
-                                         :env_vars => env_vars})
+    exit_code = Luffa.unix_command(cucumber_cmd, {:exit_on_nonzero_status => false,
+                                                  :env_vars => env_vars})
     if exit_code == 0
       passed_sims << name
     else
@@ -78,20 +77,20 @@ Dir.chdir(working_directory) do
     end
   end
 
-  puts '=== SUMMARY ==='
-  puts ''
-  puts 'PASSING SIMULATORS'
-  puts "#{passed_sims.join("\n")}"
-  puts ''
-  puts 'FAILING SIMULATORS'
-  puts "#{failed_sims.join("\n")}"
+  Luffa.log_info '=== SUMMARY ==='
+  Luffa.log_info ''
+  Luffa.log_info 'PASSING SIMULATORS'
+  Luffa.log_info "#{passed_sims.join("\n")}"
+  Luffa.log_info ''
+  Luffa.log_info 'FAILING SIMULATORS'
+  Luffa.log_info "#{failed_sims.join("\n")}"
 
   sims = profiles.count
   passed = passed_sims.count
   failed = failed_sims.count
 
   puts ''
-  puts "passed on '#{passed}' out of '#{sims}'"
+  Luffa.log_info "passed on '#{passed}' out of '#{sims}'"
 
 
   # if none failed then we have success
@@ -105,10 +104,10 @@ Dir.chdir(working_directory) do
   actual = ((passed.to_f/sims.to_f) * 100).to_i
 
   if actual >= expected
-    puts "PASS:  we failed '#{failed}' sims, but passed '#{actual}%' so we say good enough"
+    Luffa.log_pass "We failed '#{failed}' sims, but passed '#{actual}%' so we say good enough"
     exit 0
   else
-    puts "FAIL:  we failed '#{failed}' sims, which is '#{actual}%' and not enough to pass"
+    Luffa.log_fail "We failed '#{failed}' sims, which is '#{actual}%' and not enough to pass"
     exit 1
   end
 end
