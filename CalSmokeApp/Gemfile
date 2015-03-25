@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 # bundle config local.GEM_NAME /path/to/local/git/repository
 gem 'calabash-cucumber', '~> 0.13'
 gem 'briar', '~> 1.2'
+gem 'luffa', '~> 1.0', '>= 1.0.2'
 
 gem 'xcpretty', '~> 0.1'
 gem 'rake', '~> 10.3'
