@@ -1,4 +1,6 @@
-[![Build Status](https://travis-ci.org/jmoody/animated-happiness.svg?branch=master)](https://travis-ci.org/jmoody/animated-happiness)[![License](https://go-shields.herokuapp.com/license-MIT-blue.png)](http://opensource.org/licenses/MIT)
+| master  |  [license](LICENSE) |
+|---------|---------------------|
+|[![Build Status](https://travis-ci.org/calabash/ios-smoke-test-app.svg?branch=master)](https://travis-ci.org/calabash/ios-smoke-test-app)| |[![License](https://img.shields.io/badge/licence-MIT-blue.svg)](http://opensource.org/licenses/MIT) |
 
 ## Animated Happiness
 
