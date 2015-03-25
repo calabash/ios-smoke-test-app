@@ -26,6 +26,8 @@
 		F52BFB291987EF8700299AEF /* XamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB281987EF8700299AEF /* XamViewController.m */; };
 		F52BFB2B1987EF8700299AEF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52BFB2A1987EF8700299AEF /* Images.xcassets */; };
 		F52BFB4A1987F5FF00299AEF /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB491987F5FF00299AEF /* UIView+Positioning.m */; };
+		F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
+		F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		a851e37816c4ddd975adbf58 /* XamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB281987EF8700299AEF /* XamViewController.m */; };
 		ab943fbf9d0ac91728d35abe /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BFB131987EF8700299AEF /* UIKit.framework */; };
 		cc8f9377c616d69147b3de31 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52BFB2A1987EF8700299AEF /* Images.xcassets */; };
@@ -54,6 +56,7 @@
 		F52BFB2A1987EF8700299AEF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F52BFB481987F5FF00299AEF /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
 		F52BFB491987F5FF00299AEF /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
+		F55185541AC34BB600CE06DC /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F5FE79621988070200842E74 /* CalSmoke-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CalSmoke-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		a66015686499dbb45da8c3c4 /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -126,6 +129,7 @@
 				66D6976E1A93DACC0035A763 /* XamCollectionViewController.h */,
 				66D6976F1A93DACC0035A763 /* XamCollectionViewController.m */,
 				F52BFB2A1987EF8700299AEF /* Images.xcassets */,
+				F55185541AC34BB600CE06DC /* iTunesArtwork */,
 				F52BFB161987EF8700299AEF /* Supporting Files */,
 				63BB296F01684CBBB34DA64A /* XamCollectionViewCell.m */,
 				63BB20C9E0DC3BBD0058C825 /* XamCollectionViewCell.h */,
@@ -225,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				cc8f9377c616d69147b3de31 /* Images.xcassets in Resources */,
+				F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */,
 				e3e0a6761f42ce3d10829b2b /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F52BFB2B1987EF8700299AEF /* Images.xcassets in Resources */,
+				F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */,
 				F52BFB1A1987EF8700299AEF /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
