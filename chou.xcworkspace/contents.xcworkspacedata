@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:chou/chou.xcodeproj">
+      location = "group:chou/ios-smoke-test-app.xcodeproj">
    </FileRef>
 </Workspace>

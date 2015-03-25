@@ -39,14 +39,14 @@
 		63BB296F01684CBBB34DA64A /* XamCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XamCollectionViewCell.m; sourceTree = "<group>"; };
 		66D6976E1A93DACC0035A763 /* XamCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XamCollectionViewController.h; sourceTree = "<group>"; };
 		66D6976F1A93DACC0035A763 /* XamCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XamCollectionViewController.m; sourceTree = "<group>"; };
-		F52BFB0C1987EF8700299AEF /* chou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chou.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F52BFB0C1987EF8700299AEF /* ios-smoke-test-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-smoke-test-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52BFB0F1987EF8700299AEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F52BFB111987EF8700299AEF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F52BFB131987EF8700299AEF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		F52BFB171987EF8700299AEF /* chou-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "chou-Info.plist"; sourceTree = "<group>"; };
+		F52BFB171987EF8700299AEF /* ios-smoke-test-app-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ios-smoke-test-app-Info.plist"; sourceTree = "<group>"; };
 		F52BFB191987EF8700299AEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F52BFB1B1987EF8700299AEF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F52BFB1D1987EF8700299AEF /* chou-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "chou-Prefix.pch"; sourceTree = "<group>"; };
+		F52BFB1D1987EF8700299AEF /* ios-smoke-test-app-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios-smoke-test-app-Prefix.pch"; sourceTree = "<group>"; };
 		F52BFB1E1987EF8700299AEF /* XamAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XamAppDelegate.h; sourceTree = "<group>"; };
 		F52BFB1F1987EF8700299AEF /* XamAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XamAppDelegate.m; sourceTree = "<group>"; };
 		F52BFB271987EF8700299AEF /* XamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XamViewController.h; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		F52BFB311987EF8700299AEF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F52BFB481987F5FF00299AEF /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
 		F52BFB491987F5FF00299AEF /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
-		F5FE79621988070200842E74 /* chou-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "chou-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5FE79621988070200842E74 /* ios-smoke-test-app-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-smoke-test-app-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		a66015686499dbb45da8c3c4 /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -97,8 +97,8 @@
 		F52BFB0D1987EF8700299AEF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F52BFB0C1987EF8700299AEF /* chou.app */,
-				F5FE79621988070200842E74 /* chou-cal.app */,
+				F52BFB0C1987EF8700299AEF /* ios-smoke-test-app.app */,
+				F5FE79621988070200842E74 /* ios-smoke-test-app-cal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,10 +138,10 @@
 		F52BFB161987EF8700299AEF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F52BFB171987EF8700299AEF /* chou-Info.plist */,
+				F52BFB171987EF8700299AEF /* ios-smoke-test-app-Info.plist */,
 				F52BFB181987EF8700299AEF /* InfoPlist.strings */,
 				F52BFB1B1987EF8700299AEF /* main.m */,
-				F52BFB1D1987EF8700299AEF /* chou-Prefix.pch */,
+				F52BFB1D1987EF8700299AEF /* ios-smoke-test-app-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -149,9 +149,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F52BFB0B1987EF8700299AEF /* chou */ = {
+		F52BFB0B1987EF8700299AEF /* ios-smoke-test-app */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F52BFB411987EF8700299AEF /* Build configuration list for PBXNativeTarget "chou" */;
+			buildConfigurationList = F52BFB411987EF8700299AEF /* Build configuration list for PBXNativeTarget "ios-smoke-test-app" */;
 			buildPhases = (
 				F52BFB081987EF8700299AEF /* Sources */,
 				F52BFB091987EF8700299AEF /* Frameworks */,
@@ -162,14 +162,14 @@
 			);
 			dependencies = (
 			);
-			name = chou;
+			name = "ios-smoke-test-app";
 			productName = chou;
-			productReference = F52BFB0C1987EF8700299AEF /* chou.app */;
+			productReference = F52BFB0C1987EF8700299AEF /* ios-smoke-test-app.app */;
 			productType = "com.apple.product-type.application";
 		};
-		aa8f030ac9159ee56ef3af27 /* chou-cal */ = {
+		aa8f030ac9159ee56ef3af27 /* ios-smoke-test-app-cal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 39829f2db80767feb51f256c /* Build configuration list for PBXNativeTarget "chou-cal" */;
+			buildConfigurationList = 39829f2db80767feb51f256c /* Build configuration list for PBXNativeTarget "ios-smoke-test-app-cal" */;
 			buildPhases = (
 				b17dee660dc338602790258e /* Sources */,
 				146d6a283e5268ae50e42bb6 /* Frameworks */,
@@ -179,9 +179,9 @@
 			);
 			dependencies = (
 			);
-			name = "chou-cal";
+			name = "ios-smoke-test-app-cal";
 			productName = "chou-cal";
-			productReference = F5FE79621988070200842E74 /* chou-cal.app */;
+			productReference = F5FE79621988070200842E74 /* ios-smoke-test-app-cal.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -202,7 +202,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "chou" */;
+			buildConfigurationList = F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "ios-smoke-test-app" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -215,8 +215,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F52BFB0B1987EF8700299AEF /* chou */,
-				aa8f030ac9159ee56ef3af27 /* chou-cal */,
+				F52BFB0B1987EF8700299AEF /* ios-smoke-test-app */,
+				aa8f030ac9159ee56ef3af27 /* ios-smoke-test-app-cal */,
 			);
 		};
 /* End PBXProject section */
@@ -313,14 +313,14 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "chou/chou-Prefix.pch";
-				INFOPLIST_FILE = "chou/chou-Info.plist";
+				INFOPLIST_FILE = "chou/ios-smoke-test-app-Info.plist";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ios-smoke-test-app-cal";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -407,14 +407,14 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "chou/chou-Prefix.pch";
+				GCC_PREFIX_HEADER = "chou/ios-smoke-test-app-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = LOAD_CALABASH_DYLIB;
-				INFOPLIST_FILE = "chou/chou-Info.plist";
+				INFOPLIST_FILE = "chou/ios-smoke-test-app-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ios-smoke-test-app";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -428,13 +428,13 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "chou/chou-Prefix.pch";
-				INFOPLIST_FILE = "chou/chou-Info.plist";
+				GCC_PREFIX_HEADER = "chou/ios-smoke-test-app-Prefix.pch";
+				INFOPLIST_FILE = "chou/ios-smoke-test-app-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ios-smoke-test-app";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -453,14 +453,14 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "chou/chou-Prefix.pch";
-				INFOPLIST_FILE = "chou/chou-Info.plist";
+				INFOPLIST_FILE = "chou/ios-smoke-test-app-Info.plist";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "ios-smoke-test-app-cal";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -470,7 +470,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		39829f2db80767feb51f256c /* Build configuration list for PBXNativeTarget "chou-cal" */ = {
+		39829f2db80767feb51f256c /* Build configuration list for PBXNativeTarget "ios-smoke-test-app-cal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ff6ea1aa1822ebfc92849c2a /* Debug */,
@@ -479,7 +479,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "chou" */ = {
+		F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "ios-smoke-test-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F52BFB3F1987EF8700299AEF /* Debug */,
@@ -488,7 +488,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F52BFB411987EF8700299AEF /* Build configuration list for PBXNativeTarget "chou" */ = {
+		F52BFB411987EF8700299AEF /* Build configuration list for PBXNativeTarget "ios-smoke-test-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F52BFB421987EF8700299AEF /* Debug */,
