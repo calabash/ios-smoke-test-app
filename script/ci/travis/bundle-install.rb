@@ -2,7 +2,7 @@
 
 require File.expand_path(File.join(File.dirname(__FILE__), 'ci-helpers'))
 
-working_directory = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'chou'))
+working_directory = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'CalSmokeApp'))
 
 Dir.chdir working_directory do
 

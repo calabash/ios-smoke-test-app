@@ -220,7 +220,7 @@ default:            -p sim_launch DEVICE_TARGET="<%= sims[:default] %>"
 no_uia:             -p common -p ss_path -p html_report -p no_launch -p sim61_4in
 
 # required only for devices
-bundle_id:    BUNDLE_ID=com.xamarin.chou-cal
+bundle_id:    BUNDLE_ID=com.xamarin.CalSmokeApp-cal
 
 device_common:  -p common -p bundle_id --tags ~@simulator --tags ~@simulator_only
 
