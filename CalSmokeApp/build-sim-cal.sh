@@ -8,7 +8,7 @@ fi
 
 ${RBENV_EXEC} bundle install
 
-TARGET_NAME="CalSmoke"
+TARGET_NAME="CalSmoke-cal"
 XC_PROJECT="ios-smoke-test-app.xcodeproj"
 XC_SCHEME="${TARGET_NAME}"
 CAL_BUILD_CONFIG=Debug
