@@ -6,11 +6,11 @@ all:
 
 clean:
 	rm -rf build
-	rm -rf chou.ipa
-	rm -rf chou.app.dSYM
-	rm -rf chou.app
-	rm -rf chou-cal.app
-	rm -rf chou-cal.app.dSYM
+	rm -rf CalSmoke.ipa
+	rm -rf CalSmoke.app.dSYM
+	rm -rf CalSmoke.app
+	rm -rf CalSmoke-cal.app
+	rm -rf CalSmoke-cal.app.dSYM
 
 # Builds an ipa with no Calabash server.
 ipa:
@@ -25,8 +25,6 @@ ipa-dylib:
 # Builds an ipa from the -cal target.
 ipa-cal:
 	./xtc-prepare.sh
-	cp xtc-staging/chou-cal.ipa ./
-	cp -r xtc-staging/chou-cal.app.dSYM ./
 
 # Builds an app with no Calabash server.
 app:

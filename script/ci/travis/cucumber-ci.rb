@@ -8,7 +8,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'ci-helpers'))
 
 cucumber_args = "#{ARGV.join(' ')}"
 
-working_directory = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'chou'))
+working_directory = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'CalSmokeApp'))
 
 # on-simulator tests of features in test/cucumber
 Dir.chdir(working_directory) do
@@ -63,7 +63,7 @@ Dir.chdir(working_directory) do
 
 
   # noinspection RubyStringKeysInHashInspection
-  env_vars = {'APP_BUNDLE_PATH' => './chou-cal.app'}
+  env_vars = {'APP_BUNDLE_PATH' => './CalSmoke-cal.app'}
   passed_sims = []
   failed_sims = []
   profiles.each do |profile, name|

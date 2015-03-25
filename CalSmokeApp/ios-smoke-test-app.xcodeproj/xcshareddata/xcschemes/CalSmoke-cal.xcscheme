@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F52BFB0B1987EF8700299AEF"
-               BuildableName = "chou.app"
-               BlueprintName = "chou"
-               ReferencedContainer = "container:chou.xcodeproj">
+               BlueprintIdentifier = "aa8f030ac9159ee56ef3af27"
+               BuildableName = "CalSmoke-cal.app"
+               BlueprintName = "CalSmoke-cal"
+               ReferencedContainer = "container:ios-smoke-test-app.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,23 +28,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F52BFB2F1987EF8700299AEF"
-               BuildableName = "chouTests.xctest"
-               BlueprintName = "chouTests"
-               ReferencedContainer = "container:chou.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F52BFB0B1987EF8700299AEF"
-            BuildableName = "chou.app"
-            BlueprintName = "chou"
+            BlueprintIdentifier = "aa8f030ac9159ee56ef3af27"
+            BuildableName = "chou-cal.app"
+            BlueprintName = "chou-cal"
             ReferencedContainer = "container:chou.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -62,10 +52,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F52BFB0B1987EF8700299AEF"
-            BuildableName = "chou.app"
-            BlueprintName = "chou"
-            ReferencedContainer = "container:chou.xcodeproj">
+            BlueprintIdentifier = "aa8f030ac9159ee56ef3af27"
+            BuildableName = "CalSmoke-cal.app"
+            BlueprintName = "CalSmoke-cal"
+            ReferencedContainer = "container:ios-smoke-test-app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,10 +71,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F52BFB0B1987EF8700299AEF"
-            BuildableName = "chou.app"
-            BlueprintName = "chou"
-            ReferencedContainer = "container:chou.xcodeproj">
+            BlueprintIdentifier = "aa8f030ac9159ee56ef3af27"
+            BuildableName = "CalSmoke-cal.app"
+            BlueprintName = "CalSmoke-cal"
+            ReferencedContainer = "container:ios-smoke-test-app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
