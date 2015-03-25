@@ -7,7 +7,7 @@ gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'develop
 gem 'run_loop', :github => 'calabash/run_loop', :branch => 'develop'
 
 gem 'briar', '~> 1.2'
-gem 'luffa', '~> 1.0'
+gem 'luffa', '~> 1.0', '>= 1.0.2'
 
 gem 'xcpretty', '~> 0.1'
 gem 'rake', '~> 10.3'
