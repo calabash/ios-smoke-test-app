@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "aa8f030ac9159ee56ef3af27"
-               BuildableName = "chou-cal.app"
-               BlueprintName = "chou-cal"
-               ReferencedContainer = "container:chou.xcodeproj">
+               BlueprintIdentifier = "F52BFB0B1987EF8700299AEF"
+               BuildableName = "CalSmoke.app"
+               BlueprintName = "CalSmoke"
+               ReferencedContainer = "container:ios-smoke-test-app.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "aa8f030ac9159ee56ef3af27"
-            BuildableName = "chou-cal.app"
-            BlueprintName = "chou-cal"
-            ReferencedContainer = "container:chou.xcodeproj">
+            BlueprintIdentifier = "F52BFB0B1987EF8700299AEF"
+            BuildableName = "CalSmoke.app"
+            BlueprintName = "CalSmoke"
+            ReferencedContainer = "container:ios-smoke-test-app.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -48,13 +48,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "aa8f030ac9159ee56ef3af27"
-            BuildableName = "chou-cal.app"
-            BlueprintName = "chou-cal"
-            ReferencedContainer = "container:chou.xcodeproj">
+            BlueprintIdentifier = "F52BFB0B1987EF8700299AEF"
+            BuildableName = "CalSmoke.app"
+            BlueprintName = "CalSmoke"
+            ReferencedContainer = "container:ios-smoke-test-app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -66,13 +67,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "aa8f030ac9159ee56ef3af27"
-            BuildableName = "chou-cal.app"
-            BlueprintName = "chou-cal"
-            ReferencedContainer = "container:chou.xcodeproj">
+            BlueprintIdentifier = "F52BFB0B1987EF8700299AEF"
+            BuildableName = "CalSmoke.app"
+            BlueprintName = "CalSmoke"
+            ReferencedContainer = "container:ios-smoke-test-app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

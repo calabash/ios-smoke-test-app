@@ -39,7 +39,7 @@
 		63BB296F01684CBBB34DA64A /* XamCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XamCollectionViewCell.m; sourceTree = "<group>"; };
 		66D6976E1A93DACC0035A763 /* XamCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XamCollectionViewController.h; sourceTree = "<group>"; };
 		66D6976F1A93DACC0035A763 /* XamCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XamCollectionViewController.m; sourceTree = "<group>"; };
-		F52BFB0C1987EF8700299AEF /* ios-smoke-test-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-smoke-test-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F52BFB0C1987EF8700299AEF /* CalSmoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalSmoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52BFB0F1987EF8700299AEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F52BFB111987EF8700299AEF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F52BFB131987EF8700299AEF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -52,10 +52,9 @@
 		F52BFB271987EF8700299AEF /* XamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XamViewController.h; sourceTree = "<group>"; };
 		F52BFB281987EF8700299AEF /* XamViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XamViewController.m; sourceTree = "<group>"; };
 		F52BFB2A1987EF8700299AEF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F52BFB311987EF8700299AEF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F52BFB481987F5FF00299AEF /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
 		F52BFB491987F5FF00299AEF /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
-		F5FE79621988070200842E74 /* ios-smoke-test-app-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-smoke-test-app-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5FE79621988070200842E74 /* CalSmoke-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CalSmoke-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		a66015686499dbb45da8c3c4 /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -97,8 +96,8 @@
 		F52BFB0D1987EF8700299AEF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F52BFB0C1987EF8700299AEF /* ios-smoke-test-app.app */,
-				F5FE79621988070200842E74 /* ios-smoke-test-app-cal.app */,
+				F52BFB0C1987EF8700299AEF /* CalSmoke.app */,
+				F5FE79621988070200842E74 /* CalSmoke-cal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,7 +108,6 @@
 				F52BFB0F1987EF8700299AEF /* Foundation.framework */,
 				F52BFB111987EF8700299AEF /* CoreGraphics.framework */,
 				F52BFB131987EF8700299AEF /* UIKit.framework */,
-				F52BFB311987EF8700299AEF /* XCTest.framework */,
 				a66015686499dbb45da8c3c4 /* CFNetwork.framework */,
 				42539422bf8ed8e8569bc355 /* calabash.framework */,
 			);
@@ -149,9 +147,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F52BFB0B1987EF8700299AEF /* ios-smoke-test-app */ = {
+		F52BFB0B1987EF8700299AEF /* CalSmoke */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F52BFB411987EF8700299AEF /* Build configuration list for PBXNativeTarget "ios-smoke-test-app" */;
+			buildConfigurationList = F52BFB411987EF8700299AEF /* Build configuration list for PBXNativeTarget "CalSmoke" */;
 			buildPhases = (
 				F52BFB081987EF8700299AEF /* Sources */,
 				F52BFB091987EF8700299AEF /* Frameworks */,
@@ -162,14 +160,14 @@
 			);
 			dependencies = (
 			);
-			name = "ios-smoke-test-app";
+			name = CalSmoke;
 			productName = chou;
-			productReference = F52BFB0C1987EF8700299AEF /* ios-smoke-test-app.app */;
+			productReference = F52BFB0C1987EF8700299AEF /* CalSmoke.app */;
 			productType = "com.apple.product-type.application";
 		};
-		aa8f030ac9159ee56ef3af27 /* ios-smoke-test-app-cal */ = {
+		aa8f030ac9159ee56ef3af27 /* CalSmoke-cal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 39829f2db80767feb51f256c /* Build configuration list for PBXNativeTarget "ios-smoke-test-app-cal" */;
+			buildConfigurationList = 39829f2db80767feb51f256c /* Build configuration list for PBXNativeTarget "CalSmoke-cal" */;
 			buildPhases = (
 				b17dee660dc338602790258e /* Sources */,
 				146d6a283e5268ae50e42bb6 /* Frameworks */,
@@ -179,9 +177,9 @@
 			);
 			dependencies = (
 			);
-			name = "ios-smoke-test-app-cal";
+			name = "CalSmoke-cal";
 			productName = "chou-cal";
-			productReference = F5FE79621988070200842E74 /* ios-smoke-test-app-cal.app */;
+			productReference = F5FE79621988070200842E74 /* CalSmoke-cal.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -215,8 +213,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F52BFB0B1987EF8700299AEF /* ios-smoke-test-app */,
-				aa8f030ac9159ee56ef3af27 /* ios-smoke-test-app-cal */,
+				F52BFB0B1987EF8700299AEF /* CalSmoke */,
+				aa8f030ac9159ee56ef3af27 /* CalSmoke-cal */,
 			);
 		};
 /* End PBXProject section */
@@ -320,7 +318,7 @@
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "ios-smoke-test-app-cal";
+				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -414,7 +412,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_NAME = "ios-smoke-test-app";
+				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -434,7 +432,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_NAME = "ios-smoke-test-app";
+				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -460,7 +458,7 @@
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "ios-smoke-test-app-cal";
+				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -470,7 +468,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		39829f2db80767feb51f256c /* Build configuration list for PBXNativeTarget "ios-smoke-test-app-cal" */ = {
+		39829f2db80767feb51f256c /* Build configuration list for PBXNativeTarget "CalSmoke-cal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ff6ea1aa1822ebfc92849c2a /* Debug */,
@@ -488,7 +486,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		F52BFB411987EF8700299AEF /* Build configuration list for PBXNativeTarget "ios-smoke-test-app" */ = {
+		F52BFB411987EF8700299AEF /* Build configuration list for PBXNativeTarget "CalSmoke" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F52BFB421987EF8700299AEF /* Debug */,

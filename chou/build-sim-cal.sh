@@ -8,8 +8,8 @@ fi
 
 ${RBENV_EXEC} bundle install
 
-TARGET_NAME="chou-cal"
-XC_PROJECT="chou.xcodeproj"
+TARGET_NAME="CalSmoke"
+XC_PROJECT="ios-smoke-test-app.xcodeproj"
 XC_SCHEME="${TARGET_NAME}"
 CAL_BUILD_CONFIG=Debug
 CAL_BUILD_DIR="${PWD}/build/ci"

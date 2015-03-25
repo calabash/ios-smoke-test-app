@@ -19,8 +19,8 @@ else
   CAL_BUILD_CONFIG=Debug
 fi
 
-TARGET_NAME="chou"
-XC_PROJECT="chou.xcodeproj"
+TARGET_NAME="CalSmoke"
+XC_PROJECT="ios-smoke-test-app.xcodeproj"
 XC_SCHEME="${TARGET_NAME}"
 CAL_BUILD_DIR="${PWD}/build"
 rm -rf "${CAL_BUILD_DIR}"

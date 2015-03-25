@@ -17,8 +17,8 @@ else
     RBENV_EXEC=
 fi
 
-TARGET_NAME="chou"
-XC_PROJECT="chou.xcodeproj"
+TARGET_NAME="CalSmoke"
+XC_PROJECT="ios-smoke-test-app.xcodeproj"
 XC_SCHEME="${TARGET_NAME}"
 
 if [ ! -z "${1}" ]; then
@@ -28,7 +28,7 @@ else
 fi
 
 CAL_DISTRO_DIR="${PWD}/build/ipa"
-ARCHIVE_BUNDLE="${CAL_DISTRO_DIR}/chou.xcarchive"
+ARCHIVE_BUNDLE="${CAL_DISTRO_DIR}/${TARGET_NAME}.xcarchive"
 APP_BUNDLE_PATH="${ARCHIVE_BUNDLE}/Products/Applications/${TARGET_NAME}.app"
 DYSM_PATH="${ARCHIVE_BUNDLE}/dSYMs/${TARGET_NAME}.app.dSYM"
 IPA_PATH="${CAL_DISTRO_DIR}/${TARGET_NAME}.ipa"
