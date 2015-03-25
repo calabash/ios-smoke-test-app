@@ -2,7 +2,8 @@ language: objective-c
 cache: bundle
 
 before_script:
-  - script/ci/travis/instruments-auth.sh
+  - gem install luffa --no-document --env-shebang --no-prerelease
+  - luffa authorize
 
 script:
   - script/ci/travis/bundle-install.rb
