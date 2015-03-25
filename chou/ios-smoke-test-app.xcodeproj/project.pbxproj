@@ -46,7 +46,7 @@
 		F52BFB171987EF8700299AEF /* CalSmoke-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalSmoke-Info.plist"; sourceTree = "<group>"; };
 		F52BFB191987EF8700299AEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F52BFB1B1987EF8700299AEF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F52BFB1D1987EF8700299AEF /* ios-smoke-test-app-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ios-smoke-test-app-Prefix.pch"; sourceTree = "<group>"; };
+		F52BFB1D1987EF8700299AEF /* CalSmoke-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalSmoke-Prefix.pch"; sourceTree = "<group>"; };
 		F52BFB1E1987EF8700299AEF /* XamAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XamAppDelegate.h; sourceTree = "<group>"; };
 		F52BFB1F1987EF8700299AEF /* XamAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XamAppDelegate.m; sourceTree = "<group>"; };
 		F52BFB271987EF8700299AEF /* XamViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XamViewController.h; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 				F52BFB171987EF8700299AEF /* CalSmoke-Info.plist */,
 				F52BFB181987EF8700299AEF /* InfoPlist.strings */,
 				F52BFB1B1987EF8700299AEF /* main.m */,
-				F52BFB1D1987EF8700299AEF /* ios-smoke-test-app-Prefix.pch */,
+				F52BFB1D1987EF8700299AEF /* CalSmoke-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -310,7 +310,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "chou/chou-Prefix.pch";
+				GCC_PREFIX_HEADER = "chou/CalSmoke-Prefix.pch";
 				INFOPLIST_FILE = "chou/CalSmoke-Info.plist";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -405,7 +405,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "chou/ios-smoke-test-app-Prefix.pch";
+				GCC_PREFIX_HEADER = "chou/CalSmoke-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = LOAD_CALABASH_DYLIB;
 				INFOPLIST_FILE = "chou/CalSmoke-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -426,7 +426,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "chou/ios-smoke-test-app-Prefix.pch";
+				GCC_PREFIX_HEADER = "chou/CalSmoke-Prefix.pch";
 				INFOPLIST_FILE = "chou/CalSmoke-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,7 +450,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "chou/chou-Prefix.pch";
+				GCC_PREFIX_HEADER = "chou/CalSmoke-Prefix.pch";
 				INFOPLIST_FILE = "chou/CalSmoke-Info.plist";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

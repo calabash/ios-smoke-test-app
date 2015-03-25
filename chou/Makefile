@@ -25,8 +25,6 @@ ipa-dylib:
 # Builds an ipa from the -cal target.
 ipa-cal:
 	./xtc-prepare.sh
-	cp xtc-staging/chou-cal.ipa ./
-	cp -r xtc-staging/chou-cal.app.dSYM ./
 
 # Builds an app with no Calabash server.
 app:

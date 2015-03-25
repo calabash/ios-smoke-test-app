@@ -40,7 +40,7 @@ mkdir -p "${CAL_DISTRO_DIR}"
 set +o errexit
 
 
-if [ -z "${XAM_SMOKE_SIGNING_IDENTITY}" ]; then
+if [ -z "${CODE_SIGN_IDENTITY}" ]; then
     xcrun xcodebuild archive \
         -SYMROOT="${CAL_DISTRO_DIR}" \
         -derivedDataPath "${CAL_DISTRO_DIR}" \
@@ -54,7 +54,7 @@ if [ -z "${XAM_SMOKE_SIGNING_IDENTITY}" ]; then
         -sdk iphoneos | xcpretty -c
    else
         xcrun xcodebuild archive \
-        CODE_SIGN_IDENTITY="${XAM_SMOKE_SIGNING_IDENTITY}" \
+        CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY}" \
         -SYMROOT="${CAL_DISTRO_DIR}" \
         -derivedDataPath "${CAL_DISTRO_DIR}" \
         -project "${XC_PROJECT}" \
@@ -79,9 +79,18 @@ fi
 set +o errexit
 
 
-xcrun -sdk iphoneos PackageApplication -v "${APP_BUNDLE_PATH}" -o "${IPA_PATH}" > /dev/null
+PACKAGE_LOG="${CAL_DISTRO_DIR}/package.log"
+
+xcrun \
+  -sdk \
+  iphoneos \
+  PackageApplication \
+  -v "${APP_BUNDLE_PATH}" \
+  -o "${IPA_PATH}" > "${PACKAGE_LOG}"
 
 RETVAL=$?
+
+echo "INFO: Package Application Log: ${PACKAGE_LOG}"
 
 set -o errexit
 
