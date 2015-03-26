@@ -1,6 +1,0 @@
-/* Localized versions of Info.plist keys */
-/* ACK! We cannot use a localized name because the -cal and non-cal targets
-   will appear in the Finder as having the _same_ name: 'Chōu.app'.
-"CFBundleDisplayName" = "Chōu";
-"CFBundleName" = "Chōu";
-*/
