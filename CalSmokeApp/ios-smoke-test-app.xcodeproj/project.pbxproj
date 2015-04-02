@@ -26,6 +26,7 @@
 		F52BFB291987EF8700299AEF /* XamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB281987EF8700299AEF /* XamViewController.m */; };
 		F52BFB2B1987EF8700299AEF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52BFB2A1987EF8700299AEF /* Images.xcassets */; };
 		F52BFB4A1987F5FF00299AEF /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB491987F5FF00299AEF /* UIView+Positioning.m */; };
+		F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55081B41ACD4F5400F226A1 /* WebKit.framework */; };
 		F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		a851e37816c4ddd975adbf58 /* XamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB281987EF8700299AEF /* XamViewController.m */; };
@@ -56,6 +57,7 @@
 		F52BFB2A1987EF8700299AEF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F52BFB481987F5FF00299AEF /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
 		F52BFB491987F5FF00299AEF /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
+		F55081B41ACD4F5400F226A1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F55185541AC34BB600CE06DC /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F5FE79621988070200842E74 /* CalSmoke-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CalSmoke-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		a66015686499dbb45da8c3c4 /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */,
 				814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */,
 				ab943fbf9d0ac91728d35abe /* UIKit.framework in Frameworks */,
 				4d0c7f3c9aec5f7df4bec8e1 /* Foundation.framework in Frameworks */,
@@ -108,6 +111,7 @@
 		F52BFB0E1987EF8700299AEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F55081B41ACD4F5400F226A1 /* WebKit.framework */,
 				F52BFB0F1987EF8700299AEF /* Foundation.framework */,
 				F52BFB111987EF8700299AEF /* CoreGraphics.framework */,
 				F52BFB131987EF8700299AEF /* UIKit.framework */,
