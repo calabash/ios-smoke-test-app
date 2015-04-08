@@ -5,3 +5,31 @@
 ## CalSmoke App
 
 Smoke testing for Calabash iOS and Calabash iOS Server.
+
+
+### Test the -cal target
+
+The -cal target links the calabash.framework.
+
+```
+$ git clone git@github.com:calabash/ios-smoke-test-app.git
+$ cd ios-smoke-test-app/CalSmokeApp
+$ bundle install
+$ make app-cal
+$ export APP="${PWD}/CalSmoke-cal.app"
+$ be cucumber
+```
+
+### Test the Debug configuration of production app
+
+```
+$ git clone git@github.com:calabash/ios-smoke-test-app.git
+$ cd ios-smoke-test-app/CalSmokeApp
+$ bundle install
+$ make app
+$ export APP="${PWD}/CalSmoke.app"
+# Update the BUNDLE_ID in the config/cucumber.yml to com.xamarin.CalSmokeApp
+$ be cucumber
+```
+
+
