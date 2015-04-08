@@ -22,6 +22,8 @@ $ be cucumber
 
 ### Test the Debug configuration of production app
 
+The Debug configuration loads the calabash dylibs at runtime.
+
 ```
 $ git clone git@github.com:calabash/ios-smoke-test-app.git
 $ cd ios-smoke-test-app/CalSmokeApp
