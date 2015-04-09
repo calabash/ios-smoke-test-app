@@ -11,7 +11,7 @@ xamarin_dir = "#{ENV['HOME']}/.xamarin"
 
 devices = {}
 
-device_list = ['neptune', 'venus', 'earp', 'mars', 'saturn', 'pegasi', 'hat', 'erik', 'denis']
+device_list = ['neptune', 'venus', 'earp', 'mars', 'saturn', 'pegasi', 'hat', 'erik', 'denis', 'uranus']
 
 device_list.each do |device|
   dir = "#{xamarin_dir}/devices/#{device}"
@@ -175,7 +175,7 @@ pegasi_ss:  SCREENSHOT_PATH=<%= devices[:pegasi][:ss_path] %>
 
 reset_btw:    RESET_BETWEEN_SCENARIOS=1
 
-app:           APP=chou-cal.app
+app:           APP=./CalSmoke-cal.app
 
 simulator:     -p app -p common -p ss_path -p html_report --tags ~@device_only --tags ~@device
 sim_launch:    -p simulator  NO_STOP=<%= keep_sim_open_after %>
@@ -248,3 +248,4 @@ pegasi:          -p pegasi_common
 hatp:   DEVICE_TARGET=<%= devices[:hat][:udid] %> DEVICE_ENDPOINT=<%= devices[:hat][:ip] %> -p device_common
 erik:   DEVICE_TARGET=<%= devices[:erik][:udid] %> DEVICE_ENDPOINT=<%= devices[:erik][:ip] %> -p device_common
 denis: DEVICE_TARGET=<%= devices[:denis][:udid] %> DEVICE_ENDPOINT=<%= devices[:denis][:ip] %> -p device_common
+uranus: DEVICE_TARGET=<%= devices[:uranus][:udid] %> DEVICE_ENDPOINT=<%= devices[:uranus][:ip] %> -p device_common
