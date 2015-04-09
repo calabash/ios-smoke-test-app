@@ -48,6 +48,7 @@ xtc-staging
 *.xcodeproj/project.xcworkspace/xcuserdata
 *.xcuserdatad
 *.xcworkspace/xcshareddata/*.xccheckout
+*.xccheckout
 
 ## Build products
 build/*

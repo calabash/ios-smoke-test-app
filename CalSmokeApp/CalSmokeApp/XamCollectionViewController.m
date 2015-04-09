@@ -48,10 +48,14 @@ static const NSInteger kCollectionViewNumItems = 5;
 - (instancetype) init {
   self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
   if (self){
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+      self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:1];
-    
-    ((UICollectionViewFlowLayout *)self.collectionViewLayout).minimumLineSpacing = 1.f;
+
+    if ([self respondsToSelector:@selector(collectionViewLayout)]) {
+      ((UICollectionViewFlowLayout *)self.collectionViewLayout).minimumLineSpacing = 1.f;
+    }
     self.dataSource = [XamCollectionViewDataSource new];
   }
   return self;
@@ -67,7 +71,10 @@ static const NSInteger kCollectionViewNumItems = 5;
 
 - (void)viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
-  ((UICollectionViewFlowLayout *)self.collectionViewLayout).itemSize = CGSizeMake(CGRectGetWidth(self.view.bounds), floorf(CGRectGetHeight(self.view.bounds)/(kCollectionViewNumItems - 1)));
+
+  if ([self respondsToSelector:@selector(collectionViewLayout)]) {
+    ((UICollectionViewFlowLayout *)self.collectionViewLayout).itemSize = CGSizeMake(CGRectGetWidth(self.view.bounds), floorf(CGRectGetHeight(self.view.bounds)/(kCollectionViewNumItems - 1)));
+  }
 }
 
 @end
