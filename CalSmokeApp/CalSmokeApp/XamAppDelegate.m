@@ -44,7 +44,10 @@
   XamCollectionViewController *secondViewController = [XamCollectionViewController new];
   
   UITabBarController *tabController = [UITabBarController new];
-  tabController.tabBar.translucent = NO;
+  SEL transSel = NSSelectorFromString(@"translucent");
+  if ([tabController.tabBar respondsToSelector:transSel]) {
+    tabController.tabBar.translucent = NO;
+  }
   tabController.viewControllers = @[firstController, secondViewController];
 
   self.window.rootViewController = tabController;
