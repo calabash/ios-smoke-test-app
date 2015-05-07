@@ -7,7 +7,7 @@ module Calabash
 
   class IPA
 
-    attr_reader :ipa_path
+    attr_reader :path
     attr_reader :bundle_identifier
 
     def initialize(path_to_ipa)
@@ -18,12 +18,16 @@ module Calabash
       unless path_to_ipa.end_with?('.ipa')
         raise "Expected '#{path_to_ipa}' to be"
       end
-      @ipa_path = path_to_ipa
+      @path = path_to_ipa
+    end
+
+    def to_s
+      "#<IPA: #{bundle_identifier}: '#{path}'>"
     end
 
     def bundle_identifier
       unless File.exist?(bundle_dir)
-        raise "Expected a '#{File.basename(ipa_path).split('.').first}.app'\nat path '#{payload_dir}'"
+        raise "Expected a '#{File.basename(path).split('.').first}.app'\nat path '#{payload_dir}'"
       end
 
       @bundle_identifier ||= lambda {
@@ -44,8 +48,8 @@ module Calabash
 
     def payload_dir
       @payload_dir ||= lambda {
-        FileUtils.cp(ipa_path, tmpdir)
-        zip_path = File.join(tmpdir, File.basename(ipa_path))
+        FileUtils.cp(path, tmpdir)
+        zip_path = File.join(tmpdir, File.basename(path))
         Dir.chdir(tmpdir) do
           system('unzip', *['-q', zip_path])
         end
@@ -58,11 +62,10 @@ module Calabash
         Dir.glob(File.join(payload_dir, '*')).detect {|f| File.directory?(f) && f.end_with?('.app')}
       }.call
     end
-
   end
 
+  class IDeviceInstaller
 
-  class DeviceInstaller
 
     def app_installed?
 
