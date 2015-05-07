@@ -30,10 +30,15 @@ module LaunchControl
 end
 
 Before do |scenario|
-  launcher = LaunchControl.launcher
-  unless launcher.calabash_no_launch?
-    launcher.relaunch
-    launcher.calabash_notify(self)
+  if scenario.source_tag_names.include?('@ideviceinstaller')
+    # don't launch
+  else
+    launcher = LaunchControl.launcher
+
+    unless launcher.calabash_no_launch?
+      launcher.relaunch
+      launcher.calabash_notify(self)
+    end
   end
 end
 
