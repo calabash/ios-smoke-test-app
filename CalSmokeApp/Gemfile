@@ -5,6 +5,7 @@ gem 'briar', '~> 1.2'
 gem 'luffa', '~> 1.0', '>= 1.0.2'
 
 gem 'rspec', '~> 3.0'
+gem 'retriable', '~> 2.0'
 
 gem 'xcpretty', '~> 0.1'
 gem 'rake', '~> 10.3'
