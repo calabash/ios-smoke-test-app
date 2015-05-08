@@ -8,7 +8,8 @@ end
 
 guard :rspec, cmd: 'bundle exec rspec', spec_paths: ['spec', 'spec/support'] do
   watch('Gemfile.lock') { 'spec' }
-  watch('features/support/ideviceinstaller.rb') { 'spec/support/ideviceinstaller_spec.rb' }
+  watch('features/support/ideviceinstaller.rb') { 'spec/support/ideviceinstaller/unit/installer_spec.rb' }
+  watch('features/support/ideviceinstaller.rb') { 'spec/support/ideviceinstaller/unit/ipa_spec.rb' }
   watch('spec/spec_helper.rb') { 'spec' }
-  watch(%r{^spec/.+_spec\.rb$})
+  watch(%r{^spec/support/ideviceinstaller/unit/.+_spec\.rb$})
 end
