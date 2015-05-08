@@ -201,6 +201,11 @@ describe 'Calabash IDeviceInstaller' do
           }.to raise_error(Calabash::IDeviceInstaller::BinaryNotFound)
         end
       end
+
+      it 'returns the discovered binary path' do
+        expect(Calabash::IDeviceInstaller).to receive(:select_binary).and_return(fake_binary)
+        expect(Calabash::IDeviceInstaller.expect_binary).to be == fake_binary
+      end
     end
 
     it '.available_devices' do

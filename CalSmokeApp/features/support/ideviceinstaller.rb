@@ -178,6 +178,7 @@ module Calabash
                  'We recommend installing ideviceinstaller with homebrew'].join("\n")
         end
       end
+      binary
     end
 
     def self.available_devices
