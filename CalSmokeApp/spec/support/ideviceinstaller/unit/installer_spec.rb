@@ -211,7 +211,9 @@ describe 'Calabash IDeviceInstaller' do
     it '.available_devices' do
       devices = Calabash::IDeviceInstaller.available_devices
       expect(devices).to be_a_kind_of(Array)
-      expect(Calabash::IDeviceInstaller.instance_variable_get(:@available_devices)).to be == devices
+      unless devices.empty?
+        expect(devices.first).to be_a_kind_of(RunLoop::Device)
+      end
     end
 
     it '#retriable_intervals' do
