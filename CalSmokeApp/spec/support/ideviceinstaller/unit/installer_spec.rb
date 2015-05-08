@@ -105,8 +105,8 @@ describe 'Calabash IDeviceInstaller' do
       it 'was successfully installed' do
         expect(Calabash::IDeviceInstaller).to receive(:available_devices).and_return([device])
         expect(Calabash::IDeviceInstaller).to receive(:select_binary).and_return(fake_binary)
+        expect(installer).to receive(:app_installed?).and_return(false, true)
         expect(installer).to receive(:execute_ideviceinstaller_cmd).and_return({})
-        expect(installer).to receive(:app_installed?).and_return(true)
         expect(installer.install_app).to be == true
       end
     end
@@ -114,9 +114,18 @@ describe 'Calabash IDeviceInstaller' do
     it 'raises error if app was not installed' do
       expect(Calabash::IDeviceInstaller).to receive(:available_devices).and_return([device])
       expect(Calabash::IDeviceInstaller).to receive(:select_binary).and_return(fake_binary)
-      expect(installer).to receive(:app_installed?).and_return(false)
+      expect(installer).to receive(:app_installed?).and_return(false, false)
       expect(installer).to receive(:execute_ideviceinstaller_cmd).and_return({})
       expect { installer.install_app }.to raise_error(Calabash::IDeviceInstaller::InstallError)
+    end
+
+    it 'calls uninstall if the app is already installed' do
+      expect(Calabash::IDeviceInstaller).to receive(:available_devices).and_return([device])
+      expect(Calabash::IDeviceInstaller).to receive(:select_binary).and_return(fake_binary)
+      expect(installer).to receive(:app_installed?).and_return(true, true)
+      expect(installer).to receive(:uninstall_app).and_return(true)
+      expect(installer).to receive(:execute_ideviceinstaller_cmd).and_return({})
+      expect(installer.install_app).to be == true
     end
   end
 

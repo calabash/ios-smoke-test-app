@@ -118,7 +118,10 @@ module Calabash
       hash[:out].split(/\s/).include? ipa.bundle_identifier
     end
 
+    # ideviceinstaller --install does not overwrite an existing app.
     def install_app
+      uninstall_app if app_installed?
+
       args = ['--udid', udid, '--install', ipa.path]
       execute_ideviceinstaller_cmd(args)
 
