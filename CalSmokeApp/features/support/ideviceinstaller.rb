@@ -181,8 +181,11 @@ module Calabash
       binary
     end
 
+    # Expensive!  Avoid calling this more than 1x.  This cannot be memoized
+    # into a class variable or class instance variable because the state will
+    # change when devices attached/detached or join/leave the network.
     def self.available_devices
-      @available_devices ||= RunLoop::XCTools.new.instruments(:devices)
+      RunLoop::XCTools.new.instruments(:devices)
     end
 
     def retriable_intervals
