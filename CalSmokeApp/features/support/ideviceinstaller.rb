@@ -119,7 +119,7 @@ module Calabash
     end
 
     def install_app
-      args = ['--udid', udid, '--install', ipa]
+      args = ['--udid', udid, '--install', ipa.path]
       execute_ideviceinstaller_cmd(args)
 
       unless app_installed?
