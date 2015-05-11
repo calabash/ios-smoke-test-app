@@ -228,11 +228,7 @@ module Calabash
             result = exec_with_open3(args)
           end
         ensure
-          @mutex.synchronize do
-            @popen_stdin.close if @popen_stdin
-            @popen_stdout.close if @popen_stdout
-            @popen_stderr.close if @popen_stdout
-          end
+          ensure_popen3_clean_exit
         end
 
         exit_status = result[:exit_status]
@@ -247,6 +243,7 @@ module Calabash
       begin
         Open3.popen3(binary, *args) do  |stdin, stdout, stderr, process_status|
           @mutex.synchronize do
+            @popen_pid = process_status.pid
             @popen_stdin = stdin
             @popen_stdout = stdout
             @popen_stderr = stderr
@@ -267,10 +264,22 @@ module Calabash
       rescue StandardError => e
         raise InvocationError, e
       ensure
-        @mutex.synchronize do
-          @popen_stdin.close if @popen_stdin
-          @popen_stdout.close if @popen_stdout
-          @popen_stderr.close if @popen_stdout
+        ensure_popen3_clean_exit
+      end
+    end
+
+    def ensure_popen3_clean_exit
+      @mutex.synchronize do
+        @popen_stdin.close if @popen_stdin && !@popen_stdin.closed?
+        @popen_stdout.close if @popen_stdout && !@popen_stdout.closed?
+        @popen_stderr.close if @popen_stderr && !@popen_stderr.closed?
+
+        if @popen_pid
+          terminator = RunLoop::ProcessTerminator.new(@popen_pid, 'TERM', binary)
+          unless terminator.kill_process
+            terminator = RunLoop::ProcessTerminator.new(@popen_pid, 'KILL', binary)
+            terminator.kill_process
+          end
         end
       end
     end

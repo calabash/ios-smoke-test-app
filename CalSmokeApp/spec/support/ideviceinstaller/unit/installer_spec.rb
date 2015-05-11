@@ -16,7 +16,9 @@ describe 'Calabash IDeviceInstaller' do
     FileUtils.touch(File.join(Dir.mktmpdir, 'ideviceinstaller')).first
   }
 
-  let(:installer) { Calabash::IDeviceInstaller.new(ipa_path, udid, fake_binary) }
+  let(:options) { {:path_to_binary => fake_binary} }
+
+  let(:installer) { Calabash::IDeviceInstaller.new(ipa_path, udid, options) }
 
   describe '.new' do
     describe 'raises an error when' do
@@ -28,9 +30,9 @@ describe 'Calabash IDeviceInstaller' do
           }.to raise_error(Calabash::IDeviceInstaller::BinaryNotFound)
         end
 
-        it 'that was passed as an argument' do
+        it 'that was passed as an optional argument' do
           expect {
-            Calabash::IDeviceInstaller.new(nil, nil, '/some/other/ideviceinstaller')
+            Calabash::IDeviceInstaller.new(nil, nil, {:path_to_binary => '/some/other/ideviceinstaller'})
           }.to raise_error(Calabash::IDeviceInstaller::BinaryNotFound)
         end
 
@@ -59,6 +61,17 @@ describe 'Calabash IDeviceInstaller' do
           Calabash::IDeviceInstaller.new(nil, nil)
         }.to raise_error(Calabash::IDeviceInstaller::DeviceNotFound)
       end
+    end
+
+    it 'sets it variables' do
+      expect(Calabash::IDeviceInstaller).to receive(:available_devices).and_return([device])
+      expect(Calabash::IDeviceInstaller).to receive(:select_binary).and_return(fake_binary)
+      expect(installer.binary).to be == fake_binary
+      expect(installer.tries).to be == Calabash::IDeviceInstaller::DEFAULT_RETRYABLE_OPTIONS[:tries]
+      expect(installer.interval).to be == Calabash::IDeviceInstaller::DEFAULT_RETRYABLE_OPTIONS[:interval]
+      expect(installer.ipa).to be_truthy
+      expect(installer.udid).to be == device.udid
+      expect(installer.instance_variable_get(:@mutex)).to be_truthy
     end
   end
 

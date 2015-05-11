@@ -48,13 +48,14 @@ describe 'Calabash IDeviceInstaller Integration' do
 
     end
   else
+    let(:options) { Calabash::IDeviceInstaller::DEFAULT_RETRYABLE_OPTIONS }
     let (:installer) {
       ipa_path = File.expand_path('./xtc-staging/CalSmoke-cal.ipa')
       unless File.exist?(ipa_path)
         system('make', 'ipa-cal')
       end
       udid = IDeviceId.physical_devices_for_testing.first.udid
-      Calabash::IDeviceInstaller.new(ipa_path, udid)
+      Calabash::IDeviceInstaller.new(ipa_path, udid, options)
     }
 
     it '#to_s' do
@@ -69,6 +70,21 @@ describe 'Calabash IDeviceInstaller Integration' do
 
     it '#uninstall_app' do
       installer.uninstall_app
+    end
+
+    describe 'ensure popen3 exits cleanly' do
+      let(:options) { {:timeout => 1, :tries => 2, :interval => 0.2} }
+      it '#install_app' do
+        expect {
+          installer.install_app
+        }.to raise_error(Calabash::IDeviceInstaller::InvocationError, 'execution expired')
+        expect(installer.instance_variable_get(:@popen_stdin).closed?).to be_truthy
+        expect(installer.instance_variable_get(:@popen_stdout).closed?).to be_truthy
+        expect(installer.instance_variable_get(:@popen_stderr).closed?).to be_truthy
+        pid = installer.instance_variable_get(:@popen_pid)
+        terminator = RunLoop::ProcessTerminator.new(pid, 'TERM', 'ideviceinstaller')
+        expect(terminator.process_alive?).to be == false
+      end
     end
   end
 end
