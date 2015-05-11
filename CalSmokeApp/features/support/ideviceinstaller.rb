@@ -115,10 +115,6 @@ module Calabash
       @mutex = Mutex.new
     end
 
-    def binary
-      @binary
-    end
-
     def to_s
       "#<Installer: #{binary} #{ipa.path} #{udid}>"
     end
