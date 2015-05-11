@@ -102,6 +102,7 @@ module Calabash
       end
 
       @udid = match.udid
+      @mutex = Mutex.new
     end
 
     def binary
@@ -217,8 +218,16 @@ module Calabash
             }
 
       Retriable.retriable(options) do
-        Timeout.timeout(timeout, TimeoutError) do
-          result = exec_with_open3(args)
+        begin
+          Timeout.timeout(timeout, TimeoutError) do
+            result = exec_with_open3(args)
+          end
+        ensure
+          @mutex.synchronize do
+            @popen_stdin.close if @popen_stdin
+            @popen_stdout.close if @popen_stdout
+            @popen_stderr.close if @popen_stdout
+          end
         end
 
         exit_status = result[:exit_status]
@@ -231,7 +240,12 @@ module Calabash
 
     def exec_with_open3(args)
       begin
-        Open3.popen3(binary, *args) do  |_, stdout,  stderr, process_status|
+        Open3.popen3(binary, *args) do  |stdin, stdout, stderr, process_status|
+          @mutex.synchronize do
+            @popen_stdin = stdin
+            @popen_stdout = stdout
+            @popen_stderr = stderr
+          end
           err = stderr.read.strip
           if err && err != ''
             unless err[/iTunesMetadata.plist/,0] || err[/SC_Info/,0]
@@ -247,6 +261,12 @@ module Calabash
         end
       rescue StandardError => e
         raise InvocationError, e
+      ensure
+        @mutex.synchronize do
+          @popen_stdin.close if @popen_stdin
+          @popen_stdout.close if @popen_stdout
+          @popen_stderr.close if @popen_stdout
+        end
       end
     end
   end
