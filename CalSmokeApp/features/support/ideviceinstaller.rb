@@ -83,9 +83,14 @@ module Calabash
     attr_reader :binary
     attr_reader :ipa
     attr_reader :udid
+    attr_reader :tries
+    attr_reader :interval
+    attr_reader :timeout
 
-    def initialize(path_to_ipa, udid_or_name, path_to_binary=nil)
-      @binary = IDeviceInstaller.expect_binary(path_to_binary)
+    def initialize(path_to_ipa, udid_or_name, options={})
+      merged_opts = DEFAULT_RETRYABLE_OPTIONS.merge(options)
+
+      @binary = IDeviceInstaller.expect_binary(merged_opts[:path_to_binary])
 
       begin
         @ipa = Calabash::IPA.new(path_to_ipa)
@@ -102,6 +107,11 @@ module Calabash
       end
 
       @udid = match.udid
+
+      @tries = merged_opts[:tries]
+      @interval = merged_opts[:interval]
+      @timeout = merged_opts[:timeout]
+
       @mutex = Mutex.new
     end
 
@@ -193,12 +203,7 @@ module Calabash
     end
 
     def retriable_intervals
-      Array.new(DEFAULT_RETRYABLE_OPTIONS[:tries],
-                DEFAULT_RETRYABLE_OPTIONS[:interval])
-    end
-
-    def timeout
-      DEFAULT_RETRYABLE_OPTIONS[:timeout]
+      Array.new(tries, interval)
     end
 
     def execute_ideviceinstaller_cmd(args)
