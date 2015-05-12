@@ -366,15 +366,18 @@ module Calabash
             @popen_stdout = stdout
             @popen_stderr = stderr
           end
-          err = stderr.read.strip
+          err = stderr.read.chomp
           if err && err != ''
             unless err[/iTunesMetadata.plist/,0] || err[/SC_Info/,0]
               puts "ERROR: #{err}"
             end
           end
+
+          out = stdout.read.chomp
+
           {
                 :err => err,
-                :out => stdout.read.strip,
+                :out => out,
                 :pid => process_status.pid,
                 :exit_status => process_status.value.exitstatus
           }
