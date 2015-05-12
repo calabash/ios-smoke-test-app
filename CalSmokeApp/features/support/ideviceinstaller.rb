@@ -5,11 +5,26 @@ require 'run_loop'
 
 module Calabash
 
+  # A model of the an .ipa - a application binary for iOS devices.
   class IPA
 
+
+    # The path to this .ipa.
+    # @!attribute [r] path
+    # @return [String] A path to this .ipa.
     attr_reader :path
+
+    # The bundle identifier of this ipa.
+    # @!attribute [r] bundle_identifier
+    # @return [String] The bundle identifier of this ipa; obtained by inspecting
+    #  the app's Info.plist.
     attr_reader :bundle_identifier
 
+    # Create a new ipa instance.
+    # @param [String] path_to_ipa The path the .ipa file.
+    # @return [Calabash::IPA] A new ipa instance.
+    # @raise [RuntimeError] If the file does not exist.
+    # @raise [RuntimeError] If the file does not end in .ipa.
     def initialize(path_to_ipa)
       unless File.exist? path_to_ipa
         raise "Expected an ipa at '#{path_to_ipa}'"
@@ -21,10 +36,16 @@ module Calabash
       @path = path_to_ipa
     end
 
+    # @!visibility private
     def to_s
       "#<IPA: #{bundle_identifier}: '#{path}'>"
     end
 
+    # The bundle identifier of this ipa.
+    # @return [String] A string representation of this ipa's CFBundleIdentifier
+    # @raise [RuntimeError] If ipa does not expand into a Payload/<app name>.app
+    #  directory.
+    # @raise [RuntimeError] If an Info.plist does exist in the .app.
     def bundle_identifier
       unless File.exist?(bundle_dir)
         raise "Expected a '#{File.basename(path).split('.').first}.app'\nat path '#{payload_dir}'"
@@ -64,29 +85,107 @@ module Calabash
     end
   end
 
+  # A wrapper around the ideviceinstaller tool.
+  #
+  # @note libimobiledevice, ideviceinstaller, and homebrew are third-party
+  #  tools.  Please don't report problems with these tools on the Calabash
+  #  support channels.  We don't maintain them, we just use them.
+  #
+  # @see http://www.libimobiledevice.org/
+  # @see https://github.com/libimobiledevice/libimobiledevice
+  # @see https://github.com/libimobiledevice/ideviceinstaller
+  # @see http://brew.sh/
   class IDeviceInstaller
 
+    # The default Retriable and Timeout options.  ideviceinstaller is a good
+    # tool.  Experience has shown that it takes no more than 2 tries to
+    # install an ipa.  You can override these defaults by passing arguments
+    # to the initializer.
     DEFAULT_RETRYABLE_OPTIONS =
           {
                 :tries => 2,
                 :interval => 1,
                 :timeout => 10
           }
-
+    # Raised when the ideviceinstaller binary cannot be found.
     class BinaryNotFound < RuntimeError; end
+
+    # Raised when a IPA instance cannot be created.
     class CannotCreateIPA < RuntimeError; end
+
+    # Raised when the specified device cannot be found.
     class DeviceNotFound < RuntimeError; end
+
+    # Raised when there is a problem installing an ipa on the target device.
     class InstallError < RuntimeError; end
+
+    # Raised when there is a problem uninstalling an ipa on the target device.
     class UninstallError < RuntimeError; end
+
+    # Raised when the command line invocation of ideviceinstaller fails.
     class InvocationError < RuntimeError; end
 
+    # The path to the ideviceinstaller binary.
+    # @!attribute [r] binary
+    # @return [String] A path to the ideviceinstaller binary.
     attr_reader :binary
+
+    # The ipa to install.
+    # @!attribute [r] ipa
+    # @return [Calabash::IPA] The ipa to install.
     attr_reader :ipa
+
+    # The udid of the device to install the ipa on.
+    # @!attribute [r] udid
+    # @return [String] The udid of the device to install the ipa on.
     attr_reader :udid
+
+    # The number of times to try any ideviceinstaller command.  This is an
+    # option for Retriable.retriable.
+    # @!attribute [r] tries
+    # @return [Numeric] The number of times to try any ideviceinstaller command.
     attr_reader :tries
+
+    # How long to wait before retrying a failed ideviceinstaller command.  This
+    # is an option for Retriable.retriable.
+    # @!attribute [r] interval
+    # @return [Numeric] How long to wait before retrying a failed
+    #   ideviceinstaller command.
     attr_reader :interval
+
+    # How long to wait for any ideviceinstaller command to complete before
+    # timing out.  This is an option to Timeout.timeout.
+    # @!attribute [r] timeout
+    # @return [Numeric] How long to wait for any ideviceinstaller command to
+    #   complete before timing out.
     attr_reader :timeout
 
+    # Create an instance of an installer.
+    #
+    # The target device _must_ be connected via USB to the host machine.
+    #
+    # @param [String] path_to_ipa The path to ipa to install.
+    # @param [String] udid_or_name The udid or name of the device to install
+    #  the ipa on.
+    # @param [Hash] options Options to control the behavior of the installer.
+    #
+    # @option options [Numeric] :tries (2) The number of times to retry a failed
+    #  ideviceinstaller command.
+    # @option options [Numeric] :interval (1.0) How long to wait before retrying
+    #   a failed ideviceinstaller command.
+    # @option options [Numeric] :timeout (10) How long to wait for any
+    #   ideviceinstaller command to complete before timing out.
+    # @option options [String] :path_to_binary (/usr/local/bin/ideviceinstaller)
+    #   The full path the ideviceinstaller library.
+    #
+    # @return [Calabash::IDeviceInstaller] A new instance of IDeviceInstaller.
+    #
+    # @raise [BinaryNotFound] If no ideviceinstaller binary can be found on the
+    #  system.
+    # @raise [CannotCreateIPA] If an IPA instance cannot be created from the
+    #  `path_to_ipa`.
+    # @raise [DeviceNotFound] If the device specified by `udid_or_name` cannot
+    #  be found.
     def initialize(path_to_ipa, udid_or_name, options={})
       merged_opts = DEFAULT_RETRYABLE_OPTIONS.merge(options)
 
@@ -115,6 +214,7 @@ module Calabash
       @mutex = Mutex.new
     end
 
+    # @!visibility private
     def to_s
       "#<Installer: #{binary} #{ipa.path} #{udid}>"
     end
@@ -125,7 +225,20 @@ module Calabash
       hash[:out].split(/\s/).include? ipa.bundle_identifier
     end
 
-    # ideviceinstaller --install does not overwrite an existing app.
+    # Install the ipa on the target device.
+    #
+    # @note IMPORTANT If the app is already installed, uninstall it first.
+    #   If you don't want to reinstall, use `ensure_app_installed` instead of
+    #   this method.
+    #
+    # @note The 'ideviceinstaller --install' command does not overwrite an app
+    #  if it is already installed on a device.
+    #
+    # @see Calabash::IDeviceInstaller#ensure_app_installed
+    #
+    # @return [Boolean] Return true if the app was installed.
+    # @raise [InstallError] If the app was not installed.
+    # @raise [UninstallError] If the app was not uninstalled.
     def install_app
       uninstall_app if app_installed?
 
@@ -138,11 +251,20 @@ module Calabash
       true
     end
 
+    # Ensure the ipa has been installed on the device.  If the app is already
+    # installed, do nothing.  Otherwise, install the app.
+    #
+    # @return [Boolean] Return true if the app was installed.
+    # @raise [InstallError] If the app was not installed.
     def ensure_app_installed
       return true if app_installed?
       install_app
     end
 
+    # Uninstall the ipa from the target_device.
+    #
+    # @return [Boolean] Return true if the app was uninstalled.
+    # @raise [UninstallError] If the app was not uninstalled.
     def uninstall_app
       return true unless app_installed?
       args = ['--udid', udid, '--uninstall', ipa.bundle_identifier]
