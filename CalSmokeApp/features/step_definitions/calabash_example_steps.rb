@@ -1,7 +1,7 @@
 Given(/^I see the (first|second) tab$/) do |tab|
-  wait_for_elements_exist("tabBarButton")
-  touch("tabBarButton index:#{tab.eql?("first") ? 0 : 1}")
-  expected_view = tab.eql?("first") ? "first page" : "second page"
+  wait_for_elements_exist('tabBarButton')
+  touch("tabBarButton index:#{tab.eql?('first') ? 0 : 1}")
+  expected_view = tab.eql?('first') ? 'first page' : 'second page'
   wait_for_elements_exist("view marked:'#{expected_view}'")
 end
 
