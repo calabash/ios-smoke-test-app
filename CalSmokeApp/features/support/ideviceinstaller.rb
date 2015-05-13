@@ -210,8 +210,6 @@ module Calabash
       @tries = merged_opts[:tries]
       @interval = merged_opts[:interval]
       @timeout = merged_opts[:timeout]
-
-      @mutex = Mutex.new
     end
 
     # @!visibility private
@@ -277,6 +275,9 @@ module Calabash
 
     private
 
+    # @!visibility private
+    attr_reader :stdin, :stdout, :stderr, :pid
+
     def self.homebrew_binary
       '/usr/local/bin/ideviceinstaller'
     end
@@ -328,7 +329,7 @@ module Calabash
 
       result = {}
 
-      on = [Timeout::Error, InvocationError]
+      on = [InvocationError]
       on_retry = Proc.new do |_, try, elapsed_time, next_interval|
           puts "INFO: ideviceinstaller: attempt #{try} failed in '#{elapsed_time}'; will retry in '#{next_interval}'"
       end
@@ -341,13 +342,7 @@ module Calabash
             }
 
       Retriable.retriable(options) do
-        begin
-          Timeout.timeout(timeout, TimeoutError) do
-            result = exec_with_open3(args)
-          end
-        ensure
-          ensure_popen3_clean_exit
-        end
+        result = exec_with_open3(args)
 
         exit_status = result[:exit_status]
         if exit_status != 0
@@ -359,50 +354,46 @@ module Calabash
 
     def exec_with_open3(args)
       begin
-        Open3.popen3(binary, *args) do  |stdin, stdout, stderr, process_status|
-          @mutex.synchronize do
-            @popen_pid = process_status.pid
-            @popen_stdin = stdin
-            @popen_stdout = stdout
-            @popen_stderr = stderr
-          end
-          err = stderr.read.chomp
+        @stdin, @stdout, out, @stderr, err, process_status, @pid, exit_status = nil
+        Timeout.timeout(timeout, TimeoutError) do
+          @stdin, @stdout, @stderr, process_status = Open3.popen3(binary, *args)
+
+          @pid = process_status.pid
+          exit_status = process_status.value.exitstatus
+
+          err = @stderr.read.chomp
           if err && err != ''
             unless err[/iTunesMetadata.plist/,0] || err[/SC_Info/,0]
               puts "ERROR: #{err}"
             end
           end
-
-          out = stdout.read.chomp
-
-          {
-                :err => err,
-                :out => out,
-                :pid => process_status.pid,
-                :exit_status => process_status.value.exitstatus
-          }
+          out = @stdout.read.chomp
         end
       rescue StandardError => e
         raise InvocationError, e
       ensure
-        ensure_popen3_clean_exit
-      end
-    end
+        stdin.close if stdin && !stdin.closed?
+        stdout.close if stdout && !stdout.closed?
+        stderr.close if stderr && !stderr.closed?
 
-    def ensure_popen3_clean_exit
-      @mutex.synchronize do
-        @popen_stdin.close if @popen_stdin && !@popen_stdin.closed?
-        @popen_stdout.close if @popen_stdout && !@popen_stdout.closed?
-        @popen_stderr.close if @popen_stderr && !@popen_stderr.closed?
-
-        if @popen_pid
-          terminator = RunLoop::ProcessTerminator.new(@popen_pid, 'TERM', binary)
+        if pid
+          terminator = RunLoop::ProcessTerminator.new(pid, 'TERM', binary)
           unless terminator.kill_process
-            terminator = RunLoop::ProcessTerminator.new(@popen_pid, 'KILL', binary)
+            terminator = RunLoop::ProcessTerminator.new(pid, 'KILL', binary)
             terminator.kill_process
           end
         end
+
+        if process_status
+          process_status.join
+        end
       end
+      {
+            :err => err,
+            :out => out,
+            :pid => pid,
+            :exit_status => exit_status
+      }
     end
   end
 end

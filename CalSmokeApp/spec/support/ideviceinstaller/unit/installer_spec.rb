@@ -71,7 +71,6 @@ describe 'Calabash IDeviceInstaller' do
       expect(installer.interval).to be == Calabash::IDeviceInstaller::DEFAULT_RETRYABLE_OPTIONS[:interval]
       expect(installer.ipa).to be_truthy
       expect(installer.udid).to be == device.udid
-      expect(installer.instance_variable_get(:@mutex)).to be_truthy
     end
   end
 
@@ -294,7 +293,7 @@ describe 'Calabash IDeviceInstaller' do
         expect(Calabash::IDeviceInstaller).to receive(:select_binary).and_return(fake_binary)
         hash = { :exit_status => 0, :pid => 2 }
         expect(installer).to receive(:retriable_intervals).and_return(Array.new(2, 0.1))
-        expect(installer).to receive(:exec_with_open3).and_raise(Timeout::Error)
+        expect(installer).to receive(:exec_with_open3).and_raise(Calabash::IDeviceInstaller::InvocationError)
         expect(installer).to receive(:exec_with_open3).and_return(hash)
         expect(installer.send(:execute_ideviceinstaller_cmd, [])[:pid]).to be == 2
       end

@@ -78,10 +78,10 @@ describe 'Calabash IDeviceInstaller Integration' do
         expect {
           installer.install_app
         }.to raise_error(Calabash::IDeviceInstaller::InvocationError, 'execution expired')
-        expect(installer.instance_variable_get(:@popen_stdin).closed?).to be_truthy
-        expect(installer.instance_variable_get(:@popen_stdout).closed?).to be_truthy
-        expect(installer.instance_variable_get(:@popen_stderr).closed?).to be_truthy
-        pid = installer.instance_variable_get(:@popen_pid)
+        expect(installer.instance_variable_get(:@stdin).closed?).to be_truthy
+        expect(installer.instance_variable_get(:@stdout).closed?).to be_truthy
+        expect(installer.instance_variable_get(:@stderr).closed?).to be_truthy
+        pid = installer.instance_variable_get(:@pid)
         terminator = RunLoop::ProcessTerminator.new(pid, 'TERM', 'ideviceinstaller')
         expect(terminator.process_alive?).to be == false
       end
