@@ -38,13 +38,13 @@ Dir.chdir(working_directory) do
 
   profiles =
         {
-              :ipad2 => simulator_profiles[:ipad2],
+              #:ipad2 => simulator_profiles[:ipad2],
               #:ipad2_mid => simulator_profiles[:ipad2_mid],
 
               :air => simulator_profiles[:air],
               #:air_mid => simulator_profiles[:air_mid],
 
-              :ipad => simulator_profiles[:ipad],
+              #:ipad => simulator_profiles[:ipad],
               #:ipad_mid => simulator_profiles[:ipad_mid],
 
               :iphone4s => simulator_profiles[:iphone4s],
