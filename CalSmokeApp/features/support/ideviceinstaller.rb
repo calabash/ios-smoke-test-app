@@ -369,6 +369,12 @@ module Calabash
           end
           out = @stdout.read.chomp
         end
+        {
+              :err => err,
+              :out => out,
+              :pid => pid,
+              :exit_status => exit_status
+        }
       rescue StandardError => e
         raise InvocationError, e
       ensure
@@ -388,12 +394,6 @@ module Calabash
           process_status.join
         end
       end
-      {
-            :err => err,
-            :out => out,
-            :pid => pid,
-            :exit_status => exit_status
-      }
     end
   end
 end
