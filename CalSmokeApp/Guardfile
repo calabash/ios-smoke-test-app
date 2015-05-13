@@ -1,0 +1,15 @@
+notification :growl, sticky: false, priority: 0
+logger level: :info
+clearing :on
+
+guard :bundler do
+  watch('Gemfile')
+end
+
+guard :rspec, cmd: 'bundle exec rspec', spec_paths: ['spec', 'spec/support'] do
+  watch('Gemfile.lock') { 'spec' }
+  watch('features/support/ideviceinstaller.rb') { 'spec/support/ideviceinstaller/unit/installer_spec.rb' }
+  watch('features/support/ideviceinstaller.rb') { 'spec/support/ideviceinstaller/unit/ipa_spec.rb' }
+  watch('spec/spec_helper.rb') { 'spec' }
+  watch(%r{^spec/support/ideviceinstaller/unit/.+_spec\.rb$})
+end

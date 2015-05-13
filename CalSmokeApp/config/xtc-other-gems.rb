@@ -1,18 +1,10 @@
-source 'https://rubygems.org'
-
-# use bundle and bundle config to specify local gem locations
-# bundle config local.GEM_NAME /path/to/local/git/repository
-
-gem 'calabash-cucumber', :github => 'calabash/calabash-ios', :branch => 'develop'
-gem 'run_loop', :github => 'calabash/run_loop', :branch => 'develop'
-
+gem 'run_loop', '>= 1.3.3', '< 2.0'
 gem 'retriable', '~> 2.0'
 
 # workflow and build tools
 gem 'rake', '~> 10.3'
 gem 'bundler', '~> 1.6'
 gem 'xcpretty', '~> 0.1'
-gem 'briar', '~> 1.2'
 
 # rspec stack
 gem 'rspec', '~> 3.0'

@@ -1,7 +1,7 @@
 Given(/^I see the (first|second) tab$/) do |tab|
-  wait_for_elements_exist("tabBarButton")
-  touch("tabBarButton index:#{tab.eql?("first") ? 0 : 1}")
-  expected_view = tab.eql?("first") ? "first page" : "second page"
+  wait_for_elements_exist('tabBarButton')
+  touch("tabBarButton index:#{tab.eql?('first') ? 0 : 1}")
+  expected_view = tab.eql?('first') ? 'first page' : 'second page'
   wait_for_elements_exist("view marked:'#{expected_view}'")
 end
 
@@ -17,14 +17,22 @@ end
 When(/^I search for cell "([^"]*)" scrolling (up|down|left|right)$/) do |mark, direction|
   wait_poll({:until_exists => "collectionViewCell marked:'#{mark}'",
              :timeout => 10}) do
-    scroll("collectionView", "#{direction}")
+    scroll('collectionView', "#{direction}")
   end
 end
 
 When(/^I scroll (up|down|left|right) for (\d+) times$/) do |direction, times|
-  wait_for_elements_exist("collectionView")
+  wait_for_elements_exist('collectionView')
   (1..times.to_i).each do
-    scroll("collectionView", "#{direction}")
-    sleep STEP_PAUSE if uia_available?
+    scroll('collectionView', "#{direction}")
+    sleep STEP_PAUSE
   end
+end
+
+Then(/^I should see cell (\d+)$/) do |arg1|
+  wait_for { !query("view marked:'cell #{arg1.to_i}'").empty? }
+end
+
+Given(/^I see the cell (\d+)$/) do |arg1|
+  wait_for { !query("view marked:'cell #{arg1.to_i}'").empty? }
 end
