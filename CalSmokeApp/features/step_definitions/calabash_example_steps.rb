@@ -24,8 +24,8 @@ end
 When(/^I scroll (up|down|left|right) for (\d+) times$/) do |direction, times|
   wait_for_elements_exist('collectionView')
   (1..times.to_i).each do
-    sleep STEP_PAUSE if uia_available?
     scroll('collectionView', "#{direction}")
+    sleep STEP_PAUSE
   end
 end
 
