@@ -17,15 +17,15 @@ end
 When(/^I search for cell "([^"]*)" scrolling (up|down|left|right)$/) do |mark, direction|
   wait_poll({:until_exists => "collectionViewCell marked:'#{mark}'",
              :timeout => 10}) do
-    scroll("collectionView", "#{direction}")
+    scroll('collectionView', "#{direction}")
   end
 end
 
 When(/^I scroll (up|down|left|right) for (\d+) times$/) do |direction, times|
-  wait_for_elements_exist("collectionView")
+  wait_for_elements_exist('collectionView')
   (1..times.to_i).each do
-    scroll("collectionView", "#{direction}")
     sleep STEP_PAUSE if uia_available?
+    scroll('collectionView', "#{direction}")
   end
 end
 
