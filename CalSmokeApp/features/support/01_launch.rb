@@ -60,26 +60,26 @@ module LaunchControl
 end
 
 Before('@reset_app_btw_scenarios') do
-  if LaunchControl.target_is_simulator?
+  if xamarin_test_cloud?
+    ENV['RESET_BETWEEN_SCENARIOS'] = '1'
+  elsif LaunchControl.target_is_simulator?
     target = LaunchControl.target
     simulator = RunLoop::Device.device_with_identifier(target)
     bridge = RunLoop::Simctl::Bridge.new(simulator, ENV['APP'])
     bridge.reset_app_sandbox
-  elsif xamarin_test_cloud?
-    ENV['RESET_BETWEEN_SCENARIOS'] = '1'
   else
     LaunchControl.install_on_physical_device
   end
 end
 
 Before('@reset_device_settings') do
-  if LaunchControl.target_is_simulator?
+  if xamarin_test_cloud?
+    ENV['RESET_BETWEEN_SCENARIOS'] = '1'
+  elsif LaunchControl.target_is_simulator?
     target = LaunchControl.target
     RunLoop::Core.simulator_target?({:device_target => target})
     sim_control = RunLoop::SimControl.new
     sim_control.reset_sim_content_and_settings
-  elsif xamarin_test_cloud?
-    ENV['RESET_BETWEEN_SCENARIOS'] = '1'
   else
     LaunchControl.install_on_physical_device
   end
@@ -100,7 +100,7 @@ Before do |scenario|
   # Re-installing the app on a device does not clear the Keychain settings,
   # so we much clear them manually.
   if scenario.source_tag_names.include?('@reset_device_settings')
-    if !xamarin_test_cloud? && LaunchControl.target_is_physical_device?
+    if xamarin_test_cloud? || LaunchControl.target_is_physical_device?
       keychain_clear
     end
   end
