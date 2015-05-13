@@ -1,5 +1,4 @@
 @no_ci
-@not_xtc
 @resetting
 @ideviceinstaller
 @keychain
