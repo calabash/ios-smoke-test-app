@@ -28,3 +28,11 @@ When(/^I scroll (up|down|left|right) for (\d+) times$/) do |direction, times|
     sleep STEP_PAUSE if uia_available?
   end
 end
+
+Then(/^I should see cell (\d+)$/) do |arg1|
+  wait_for { !query("view marked:'cell #{arg1.to_i}'").empty? }
+end
+
+Given(/^I see the cell (\d+)$/) do |arg1|
+  wait_for { !query("view marked:'cell #{arg1.to_i}'").empty? }
+end
