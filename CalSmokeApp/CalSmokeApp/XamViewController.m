@@ -42,6 +42,7 @@ typedef enum : NSInteger {
   textField.tag = kTagTextField;
   textField.borderStyle =  UITextBorderStyleLine;
   textField.clearsOnBeginEditing = NO;
+  textField.clearsOnInsertion = NO;
   textField.returnKeyType = UIReturnKeyDone;
   textField.delegate = self;
   _textField = textField;
