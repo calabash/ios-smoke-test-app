@@ -43,6 +43,7 @@ typedef enum : NSInteger {
   textField.borderStyle =  UITextBorderStyleLine;
   textField.clearsOnBeginEditing = NO;
   textField.clearsOnInsertion = NO;
+  textField.clearButtonMode = UITextFieldViewModeAlways;
   textField.returnKeyType = UIReturnKeyDone;
   textField.delegate = self;
   _textField = textField;
