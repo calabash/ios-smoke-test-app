@@ -41,7 +41,9 @@ typedef enum : NSInteger {
   textField.accessibilityLabel = NSLocalizedString(@"Text field", @"ACCESSIBILITY a text field");
   textField.tag = kTagTextField;
   textField.borderStyle =  UITextBorderStyleLine;
-  textField.clearsOnBeginEditing = YES;
+  textField.clearsOnBeginEditing = NO;
+  textField.clearsOnInsertion = NO;
+  textField.clearButtonMode = UITextFieldViewModeAlways;
   textField.returnKeyType = UIReturnKeyDone;
   textField.delegate = self;
   _textField = textField;
