@@ -134,9 +134,9 @@
 				66D6976F1A93DACC0035A763 /* XamCollectionViewController.m */,
 				F52BFB2A1987EF8700299AEF /* Images.xcassets */,
 				F55185541AC34BB600CE06DC /* iTunesArtwork */,
-				F52BFB161987EF8700299AEF /* Supporting Files */,
-				63BB296F01684CBBB34DA64A /* XamCollectionViewCell.m */,
 				63BB20C9E0DC3BBD0058C825 /* XamCollectionViewCell.h */,
+				63BB296F01684CBBB34DA64A /* XamCollectionViewCell.m */,
+				F52BFB161987EF8700299AEF /* Supporting Files */,
 			);
 			path = CalSmokeApp;
 			sourceTree = "<group>";
