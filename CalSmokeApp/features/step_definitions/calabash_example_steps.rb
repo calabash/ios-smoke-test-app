@@ -36,3 +36,7 @@ end
 Given(/^I see the cell (\d+)$/) do |arg1|
   wait_for { !query("view marked:'cell #{arg1.to_i}'").empty? }
 end
+
+Given(/^the app has launched$/) do
+  wait_for_elements_exist('tabBarButton')
+end
