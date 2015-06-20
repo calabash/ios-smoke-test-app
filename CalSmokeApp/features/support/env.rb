@@ -1,4 +1,5 @@
 require 'calabash-cucumber/cucumber'
+require 'rspec'
 
 # Pry is not allowed on the Xamarin Test Cloud.  This will force a validation
 # error if you mistakenly submit a binding.pry to the Test Cloud.
