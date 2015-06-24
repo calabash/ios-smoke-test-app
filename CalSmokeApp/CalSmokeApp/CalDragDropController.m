@@ -27,6 +27,10 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  self.view.accessibilityIdentifier = @"third page";
+  self.view.accessibilityLabel = NSLocalizedString(@"Third page",
+                                                   @"The third page of the app.");
 }
 
 - (void) viewWillLayoutSubviews {
