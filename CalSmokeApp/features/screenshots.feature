@@ -13,3 +13,6 @@ Feature:  Screenshots
     When I take a screenshot with the default screenshot method
     Then the screenshot will have a number appended to the name
 
+  Scenario:  My un-numbered screenshot method
+    When I take a screenshot with my un-numbered screenshot method
+    Then the screenshot will not have a number appended to the name

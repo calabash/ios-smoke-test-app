@@ -20,6 +20,22 @@ module CalSmokeApp
       # Bad behavior - :prefix needs to have a trailing /
       "#{path}/"
     end
+
+    # By default, Calabash appends a number to the end of the screenshot
+    # name.  There is no way to override this behavior.
+    def un_numbered_screenshot(name, dir)
+      res = http({:method => :get, :path => 'screenshot'})
+      if File.extname(name).downcase == '.png'
+        path = File.join(dir, name)
+      else
+        path = File.join(dir, "#{name}.png")
+      end
+
+      File.open(path, 'wb') do |f|
+        f.write res
+      end
+      path
+    end
   end
 end
 
@@ -47,5 +63,16 @@ end
 Then(/^the screenshot will have a number appended to the name$/) do
   dir = screenshots_subdirectory
   path = File.join(dir, 'my-screenshot_0.png')
+  expect(File.exists?(path)).to be == true
+end
+
+When(/^I take a screenshot with my un\-numbered screenshot method$/) do
+  dir = screenshots_subdirectory
+  un_numbered_screenshot('my-screenshot', dir)
+end
+
+Then(/^the screenshot will not have a number appended to the name$/) do
+  dir = screenshots_subdirectory
+  path = File.join(dir, 'my-screenshot.png')
   expect(File.exists?(path)).to be == true
 end
