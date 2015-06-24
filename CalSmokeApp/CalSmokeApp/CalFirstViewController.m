@@ -1,4 +1,4 @@
-#import "XamViewController.h"
+#import "CalFirstViewController.h"
 #import "UIView+Positioning.h"
 
 static NSString *const kUserDefaultsSwitchState = @"com.xamarin.lpsimpleexample Switch State";
@@ -144,7 +144,7 @@ typedef enum : NSInteger {
 
 @end
 
-@implementation XamViewController
+@implementation CalFirstViewController
 
 #pragma mark - Memory Management
 
