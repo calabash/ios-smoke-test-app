@@ -42,15 +42,16 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Spo-qO-ArV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="J1V-Ud-dcC"/>
+                <constraint firstItem="Spo-qO-ArV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="J1V-Ud-dcC"/>
                 <constraint firstItem="jHL-fj-mB6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="JhR-Q7-gRc"/>
                 <constraint firstAttribute="centerX" secondItem="BYe-cq-28H" secondAttribute="centerX" id="PLE-f8-yuv"/>
                 <constraint firstItem="BYe-cq-28H" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="Pa5-Ve-IzE"/>
                 <constraint firstItem="BYe-cq-28H" firstAttribute="leading" secondItem="Spo-qO-ArV" secondAttribute="trailing" constant="16" id="Tjm-UT-F7h"/>
                 <constraint firstItem="Spo-qO-ArV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="UWZ-01-ctI"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jHL-fj-mB6" secondAttribute="trailing" constant="20" id="Vy7-95-EFn"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jHL-fj-mB6" secondAttribute="trailing" constant="10" id="Vy7-95-EFn"/>
                 <constraint firstItem="jHL-fj-mB6" firstAttribute="leading" secondItem="BYe-cq-28H" secondAttribute="trailing" constant="16" id="ipr-EX-gg4"/>
             </constraints>
+            <point key="canvasLocation" x="674" y="454"/>
         </view>
     </objects>
     <resources>
