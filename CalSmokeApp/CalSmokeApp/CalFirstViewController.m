@@ -8,7 +8,7 @@ typedef enum : NSInteger {
   kTagSwitch
 } view_tags;
 
-@interface XamFirstView : UIView <UITextFieldDelegate>
+@interface CalFirstView : UIView <UITextFieldDelegate>
 
 @property (nonatomic, readonly, strong) UITextField *textField;
 @property (nonatomic, readonly, strong) IBOutlet UISwitch *uiswitch;
@@ -17,7 +17,7 @@ typedef enum : NSInteger {
 
 @end
 
-@implementation XamFirstView
+@implementation CalFirstView
 
 @synthesize textField = _textField;
 @synthesize uiswitch = _uiswitch;
@@ -164,7 +164,7 @@ typedef enum : NSInteger {
 
 - (void) loadView {
   CGRect frame = [[UIScreen mainScreen] applicationFrame];
-  XamFirstView *view = [[XamFirstView alloc] initWithFrame:frame];
+  CalFirstView *view = [[CalFirstView alloc] initWithFrame:frame];
   
   view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   self.view = view;
@@ -185,7 +185,7 @@ typedef enum : NSInteger {
 - (void)viewWillAppear:(BOOL)animated {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   BOOL lastSwitchState = [defaults boolForKey:kUserDefaultsSwitchState];
-  XamFirstView *view = (XamFirstView *)self.view;
+  CalFirstView *view = (CalFirstView *)self.view;
   [view.uiswitch setOn:lastSwitchState];
   [super viewWillAppear:animated];
 }
