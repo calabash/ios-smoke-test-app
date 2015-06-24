@@ -196,9 +196,9 @@
 		F52BFB041987EF8700299AEF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = Xam;
+				CLASSPREFIX = Cal;
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = Xamarin;
+				ORGANIZATIONNAME = Calabash;
 			};
 			buildConfigurationList = F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "ios-smoke-test-app" */;
 			compatibilityVersion = "Xcode 3.2";
