@@ -1,6 +1,7 @@
 #import "CalAppDelegate.h"
 #import "CalFirstViewController.h"
 #import "CalCollectionViewController.h"
+#import "CalDragDropController.h"
 
 #if LOAD_CALABASH_DYLIB
 #import <dlfcn.h>
@@ -182,14 +183,21 @@
   
   CalFirstViewController *firstController = [CalFirstViewController new];
   CalCollectionViewController *secondViewController = [CalCollectionViewController new];
-  
+  CalDragDropController *thirdController;
+  thirdController = [[CalDragDropController alloc]
+                     initWithNibName:NSStringFromClass([CalDragDropController class])
+                     bundle:nil];
+
   UITabBarController *tabController = [UITabBarController new];
   SEL transSel = NSSelectorFromString(@"translucent");
 
   if ([tabController.tabBar respondsToSelector:transSel]) {
     tabController.tabBar.translucent = NO;
   }
-  tabController.viewControllers = @[firstController, secondViewController];
+
+  tabController.viewControllers = @[firstController,
+                                    secondViewController,
+                                    thirdController];
 
   self.window.rootViewController = tabController;
   [self.window makeKeyAndVisible];
