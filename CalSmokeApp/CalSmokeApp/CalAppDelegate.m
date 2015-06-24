@@ -1,12 +1,12 @@
-#import "XamAppDelegate.h"
-#import "XamViewController.h"
+#import "CalAppDelegate.h"
+#import "CalFirstViewController.h"
 #import "XamCollectionViewController.h"
 
 #if LOAD_CALABASH_DYLIB
 #import <dlfcn.h>
 #endif
 
-@implementation XamAppDelegate
+@implementation CalAppDelegate
 
 #if LOAD_CALABASH_DYLIB
 - (void) loadCalabashDylib {
@@ -180,7 +180,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
-  XamViewController *firstController = [XamViewController new];
+  CalFirstViewController *firstController = [CalFirstViewController new];
   XamCollectionViewController *secondViewController = [XamCollectionViewController new];
   
   UITabBarController *tabController = [UITabBarController new];
