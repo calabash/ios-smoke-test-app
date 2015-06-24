@@ -1,10 +1,5 @@
-//
 // Created by Ignacio Delgado on 17/2/15.
-// Copyright (c) 2015 Xamarin. All rights reserved.
-//
-
 #import "XamCollectionViewCell.h"
-
 
 @interface XamCollectionViewCell ()
 @property(nonatomic, strong) UILabel *label;
