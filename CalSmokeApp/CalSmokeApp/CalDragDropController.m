@@ -2,6 +2,10 @@
 
 @interface CalDragDropController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *redImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *blueImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *greenImageView;
+
 @end
 
 @implementation CalDragDropController
@@ -31,6 +35,18 @@
   self.view.accessibilityIdentifier = @"third page";
   self.view.accessibilityLabel = NSLocalizedString(@"Third page",
                                                    @"The third page of the app.");
+
+  self.redImageView.accessibilityIdentifier = @"red";
+  self.redImageView.accessibilityLabel = NSLocalizedString(@"red",
+                                                            @"The color red");
+
+  self.blueImageView.accessibilityIdentifier = @"blue";
+  self.blueImageView.accessibilityLabel = NSLocalizedString(@"blue",
+                                                            @"The color blue");
+
+  self.greenImageView.accessibilityIdentifier = @"green";
+  self.greenImageView.accessibilityLabel = NSLocalizedString(@"green",
+                                                             @"The color green");
 }
 
 - (void) viewWillLayoutSubviews {
