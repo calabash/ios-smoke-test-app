@@ -1,5 +1,5 @@
 //  Created by Ignacio Delgado on 17/2/15.
-#import "XamCollectionViewController.h"
+#import "CalCollectionViewController.h"
 #import "XamCollectionViewCell.h"
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -32,11 +32,11 @@ static const NSInteger kCollectionViewNumItems = 5;
 
 #pragma mark - CollectionView Controller
 
-@interface XamCollectionViewController ()
+@interface CalCollectionViewController ()
 @property(nonatomic, strong) XamCollectionViewDataSource *dataSource;
 @end
 
-@implementation XamCollectionViewController
+@implementation CalCollectionViewController
 
 - (instancetype) init {
   self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
