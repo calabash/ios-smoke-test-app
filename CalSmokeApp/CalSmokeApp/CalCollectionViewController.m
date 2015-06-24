@@ -1,23 +1,16 @@
-//
-//  XamCollectionViewController.m
-//  chou
-//
 //  Created by Ignacio Delgado on 17/2/15.
-//  Copyright (c) 2015 Xamarin. All rights reserved.
-//
-
-#import "XamCollectionViewController.h"
-#import "XamCollectionViewCell.h"
+#import "CalCollectionViewController.h"
+#import "CalCollectionViewCell.h"
 
 static NSString * const reuseIdentifier = @"Cell";
 static const NSInteger kCollectionViewNumItems = 5;
 
 #pragma mark - CollectionView Datasource
 
-@interface XamCollectionViewDataSource : NSObject <UICollectionViewDataSource>
+@interface CalCollectionViewDataSource : NSObject <UICollectionViewDataSource>
 @end
 
-@implementation XamCollectionViewDataSource
+@implementation CalCollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -28,7 +21,7 @@ static const NSInteger kCollectionViewNumItems = 5;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  XamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+  CalCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
   cell.backgroundColor = [UIColor whiteColor];
   [cell setText:[NSString stringWithFormat:@"Cell number %@", @(indexPath.item + 1)]];
   [cell setAccessibilityIdentifier:[NSString stringWithFormat:@"cell %@", @(indexPath.item + 1)]];
@@ -39,11 +32,11 @@ static const NSInteger kCollectionViewNumItems = 5;
 
 #pragma mark - CollectionView Controller
 
-@interface XamCollectionViewController ()
-@property(nonatomic, strong) XamCollectionViewDataSource *dataSource;
+@interface CalCollectionViewController ()
+@property(nonatomic, strong) CalCollectionViewDataSource *dataSource;
 @end
 
-@implementation XamCollectionViewController
+@implementation CalCollectionViewController
 
 - (instancetype) init {
   self = [super initWithCollectionViewLayout:[UICollectionViewFlowLayout new]];
@@ -56,7 +49,7 @@ static const NSInteger kCollectionViewNumItems = 5;
     if ([self respondsToSelector:@selector(collectionViewLayout)]) {
       ((UICollectionViewFlowLayout *)self.collectionViewLayout).minimumLineSpacing = 1.f;
     }
-    self.dataSource = [XamCollectionViewDataSource new];
+    self.dataSource = [CalCollectionViewDataSource new];
   }
   return self;
 }
@@ -66,7 +59,7 @@ static const NSInteger kCollectionViewNumItems = 5;
   [self.view setAccessibilityIdentifier:@"second page"];
 
   self.collectionView.dataSource = self.dataSource;
-  [self.collectionView registerClass:[XamCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+  [self.collectionView registerClass:[CalCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
 
 - (void)viewWillLayoutSubviews {

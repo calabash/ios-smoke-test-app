@@ -1,12 +1,12 @@
-#import "XamAppDelegate.h"
-#import "XamViewController.h"
-#import "XamCollectionViewController.h"
+#import "CalAppDelegate.h"
+#import "CalFirstViewController.h"
+#import "CalCollectionViewController.h"
 
 #if LOAD_CALABASH_DYLIB
 #import <dlfcn.h>
 #endif
 
-@implementation XamAppDelegate
+@implementation CalAppDelegate
 
 #if LOAD_CALABASH_DYLIB
 - (void) loadCalabashDylib {
@@ -180,8 +180,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
-  XamViewController *firstController = [XamViewController new];
-  XamCollectionViewController *secondViewController = [XamCollectionViewController new];
+  CalFirstViewController *firstController = [CalFirstViewController new];
+  CalCollectionViewController *secondViewController = [CalCollectionViewController new];
   
   UITabBarController *tabController = [UITabBarController new];
   SEL transSel = NSSelectorFromString(@"translucent");

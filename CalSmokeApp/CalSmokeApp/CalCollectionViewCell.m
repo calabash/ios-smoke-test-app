@@ -1,16 +1,11 @@
-//
 // Created by Ignacio Delgado on 17/2/15.
-// Copyright (c) 2015 Xamarin. All rights reserved.
-//
+#import "CalCollectionViewCell.h"
 
-#import "XamCollectionViewCell.h"
-
-
-@interface XamCollectionViewCell ()
+@interface CalCollectionViewCell ()
 @property(nonatomic, strong) UILabel *label;
 @end
 
-@implementation XamCollectionViewCell
+@implementation CalCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];

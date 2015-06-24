@@ -104,7 +104,7 @@ describe 'Calabash IDeviceInstaller' do
                               'Total: 3 apps',
                               'com.apple.itunesconnect.mobile - Connect 261',
                               'com.deutschebahn.navigator - DB Navigator 18',
-                              'com.xamarin.CalSmoke-cal - CalSmoke 1.0'
+                              'sh.calaba.CalSmoke-cal - CalSmoke 1.0'
                         ].join("\n")
             }
       expect(installer).to receive(:execute_ideviceinstaller_cmd).and_return(out)

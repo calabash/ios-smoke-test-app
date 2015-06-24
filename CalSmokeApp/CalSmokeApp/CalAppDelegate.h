@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface XamAppDelegate : UIResponder <UIApplicationDelegate>
+@interface CalAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
