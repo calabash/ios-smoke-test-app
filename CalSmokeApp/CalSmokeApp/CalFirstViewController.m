@@ -1,7 +1,7 @@
 #import "CalFirstViewController.h"
 #import "UIView+Positioning.h"
 
-static NSString *const kUserDefaultsSwitchState = @"com.xamarin.lpsimpleexample Switch State";
+static NSString *const kUserDefaultsSwitchState = @"sh.calaba.CalSmokeApp Switch State";
 
 typedef enum : NSInteger {
   kTagTextField = 3030,
