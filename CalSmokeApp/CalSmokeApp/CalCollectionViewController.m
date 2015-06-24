@@ -7,10 +7,10 @@ static const NSInteger kCollectionViewNumItems = 5;
 
 #pragma mark - CollectionView Datasource
 
-@interface XamCollectionViewDataSource : NSObject <UICollectionViewDataSource>
+@interface CalCollectionViewDataSource : NSObject <UICollectionViewDataSource>
 @end
 
-@implementation XamCollectionViewDataSource
+@implementation CalCollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -33,7 +33,7 @@ static const NSInteger kCollectionViewNumItems = 5;
 #pragma mark - CollectionView Controller
 
 @interface CalCollectionViewController ()
-@property(nonatomic, strong) XamCollectionViewDataSource *dataSource;
+@property(nonatomic, strong) CalCollectionViewDataSource *dataSource;
 @end
 
 @implementation CalCollectionViewController
@@ -49,7 +49,7 @@ static const NSInteger kCollectionViewNumItems = 5;
     if ([self respondsToSelector:@selector(collectionViewLayout)]) {
       ((UICollectionViewFlowLayout *)self.collectionViewLayout).minimumLineSpacing = 1.f;
     }
-    self.dataSource = [XamCollectionViewDataSource new];
+    self.dataSource = [CalCollectionViewDataSource new];
   }
   return self;
 }
