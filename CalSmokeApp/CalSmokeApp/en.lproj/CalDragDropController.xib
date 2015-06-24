@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalDragDropController">
@@ -13,7 +14,45 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="green" translatesAutoresizingMaskIntoConstraints="NO" id="jHL-fj-mB6">
+                    <rect key="frame" x="360" y="80" width="88" height="88"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="88" id="8fJ-vL-LQD"/>
+                        <constraint firstAttribute="height" constant="88" id="xOi-qa-6uG"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red" translatesAutoresizingMaskIntoConstraints="NO" id="Spo-qO-ArV">
+                    <rect key="frame" x="152" y="80" width="88" height="88"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="88" id="p4g-Q9-sYy"/>
+                        <constraint firstAttribute="width" constant="88" id="qgR-2V-Rw2"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue" translatesAutoresizingMaskIntoConstraints="NO" id="BYe-cq-28H">
+                    <rect key="frame" x="256" y="80" width="88" height="88"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="88" id="ONt-7m-cXb"/>
+                        <constraint firstAttribute="height" constant="88" id="f5V-e6-xp7"/>
+                    </constraints>
+                </imageView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Spo-qO-ArV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="J1V-Ud-dcC"/>
+                <constraint firstItem="jHL-fj-mB6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="JhR-Q7-gRc"/>
+                <constraint firstAttribute="centerX" secondItem="BYe-cq-28H" secondAttribute="centerX" id="PLE-f8-yuv"/>
+                <constraint firstItem="BYe-cq-28H" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="Pa5-Ve-IzE"/>
+                <constraint firstItem="BYe-cq-28H" firstAttribute="leading" secondItem="Spo-qO-ArV" secondAttribute="trailing" constant="16" id="Tjm-UT-F7h"/>
+                <constraint firstItem="Spo-qO-ArV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="UWZ-01-ctI"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jHL-fj-mB6" secondAttribute="trailing" constant="20" id="Vy7-95-EFn"/>
+                <constraint firstItem="jHL-fj-mB6" firstAttribute="leading" secondItem="BYe-cq-28H" secondAttribute="trailing" constant="16" id="ipr-EX-gg4"/>
+            </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="blue" width="88" height="88"/>
+        <image name="green" width="88" height="88"/>
+        <image name="red" width="88" height="88"/>
+    </resources>
 </document>
