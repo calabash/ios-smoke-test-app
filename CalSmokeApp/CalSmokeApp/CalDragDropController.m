@@ -5,6 +5,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *redImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *blueImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *greenImageView;
+@property (weak, nonatomic) IBOutlet UIView *leftDropTarget;
+@property (weak, nonatomic) IBOutlet UIView *rightDropTarget;
 
 @end
 
@@ -47,6 +49,14 @@
   self.greenImageView.accessibilityIdentifier = @"green";
   self.greenImageView.accessibilityLabel = NSLocalizedString(@"green",
                                                              @"The color green");
+
+  self.leftDropTarget.accessibilityIdentifier = @"left well";
+  self.leftDropTarget.accessibilityLabel = NSLocalizedString(@"Left drop target",
+                                                             @"The drop target on the left side");
+
+  self.rightDropTarget.accessibilityIdentifier = @"right well";
+  self.rightDropTarget.accessibilityLabel = NSLocalizedString(@"Right drop target",
+                                                             @"The drop target on the right side");
 }
 
 - (void) viewWillLayoutSubviews {

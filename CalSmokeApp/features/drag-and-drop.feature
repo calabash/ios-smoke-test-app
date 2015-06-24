@@ -11,3 +11,5 @@ Feature: Drag and Drop
     Then I expect to see the red box
     Then I expect to see the blue box
     Then I expect to see the green box
+    Then I expect to see a well on the left
+    Then I expect to see a well on the right
