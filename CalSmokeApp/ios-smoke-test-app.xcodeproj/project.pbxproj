@@ -29,6 +29,10 @@
 		F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55081B41ACD4F5400F226A1 /* WebKit.framework */; };
 		F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
+		F5C276331B3B546A00DF63FA /* CalDragDropController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C276311B3B546A00DF63FA /* CalDragDropController.xib */; };
+		F5C276341B3B546A00DF63FA /* CalDragDropController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C276311B3B546A00DF63FA /* CalDragDropController.xib */; };
+		F5C276371B3B547900DF63FA /* CalDragDropController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C276361B3B547900DF63FA /* CalDragDropController.m */; };
+		F5C276381B3B547900DF63FA /* CalDragDropController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C276361B3B547900DF63FA /* CalDragDropController.m */; };
 		a851e37816c4ddd975adbf58 /* CalFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB281987EF8700299AEF /* CalFirstViewController.m */; };
 		ab943fbf9d0ac91728d35abe /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BFB131987EF8700299AEF /* UIKit.framework */; };
 		cc8f9377c616d69147b3de31 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52BFB2A1987EF8700299AEF /* Images.xcassets */; };
@@ -59,6 +63,9 @@
 		F52BFB491987F5FF00299AEF /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
 		F55081B41ACD4F5400F226A1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F55185541AC34BB600CE06DC /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		F5C276321B3B546A00DF63FA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalDragDropController.xib; sourceTree = "<group>"; };
+		F5C276351B3B547900DF63FA /* CalDragDropController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDragDropController.h; sourceTree = "<group>"; };
+		F5C276361B3B547900DF63FA /* CalDragDropController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalDragDropController.m; sourceTree = "<group>"; };
 		F5FE79621988070200842E74 /* CalSmoke-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CalSmoke-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		a66015686499dbb45da8c3c4 /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -132,10 +139,13 @@
 				F52BFB281987EF8700299AEF /* CalFirstViewController.m */,
 				66D6976E1A93DACC0035A763 /* CalCollectionViewController.h */,
 				66D6976F1A93DACC0035A763 /* CalCollectionViewController.m */,
+				F5C276351B3B547900DF63FA /* CalDragDropController.h */,
+				F5C276361B3B547900DF63FA /* CalDragDropController.m */,
 				F52BFB2A1987EF8700299AEF /* Images.xcassets */,
 				F55185541AC34BB600CE06DC /* iTunesArtwork */,
 				63BB20C9E0DC3BBD0058C825 /* CalCollectionViewCell.h */,
 				63BB296F01684CBBB34DA64A /* CalCollectionViewCell.m */,
+				F5C276301B3B545A00DF63FA /* XIB */,
 				F52BFB161987EF8700299AEF /* Supporting Files */,
 			);
 			path = CalSmokeApp;
@@ -150,6 +160,14 @@
 				F52BFB1D1987EF8700299AEF /* CalSmoke-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F5C276301B3B545A00DF63FA /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				F5C276311B3B546A00DF63FA /* CalDragDropController.xib */,
+			);
+			name = XIB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				cc8f9377c616d69147b3de31 /* Images.xcassets in Resources */,
+				F5C276341B3B546A00DF63FA /* CalDragDropController.xib in Resources */,
 				F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */,
 				e3e0a6761f42ce3d10829b2b /* InfoPlist.strings in Resources */,
 			);
@@ -235,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F52BFB2B1987EF8700299AEF /* Images.xcassets in Resources */,
+				F5C276331B3B546A00DF63FA /* CalDragDropController.xib in Resources */,
 				F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */,
 				F52BFB1A1987EF8700299AEF /* InfoPlist.strings in Resources */,
 			);
@@ -267,6 +287,7 @@
 				F52BFB1C1987EF8700299AEF /* main.m in Sources */,
 				F52BFB291987EF8700299AEF /* CalFirstViewController.m in Sources */,
 				F52BFB4A1987F5FF00299AEF /* UIView+Positioning.m in Sources */,
+				F5C276371B3B547900DF63FA /* CalDragDropController.m in Sources */,
 				66D697701A93DACC0035A763 /* CalCollectionViewController.m in Sources */,
 				F52BFB201987EF8700299AEF /* CalAppDelegate.m in Sources */,
 				63BB24D852A7A25FBE2ECEA0 /* CalCollectionViewCell.m in Sources */,
@@ -280,6 +301,7 @@
 				1a6fb43aa140ae563e019cce /* main.m in Sources */,
 				a851e37816c4ddd975adbf58 /* CalFirstViewController.m in Sources */,
 				7819544bc7642b5d4a9dbcf1 /* UIView+Positioning.m in Sources */,
+				F5C276381B3B547900DF63FA /* CalDragDropController.m in Sources */,
 				66D697711A93DACC0035A763 /* CalCollectionViewController.m in Sources */,
 				f23b5a94a19df2bb34667ee7 /* CalAppDelegate.m in Sources */,
 				63BB238FB84B0696F6A79DA1 /* CalCollectionViewCell.m in Sources */,
@@ -295,6 +317,14 @@
 				F52BFB191987EF8700299AEF /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F5C276311B3B546A00DF63FA /* CalDragDropController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5C276321B3B546A00DF63FA /* en */,
+			);
+			name = CalDragDropController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
