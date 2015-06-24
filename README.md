@@ -30,7 +30,7 @@ $ cd ios-smoke-test-app/CalSmokeApp
 $ bundle install
 $ make app
 $ export APP="${PWD}/CalSmoke.app"
-# Update the BUNDLE_ID in the config/cucumber.yml to com.xamarin.CalSmokeApp
+# Update the BUNDLE_ID in the config/cucumber.yml to sh.calaba.CalSmokeApp
 $ be cucumber
 ```
 
