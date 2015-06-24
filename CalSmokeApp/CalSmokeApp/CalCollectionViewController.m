@@ -1,6 +1,6 @@
 //  Created by Ignacio Delgado on 17/2/15.
 #import "CalCollectionViewController.h"
-#import "XamCollectionViewCell.h"
+#import "CalCollectionViewCell.h"
 
 static NSString * const reuseIdentifier = @"Cell";
 static const NSInteger kCollectionViewNumItems = 5;
@@ -21,7 +21,7 @@ static const NSInteger kCollectionViewNumItems = 5;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  XamCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+  CalCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
   cell.backgroundColor = [UIColor whiteColor];
   [cell setText:[NSString stringWithFormat:@"Cell number %@", @(indexPath.item + 1)]];
   [cell setAccessibilityIdentifier:[NSString stringWithFormat:@"cell %@", @(indexPath.item + 1)]];
@@ -59,7 +59,7 @@ static const NSInteger kCollectionViewNumItems = 5;
   [self.view setAccessibilityIdentifier:@"second page"];
 
   self.collectionView.dataSource = self.dataSource;
-  [self.collectionView registerClass:[XamCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+  [self.collectionView registerClass:[CalCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
 }
 
 - (void)viewWillLayoutSubviews {

@@ -1,11 +1,11 @@
 // Created by Ignacio Delgado on 17/2/15.
-#import "XamCollectionViewCell.h"
+#import "CalCollectionViewCell.h"
 
-@interface XamCollectionViewCell ()
+@interface CalCollectionViewCell ()
 @property(nonatomic, strong) UILabel *label;
 @end
 
-@implementation XamCollectionViewCell
+@implementation CalCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
