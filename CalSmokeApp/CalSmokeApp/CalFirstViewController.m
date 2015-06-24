@@ -156,11 +156,11 @@ typedef enum : NSInteger {
   return self;
 }
 
-#pragma mark View Lifecycle
-
 - (void) didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
 }
+
+#pragma mark View Lifecycle
 
 - (void) loadView {
   CGRect frame = [[UIScreen mainScreen] applicationFrame];
