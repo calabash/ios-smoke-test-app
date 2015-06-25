@@ -1,4 +1,12 @@
+// http://www.edumobile.org/ios/simple-drag-and-drop-on-iphone/
+
 #import "CalDragDropController.h"
+
+typedef enum : NSInteger {
+  kTagRedImageView = 3030,
+  kTagBlueImageView,
+  kTagGreenImageView
+} ViewTags;
 
 @interface CalDragDropController ()
 
@@ -41,14 +49,17 @@
   self.redImageView.accessibilityIdentifier = @"red";
   self.redImageView.accessibilityLabel = NSLocalizedString(@"red",
                                                             @"The color red");
+  self.redImageView.tag = kTagRedImageView;
 
   self.blueImageView.accessibilityIdentifier = @"blue";
   self.blueImageView.accessibilityLabel = NSLocalizedString(@"blue",
                                                             @"The color blue");
+  self.blueImageView.tag = kTagBlueImageView;
 
   self.greenImageView.accessibilityIdentifier = @"green";
   self.greenImageView.accessibilityLabel = NSLocalizedString(@"green",
                                                              @"The color green");
+  self.greenImageView.tag = kTagGreenImageView;
 
   self.leftDropTarget.accessibilityIdentifier = @"left well";
   self.leftDropTarget.accessibilityLabel = NSLocalizedString(@"Left drop target",
