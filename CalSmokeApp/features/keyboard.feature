@@ -11,7 +11,20 @@ Feature: Typing on the Keyboard
   Scenario: I should be able to type something
     Then I type "Hello"
 
-  Scenario: Turning off Auto Capitalization
+  @no
+  Scenario: Turn off auto capitalization
     And I turn off auto capitalization
     Then I touch the text field
     When I type "hello", I should see "hello"
+
+  @no
+  Scenario: Turn on ALL caps
+    And I turn on all caps
+    Then I touch the text field
+    When I type "hello", I should see "HELLO"
+
+  @no
+  Scenario: Turn on cap sentences (default)
+    And I turn on capitalize sentences
+    Then I touch the text field
+    When I type "hello. my name is.", I should see "Hello. My name is."

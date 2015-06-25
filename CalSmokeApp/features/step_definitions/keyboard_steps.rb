@@ -24,7 +24,9 @@ module CalSmokeApp
         raise "Unknown capitalization type: '#{name}'. Valid names: :none, :words, :sentences, :all"
       end
 
-      query('UITextField index:0', [{setAutocapitalizationType: type}])
+      query('UITextField', [{setAutocapitalizationType:type}])
+      sleep 5
+      ap "'#{name}' => #{auto_capitalization_type}"
     end
   end
 end
@@ -33,6 +35,14 @@ World(CalSmokeApp::Keyboard)
 
 And(/^I turn off auto capitalization$/) do
   set_auto_capitalization_type :none
+end
+
+And(/^I turn on all caps$/) do
+  set_auto_capitalization_type :all
+end
+
+And(/^I turn on capitalize sentences$/) do
+  set_auto_capitalization_type :words
 end
 
 Then(/^I touch the text field$/) do
