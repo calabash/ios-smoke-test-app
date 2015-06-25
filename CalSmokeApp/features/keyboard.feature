@@ -1,7 +1,8 @@
-Feature: say hello to the first view
-
-  Background: I should see the first view
-    Given I see the first tab
+Feature: Interacting with the
+  In order to enter text like a user
+  As an app tester
+  I want Calabash to provide a Keyboard API
 
   Scenario: I should be able to type something
+    Given I see the first tab
     Then I type "Hello"
