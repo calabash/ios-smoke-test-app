@@ -28,3 +28,9 @@ Feature: Typing on the Keyboard
     And I turn on capitalize sentences
     Then I touch the text field
     When I type "hello. my name is.", I should see "Hello. My name is."
+
+  Scenario: Turn on spell checking
+    And I turn on spell checking
+    Then I touch the text field
+    When I type "exictement" and touch done
+    Then the text should be "excitement"
