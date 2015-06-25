@@ -16,11 +16,21 @@ typedef enum : NSInteger {
 @property (weak, nonatomic) IBOutlet UIView *leftDropTarget;
 @property (weak, nonatomic) IBOutlet UIView *rightDropTarget;
 
+@property (strong, nonatomic, readonly) UIColor *redColor;
+@property (strong, nonatomic, readonly) UIColor *blueColor;
+@property (strong, nonatomic, readonly) UIColor *greenColor;
+
+- (UIColor *)colorForImageView:(UIImageView *)imageView;
+
 @end
 
 @implementation CalDragDropController
 
 #pragma mark - Memory Management
+
+@synthesize redColor = _redColor;
+@synthesize blueColor = _blueColor;
+@synthesize greenColor = _greenColor;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil
                          bundle:(NSBundle *)nibBundleOrNil {
@@ -37,7 +47,48 @@ typedef enum : NSInteger {
   [super didReceiveMemoryWarning];
 }
 
-#pragma mark View Lifecycle
+#pragma mark - Colors
+
+- (UIColor *)redColor {
+  if (_redColor) { return _redColor; }
+  _redColor = [UIColor colorWithRed:153/255.0
+                              green:39/255.0
+                               blue:39/255.0
+                              alpha:1.0];
+  return _redColor;
+}
+
+- (UIColor *)blueColor {
+  if (_blueColor) { return _blueColor; }
+  _blueColor = [UIColor colorWithRed:29/255.0
+                              green:90/255.0
+                               blue:171/255.0
+                              alpha:1.0];
+  return _blueColor;
+}
+
+- (UIColor *)greenColor {
+  if (_greenColor) { return _greenColor; }
+  _greenColor = [UIColor colorWithRed:33/255.0
+                               green:128/255.0
+                                blue:65/255.0
+                               alpha:1.0];
+  return _greenColor;
+}
+
+- (UIColor *)colorForImageView:(UIImageView *)imageView {
+  NSInteger tag = imageView.tag;
+  switch (tag) {
+    case kTagRedImageView: { return self.redColor; }
+    case kTagBlueImageView: { return self.blueColor; }
+    case kTagGreenImageView: { return self.greenColor; }
+    default:
+      return nil;
+      break;
+  }
+}
+
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
