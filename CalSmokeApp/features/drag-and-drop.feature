@@ -13,3 +13,8 @@ Feature: Drag and Drop
     Then I expect to see the green box
     Then I expect to see a well on the left
     Then I expect to see a well on the right
+
+  Scenario: Drag the red box
+    When I drag the red box to the left well
+    Then the left well should change to red
+    And I expect the red box to return to its original position

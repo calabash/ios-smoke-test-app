@@ -15,12 +15,18 @@ typedef enum : NSInteger {
 @property (weak, nonatomic) IBOutlet UIImageView *greenImageView;
 @property (weak, nonatomic) IBOutlet UIView *leftDropTarget;
 @property (weak, nonatomic) IBOutlet UIView *rightDropTarget;
+@property (strong, nonatomic) UIImageView *dragObject;
+@property (assign, nonatomic) CGPoint touchOffset;
+@property (assign, nonatomic) CGPoint homePosition;
 
 @property (strong, nonatomic, readonly) UIColor *redColor;
 @property (strong, nonatomic, readonly) UIColor *blueColor;
 @property (strong, nonatomic, readonly) UIColor *greenColor;
 
 - (UIColor *)colorForImageView:(UIImageView *)imageView;
+- (BOOL)touchPointIsLeftWell:(CGPoint)touchPoint;
+- (BOOL)touchPointIsRightWell:(CGPoint)touchPoint;
+- (BOOL)touchPoint:(CGPoint)touchPoint isWithFrame:(CGRect)frame;
 
 @end
 
@@ -45,6 +51,79 @@ typedef enum : NSInteger {
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Drag and Drop
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  if ([touches count] == 1) {
+    CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
+    for (UIImageView *box in self.view.subviews) {
+      if ([box isMemberOfClass:[UIImageView class]]) {
+        if (touchPoint.x > box.frame.origin.x &&
+            touchPoint.x < box.frame.origin.x + box.frame.size.width &&
+            touchPoint.y > box.frame.origin.y &&
+            touchPoint.y < box.frame.origin.y + box.frame.size.height) {
+          self.dragObject = box;
+          self.touchOffset = CGPointMake(touchPoint.x - box.frame.origin.x,
+                                         touchPoint.y - box.frame.origin.y);
+          self.homePosition = CGPointMake(box.frame.origin.x,
+                                          box.frame.origin.y);
+          [self.view bringSubviewToFront:self.dragObject];
+        }
+      }
+    }
+  }
+}
+
+- (BOOL)touchPointIsLeftWell:(CGPoint)touchPoint {
+  return [self touchPoint:touchPoint isWithFrame:[self.leftDropTarget frame]];
+}
+
+- (BOOL)touchPointIsRightWell:(CGPoint)touchPoint {
+  return [self touchPoint:touchPoint isWithFrame:[self.rightDropTarget frame]];
+}
+
+- (BOOL)touchPoint:(CGPoint)touchPoint isWithFrame:(CGRect)frame {
+  return
+  touchPoint.x > frame.origin.x &&
+  touchPoint.x < frame.origin.x + frame.size.width &&
+  touchPoint.y > frame.origin.y &&
+  touchPoint.y < frame.origin.y + frame.size.height;
+}
+
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+  CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
+  CGRect newDragObjectFrame = CGRectMake(touchPoint.x - self.touchOffset.x,
+                                         touchPoint.y - self.touchOffset.y,
+                                         self.dragObject.frame.size.width,
+                                         self.dragObject.frame.size.height);
+  self.dragObject.frame = newDragObjectFrame;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  CGPoint touchPoint = [[touches anyObject] locationInView:self.view];
+  UIView *targetWell = nil;
+  if ([self touchPointIsLeftWell:touchPoint]) {
+    targetWell = self.leftDropTarget;
+  } else {
+    targetWell = self.rightDropTarget;
+  }
+
+  if (targetWell) {
+    UIColor *newColor = [self colorForImageView:self.dragObject];
+    targetWell.backgroundColor = newColor;
+
+    CGRect targetFrame = CGRectMake(self.homePosition.x, self.homePosition.y,
+                                    self.dragObject.frame.size.width,
+                                    self.dragObject.frame.size.height);
+
+    __weak typeof(self) wself = self;
+    [UIView animateWithDuration:0.4 animations:^{
+      wself.dragObject.frame = targetFrame;
+    }];
+  }
 }
 
 #pragma mark - Colors
