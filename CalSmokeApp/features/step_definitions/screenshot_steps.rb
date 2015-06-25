@@ -29,7 +29,8 @@ module CalSmokeApp
 
       path = File.join(screenshot_dir, 'scenario-screenshots')
 
-      # Bad behavior - :prefix needs to have a trailing /
+      # Compensate for a bad behavior in Calabash.
+      # :prefix needs to have a trailing /
       "#{path}/"
     end
 
