@@ -16,3 +16,8 @@ Feature: Drag and Drop
     When I drag the blue box to the right well
     Then the well should change color
     And the box goes back to its original position
+
+  Scenario: Drag the green box to the left well
+    When I drag the green box to the left well
+    Then the well should change color
+    And the box goes back to its original position
