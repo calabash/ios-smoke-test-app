@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'calabash-cucumber', '~> 0.14'
+gem 'calabash-cucumber', '>= 0.14.3', '< 1.0'
 gem 'run_loop', '>= 1.3.3', '< 2.0'
 gem 'retriable', '~> 2.0'
 
