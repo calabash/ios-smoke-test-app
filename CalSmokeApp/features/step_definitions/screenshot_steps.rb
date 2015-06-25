@@ -13,9 +13,21 @@ module CalSmokeApp
     # in the ./ directory.
     #
     # http://calabashapi.xamarin.com/ios/file.ENVIRONMENT_VARIABLES.html#label-SCREENSHOT_PATH
-
+    #
+    # On the Xamarin Test Cloud, we should not rely on SCREENSHOT_PATH
+    # to be defined or to be set to directory we can write to.
     def screenshots_subdirectory
-      path = File.join(ENV['SCREENSHOT_PATH'], 'scenario-screenshots')
+      if RunLoop::Environment.xtc?
+        screenshot_dir = './screenshots'
+      else
+        screenshot_dir = ENV['SCREENSHOT_PATH']
+      end
+
+      unless File.exist?(screenshot_dir)
+        FileUtils.mkdir_p(screenshot_dir)
+      end
+
+      path = File.join(screenshot_dir, 'scenario-screenshots')
 
       # Bad behavior - :prefix needs to have a trailing /
       "#{path}/"
