@@ -1,4 +1,3 @@
-@no_ci
 @server_log_level
 Feature:  Server Log Level
   In order to gain insights about the server runtime

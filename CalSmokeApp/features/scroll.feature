@@ -1,5 +1,4 @@
 @scroll
-@no_ci
 Feature: Testing scrolling
 
   Background: I am in the second tab

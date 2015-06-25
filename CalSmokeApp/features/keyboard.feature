@@ -1,4 +1,5 @@
-Feature: Interacting with the
+@travis
+Feature: Typing on the Keyboard
   In order to enter text like a user
   As an app tester
   I want Calabash to provide a Keyboard API

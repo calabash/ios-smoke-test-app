@@ -1,4 +1,3 @@
-@no_ci
 @drag_and_drop
 Feature: Drag and Drop
   In order to test the Calabash pan API

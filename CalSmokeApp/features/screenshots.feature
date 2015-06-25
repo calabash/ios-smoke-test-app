@@ -1,4 +1,3 @@
-@no_ci
 @screenshots
 Feature:  Screenshots
   In order to gain insights into my app

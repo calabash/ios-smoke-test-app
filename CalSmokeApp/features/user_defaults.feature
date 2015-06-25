@@ -1,4 +1,3 @@
-@no_ci
 @resetting
 @ideviceinstaller
 @user_defaults
