@@ -5,8 +5,8 @@ module CalSmokeApp
       attr_reader :red, :blue, :green
 
       def initialize(red, blue, green)
-        @red = red,
-        @blue = blue,
+        @red = red
+        @blue = blue
         @green = green
       end
 
@@ -19,9 +19,11 @@ module CalSmokeApp
       end
 
       def self.color_with_hash(hash)
-        Color.new((hash['red'] * 256).to_i,
-                  (hash['blue'] * 256).to_i,
-                  (hash['green'] * 256).to_i)
+        red = (hash['red'] * 256).to_i
+        blue = (hash['blue'] * 256).to_i
+        green = (hash['green'] * 256).to_i
+
+        Color.new(red, blue, green)
       end
 
       def == (other)
