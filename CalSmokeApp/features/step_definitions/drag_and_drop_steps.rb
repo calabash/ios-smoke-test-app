@@ -2,16 +2,16 @@ module CalSmokeApp
   module DragAndDrop
 
     class Color
-      attr_reader :red, :blue, :green
+      attr_reader :red, :green, :blue
 
-      def initialize(red, blue, green)
+      def initialize(red, green, blue)
         @red = red
-        @blue = blue
         @green = green
+        @blue = blue
       end
 
       def to_s
-        "#<Color #{red}, #{blue}, #{green}>"
+        "#<Color #{red}, #{green}, #{blue}>"
       end
 
       def inspect
@@ -20,16 +20,16 @@ module CalSmokeApp
 
       def self.color_with_hash(hash)
         red = (hash['red'] * 256).to_i
-        blue = (hash['blue'] * 256).to_i
         green = (hash['green'] * 256).to_i
+        blue = (hash['blue'] * 256).to_i
 
-        Color.new(red, blue, green)
+        Color.new(red, green, blue)
       end
 
       def == (other)
         [red == other.red,
-         blue == other.blue,
-         green == other.green].all?
+         green == other.green,
+         blue == other.blue].all?
       end
 
       def self.red
