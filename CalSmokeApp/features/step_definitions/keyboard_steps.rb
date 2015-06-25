@@ -12,8 +12,8 @@ module CalSmokeApp
     CORRECTION =
           {
                 default: 0, # UITextAutocorrectionTypeDefault,
-                no: 1,      # UITextAutocorrectionTypeNo,
-                yes: 2      # UITextAutocorrectionTypeYes
+                off: 1,     # UITextAutocorrectionTypeNo,
+                on: 2       # UITextAutocorrectionTypeYes
           }
 
     def auto_capitalization_type
@@ -64,8 +64,8 @@ And(/^I turn on capitalize sentences$/) do
   set_auto_capitalization_type :words
 end
 
-And(/^I turn on spell checking$/) do
-  set_auto_correct_type(:yes)
+And(/^I turn (on|off) auto correct$/) do |on_or_off|
+  set_auto_correct_type(on_or_off.to_sym)
 end
 
 Then(/^I touch the text field$/) do

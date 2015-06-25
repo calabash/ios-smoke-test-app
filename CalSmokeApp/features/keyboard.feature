@@ -29,8 +29,14 @@ Feature: Typing on the Keyboard
     Then I touch the text field
     When I type "hello. my name is.", I should see "Hello. My name is."
 
-  Scenario: Turn on spell checking
-    And I turn on spell checking
+  Scenario: Turn on auto correct
+    And I turn on auto correct
     Then I touch the text field
     When I type "exictement" and touch done
     Then the text should be "excitement"
+
+  Scenario: Turn off auto correct
+    And I turn off auto correct
+    Then I touch the text field
+    When I type "exictement" and touch done
+    Then the text should be "exictement"
