@@ -140,18 +140,18 @@ typedef enum : NSInteger {
 - (UIColor *)blueColor {
   if (_blueColor) { return _blueColor; }
   _blueColor = [UIColor colorWithRed:29/255.0
-                              green:90/255.0
-                               blue:171/255.0
-                              alpha:1.0];
+                               green:90/255.0
+                                blue:171/255.0
+                               alpha:1.0];
   return _blueColor;
 }
 
 - (UIColor *)greenColor {
   if (_greenColor) { return _greenColor; }
   _greenColor = [UIColor colorWithRed:33/255.0
-                               green:128/255.0
-                                blue:65/255.0
-                               alpha:1.0];
+                                green:128/255.0
+                                 blue:65/255.0
+                                alpha:1.0];
   return _greenColor;
 }
 
@@ -178,7 +178,7 @@ typedef enum : NSInteger {
 
   self.redImageView.accessibilityIdentifier = @"red";
   self.redImageView.accessibilityLabel = NSLocalizedString(@"red",
-                                                            @"The color red");
+                                                           @"The color red");
   self.redImageView.tag = kTagRedImageView;
 
   self.blueImageView.accessibilityIdentifier = @"blue";
@@ -197,7 +197,7 @@ typedef enum : NSInteger {
 
   self.rightDropTarget.accessibilityIdentifier = @"right well";
   self.rightDropTarget.accessibilityLabel = NSLocalizedString(@"Right drop target",
-                                                             @"The drop target on the right side");
+                                                              @"The drop target on the right side");
 }
 
 - (void) viewWillLayoutSubviews {
