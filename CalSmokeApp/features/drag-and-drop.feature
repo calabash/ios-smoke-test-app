@@ -7,7 +7,12 @@ Feature: Drag and Drop
   Background:  Get me to the third tab
    Given I see the third tab
 
-  Scenario: Drag the red box
+  Scenario: Drag the red box to the left well
     When I drag the red box to the left well
-    Then the left well should change to red
-    And I expect the red box to return to its original position
+    Then the well should change color
+    And the box goes back to its original position
+
+  Scenario: Drag the blue box to the right well
+    When I drag the blue box to the right well
+    Then the well should change color
+    And the box goes back to its original position
