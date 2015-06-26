@@ -40,7 +40,7 @@ typedef enum : NSInteger {
   textField.accessibilityIdentifier = @"text";
   textField.accessibilityLabel = NSLocalizedString(@"Text field", @"ACCESSIBILITY a text field");
   textField.tag = kTagTextField;
-  textField.borderStyle =  UITextBorderStyleLine;
+  textField.borderStyle = UITextBorderStyleLine;
   textField.clearsOnBeginEditing = NO;
   textField.clearsOnInsertion = NO;
   textField.clearButtonMode = UITextFieldViewModeAlways;
