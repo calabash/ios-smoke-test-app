@@ -16,6 +16,13 @@ module CalSmokeApp
                 on: 2       # UITextAutocorrectionTypeYes
           }
 
+    SPELL_CHECKING =
+          {
+                default: 0, # UITextSpellCheckTypeDefault,
+                off: 1,     # UITextSpellCheckTypeNo,
+                on: 2       # UITextSpellCheckTypeYes
+          }
+
     def auto_capitalization_type
       query('UITextField', :autocapitalizationType).first
     end
@@ -42,10 +49,24 @@ module CalSmokeApp
       type = CORRECTION[name]
 
       unless type
-        raise "Unknown capitalization type: '#{name}'. Valid names: :default, :no, :yes"
+        raise "Unknown auto correct type: '#{name}'. Valid names: :default, :no, :yes"
       end
 
       query('UITextField', [{setAutocorrectionType:type}])
+    end
+
+    def spell_check_type
+      query('UITextField', :spellCheckingType).first
+    end
+
+    def set_spell_check_type(name)
+      type = SPELL_CHECKING[name]
+
+      unless type
+        raise "Unknown spell check type: '#{name}'. Valid names: :default, :no, :yes"
+      end
+
+      query('UITextField', [{setSpellCheckingType:type}])
     end
   end
 end
@@ -66,6 +87,14 @@ end
 
 And(/^I turn (on|off) auto correct$/) do |on_or_off|
   set_auto_correct_type(on_or_off.to_sym)
+end
+
+And(/^I turn (on|off) spell checking$/) do |on_or_off|
+  set_spell_check_type(on_or_off.to_sym)
+end
+
+Then(/^the text should be marked as incorrect$/) do
+  pending
 end
 
 Then(/^I touch the text field$/) do
