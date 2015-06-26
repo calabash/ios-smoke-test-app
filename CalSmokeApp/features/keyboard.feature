@@ -22,3 +22,9 @@ Feature: Typing on the Keyboard
     Then I touch the text field
     When I type "exictement" and touch done
     Then the text should be "exictement"
+
+  Scenario: Touching the Shift key
+    Then I touch the text field
+    Then I tap the shift key
+    When I tap the shift key
+    When I double tap the shift key

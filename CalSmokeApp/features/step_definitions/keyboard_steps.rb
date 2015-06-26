@@ -7,7 +7,8 @@ module CalSmokeApp
     #
     # TL;DR
     #
-    # You can turn auto-correct on or off _before_ the keyboard is presented.
+    # * You can turn auto-correct on or off.
+    # * Any manipulation must occur before the keyboard is presented.
 
     CORRECTION =
           {
@@ -55,4 +56,18 @@ end
 Then(/^the text should be "([^"]*)"$/) do |expected|
   actual = query('UITextField', :text).first
   expect(actual).to be == expected
+end
+
+When(/^I (tap|double tap) the shift key$/) do |tap_type|
+  if tap_type == 'tap'
+    gesture = 'tap()'
+  else
+    gesture = 'doubleTap()'
+  end
+  result = uia("uia.keyboard().buttons()['shift'].#{gesture}")
+
+  # There is no property on the Shift button that can tell us if it is inactive,
+  # active, or locked.
+  expect(result['status']).to be == 'success'
+  #sleep(0.4)
 end
