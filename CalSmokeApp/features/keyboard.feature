@@ -23,7 +23,10 @@ Feature: Typing on the Keyboard
     When I type "exictement" and touch done
     Then the text should be "exictement"
 
-  Scenario: Touching the Shift key
+  # You can tap the shift key, but don't be surprised if you
+  # have bad results.  There is no way to know if the shift
+  # key is active, inactive, or locked.
+  Scenario: Tapping the Shift key
     Then I touch the text field
     Then I tap the shift key
     When I tap the shift key

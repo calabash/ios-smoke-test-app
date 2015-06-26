@@ -9,7 +9,9 @@ module CalSmokeApp
     #
     # * You can turn auto-correct on or off.
     # * Any manipulation must occur before the keyboard is presented.
-
+    #
+    # If auto-capitalization is Sentences, typing "hello" with
+    # keyboard_enter_text("hello"), will cause "hello" to be typed.
     CORRECTION =
           {
                 default: 0, # UITextAutocorrectionTypeDefault,
