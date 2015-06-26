@@ -40,7 +40,7 @@ typedef enum : NSInteger {
   textField.accessibilityIdentifier = @"text";
   textField.accessibilityLabel = NSLocalizedString(@"Text field", @"ACCESSIBILITY a text field");
   textField.tag = kTagTextField;
-  textField.borderStyle =  UITextBorderStyleLine;
+  textField.borderStyle = UITextBorderStyleLine;
   textField.clearsOnBeginEditing = NO;
   textField.clearsOnInsertion = NO;
   textField.clearButtonMode = UITextFieldViewModeAlways;
@@ -187,6 +187,22 @@ typedef enum : NSInteger {
   BOOL lastSwitchState = [defaults boolForKey:kUserDefaultsSwitchState];
   CalFirstView *view = (CalFirstView *)self.view;
   [view.uiswitch setOn:lastSwitchState];
+
+  NSLog(@"Text input Capitalization Types");
+  NSLog(@"     none = %@", @(UITextAutocapitalizationTypeNone));
+  NSLog(@"    words = %@", @(UITextAutocapitalizationTypeWords));
+  NSLog(@"sentences = %@", @(UITextAutocapitalizationTypeSentences));
+  NSLog(@"      all = %@", @(UITextAutocapitalizationTypeAllCharacters));
+
+  NSLog(@"Text input Correction Types");
+  NSLog(@"  default = %@", @(UITextAutocorrectionTypeDefault));
+  NSLog(@"       no = %@", @(UITextAutocorrectionTypeNo));
+  NSLog(@"      yes = %@", @(UITextAutocorrectionTypeYes));
+
+  NSLog(@"Text input Spell Checking Types");
+  NSLog(@"  default = %@", @(UITextSpellCheckingTypeDefault));
+  NSLog(@"       no = %@", @(UITextSpellCheckingTypeNo));
+  NSLog(@"      yes = %@", @(UITextSpellCheckingTypeYes));
   [super viewWillAppear:animated];
 }
 
