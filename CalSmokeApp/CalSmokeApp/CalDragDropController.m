@@ -28,6 +28,9 @@ typedef enum : NSInteger {
 - (BOOL)touchPointIsRightWell:(CGPoint)touchPoint;
 - (BOOL)touchPoint:(CGPoint)touchPoint isWithFrame:(CGRect)frame;
 
+@property (weak, nonatomic) IBOutlet UIButton *showAlertButton;
+@property (weak, nonatomic) IBOutlet UIButton *showSheetButton;
+
 @end
 
 @implementation CalDragDropController
@@ -167,6 +170,16 @@ typedef enum : NSInteger {
   }
 }
 
+#pragma mark - Actions
+
+- (IBAction)buttonTouchedShowAlert:(id)sender {
+  NSLog(@"show alert");
+}
+
+- (IBAction)buttonToucheShowSheet:(id)sender {
+  NSLog(@"show sheet");
+}
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -198,6 +211,15 @@ typedef enum : NSInteger {
   self.rightDropTarget.accessibilityIdentifier = @"right well";
   self.rightDropTarget.accessibilityLabel = NSLocalizedString(@"Right drop target",
                                                               @"The drop target on the right side");
+
+  self.showAlertButton.accessibilityIdentifier = @"show alert";
+  self.showAlertButton.accessibilityLabel = NSLocalizedString(@"Show alert",
+                                                              @"Touching this button shows an alert");
+
+  self.showSheetButton.accessibilityIdentifier = @"show sheet";
+  self.showSheetButton.accessibilityLabel = NSLocalizedString(@"Show sheet",
+                                                              @"Touching this button shows an action sheet");
+
 }
 
 - (void) viewWillLayoutSubviews {
