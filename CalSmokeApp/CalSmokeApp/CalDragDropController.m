@@ -9,6 +9,7 @@ typedef enum : NSInteger {
 } ViewTags;
 
 @interface CalDragDropController ()
+<UIAlertViewDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *redImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *blueImageView;
@@ -179,6 +180,19 @@ typedef enum : NSInteger {
 - (IBAction)buttonToucheShowSheet:(id)sender {
   NSLog(@"show sheet");
 }
+
+
+#pragma mark - Alert View Delegate
+
+- (void) alertView:(UIAlertView *) aAlertView clickedButtonAtIndex:(NSInteger) aIndex {
+}
+
+#pragma mark - Action Sheet Delegate
+
+- (void) actionSheet:(UIActionSheet *) aActionSheet clickedButtonAtIndex:(NSInteger) aButtonIndex {
+
+}
+
 
 #pragma mark - View Lifecycle
 
