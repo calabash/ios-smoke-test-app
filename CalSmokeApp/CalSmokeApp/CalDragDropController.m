@@ -174,7 +174,23 @@ typedef enum : NSInteger {
 #pragma mark - Actions
 
 - (IBAction)buttonTouchedShowAlert:(id)sender {
-  NSLog(@"show alert");
+  NSString *lat = NSLocalizedString(@"Smoke Test!",
+                                    @"The title of the alert that is shown when the 'show alert' button is touched.");
+  NSString *lam = NSLocalizedString(@"Another day, another iOS alert",
+                                    @"The message of the alert that is shown when the 'show alert' button is touched.");
+  NSString *lok = NSLocalizedString(@"OK",
+                                    @"The title of the default button on the Smoke Test alert.");
+  NSString *lcancel = NSLocalizedString(@"Cancel",
+                                        @"The title of the cancel button on the Smoke Test alert.");
+
+  UIAlertView *alert = [[UIAlertView alloc]
+                        initWithTitle:lat
+                        message:lam
+                        delegate:self
+                        cancelButtonTitle:lcancel
+                        otherButtonTitles:lok, nil];
+  alert.accessibilityIdentifier = @"alert";
+  [alert show];
 }
 
 - (IBAction)buttonToucheShowSheet:(id)sender {
