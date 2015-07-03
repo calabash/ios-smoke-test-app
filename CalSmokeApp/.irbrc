@@ -20,3 +20,7 @@ puts_calabash_environment
 
 puts "APP => '#{app}'"
 briar_message_of_the_day
+
+def make_app
+  system('make', 'app-cal')
+end
