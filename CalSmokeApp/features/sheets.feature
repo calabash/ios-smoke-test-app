@@ -24,4 +24,4 @@ Feature: Sheets
     Then I see a sheet
     Then I see the "Smoke Test!" sheet
     And I wait for all animations to stop
-    And I can dismiss the sheet with the OK button
+    And I can dismiss the sheet with the Cancel button
