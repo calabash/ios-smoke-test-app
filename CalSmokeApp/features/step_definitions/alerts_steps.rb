@@ -79,7 +79,7 @@ module CalSmoke
       elsif ios7?
         query = "view:'_UIModalItemAlertContentView' descendant UITableView descendant label"
       else
-        query = "'UIAlertView descendant button' descendant button"
+        query = 'UIAlertView descendant button'
       end
       query(query)
     end
