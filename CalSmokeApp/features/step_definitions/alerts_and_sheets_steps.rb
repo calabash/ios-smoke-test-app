@@ -15,6 +15,103 @@ module CalSmoke
       end
     end
 
+    def alert_button_exists?(button_title)
+      unless alert_exists?
+        fail('Expected an alert to be showing')
+      end
+
+      res = uia("uia.alert().buttons()['#{button_title}']")
+      if res['status'] == 'success'
+        res['value']
+      else
+        false
+      end
+    end
+
+    def tap_alert_button(button_title)
+      timeout = 4
+      message = "Waited #{timeout} seconds for an alert to appear"
+      options = {timeout: timeout, timeout_message: message}
+
+      wait_for(options) { alert_exists? }
+
+      options[:timeout_message] = "Waited #{timeout} seconds for 'OK' button to appear"
+
+      wait_for(options) { alert_button_exists?(button_title) }
+
+      res = uia("uia.alert().buttons()['#{button_title}'].tap()")
+      if res['status'] != 'success'
+        fail("UIA responded with:\n'#{res['value']}' when I tried to tap alert button '#{button_title}'")
+      end
+    end
+
+    def alert_view_query_str
+      if ios8?
+        "view:'_UIAlertControllerView'"
+      elsif ios7?
+        "view:'_UIModalItemAlertContentView'"
+      else
+        'UIAlertView'
+      end
+    end
+
+    def button_views
+      if ios8?
+        query = "view:'_UIAlertControllerActionView'"
+      elsif ios7?
+        query = "view:'_UIModalItemAlertContentView' descendant UITableView descendant label"
+      else
+        query = "'UIAlertView descendant button' descendant button"
+      end
+      query(query)
+    end
+
+    def button_titles
+      button_views.map { |res| res['label'] }.compact
+    end
+
+    def leftmost_button_title
+      with_min_x = button_views.min_by do |res|
+        res['rect']['x']
+      end
+      with_min_x['label']
+    end
+
+    def rightmost_button_title
+      with_max_x = button_views.max_by do |res|
+        res['rect']['x']
+      end
+      with_max_x['label']
+    end
+
+    def all_labels
+      query = "#{alert_view_query_str} descendant label"
+      query(query)
+    end
+
+    def non_button_views
+      button_titles = button_titles()
+      all_labels = all_labels()
+      all_labels.select do |res|
+        !button_titles.include?(res['label']) &&
+              res['label'] != nil
+      end
+    end
+
+    def alert_message
+      with_max_y = non_button_views.max_by do |res|
+        res['rect']['y']
+      end
+
+      with_max_y['label']
+    end
+
+    def alert_title
+      with_min_y = non_button_views.min_by do |res|
+        res['rect']['y']
+      end
+      with_min_y['label']
+    end
   end
 end
 
@@ -35,7 +132,7 @@ Then(/^I see an alert$/) do
   end
 end
 
-Then(/^I should the "([^"]*)" alert$/) do |alert_id|
+Then(/^I see the "([^"]*)" alert$/) do |alert_id|
   timeout = 4
   message = "Waited #{timeout} seconds for an alert to appear"
   options = {timeout: timeout, timeout_message: message}
@@ -46,7 +143,22 @@ Then(/^I should the "([^"]*)" alert$/) do |alert_id|
 end
 
 And(/^I can dismiss the alert with the OK button$/) do
- pending
+  tap_alert_button('OK')
 end
 
+And(/^the title of the alert is "([^"]*)"$/) do |title|
+  expect(alert_title).to be == title
+end
 
+And(/^the message of the alert is "([^"]*)"$/) do |message|
+  expect(alert_message).to be == message
+end
+
+And(/^the (left|right) hand button is "([^"]*)"$/) do |position, title|
+  if position == 'left'
+    actual_title = leftmost_button_title
+  else
+    actual_title = rightmost_button_title
+  end
+  expect(actual_title).to be == title
+end

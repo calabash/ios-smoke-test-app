@@ -29,6 +29,16 @@ Feature: Alerts and Sheets
   Scenario: Touch OK button on alert
     When I touch the show alert button
     Then I see an alert
-    Then I should the "Smoke Test!" alert
+    Then I see the "Smoke Test!" alert
     And I wait for all animations to stop
     And I can dismiss the alert with the OK button
+
+    @wip
+  @alert
+  Scenario: Verify the alert title, message, and buttons
+    When I touch the show alert button
+    Then I see an alert
+    And the title of the alert is "Smoke Test!"
+    And the message of the alert is "Another day, another iOS alert"
+    And the left hand button is "Cancel"
+    And the right hand button is "OK"
