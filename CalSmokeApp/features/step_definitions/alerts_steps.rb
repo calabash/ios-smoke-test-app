@@ -5,7 +5,11 @@ module CalSmoke
       if alert_id.nil?
         res = uia('uia.alert() != null')
       else
-        res = uia("uia.alert().name() == '#{alert_id}'")
+        if ios6?
+          res = uia("uia.alert().staticTexts()['#{alert_id}'].label()")
+        else
+          res = uia("uia.alert().name() == '#{alert_id}'")
+        end
       end
 
       if res['status'] == 'success'
