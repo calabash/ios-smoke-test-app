@@ -1,14 +1,14 @@
 module CalSmoke
   module Alerts
 
-    def alert_exists?(alert_id=nil)
-      if alert_id.nil?
+    def alert_exists?(alert_title=nil)
+      if alert_title.nil?
         res = uia('uia.alert() != null')
       else
         if ios6?
-          res = uia("uia.alert().staticTexts()['#{alert_id}'].label()")
+          res = uia("uia.alert().staticTexts()['#{alert_title}'].label()")
         else
-          res = uia("uia.alert().name() == '#{alert_id}'")
+          res = uia("uia.alert().name() == '#{alert_title}'")
         end
       end
 
