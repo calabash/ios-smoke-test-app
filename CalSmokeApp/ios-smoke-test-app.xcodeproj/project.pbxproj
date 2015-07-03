@@ -31,6 +31,7 @@
 		F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		F56592551B46AD3300C044C8 /* CalAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F56592541B46AD3300C044C8 /* CalAnimatedView.m */; };
 		F56592561B46AD3300C044C8 /* CalAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F56592541B46AD3300C044C8 /* CalAnimatedView.m */; };
+		F571F76B1B45843B00CA108B /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F571F76A1B45843B00CA108B /* Reveal.framework */; };
 		F5C276331B3B546A00DF63FA /* CalDragDropController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C276311B3B546A00DF63FA /* CalDragDropController.xib */; };
 		F5C276341B3B546A00DF63FA /* CalDragDropController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C276311B3B546A00DF63FA /* CalDragDropController.xib */; };
 		F5C276371B3B547900DF63FA /* CalDragDropController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C276361B3B547900DF63FA /* CalDragDropController.m */; };
@@ -67,6 +68,7 @@
 		F55185541AC34BB600CE06DC /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F56592531B46AD3300C044C8 /* CalAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalAnimatedView.h; sourceTree = "<group>"; };
 		F56592541B46AD3300C044C8 /* CalAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalAnimatedView.m; sourceTree = "<group>"; };
+		F571F76A1B45843B00CA108B /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		F5C276321B3B546A00DF63FA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalDragDropController.xib; sourceTree = "<group>"; };
 		F5C276351B3B547900DF63FA /* CalDragDropController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDragDropController.h; sourceTree = "<group>"; };
 		F5C276361B3B547900DF63FA /* CalDragDropController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalDragDropController.m; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F571F76B1B45843B00CA108B /* Reveal.framework in Frameworks */,
 				F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */,
 				814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */,
 				ab943fbf9d0ac91728d35abe /* UIKit.framework in Frameworks */,
@@ -122,6 +125,7 @@
 		F52BFB0E1987EF8700299AEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F571F76A1B45843B00CA108B /* Reveal.framework */,
 				F55081B41ACD4F5400F226A1 /* WebKit.framework */,
 				F52BFB0F1987EF8700299AEF /* Foundation.framework */,
 				F52BFB111987EF8700299AEF /* CoreGraphics.framework */,
@@ -347,7 +351,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
@@ -357,6 +362,10 @@
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "";
@@ -487,7 +496,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
@@ -497,6 +507,10 @@
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
 				);
 				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "";
