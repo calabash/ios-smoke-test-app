@@ -194,7 +194,32 @@ typedef enum : NSInteger {
 }
 
 - (IBAction)buttonToucheShowSheet:(id)sender {
-  NSLog(@"show sheet");
+  NSString *locTitle = NSLocalizedString(@"Smoke Test!",
+                                         @"The title of the sheet that is shown when the 'show sheet' button is touched.");
+  NSString *locCancel = NSLocalizedString(@"Cancel",
+                                          @"The title of the cancel button on the Smoke Test sheet.");
+  NSString *locDelete = NSLocalizedString(@"Delete",
+                                          @"The title of the delete button on the Smoke Test sheet.");
+
+  UIActionSheet *sheet = nil;
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    sheet = [[UIActionSheet alloc]
+             initWithTitle:locTitle
+             delegate:self
+             cancelButtonTitle:nil
+             destructiveButtonTitle:locDelete
+             otherButtonTitles:locCancel, nil];
+  } else {
+    sheet = [[UIActionSheet alloc]
+             initWithTitle:locTitle
+             delegate:self
+             cancelButtonTitle:locCancel
+             destructiveButtonTitle:locDelete
+             otherButtonTitles:nil];
+  }
+
+  sheet.accessibilityIdentifier = @"sheet";
+  [sheet showFromTabBar:self.tabBarController.tabBar];
 }
 
 
