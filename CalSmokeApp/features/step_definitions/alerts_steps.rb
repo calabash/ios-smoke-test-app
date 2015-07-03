@@ -49,15 +49,7 @@ module CalSmoke
     end
 
     def tap_alert_button(button_title)
-      timeout = 4
-      message = "Waited #{timeout} seconds for an alert to appear"
-      options = {timeout: timeout, timeout_message: message}
-
-      wait_for(options) { alert_exists? }
-
-      options[:timeout_message] = "Waited #{timeout} seconds for 'OK' button to appear"
-
-      wait_for(options) { alert_button_exists?(button_title) }
+      wait_for_alert
 
       res = uia("uia.alert().buttons()['#{button_title}'].tap()")
       if res['status'] != 'success'
@@ -76,6 +68,8 @@ module CalSmoke
     end
 
     def button_views
+      wait_for_alert
+
       if ios8?
         query = "view:'_UIAlertControllerActionView'"
       elsif ios7?
@@ -105,6 +99,7 @@ module CalSmoke
     end
 
     def all_labels
+      wait_for_alert
       query = "#{alert_view_query_str} descendant label"
       query(query)
     end
