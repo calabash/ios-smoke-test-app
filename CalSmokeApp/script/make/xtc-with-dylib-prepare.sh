@@ -1,17 +1,5 @@
 #!/usr/bin/env bash
 
-XCPRETTY=`gem list xcpretty -i`
-
-if [ "${XCPRETTY}" = "false" ]; then gem install xcpretty; fi
-
-if which rbenv > /dev/null; then
-    RBENV_EXEC="rbenv exec"
-else
-    RBENV_EXEC=
-fi
-
-#${RBENV_EXEC} bundle install
-
 XAMARIN_DIR="${PWD}/xtc-staging"
 
 echo "INFO: creating the ./xtc-staging directory"
@@ -27,7 +15,8 @@ cp "./config/xtc-profiles.yml" "${XAMARIN_DIR}/cucumber.yml"
 echo "INFO: making the .ipa"
 make ipa-dylib
 
-mv "${PWD}/chou.app.dSYM" "${XAMARIN_DIR}"
-mv "${PWD}/chou.ipa" "${XAMARIN_DIR}"
+IPA="CalSmoke-Calabash-dylibs-embedded.ipa"
+IPA_DSYM="CalSmoke-Calabash-dylibs-embedded.app.dSYM"
 
-exit 0
+mv "${PWD}/${IPA_DSYM}}" "${XAMARIN_DIR}"
+mv "${PWD}/${IPA}" "${XAMARIN_DIR}"

@@ -4,8 +4,8 @@ require 'fileutils'
 
 cal_app = File.expand_path('./CalSmoke-cal.app')
 cal_ipa = File.expand_path('./xtc-staging/CalSmoke-cal.ipa')
-app = File.expand_path('./CalSmoke.app')
-ipa = File.expand_path('./CalSmoke.ipa')
+app = File.expand_path('./CalSmoke-no-Calabash-dylibs-embedded.app')
+ipa = File.expand_path('./CalSmoke-no-Calabash-dylibs-embedded.ipa')
 
 # calabash-ios
 dir = File.expand_path('~/git/calabash/calabash-ios')
@@ -18,10 +18,10 @@ if !File.exist?(dir)
 end
 
 rspec_resources_dir = File.join(dir, 'calabash-cucumber/spec/resources')
-FileUtils.cp_r(app, rspec_resources_dir)
+FileUtils.cp_r(app, File.join(rspec_resources_dir, 'CalSmoke.app'))
 
 dylib_dir = File.join(dir, 'calabash-cucumber/test/dylib')
-FileUtils.cp_r(app, dylib_dir)
+FileUtils.cp_r(app, File.join(dylib_dir, 'CalSmoke.app'))
 
 xtc_dir = File.join(dir, 'calabash-cucumber/test/xtc')
 FileUtils.cp_r(cal_ipa, xtc_dir)
@@ -47,9 +47,8 @@ end
 rspec_resources_dir = File.join(dir, 'spec/resources')
 FileUtils.cp_r(cal_app, rspec_resources_dir)
 FileUtils.cp_r(cal_ipa, rspec_resources_dir)
-FileUtils.cp_r(app, rspec_resources_dir)
-FileUtils.cp_r(ipa, rspec_resources_dir)
-
+FileUtils.cp_r(app, File.join(rspec_resources_dir, 'CalSmoke.app'))
+FileUtils.cp_r(ipa, File.join(rspec_resources_dir, 'CalSmoke.ipa'))
 
 # calabash
 dir = File.expand_path('~/git/calabash/calabash')
@@ -64,6 +63,5 @@ end
 rspec_resources_dir = File.join(dir, 'spec/resources/ios')
 FileUtils.cp_r(cal_app, rspec_resources_dir)
 FileUtils.cp_r(cal_ipa, rspec_resources_dir)
-FileUtils.cp_r(app, rspec_resources_dir)
-FileUtils.cp_r(ipa, rspec_resources_dir)
-
+FileUtils.cp_r(app, File.join(rspec_resources_dir, 'CalSmoke.app'))
+FileUtils.cp_r(ipa, File.join(rspec_resources_dir, 'CalSmoke.ipa'))
