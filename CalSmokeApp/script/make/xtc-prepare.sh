@@ -1,16 +1,6 @@
 #!/usr/bin/env bash
 
-XCPRETTY=`gem list xcpretty -i`
-
-if [ "${XCPRETTY}" = "false" ]; then gem install xcpretty; fi
-
-if which rbenv > /dev/null; then
-    RBENV_EXEC="rbenv exec"
-else
-    RBENV_EXEC=
-fi
-
-#${RBENV_EXEC} bundle install
+bundle
 
 XAMARIN_DIR="${PWD}/xtc-staging"
 
@@ -52,7 +42,7 @@ if [ -z "${CODE_SIGN_IDENTITY}" ]; then
     ARCHS="armv7 armv7s arm64" \
     VALID_ARCHS="armv7 armv7s arm64" \
     ONLY_ACTIVE_ARCH=NO \
-    -sdk iphoneos | ${RBENV_EXEC} xcpretty -c
+    -sdk iphoneos | bundle exec xcpretty -c
 else
   xcrun xcodebuild \
     archive \
@@ -66,8 +56,7 @@ else
     ARCHS="armv7 armv7s arm64" \
     VALID_ARCHS="armv7 armv7s arm64" \
     ONLY_ACTIVE_ARCH=NO \
-    -sdk iphoneos | ${RBENV_EXEC} xcpretty -c
-
+    -sdk iphoneos | bundle exec xcpretty -c
 fi
 
 RETVAL=${PIPESTATUS[0]}
@@ -75,8 +64,8 @@ RETVAL=${PIPESTATUS[0]}
 set -o errexit
 
 if [ $RETVAL != 0 ]; then
-    echo "FAIL:  archive failed"
-    exit $RETVAL
+  echo "FAIL:  archive failed"
+  exit $RETVAL
 fi
 
 set +o errexit
@@ -97,16 +86,14 @@ echo "INFO: Package Application Log: ${PACKAGE_LOG}"
 set -o errexit
 
 if [ $RETVAL != 0 ]; then
-    echo "FAIL:  export archive failed"
-    exit $RETVAL
+  echo "FAIL:  export archive failed"
+  exit $RETVAL
 fi
 
-cp "${IPA_PATH}" "${XAMARIN_DIR}/"
-cp -r "${DYSM_PATH}" "${XAMARIN_DIR}/"
+mv "${IPA_PATH}" "${XAMARIN_DIR}/"
+mv "${DYSM_PATH}" "${XAMARIN_DIR}/${TARGET_NAME}.app.dSYM"
 
 echo "Copied features/ to ${XAMARIN_DIR}"
 echo "Copied config/xtc-profiles.yml to ${XAMARIN_DIR}/cucumber.yml"
 echo "Created ${XAMARIN_DIR}/${TARGET_NAME}.ipa"
 echo "Created ${XAMARIN_DIR}/${TARGET_NAME}.app.dSYM"
-
-exit 0
