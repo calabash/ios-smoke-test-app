@@ -1,6 +1,7 @@
 // http://www.edumobile.org/ios/simple-drag-and-drop-on-iphone/
 
 #import "CalDragDropController.h"
+#import "CalAnimatedView.h"
 
 typedef enum : NSInteger {
   kTagRedImageView = 3030,
@@ -9,6 +10,7 @@ typedef enum : NSInteger {
 } ViewTags;
 
 @interface CalDragDropController ()
+<UIAlertViewDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *redImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *blueImageView;
@@ -27,6 +29,11 @@ typedef enum : NSInteger {
 - (BOOL)touchPointIsLeftWell:(CGPoint)touchPoint;
 - (BOOL)touchPointIsRightWell:(CGPoint)touchPoint;
 - (BOOL)touchPoint:(CGPoint)touchPoint isWithFrame:(CGRect)frame;
+
+@property (weak, nonatomic) IBOutlet UIButton *showAlertButton;
+@property (weak, nonatomic) IBOutlet UIButton *showSheetButton;
+
+@property (weak, nonatomic) IBOutlet CalAnimatedView *animatedView;
 
 @end
 
@@ -167,6 +174,86 @@ typedef enum : NSInteger {
   }
 }
 
+#pragma mark - Actions
+
+- (IBAction)buttonTouchedShowAlert:(id)sender {
+  NSString *lat = NSLocalizedString(@"Smoke Test!",
+                                    @"The title of the alert that is shown when the 'show alert' button is touched.");
+  NSString *lam = NSLocalizedString(@"Another day, another iOS alert",
+                                    @"The message of the alert that is shown when the 'show alert' button is touched.");
+  NSString *lok = NSLocalizedString(@"OK",
+                                    @"The title of the default button on the Smoke Test alert.");
+  NSString *lcancel = NSLocalizedString(@"Cancel",
+                                        @"The title of the cancel button on the Smoke Test alert.");
+
+  UIAlertView *alert = [[UIAlertView alloc]
+                        initWithTitle:lat
+                        message:lam
+                        delegate:self
+                        cancelButtonTitle:lcancel
+                        otherButtonTitles:lok, nil];
+  alert.accessibilityIdentifier = @"alert";
+  [alert show];
+}
+
+- (IBAction)buttonToucheShowSheet:(id)sender {
+  NSString *locTitle = NSLocalizedString(@"Smoke Test!",
+                                         @"The title of the sheet that is shown when the 'show sheet' button is touched.");
+  NSString *locCancel = NSLocalizedString(@"Cancel",
+                                          @"The title of the cancel button on the Smoke Test sheet.");
+  NSString *locDelete = NSLocalizedString(@"Delete",
+                                          @"The title of the delete button on the Smoke Test sheet.");
+
+  UIActionSheet *sheet = nil;
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    sheet = [[UIActionSheet alloc]
+             initWithTitle:locTitle
+             delegate:self
+             cancelButtonTitle:nil
+             destructiveButtonTitle:locDelete
+             otherButtonTitles:locCancel, nil];
+  } else {
+    sheet = [[UIActionSheet alloc]
+             initWithTitle:locTitle
+             delegate:self
+             cancelButtonTitle:locCancel
+             destructiveButtonTitle:locDelete
+             otherButtonTitles:nil];
+  }
+
+  sheet.accessibilityIdentifier = @"sheet";
+  [sheet showFromTabBar:self.tabBarController.tabBar];
+}
+
+
+#pragma mark - Alert View Delegate
+
+- (void) alertView:(UIAlertView *) aAlertView clickedButtonAtIndex:(NSInteger) aIndex {
+}
+
+#pragma mark - Action Sheet Delegate
+
+- (void) actionSheet:(UIActionSheet *) aActionSheet clickedButtonAtIndex:(NSInteger) aButtonIndex {
+
+}
+
+#pragma mark - Animations
+
+- (void) animateOrangeViewForSeconds:(NSTimeInterval)seconds {
+  UIView *toAnimate = self.animatedView;
+  NSTimeInterval half = seconds/2.0;
+  [UIView animateWithDuration:half
+                   animations:^{
+                     toAnimate.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                   }
+                   completion:^(BOOL finished) {
+                     [UIView animateWithDuration:half
+                                      animations:^{
+                                        toAnimate.transform = CGAffineTransformIdentity;
+                                      }];
+                   }];
+}
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -198,6 +285,17 @@ typedef enum : NSInteger {
   self.rightDropTarget.accessibilityIdentifier = @"right well";
   self.rightDropTarget.accessibilityLabel = NSLocalizedString(@"Right drop target",
                                                               @"The drop target on the right side");
+
+  self.showAlertButton.accessibilityIdentifier = @"show alert";
+  self.showAlertButton.accessibilityLabel = NSLocalizedString(@"Show alert",
+                                                              @"Touching this button shows an alert");
+
+  self.showSheetButton.accessibilityIdentifier = @"show sheet";
+  self.showSheetButton.accessibilityLabel = NSLocalizedString(@"Show sheet",
+                                                              @"Touching this button shows an action sheet");
+
+  self.animatedView.accessibilityIdentifier = @"animated view";
+
 }
 
 - (void) viewWillLayoutSubviews {

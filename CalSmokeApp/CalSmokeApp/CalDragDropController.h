@@ -2,4 +2,6 @@
 
 @interface CalDragDropController : UIViewController
 
+- (void) animateOrangeViewForSeconds:(NSTimeInterval)seconds;
+
 @end
