@@ -19,6 +19,7 @@ Feature: Sheets
   Background:  Get me to the third tab
     Given I see the third tab
 
+  @animations
   Scenario: Touch OK button on a sheet
     When I touch the show sheet button
     Then I see a sheet

@@ -19,6 +19,7 @@ Feature: Alerts
   Background:  Get me to the third tab
     Given I see the third tab
 
+  @animations
   Scenario: Touch OK button on alert
     When I touch the show alert button
     Then I see an alert
