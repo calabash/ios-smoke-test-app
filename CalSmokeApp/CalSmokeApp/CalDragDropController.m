@@ -1,6 +1,7 @@
 // http://www.edumobile.org/ios/simple-drag-and-drop-on-iphone/
 
 #import "CalDragDropController.h"
+#import "CalAnimatedView.h"
 
 typedef enum : NSInteger {
   kTagRedImageView = 3030,
@@ -31,6 +32,8 @@ typedef enum : NSInteger {
 
 @property (weak, nonatomic) IBOutlet UIButton *showAlertButton;
 @property (weak, nonatomic) IBOutlet UIButton *showSheetButton;
+
+@property (weak, nonatomic) IBOutlet CalAnimatedView *animatedView;
 
 @end
 
@@ -234,6 +237,22 @@ typedef enum : NSInteger {
 
 }
 
+#pragma mark - Animations
+
+- (void) animateOrangeViewForSeconds:(NSTimeInterval)seconds {
+  UIView *toAnimate = self.animatedView;
+  NSTimeInterval half = seconds/2.0;
+  [UIView animateWithDuration:half
+                   animations:^{
+                     toAnimate.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                   }
+                   completion:^(BOOL finished) {
+                     [UIView animateWithDuration:half
+                                      animations:^{
+                                        toAnimate.transform = CGAffineTransformIdentity;
+                                      }];
+                   }];
+}
 
 #pragma mark - View Lifecycle
 
@@ -274,6 +293,8 @@ typedef enum : NSInteger {
   self.showSheetButton.accessibilityIdentifier = @"show sheet";
   self.showSheetButton.accessibilityLabel = NSLocalizedString(@"Show sheet",
                                                               @"Touching this button shows an action sheet");
+
+  self.animatedView.accessibilityIdentifier = @"animated view";
 
 }
 

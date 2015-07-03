@@ -7,6 +7,12 @@
 #import <dlfcn.h>
 #endif
 
+@interface CalAppDelegate ()
+
+@property(strong, nonatomic) CalDragDropController *dragAndDropController;
+
+@end
+
 @implementation CalAppDelegate
 
 #if LOAD_CALABASH_DYLIB
@@ -150,7 +156,6 @@
   return directoryContents;
 }
 
-
 - (NSString *) addFileToSandboxDirectory:(NSString *) aJSONDictionary {
   NSData *argData = [aJSONDictionary dataUsingEncoding:NSUTF8StringEncoding];
   NSDictionary *details = [NSJSONSerialization JSONObjectWithData:argData options:0 error:NULL];
@@ -176,6 +181,11 @@
   return filename;
 }
 
+- (NSString *) animateOrangeViewOnDragAndDropController:(NSString *)seconds {
+  [self.dragAndDropController animateOrangeViewForSeconds:[seconds doubleValue]];
+  return @"YES";
+}
+
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -187,6 +197,7 @@
   thirdController = [[CalDragDropController alloc]
                      initWithNibName:NSStringFromClass([CalDragDropController class])
                      bundle:nil];
+  self.dragAndDropController = thirdController;
 
   UITabBarController *tabController = [UITabBarController new];
   SEL transSel = NSSelectorFromString(@"translucent");

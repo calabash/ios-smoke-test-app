@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalDragDropController">
             <connections>
+                <outlet property="animatedView" destination="i8y-6d-IrB" id="9w7-n6-edl"/>
                 <outlet property="blueImageView" destination="BYe-cq-28H" id="rV0-Yh-mPZ"/>
                 <outlet property="greenImageView" destination="jHL-fj-mB6" id="foH-wH-JVs"/>
                 <outlet property="leftDropTarget" destination="1Pb-27-PZ1" id="Axi-Qv-oi3"/>
@@ -85,16 +86,26 @@
                         <action selector="buttonTouchedShowAlert:" destination="-1" eventType="touchUpInside" id="7pB-tF-cJl"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i8y-6d-IrB" customClass="CalAnimatedView">
+                    <rect key="frame" x="278" y="376" width="44" height="44"/>
+                    <color key="backgroundColor" red="1" green="0.49803921569999998" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="uce-G8-Ste"/>
+                        <constraint firstAttribute="height" constant="44" id="zVo-an-tWC"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="1Pb-27-PZ1" firstAttribute="top" secondItem="Rqu-Dh-Won" secondAttribute="top" id="55L-hT-56x"/>
                 <constraint firstItem="fkR-BC-Ech" firstAttribute="top" secondItem="jY6-2e-Pbf" secondAttribute="top" id="BFf-Uw-fcy"/>
                 <constraint firstAttribute="centerY" secondItem="Rqu-Dh-Won" secondAttribute="centerY" id="BSg-7t-KBb"/>
+                <constraint firstItem="i8y-6d-IrB" firstAttribute="top" secondItem="1Pb-27-PZ1" secondAttribute="bottom" constant="10" id="BfR-yd-Hwf"/>
                 <constraint firstItem="Rqu-Dh-Won" firstAttribute="centerX" secondItem="jY6-2e-Pbf" secondAttribute="centerX" id="Fxd-d1-eaE"/>
                 <constraint firstItem="Spo-qO-ArV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="J1V-Ud-dcC"/>
                 <constraint firstItem="jHL-fj-mB6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="JhR-Q7-gRc"/>
                 <constraint firstItem="1Pb-27-PZ1" firstAttribute="bottom" secondItem="Rqu-Dh-Won" secondAttribute="bottom" id="Koz-Hs-Bzi"/>
+                <constraint firstAttribute="centerX" secondItem="i8y-6d-IrB" secondAttribute="centerX" id="O31-Ua-k3g"/>
                 <constraint firstAttribute="centerX" secondItem="BYe-cq-28H" secondAttribute="centerX" id="PLE-f8-yuv"/>
                 <constraint firstItem="BYe-cq-28H" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="Pa5-Ve-IzE"/>
                 <constraint firstItem="1Pb-27-PZ1" firstAttribute="leading" secondItem="Spo-qO-ArV" secondAttribute="leading" id="SA7-I7-pOI"/>
