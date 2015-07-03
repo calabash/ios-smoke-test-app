@@ -28,6 +28,26 @@ module CalSmoke
       end
     end
 
+    def wait_for_alert
+      timeout = 4
+      message = "Waited #{timeout} seconds for an alert to appear"
+      options = {timeout: timeout, timeout_message: message}
+
+      wait_for(options) do
+        alert_exists?
+      end
+    end
+
+    def wait_for_alert_with_title(alert_title)
+      timeout = 4
+      message = "Waited #{timeout} seconds for an alert with title '#{alert_title}' to appear"
+      options = {timeout: timeout, timeout_message: message}
+
+      wait_for(options) do
+        alert_exists?(alert_title)
+      end
+    end
+
     def tap_alert_button(button_title)
       timeout = 4
       message = "Waited #{timeout} seconds for an alert to appear"
@@ -123,23 +143,11 @@ When(/^I touch the show alert button$/) do
 end
 
 Then(/^I see an alert$/) do
-  timeout = 4
-  message = "Waited #{timeout} seconds for an alert to appear"
-  options = {timeout: timeout, timeout_message: message}
-
-  wait_for(options) do
-    alert_exists?
-  end
+  wait_for_alert
 end
 
-Then(/^I see the "([^"]*)" alert$/) do |alert_id|
-  timeout = 4
-  message = "Waited #{timeout} seconds for an alert to appear"
-  options = {timeout: timeout, timeout_message: message}
-
-  wait_for(options) do
-    alert_exists?(alert_id)
-  end
+Then(/^I see the "([^"]*)" alert$/) do |alert_title|
+  wait_for_alert_with_title(alert_title)
 end
 
 And(/^I can dismiss the alert with the OK button$/) do
