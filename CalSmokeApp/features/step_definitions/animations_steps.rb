@@ -11,6 +11,12 @@ end
 
 And(/^I have started an animation that lasts (\d+) seconds$/) do |duration|
   @last_animation_duration = duration.to_i
+  timeout = 4
+  query = "view marked:'animated view'"
+  message = "Timed out waiting for #{query} after #{timeout} seconds"
+
+  wait_for({timeout: 4, timeout_message: message}) { !query(query).empty? }
+
   backdoor('animateOrangeViewOnDragAndDropController:', duration)
 end
 
