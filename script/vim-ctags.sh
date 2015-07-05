@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
-ctags -R -f ./.git/tags \
+ctags -V -R -f ./.git/tags \
   --exclude=*.png \
-  --exclude=CalSmokeApp/build \
-  --exclude=CalSmokeApp/reports \
-  --exclude=CalSmokeApp/*.app \
-  --exclude=CalSmokeApp/xtc-staging \
-  --exclude=*.h \
+  --exclude=.screenshots \
+  --exclude=build \
+  --exclude=reports \
+  --exclude=*.app \
+  --exclude=xtc-staging \
+  --exclude=*.framework \
+  --exclude=.irb-history \
+  --exclude=*.xcodeproj \
+  --exclude=*.xcworkspace \
+  --exclude=.idea \
   --exclude=*.plist
