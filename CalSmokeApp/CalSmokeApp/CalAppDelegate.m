@@ -63,6 +63,7 @@
 }
 
 
+// backdoor
 - (NSString *) stringForDefaultsDictionary:(NSString *) aIgnore {
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   [defaults synchronize];
@@ -70,6 +71,7 @@
   return [self JSONStringWithDictionary:dictionary];
 }
 
+// backdoor
 - (NSString *)simulatorPreferencesPath:(NSString *) aIgnore {
   static NSString *path = nil;
   static dispatch_once_t onceToken;
@@ -126,6 +128,7 @@
   return dirPaths[0];
 }
 
+// backdoor
 - (NSString *) stringForPathToSandboxDirectory:(NSString *) aSandboxDirectory {
   NSArray *allowed = @[@"tmp", @"Documents", @"Library"];
   NSUInteger idx = [allowed indexOfObject:aSandboxDirectory];
@@ -156,6 +159,7 @@
   return directoryContents;
 }
 
+// backdoor
 - (NSString *) addFileToSandboxDirectory:(NSString *) aJSONDictionary {
   NSData *argData = [aJSONDictionary dataUsingEncoding:NSUTF8StringEncoding];
   NSDictionary *details = [NSJSONSerialization JSONObjectWithData:argData options:0 error:NULL];
@@ -181,9 +185,67 @@
   return filename;
 }
 
+// backdoor
 - (NSString *) animateOrangeViewOnDragAndDropController:(NSString *)seconds {
   [self.dragAndDropController animateOrangeViewForSeconds:[seconds doubleValue]];
   return @"YES";
+}
+
+// Causes an app crash
+- (void) backdoorWithVoidReturn:(NSString *) argument {
+  NSLog(@"received backdoor with argument: %@", argument);
+}
+
+// Special case.  This method can never be called because the server will
+// always append ':' to the selector name.
+// This behavior is deprecated in 0.15.0 and is scheduled for change.
+- (NSString *) backdoorWithNoArgument {
+  NSLog(@"received backdoor with no argument");
+  return @"true";
+}
+
+// Causes an app crash
+- (BOOL) doesStateMatchStringArgument:(NSString *) argument {
+  NSString *state = @"argument";
+  return [argument isEqualToString:state];
+}
+
+- (NSNumber *) numberFromString:(NSString *) argument {
+  return @(argument.length);
+}
+
+- (NSArray *) arrayByInsertingString:(NSString *) argument {
+  return @[argument];
+}
+
+- (NSDictionary *) dictionaryByInsertingString:(NSString *) argument {
+  return @{@"argument" : argument};
+}
+
+- (NSString *) stringByEncodingLengthOfDictionary:(NSDictionary *) argument {
+  return [NSString stringWithFormat:@"%@", @(argument.count)];
+}
+
+- (NSNumber *) numberWithCountOfArray:(NSArray *) argument {
+  return @(argument.count);
+}
+
+- (NSString *) stringByReturningString:(NSString *) argument {
+  return argument;
+}
+
+// Invalid - argument cannot be a primitive
+- (NSString *) stringByEncodingBOOL:(BOOL) argument {
+  return [NSString stringWithFormat:@"%@", @(argument)];
+}
+
+// Invalid - argument cannot be a primitive
+- (NSString *) stringByEncodingNSUInteger:(NSUInteger) argument {
+  return [NSString stringWithFormat:@"%@", @(argument)];
+}
+
+- (NSString *) stringByEncodingNumber:(NSNumber *) argument {
+  return [NSString stringWithFormat:@"%@", argument];
 }
 
 #pragma mark - UIApplicationDelegate
