@@ -75,7 +75,12 @@ end
 
 Then(/^the screenshot will have a number appended to the name$/) do
   dir = screenshots_subdirectory
-  path = File.join(dir, 'my-screenshot_0.png')
+  begin
+    count = Calabash::Cucumber::FailureHelpers.class_variable_get(:@@screenshot_count) - 1
+  rescue NameError => _
+    raise "Class variable @@screenshot_count is undefined.\nHas a screenshot been taken yet?"
+  end
+  path = File.join(dir, "my-screenshot_#{count}.png")
   expect(File.exists?(path)).to be == true
 end
 
