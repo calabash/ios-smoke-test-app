@@ -5,9 +5,11 @@ Feature:  Backdoors
   I want a way to get my app into a good shape for testing
   and to get some state from my app at runtime
 
-  # We've been advocating just kind of method signature of backdoors.
+  # We've been advocating only one kind of signature for backdoor methods.
   #
   # - (NSString *) backdoorWithString:(NSString *) argument
+  #
+  # The server can actually handle other kinds method signatures.
   #
   # The rules for valid backdoor methods are:
   #
