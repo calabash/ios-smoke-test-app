@@ -248,6 +248,18 @@
   return [NSString stringWithFormat:@"%@", argument];
 }
 
+- (NSString *) showNetworkIndicator:(NSString *) ignored {
+  UIApplication *shared = [UIApplication sharedApplication];
+  [shared setNetworkActivityIndicatorVisible:YES];
+  return [shared isNetworkActivityIndicatorVisible] ? @"YES" : @"NO";
+}
+
+- (NSString *) stopNetworkIndicator:(NSString *) ignored {
+  UIApplication *shared = [UIApplication sharedApplication];
+  [shared setNetworkActivityIndicatorVisible:NO];
+  return [shared isNetworkActivityIndicatorVisible] ? @"NO" : @"YES";
+}
+
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

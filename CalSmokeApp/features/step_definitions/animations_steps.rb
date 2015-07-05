@@ -27,3 +27,23 @@ Then(/^I can wait for the animation to stop$/) do
 
   wait_for_none_animating(options)
 end
+
+And(/^I start the network indicator for (\d+) seconds$/) do |duration|
+  @last_animation_duration = duration.to_i
+  backdoor('showNetworkIndicator:', '')
+
+  pid = fork do
+    sleep duration.to_i
+    backdoor('stopNetworkIndicator:', '')
+  end
+
+  Process.detach(pid)
+end
+
+Then(/^I can wait for the indicator to stop$/) do
+  timeout = @last_animation_duration + 1
+  message = "Waited #{timeout} seconds for the network indicator to stop"
+  options = {timeout: timeout, timeout_message: message }
+
+  wait_for_no_network_indicator(options)
+end
