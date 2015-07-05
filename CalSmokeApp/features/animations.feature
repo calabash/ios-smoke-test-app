@@ -22,3 +22,9 @@ Feature:  Animations
     When I pass an unknown condition to wait_for_condition
     Then the app should not crash
     And an error should be raised
+
+  # It is impossible to pass a nil query.  The client will substitute a '*'
+  Scenario: Call wait_for_animation with a nil query
+    When I pass an empty query to wait_for_none_animating
+    Then the app should not crash
+    And an error should be raised

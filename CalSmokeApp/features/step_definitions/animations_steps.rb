@@ -50,6 +50,15 @@ When(/^I pass an unknown condition to wait_for_condition$/) do
   end
 end
 
+When(/^I pass an empty query to wait_for_none_animating$/) do
+  options = { query: '' }
+  begin
+    wait_for_none_animating(options)
+  rescue RuntimeError => _
+    @runtime_error_raised = true
+  end
+end
+
 Then(/^the app should not crash$/) do
   query('*')
 end
