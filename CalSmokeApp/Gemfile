@@ -8,7 +8,7 @@ gem 'retriable', '~> 2.0'
 gem 'rake', '~> 10.3'
 gem 'bundler', '~> 1.6'
 gem 'xcpretty', '~> 0.1'
-gem 'briar', '~> 1.2'
+gem 'briar', '>= 1.3.1', '< 2.0'
 
 # rspec stack
 gem 'rspec', '~> 3.0'

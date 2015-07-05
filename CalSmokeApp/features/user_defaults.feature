@@ -26,15 +26,18 @@ Feature:  NSUserDefaults
   # NSUserDefaults are part of the app sandbox and so are deleted by
   # `reset_app_sandbox`.
   @reset_app_btw_scenarios
+  @backdoor
   Scenario: 20 I turn the switch on the first view on
     And I drop some files in the sandbox
     Given I turn the switch on
 
+  @backdoor
   Scenario: 21 The switch should be on because I did not reset the app before this Scenario
     Then I should see the files I put in the sandbox
     Then I should see the switch is on
 
   @reset_app_btw_scenarios
+  @backdoor
   Scenario: 22 The switch should be off because I did reset the app before this Scenario
     Then I should not see the files I put in the sandbox
     Then I should see the switch is off
