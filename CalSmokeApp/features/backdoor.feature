@@ -26,7 +26,7 @@ Feature:  Backdoors
     Then I should see a helpful error message
 
   Scenario: Backdoor that takes an NSString argument
-    And I call backdoor on method that takes an NSString as an argument
+    And I call backdoor on a method that takes an NSString as an argument
     Then I should get back that string
 
   Scenario: Backdoor that takes an NSDictionary argument
