@@ -13,7 +13,6 @@ Feature:  Animations
     Then I can wait for the animation to stop
 
   @network_indicator
-  @multi_threaded
   @backdoor
   Scenario: Start the network indicator and wait for it to finish
     And I start the network indicator for 4 seconds
