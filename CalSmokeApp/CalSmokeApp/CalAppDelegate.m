@@ -248,6 +248,29 @@
   return [NSString stringWithFormat:@"%@", argument];
 }
 
+- (NSString *) showNetworkIndicator:(NSString *) ignored {
+  UIApplication *shared = [UIApplication sharedApplication];
+  [shared setNetworkActivityIndicatorVisible:YES];
+  return [shared isNetworkActivityIndicatorVisible] ? @"YES" : @"NO";
+}
+
+- (NSString *) stopNetworkIndicator:(NSString *) ignored {
+  UIApplication *shared = [UIApplication sharedApplication];
+  [shared setNetworkActivityIndicatorVisible:NO];
+  return [shared isNetworkActivityIndicatorVisible] ? @"NO" : @"YES";
+}
+
+- (NSString *) startNetworkIndicatorForNSeconds:(NSNumber *) seconds {
+  UIApplication *shared = [UIApplication sharedApplication];
+  [shared setNetworkActivityIndicatorVisible:YES];
+
+  NSTimeInterval delay = (NSTimeInterval)[seconds doubleValue];
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [self stopNetworkIndicator:nil];
+  });
+  return [shared isNetworkActivityIndicatorVisible] ? @"YES" : @"NO";
+}
+
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

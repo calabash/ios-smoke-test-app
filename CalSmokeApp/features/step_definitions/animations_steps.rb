@@ -27,3 +27,42 @@ Then(/^I can wait for the animation to stop$/) do
 
   wait_for_none_animating(options)
 end
+
+And(/^I start the network indicator for (\d+) seconds$/) do |duration|
+  @last_animation_duration = duration.to_i
+  backdoor('startNetworkIndicatorForNSeconds:', duration.to_i)
+end
+
+Then(/^I can wait for the indicator to stop$/) do
+  timeout = @last_animation_duration + 1
+  message = "Waited #{timeout} seconds for the network indicator to stop"
+  options = {timeout: timeout, timeout_message: message }
+
+  wait_for_no_network_indicator(options)
+end
+
+When(/^I pass an unknown condition to wait_for_condition$/) do
+  options = { condition: 'unknown' }
+  begin
+    wait_for_condition(options)
+  rescue RuntimeError => _
+    @runtime_error_raised = true
+  end
+end
+
+When(/^I pass an empty query to wait_for_none_animating$/) do
+  options = { query: '' }
+  begin
+    wait_for_none_animating(options)
+  rescue RuntimeError => _
+    @runtime_error_raised = true
+  end
+end
+
+Then(/^the app should not crash$/) do
+  query('*')
+end
+
+And(/^an error should be raised$/) do
+  expect(@runtime_error_raised).to be == true
+end
