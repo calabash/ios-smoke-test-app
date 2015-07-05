@@ -17,3 +17,8 @@ Feature:  Animations
   Scenario: Start the network indicator and wait for it to finish
     And I start the network indicator for 4 seconds
     Then I can wait for the indicator to stop
+
+  Scenario: Pass an unknown condition to the condition route
+    When I pass an unknown condition to wait_for_condition
+    Then the app should not crash
+    And an error should be raised

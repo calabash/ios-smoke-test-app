@@ -40,3 +40,20 @@ Then(/^I can wait for the indicator to stop$/) do
 
   wait_for_no_network_indicator(options)
 end
+
+When(/^I pass an unknown condition to wait_for_condition$/) do
+  options = { condition: 'unknown' }
+  begin
+    wait_for_condition(options)
+  rescue RuntimeError => _
+    @runtime_error_raised = true
+  end
+end
+
+Then(/^the app should not crash$/) do
+  query('*')
+end
+
+And(/^an error should be raised$/) do
+  expect(@runtime_error_raised).to be == true
+end
