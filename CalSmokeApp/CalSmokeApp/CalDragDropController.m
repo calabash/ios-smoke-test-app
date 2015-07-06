@@ -254,6 +254,16 @@ typedef enum : NSInteger {
                    }];
 }
 
+#pragma mark - Orientation / Rotation
+
+- (NSUInteger)supportedInterfaceOrientations {
+  return UIInterfaceOrientationMaskAll;
+}
+
+- (BOOL) shouldAutorotate {
+  return YES;
+}
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
