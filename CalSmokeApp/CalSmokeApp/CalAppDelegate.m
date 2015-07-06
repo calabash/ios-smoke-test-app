@@ -2,6 +2,7 @@
 #import "CalFirstViewController.h"
 #import "CalCollectionViewController.h"
 #import "CalDragDropController.h"
+#import "CalTabBarController.h"
 
 #if LOAD_CALABASH_DYLIB
 #import <dlfcn.h>
@@ -14,6 +15,8 @@
 @end
 
 @implementation CalAppDelegate
+
+@synthesize tabBarController = _tabBarController;
 
 #if LOAD_CALABASH_DYLIB
 - (void) loadCalabashDylib {
@@ -284,18 +287,19 @@
                      bundle:nil];
   self.dragAndDropController = thirdController;
 
-  UITabBarController *tabController = [UITabBarController new];
+  self.tabBarController = [CalTabBarController new];
+
   SEL transSel = NSSelectorFromString(@"translucent");
 
-  if ([tabController.tabBar respondsToSelector:transSel]) {
-    tabController.tabBar.translucent = NO;
+  if ([self.tabBarController.tabBar respondsToSelector:transSel]) {
+    self.tabBarController.tabBar.translucent = NO;
   }
 
-  tabController.viewControllers = @[firstController,
+  self.tabBarController.viewControllers = @[firstController,
                                     secondViewController,
                                     thirdController];
 
-  self.window.rootViewController = tabController;
+  self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
 
 #if LOAD_CALABASH_DYLIB
@@ -304,7 +308,17 @@
 
   return YES;
 }
-							
+
+- (NSUInteger)application:(UIApplication *)application
+supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  UIViewController *presented = self.tabBarController.selectedViewController;
+  if (presented == self.dragAndDropController) {
+    return UIInterfaceOrientationMaskAll;
+  } else {
+    return UIInterfaceOrientationMaskPortrait;
+  }
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
   /*
    Sent when the application is about to move from active to inactive state.
