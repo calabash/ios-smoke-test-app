@@ -13,7 +13,7 @@ clean:
 # Builds an ipa with no Calabash server.
 ipa:
 	rm -rf build
-	rm -rf CalSSO-no-Calabash-dylibs-embedded.ipa
+	rm -rf CalSmoke-no-Calabash-dylibs-embedded.ipa
 	script/make/make-ipa.sh Release
 
 # Builds an ipa that loads the Calabash dylib at runtime.
@@ -21,7 +21,7 @@ ipa:
 # $ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8<snip>F)" make ipa-dylib
 ipa-dylib:
 	rm -rf build
-	rm -rf CalSSO-Calabash-dylibs-embedded.ipa
+	rm -rf CalSmoke-Calabash-dylibs-embedded.ipa
 	script/make/make-ipa.sh Debug
 
 # Builds an ipa from the -cal target.
