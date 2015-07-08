@@ -9,50 +9,30 @@ typedef struct {
   NSUInteger decibels;
 } CalSmokeAlarm;
 
+@interface SmokeAlarm : NSObject
+
+@property(nonatomic, assign) NSInteger code;
+@property(nonatomic, assign) CGFloat visibility;
+@property(nonatomic, assign) NSUInteger decibels;
+@property(nonatomic, assign, setter=isOn) BOOL isOn;
+@end
+
+@implementation SmokeAlarm
+
+- (instancetype) init {
+  self = [super init];
+  if (self) {
+    _code = -1;
+    _visibility = 0.5;
+    _decibels = 100;
+    _isOn = NO;
+  }
+  return self;
+}
+
+@end
+
 @interface CalViewWithArbitrarySelectors ()
-
-- (BOOL) takesPointer:(id) arg;
-- (BOOL) takesInt:(NSInteger) arg;
-- (BOOL) takesUnsignedInt:(NSUInteger) arg;
-- (BOOL) takesShort:(short) arg;
-- (BOOL) takesUnsignedShort:(unsigned short) arg;
-- (BOOL) takesFloat:(float) arg;
-- (BOOL) takesDouble:(double) arg;
-- (BOOL) takesLongDouble:(long double) arg;
-- (BOOL) takesCString:(char *) arg;
-- (BOOL) takesChar:(char) arg;
-- (BOOL) takesUnsignedChar:(unichar) arg;
-- (BOOL) takesBOOL:(BOOL) arg;
-- (BOOL) takesLong:(long) arg;
-- (BOOL) takesUnsignedLong:(unsigned long) arg;
-- (BOOL) takesLongLong:(long long) arg;
-- (BOOL) takesUnsignedLongLong:(unsigned long long) arg;
-- (BOOL) takesPoint:(CGPoint) arg;
-- (BOOL) takesRect:(CGRect) arg;
-
-- (void) returnsVoid;
-- (NSString *) returnsPointer;
-- (char) returnsChar;
-- (unichar) returnsUnsignedChar;
-- (char *) returnsCString;
-- (BOOL) returnsBOOL;
-- (bool) returnsBool;
-- (NSInteger) returnsInt;
-- (NSUInteger) returnsUnsignedInt;
-- (short) returnsShort;
-- (unsigned short) returnsUnsignedShort;
-- (double) returnsDouble;
-- (long double) returnsLongDouble;
-- (float) returnsFloat;
-- (long) returnsLong;
-- (unsigned long) returnsUnsignedLong;
-- (long long) returnsLongLong;
-- (unsigned long long) returnsUnsignedLongLong;
-- (CGPoint) returnsPoint;
-- (CGRect) returnsRect;
-- (CalSmokeAlarm) returnSmokeAlarm;
-
-- (NSString *) stringFromMethodWithSelf:(id) arg;
 
 @end
 
