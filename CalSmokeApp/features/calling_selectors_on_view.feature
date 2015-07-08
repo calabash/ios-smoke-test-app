@@ -70,6 +70,11 @@ Feature: Calling Arbitrary Selectors
     When I call an unknown selector on a view
     Then I expect to receive back "*****"
 
+    @self
+  Scenario: Use __self__ to reference self
+    When I call a method that references the matched view
+    Then I expect to receive back "Self reference! Hurray!"
+
   Scenario: Selector arguments
     Then I call selector with pointer argument
     Then I call selector with int argument

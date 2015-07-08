@@ -52,6 +52,8 @@ typedef struct {
 - (CGRect) returnsRect;
 - (CalSmokeAlarm) returnSmokeAlarm;
 
+- (NSString *) stringFromMethodWithSelf:(id) arg;
+
 @end
 
 @implementation CalViewWithArbitrarySelectors
@@ -103,4 +105,12 @@ typedef struct {
   return alarm;
 }
 
+- (NSString *) stringFromMethodWithSelf:(id) arg {
+  if (arg == self) {
+   return @"Self reference! Hurray!";
+  } else {
+    return [NSString stringWithFormat:@"ACK! arg '%@' was not self!",
+           arg];
+  }
+}
 @end

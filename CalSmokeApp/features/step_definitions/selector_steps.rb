@@ -1,20 +1,20 @@
 module CalSmoke
   module Selectors
 
-    def call_selector(hash_or_symbol)
-      query("view marked:'first page'", hash_or_symbol)
+    def call_selector(array_or_symbol)
+      query("view marked:'first page'", array_or_symbol)
     end
 
-    def returned_from_selector(hash_or_symbol)
-      result = call_selector(hash_or_symbol)
+    def returned_from_selector(array_or_symbol)
+      result = call_selector(array_or_symbol)
       if result.empty?
-        raise "Expected call to '#{hash_or_symbol}' to return at least one value"
+        raise "Expected call to '#{array_or_symbol}' to return at least one value"
       end
       result.first
     end
 
-    def expect_selector_truthy(hash_or_symbol)
-      res = call_selector(hash_or_symbol)
+    def expect_selector_truthy(array_or_symbol)
+      res = call_selector(array_or_symbol)
       expect(res.empty?).to be_falsey
       expect(res.first).to be == 1
     end
@@ -28,11 +28,16 @@ When(/^I call an unknown selector on a view$/) do
   if result.empty?
     raise "Expected a query match for \"view marked:'first page'\""
   end
-  @unknown_selector_result = result.first
+  @received_back_from_selector = result.first
 end
 
 Then(/^I expect to receive back "(.*?)"$/) do |expected|
-  expect(@unknown_selector_result).to be == expected
+  expect(@received_back_from_selector).to be == expected
+end
+
+When(/^I call a method that references the matched view$/) do
+  args = [{stringFromMethodWithSelf:'__self__'}]
+  @received_back_from_selector = returned_from_selector(args)
 end
 
 Then(/^I call selector with pointer argument$/) do
