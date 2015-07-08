@@ -1,4 +1,3 @@
-@wip
 Feature: Calling Arbitrary Selectors
   In order to speed up testing and gain insights about my app
   As a developer and tester
@@ -66,6 +65,11 @@ Feature: Calling Arbitrary Selectors
   Background: Get me to the first tab
     Given I see the first tab
 
+  @wip
+  Scenario: Unknown selector
+    When I call an unknown selector on a view
+    Then I expect to receive back "*****"
+
   Scenario: Selector arguments
     Then I call selector with pointer argument
     Then I call selector with int argument
@@ -85,3 +89,4 @@ Feature: Calling Arbitrary Selectors
     Then I call selector with unsigned long long argument
     Then I call selector with point argument
     Then I call selector with rect argument
+

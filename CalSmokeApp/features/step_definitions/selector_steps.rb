@@ -15,6 +15,18 @@ end
 
 World(CalSmoke::Selectors)
 
+When(/^I call an unknown selector on a view$/) do
+  result = query("view marked:'first page'", :unknownSelector)
+  if result.empty?
+    raise "Expected a query match for \"view marked:'first page'\""
+  end
+  @unknown_selector_result = result.first
+end
+
+Then(/^I expect to receive back "(.*?)"$/) do |expected|
+  expect(@unknown_selector_result).to be == expected
+end
+
 Then(/^I call selector with pointer argument$/) do
   arg = [{takesPointer:'a string'}]
   expect_selector_truthy(arg)
