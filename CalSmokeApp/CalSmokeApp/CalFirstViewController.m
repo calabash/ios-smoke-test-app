@@ -1,5 +1,6 @@
 #import "CalFirstViewController.h"
 #import "UIView+Positioning.h"
+#import "CalViewWithArbitrarySelectors.h"
 
 static NSString *const kUserDefaultsSwitchState = @"sh.calaba.CalSmokeApp Switch State";
 
@@ -8,7 +9,7 @@ typedef enum : NSInteger {
   kTagSwitch
 } view_tags;
 
-@interface CalFirstView : UIView <UITextFieldDelegate>
+@interface CalFirstView : CalViewWithArbitrarySelectors <UITextFieldDelegate>
 
 @property (nonatomic, readonly, strong) UITextField *textField;
 @property (nonatomic, readonly, strong) IBOutlet UISwitch *uiswitch;

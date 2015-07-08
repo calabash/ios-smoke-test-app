@@ -34,6 +34,8 @@
 		F56592551B46AD3300C044C8 /* CalAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F56592541B46AD3300C044C8 /* CalAnimatedView.m */; };
 		F56592561B46AD3300C044C8 /* CalAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F56592541B46AD3300C044C8 /* CalAnimatedView.m */; };
 		F571F76B1B45843B00CA108B /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F571F76A1B45843B00CA108B /* Reveal.framework */; };
+		F5BA6F021B4D274E00DB898F /* CalViewWithArbitrarySelectors.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BA6F011B4D274E00DB898F /* CalViewWithArbitrarySelectors.m */; };
+		F5BA6F031B4D274E00DB898F /* CalViewWithArbitrarySelectors.m in Sources */ = {isa = PBXBuildFile; fileRef = F5BA6F011B4D274E00DB898F /* CalViewWithArbitrarySelectors.m */; };
 		F5C276331B3B546A00DF63FA /* CalDragDropController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C276311B3B546A00DF63FA /* CalDragDropController.xib */; };
 		F5C276341B3B546A00DF63FA /* CalDragDropController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C276311B3B546A00DF63FA /* CalDragDropController.xib */; };
 		F5C276371B3B547900DF63FA /* CalDragDropController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C276361B3B547900DF63FA /* CalDragDropController.m */; };
@@ -73,6 +75,8 @@
 		F56592531B46AD3300C044C8 /* CalAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalAnimatedView.h; sourceTree = "<group>"; };
 		F56592541B46AD3300C044C8 /* CalAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalAnimatedView.m; sourceTree = "<group>"; };
 		F571F76A1B45843B00CA108B /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		F5BA6F001B4D274E00DB898F /* CalViewWithArbitrarySelectors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalViewWithArbitrarySelectors.h; sourceTree = "<group>"; };
+		F5BA6F011B4D274E00DB898F /* CalViewWithArbitrarySelectors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalViewWithArbitrarySelectors.m; sourceTree = "<group>"; };
 		F5C276321B3B546A00DF63FA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalDragDropController.xib; sourceTree = "<group>"; };
 		F5C276351B3B547900DF63FA /* CalDragDropController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDragDropController.h; sourceTree = "<group>"; };
 		F5C276361B3B547900DF63FA /* CalDragDropController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalDragDropController.m; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 		F52BFB151987EF8700299AEF /* CalSmokeApp */ = {
 			isa = PBXGroup;
 			children = (
+				F5BA6F001B4D274E00DB898F /* CalViewWithArbitrarySelectors.h */,
+				F5BA6F011B4D274E00DB898F /* CalViewWithArbitrarySelectors.m */,
 				F52BFB481987F5FF00299AEF /* UIView+Positioning.h */,
 				F52BFB491987F5FF00299AEF /* UIView+Positioning.m */,
 				F52B40B81B4A66430022AEC8 /* CalTabBarController.h */,
@@ -309,6 +315,7 @@
 				F52BFB201987EF8700299AEF /* CalAppDelegate.m in Sources */,
 				63BB24D852A7A25FBE2ECEA0 /* CalCollectionViewCell.m in Sources */,
 				F52B40BA1B4A66430022AEC8 /* CalTabBarController.m in Sources */,
+				F5BA6F021B4D274E00DB898F /* CalViewWithArbitrarySelectors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +332,7 @@
 				f23b5a94a19df2bb34667ee7 /* CalAppDelegate.m in Sources */,
 				63BB238FB84B0696F6A79DA1 /* CalCollectionViewCell.m in Sources */,
 				F52B40BB1B4A66430022AEC8 /* CalTabBarController.m in Sources */,
+				F5BA6F031B4D274E00DB898F /* CalViewWithArbitrarySelectors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
