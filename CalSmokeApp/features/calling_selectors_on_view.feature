@@ -1,3 +1,4 @@
+@wip
 Feature: Calling Arbitrary Selectors
   In order to speed up testing and gain insights about my app
   As a developer and tester
@@ -65,7 +66,6 @@ Feature: Calling Arbitrary Selectors
   Background: Get me to the first tab
     Given I see the first tab
 
-  @wip
   Scenario: Unknown selector
     When I call an unknown selector on a view
     Then I expect to receive back "*****"
@@ -89,4 +89,26 @@ Feature: Calling Arbitrary Selectors
     Then I call selector with unsigned long long argument
     Then I call selector with point argument
     Then I call selector with rect argument
+
+  Scenario: Selector return values
+    Then I call a selector that returns void
+    Then I call a selector that returns a pointer
+    Then I call a selector that returns a char
+    Then I call a selector that returns an unsigned char
+    Then I call a selector that returns a c string
+    Then I call a selector that returns a BOOL
+    Then I call a selector that returns a bool
+    Then I call a selector that returns an int
+    Then I call a selector that returns an unsigned int
+    Then I call a selector that returns a short
+    Then I call a selector that returns an unsigned short
+    Then I call a selector that returns a double
+    Then I call a selector that returns a long double
+    Then I call a selector that returns a float
+    Then I call a selector that returns a long
+    Then I call a selector that returns an unsigned long
+    Then I call a selector that returns a long long
+    Then I call a selector that returns an unsigned long long
+    Then I call a selector that returns a point
+    Then I call a selector that returns a rect
 

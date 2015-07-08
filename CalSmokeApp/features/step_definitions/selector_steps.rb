@@ -5,6 +5,14 @@ module CalSmoke
       query("view marked:'first page'", hash_or_symbol)
     end
 
+    def returned_from_selector(hash_or_symbol)
+      result = call_selector(hash_or_symbol)
+      if result.empty?
+        raise "Expected call to '#{hash_or_symbol}' to return at least one value"
+      end
+      result.first
+    end
+
     def expect_selector_truthy(hash_or_symbol)
       res = call_selector(hash_or_symbol)
       expect(res.empty?).to be_falsey
@@ -133,3 +141,107 @@ Then(/I call selector with (point|rect) argument$/) do |type|
   end
   expect_selector_truthy(arg)
 end
+
+Then(/^I call a selector that returns void$/) do
+  expect(returned_from_selector(:returnsVoid)).to be == nil
+end
+
+Then(/^I call a selector that returns a pointer$/) do
+  expect(returned_from_selector(:returnsPointer)).to be == 'a pointer'
+end
+
+Then(/^I call a selector that returns an? (unsigned char|char)$/) do |signed|
+  if signed[/unsigned/, 0]
+    result = returned_from_selector(:returnsUnsignedChar)
+    expected = 97 # ASCII code for 'a'
+  else
+    result = returned_from_selector(:returnsChar)
+    expected = -22
+  end
+  expect(result).to be == expected
+end
+
+Then(/^I call a selector that returns a c string$/) do
+  expect(returned_from_selector(:returnsCString)).to be == 'c string'
+end
+
+Then(/^I call a selector that returns a (BOOL|bool)$/) do |boolean|
+  if boolean == 'BOOL'
+    result = returned_from_selector(:returnsBOOL)
+  else
+    result = returned_from_selector(:returnsBool)
+  end
+  expect(result).to be == 1
+end
+
+Then(/^I call a selector that returns an? (unsigned int|int)$/) do |signed|
+  if signed[/unsigned/, 0]
+    result = returned_from_selector(:returnsUnsignedInt)
+    expected = 3
+  else
+    result = returned_from_selector(:returnsInt)
+    expected = -3
+  end
+  expect(result).to be == expected
+end
+
+Then(/^I call a selector that returns an? (unsigned short|short)$/) do |signed|
+  if signed[/unsigned/, 0]
+    result = returned_from_selector(:returnsUnsignedShort)
+    expected = 2
+  else
+    result = returned_from_selector(:returnsShort)
+    expected = -2
+  end
+  expect(result).to be == expected
+end
+
+Then(/^I call a selector that returns a (long double|double)$/) do |double|
+  if double[/long/, 0]
+    result = returned_from_selector(:returnsLongDouble)
+    expected = 0.55
+  else
+    result = returned_from_selector(:returnsDouble)
+    expected = 0.5
+  end
+  expect(result).to be == expected
+end
+
+Then(/^I call a selector that returns a float$/) do
+  expect(returned_from_selector(:returnsFloat)).to be == 3.14
+end
+
+Then(/^I call a selector that returns an? (unsigned long|long)$/) do |signed|
+  if signed[/unsigned/, 0]
+    result = returned_from_selector(:returnsUnsignedLong)
+    expected = 4
+  else
+    result = returned_from_selector(:returnsLong)
+    expected = -4
+  end
+  expect(result).to be == expected
+end
+
+Then(/^I call a selector that returns an? (unsigned long long|long long)$/) do |signed|
+  if signed[/unsigned/, 0]
+    result = returned_from_selector(:returnsUnsignedLongLong)
+    expected = 5
+  else
+    result = returned_from_selector(:returnsLongLong)
+    expected = -5
+  end
+  expect(result).to be == expected
+end
+
+Then(/^I call a selector that returns a point$/) do
+  hash = {'X' => 0, 'Y' => 0,
+          'description' => 'NSPoint: {0, 0}'}
+  expect(returned_from_selector(:returnsPoint)).to be == hash
+end
+
+Then(/^I call a selector that returns a rect$/) do
+  hash = {"Width" => 0, "Height" => 0, "X" => 0, "Y" => 0,
+          "description" => "NSRect: {{0, 0}, {0, 0}}"}
+  expect(returned_from_selector(:returnsRect)).to be == hash
+end
+
