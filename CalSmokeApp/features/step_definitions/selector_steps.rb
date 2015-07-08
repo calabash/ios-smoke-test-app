@@ -40,6 +40,28 @@ When(/^I call a method that references the matched view$/) do
   @received_back_from_selector = returned_from_selector(args)
 end
 
+Then(/^the view alarm property is off$/) do
+  result = query("view marked:'first page'", :alarm, :isOn)
+  if result.empty?
+    raise "Expected query match for \"view marked:'first page'\""
+  end
+  expect(result.first).to be == 0
+end
+
+And(/^I can turn the alarm on$/) do
+  result = query("view marked:'first page'", :alarm, [{setIsOn:1}])
+  if result.empty?
+    raise "Expected query match for \"view marked:'first page'\""
+  end
+
+  result = query("view marked:'first page'", :alarm, :isOn)
+  if result.empty?
+    raise "Expected query match for \"view marked:'first page'\""
+  end
+
+  expect(result.first).to be == 1
+end
+
 Then(/^I call selector with pointer argument$/) do
   arg = [{takesPointer:'a string'}]
   expect_selector_truthy(arg)

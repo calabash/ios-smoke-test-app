@@ -70,10 +70,16 @@ Feature: Calling Arbitrary Selectors
     When I call an unknown selector on a view
     Then I expect to receive back "*****"
 
-    @self
   Scenario: Use __self__ to reference self
     When I call a method that references the matched view
     Then I expect to receive back "Self reference! Hurray!"
+
+  # Demonstrates how to chain methods
+  # view.alarm.isOn
+  # [view.alarm setIsOn:1]
+  Scenario: Selector chaining
+    Then the view alarm property is off
+    And I can turn the alarm on
 
   Scenario: Selector arguments
     Then I call selector with pointer argument

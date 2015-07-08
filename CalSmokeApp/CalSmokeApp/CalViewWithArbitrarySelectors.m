@@ -14,7 +14,7 @@ typedef struct {
 @property(nonatomic, assign) NSInteger code;
 @property(nonatomic, assign) CGFloat visibility;
 @property(nonatomic, assign) NSUInteger decibels;
-@property(nonatomic, assign, setter=isOn) BOOL isOn;
+@property(nonatomic, assign, getter=isOn, setter=setIsOn:) BOOL on;
 @end
 
 @implementation SmokeAlarm
@@ -25,7 +25,7 @@ typedef struct {
     _code = -1;
     _visibility = 0.5;
     _decibels = 100;
-    _isOn = NO;
+    _on = NO;
   }
   return self;
 }
@@ -34,9 +34,19 @@ typedef struct {
 
 @interface CalViewWithArbitrarySelectors ()
 
+@property(nonatomic, strong, readonly) SmokeAlarm *alarm;
+
 @end
 
 @implementation CalViewWithArbitrarySelectors
+
+@synthesize alarm = _alarm;
+
+- (SmokeAlarm *) alarm {
+  if (_alarm) { return _alarm; }
+  _alarm = [SmokeAlarm new];
+  return _alarm;
+}
 
 - (BOOL) takesPointer:(id) arg { return YES; }
 - (BOOL) takesInt:(NSInteger) arg { return YES; }
@@ -93,4 +103,5 @@ typedef struct {
            arg];
   }
 }
+
 @end
