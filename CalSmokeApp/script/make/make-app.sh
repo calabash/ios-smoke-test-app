@@ -49,13 +49,13 @@ RETVAL=${PIPESTATUS[0]}
 set -o errexit
 
 if [ $RETVAL != 0 ]; then
-  echo "FAIL:  could not build"
+  echo "FAIL:  Could not build"
   exit $RETVAL
 else
-  echo "INFO: successfully built"
+  echo "INFO: Successfully built"
 fi
 
-echo "Clearing simulator of targets"
+echo "INFO: Clearing simulator of targets"
 bundle exec calabash-ios sim reset
 
 APP_BUNDLE_PATH="${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app"
