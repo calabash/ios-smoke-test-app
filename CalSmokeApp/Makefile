@@ -55,6 +55,9 @@ install_test_binaries:
 	$(MAKE) all
 	./script/make/install-test-binaries.rb
 
+tags:
+	script/make/vim-ctags.sh
+
 new:
 	bundle exec briar install calabash-server
 	$(MAKE) app-cal
