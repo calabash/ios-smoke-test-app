@@ -3,6 +3,12 @@
 // A UIView subclass to test Calabash's ability to call arbitrary selectors
 // on a view.
 
+typedef struct {
+  NSInteger code;
+  CGFloat visibility;
+  NSUInteger decibels;
+} CalSmokeAlarm;
+
 @interface CalViewWithArbitrarySelectors ()
 
 - (BOOL) takesPointer:(id) arg;
@@ -44,6 +50,7 @@
 - (unsigned long long) returnsUnsignedLongLong;
 - (CGPoint) returnsPoint;
 - (CGRect) returnsRect;
+- (CalSmokeAlarm) returnSmokeAlarm;
 
 @end
 
@@ -88,5 +95,12 @@
 - (unsigned long long) returnsUnsignedLongLong { return (unsigned long long)5; }
 - (CGPoint) returnsPoint { return CGPointZero; }
 - (CGRect) returnsRect { return CGRectZero; }
+- (CalSmokeAlarm) returnSmokeAlarm {
+  CalSmokeAlarm alarm;
+  alarm.code = -1;
+  alarm.visibility = 0.5;
+  alarm.decibels = 10;
+  return alarm;
+}
 
 @end

@@ -245,3 +245,7 @@ Then(/^I call a selector that returns a rect$/) do
   expect(returned_from_selector(:returnsRect)).to be == hash
 end
 
+Then(/^I call a selector that returns a CalSmokeAlarm struct$/) do
+  expect(returned_from_selector(:returnSmokeAlarm)).to be_a_kind_of String
+end
+

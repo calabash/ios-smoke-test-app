@@ -1,4 +1,4 @@
-@wip
+@selectors
 Feature: Calling Arbitrary Selectors
   In order to speed up testing and gain insights about my app
   As a developer and tester
@@ -111,4 +111,6 @@ Feature: Calling Arbitrary Selectors
     Then I call a selector that returns an unsigned long long
     Then I call a selector that returns a point
     Then I call a selector that returns a rect
+    Then I call a selector that returns a CalSmokeAlarm struct
+
 
