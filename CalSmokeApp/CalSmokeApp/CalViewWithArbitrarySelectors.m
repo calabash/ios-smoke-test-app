@@ -15,6 +15,7 @@ typedef struct {
 @property(nonatomic, assign) CGFloat visibility;
 @property(nonatomic, assign) NSUInteger decibels;
 @property(nonatomic, assign, getter=isOn, setter=setIsOn:) BOOL on;
+
 @end
 
 @implementation SmokeAlarm
@@ -28,6 +29,12 @@ typedef struct {
     _on = NO;
   }
   return self;
+}
+
+- (NSArray *) selectorWithArg:(NSString *) arg0
+                          arg:(NSString *) arg1
+                          arg:(NSString *) arg2 {
+  return @[arg0, arg1, arg2];
 }
 
 @end
@@ -102,6 +109,12 @@ typedef struct {
     return [NSString stringWithFormat:@"ACK! arg '%@' was not self!",
            arg];
   }
+}
+
+- (NSArray *) selectorWithArg:(NSString *) arg0
+                          arg:(NSString *) arg1
+                          arg:(NSString *) arg2 {
+  return @[arg0, arg1, arg2];
 }
 
 @end

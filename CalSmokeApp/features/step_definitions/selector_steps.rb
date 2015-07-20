@@ -170,6 +170,7 @@ Then(/I call selector with (point|rect) argument$/) do |type|
 end
 
 Then(/^I call a selector that returns void$/) do
+  #expect(returned_from_selector(:returnsVoid)).to be == '<VOID>'
   expect(returned_from_selector(:returnsVoid)).to be == nil
 end
 
@@ -274,5 +275,23 @@ end
 
 Then(/^I call a selector that returns a CalSmokeAlarm struct$/) do
   expect(returned_from_selector(:returnSmokeAlarm)).to be_a_kind_of String
+end
+
+Then(/^I call a selector on a view that has 3 arguments$/) do
+ args = ['a', 'b', 'c']
+ array = [{selectorWithArg:args[0]},
+          {arg:args[1]},
+          {arg:args[2]}]
+ result = returned_from_selector(array)
+ ap result
+end
+
+Then(/^I make a chained call to a selector with 3 arguments$/) do
+ args = ['a', 'b', 'c']
+ array = [{selectorWithArg:args[0]},
+          {arg:args[1]},
+          {arg:args[2]}]
+  result = query("view marked:'first page'", :alarm, array)
+  ap result
 end
 

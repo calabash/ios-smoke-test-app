@@ -124,4 +124,7 @@ Feature: Calling Arbitrary Selectors
     Then I call a selector that returns a rect
     Then I call a selector that returns a CalSmokeAlarm struct
 
+  Scenario: Selectors with multiple arguments
+    Then I call a selector on a view that has 3 arguments
+    Then I make a chained call to a selector with 3 arguments
 
