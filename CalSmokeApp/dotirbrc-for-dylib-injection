@@ -1,0 +1,43 @@
+require 'briar'
+require 'briar/irbrc'
+
+puts 'loaded briar'
+
+require 'pry'
+
+def log_info(msg)
+  puts "\033[35mINFO: #{msg}\033[0m" if msg
+end
+
+if ENV['APP']
+  app = ENV['APP']
+else
+  app = File.expand_path('./CalSmoke-no-Calabash-dylibs-embedded.app')
+  ENV['APP'] = app
+end
+
+unless File.exist?(app)
+  raise "Expected app '#{app}' to exist.\nYou can build the app with `make app`"
+end
+
+puts_calabash_environment
+
+printf 'loading features/support/dylib.rb...'
+load('features/support/dylib.rb')
+puts 'done'
+
+puts "APP => '#{app}'"
+briar_message_of_the_day
+
+dylib = CalSmoke::Dylib.dylib
+log_info("Using dylib => '#{dylib}'")
+
+def start_app(options={})
+  default_options = {
+    :inject_dylib => CalSmoke::Dylib.dylib,
+    :app => ENV['APP'],
+  }
+  merged_options = default_options.merge(options)
+  start_test_server_in_background(merged_options)
+end
+

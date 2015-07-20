@@ -52,9 +52,10 @@ else
   echo "INFO: Successfully built"
 fi
 
-echo "INFO: Clearing simulator of targets"
-bundle exec calabash-ios sim reset
-
 mv "${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET_NAME}.app" ./${TARGET_NAME}.app
 
 echo "export APP=${PWD}/${TARGET_NAME}.app"
+
+echo "INFO: Installing app on default simulator"
+bundle exec run-loop simctl install --app "${PWD}/${TARGET_NAME}.app"
+

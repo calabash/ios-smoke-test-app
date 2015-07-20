@@ -1,4 +1,3 @@
-@wip
 @flash
 Feature: Flash
   In order to explore my app's view heirarchy
