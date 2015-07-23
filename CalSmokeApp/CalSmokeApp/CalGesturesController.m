@@ -2,6 +2,8 @@
 
 @interface CalGesturesController ()
 
+@property (weak, nonatomic) IBOutlet UIView *gestureBox;
+
 @end
 
 @implementation CalGesturesController
@@ -50,6 +52,12 @@
   [super viewDidLoad];
 
   self.view.accessibilityIdentifier = @"gestures page";
+  self.view.accessibilityLabel =
+  NSLocalizedString(@"Gestures page", @"Page where gestures are tested");
+
+  self.gestureBox.accessibilityIdentifier = @"gestures box";
+  self.gestureBox.accessibilityLabel =
+  NSLocalizedString(@"Gestures box", @"A square view to perform gestures in");
 }
 
 - (void) viewWillLayoutSubviews {

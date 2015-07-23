@@ -7,3 +7,5 @@ Feature: Gestures
   @wip
   Scenario:  Double tap
     Given I see the gestures tab
+    When I double tap the box
+    Then the gesture descript changes to double tap
