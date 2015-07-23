@@ -13,9 +13,19 @@
                          bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    self.tabBarItem = [[UITabBarItem alloc]
-                       initWithTabBarSystemItem:UITabBarSystemItemContacts
-                       tag:3];
+    NSString *title = NSLocalizedString(@"Gestures",
+                                        @"Title of tab bar button");
+    self.title = title;
+
+    UIImage *unselected = [UIImage imageNamed:@"tab-bar-gestures"];
+    UIImage *selected = [UIImage imageNamed:@"tab-bar-gestures-selected"];
+
+    UITabBarItem *item = [[UITabBarItem alloc]
+                          initWithTitle:title
+                          image:unselected
+                          selectedImage:selected];
+
+    self.tabBarItem = item;
   }
   return self;
 }
@@ -38,6 +48,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  self.view.accessibilityIdentifier = @"gestures page";
 }
 
 - (void) viewWillLayoutSubviews {
