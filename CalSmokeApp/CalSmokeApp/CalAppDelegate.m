@@ -3,6 +3,7 @@
 #import "CalCollectionViewController.h"
 #import "CalDragDropController.h"
 #import "CalTabBarController.h"
+#import "CalGesturesController.h"
 
 #if LOAD_CALABASH_DYLIB
 #import <dlfcn.h>
@@ -11,6 +12,7 @@
 @interface CalAppDelegate ()
 
 @property(strong, nonatomic) CalDragDropController *dragAndDropController;
+@property(strong, nonatomic) CalGesturesController *gestureController;
 
 @end
 
@@ -287,6 +289,12 @@
                      bundle:nil];
   self.dragAndDropController = thirdController;
 
+  CalGesturesController *fourthController;
+  fourthController = [[CalGesturesController alloc]
+                      initWithNibName:NSStringFromClass([CalGesturesController class])
+                      bundle:nil];
+  self.gestureController = fourthController;
+
   self.tabBarController = [CalTabBarController new];
 
   SEL transSel = NSSelectorFromString(@"translucent");
@@ -296,8 +304,9 @@
   }
 
   self.tabBarController.viewControllers = @[firstController,
-                                    secondViewController,
-                                    thirdController];
+                                            secondViewController,
+                                            thirdController,
+                                            fourthController];
 
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
@@ -312,7 +321,8 @@
 - (NSUInteger)application:(UIApplication *)application
 supportedInterfaceOrientationsForWindow:(UIWindow *)window {
   UIViewController *presented = self.tabBarController.selectedViewController;
-  if (presented == self.dragAndDropController) {
+  if (presented == self.dragAndDropController ||
+      presented == self.gestureController) {
     return UIInterfaceOrientationMaskAll;
   } else {
     return UIInterfaceOrientationMaskPortrait;
