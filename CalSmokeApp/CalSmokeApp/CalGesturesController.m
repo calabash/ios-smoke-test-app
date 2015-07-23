@@ -1,11 +1,12 @@
 #import "CalGesturesController.h"
 
-@interface CalGesturesController ()
+@interface CalGesturesController () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *gestureBox;
 @property (weak, nonatomic) IBOutlet UILabel *lastGestureLabel;
 
 - (void) handleDoubleTap:(UITapGestureRecognizer *) recognizer;
+- (void) handleLongPress:(UILongPressGestureRecognizer *) recognizer;
 
 @end
 
@@ -51,6 +52,11 @@
 
 #pragma mark - GestureRecognizers
 
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+  return YES;
+}
+
 - (UIGestureRecognizer *) doubleTapRecognizer {
   SEL selector = @selector(handleDoubleTap:);
   UITapGestureRecognizer *recognizer;
@@ -68,6 +74,28 @@
   }
 }
 
+- (UILongPressGestureRecognizer *) longPressRecognizerWithDuration:(NSTimeInterval) duration {
+  SEL selector = @selector(handleLongPress:);
+  UILongPressGestureRecognizer *recognizer;
+  recognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                             action:selector];
+  recognizer.minimumPressDuration = duration;
+  recognizer.delegate = self;
+  return recognizer;
+}
+
+- (void) handleLongPress:(UILongPressGestureRecognizer *)recognizer {
+  UIGestureRecognizerState state = [recognizer state];
+  NSLog(@"Long press state = %@", @(state));
+  if (UIGestureRecognizerStateBegan == state) {
+    self.lastGestureLabel.text = @"Long press began";
+  } else if (UIGestureRecognizerStateEnded == state) {
+
+    self.lastGestureLabel.text = [NSString stringWithFormat:@"Long press: %@ seconds",
+                                  @(recognizer.minimumPressDuration)];
+  }
+}
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -82,6 +110,8 @@
   NSLocalizedString(@"Gestures box", @"A square view to perform gestures in");
 
   [self.gestureBox addGestureRecognizer:[self doubleTapRecognizer]];
+  [self.gestureBox addGestureRecognizer:[self longPressRecognizerWithDuration:1.0]];
+  [self.gestureBox addGestureRecognizer:[self longPressRecognizerWithDuration:2.0]];
 
   self.lastGestureLabel.accessibilityIdentifier = @"last gesture";
 }
