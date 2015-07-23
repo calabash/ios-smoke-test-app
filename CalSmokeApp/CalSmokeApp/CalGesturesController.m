@@ -3,6 +3,9 @@
 @interface CalGesturesController ()
 
 @property (weak, nonatomic) IBOutlet UIView *gestureBox;
+@property (weak, nonatomic) IBOutlet UILabel *lastGestureLabel;
+
+- (void) handleDoubleTap:(UITapGestureRecognizer *) recognizer;
 
 @end
 
@@ -46,6 +49,25 @@
   return YES;
 }
 
+#pragma mark - GestureRecognizers
+
+- (UIGestureRecognizer *) doubleTapRecognizer {
+  SEL selector = @selector(handleDoubleTap:);
+  UITapGestureRecognizer *recognizer;
+  recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                       action:selector];
+  recognizer.numberOfTapsRequired = 2;
+  recognizer.numberOfTouchesRequired = 1;
+  return recognizer;
+}
+
+- (void) handleDoubleTap:(UITapGestureRecognizer *) recognizer {
+  UIGestureRecognizerState state = [recognizer state];
+  if (UIGestureRecognizerStateEnded == state) {
+    self.lastGestureLabel.text = @"Double tap";
+  }
+}
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -58,6 +80,10 @@
   self.gestureBox.accessibilityIdentifier = @"gestures box";
   self.gestureBox.accessibilityLabel =
   NSLocalizedString(@"Gestures box", @"A square view to perform gestures in");
+
+  [self.gestureBox addGestureRecognizer:[self doubleTapRecognizer]];
+
+  self.lastGestureLabel.accessibilityIdentifier = @"last gesture";
 }
 
 - (void) viewWillLayoutSubviews {
@@ -70,6 +96,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+  self.lastGestureLabel.text = @"";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
