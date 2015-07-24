@@ -15,5 +15,5 @@ Feature: Gestures
   Scenario:  Long press
     When I long press the left box for 1 second
     Then the gesture description changes to long press
-    When I long press the left box for 2 seconds
+    When I long press the right box for 2 seconds
     Then the gesture description changes to long press

@@ -2,7 +2,8 @@
 
 @interface CalTapGestureController () <UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *gestureBox;
+@property (weak, nonatomic) IBOutlet UIView *leftBox;
+@property (weak, nonatomic) IBOutlet UIView *rightBox;
 @property (weak, nonatomic) IBOutlet UILabel *lastGestureLabel;
 
 - (void) handleDoubleTap:(UITapGestureRecognizer *) recognizer;
@@ -105,13 +106,17 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
   self.view.accessibilityLabel =
   NSLocalizedString(@"Tapping page", @"Page where tap gestures are tested");
 
-  self.gestureBox.accessibilityIdentifier = @"left box";
-  self.gestureBox.accessibilityLabel =
-  NSLocalizedString(@"Left box", @"The view on the left side of the page");
+  self.leftBox.accessibilityIdentifier = @"left box";
+  self.leftBox.accessibilityLabel =
+  NSLocalizedString(@"Left box", @"The tappable view on the left side of the page");
 
-  [self.gestureBox addGestureRecognizer:[self doubleTapRecognizer]];
-  [self.gestureBox addGestureRecognizer:[self longPressRecognizerWithDuration:1.0]];
-  [self.gestureBox addGestureRecognizer:[self longPressRecognizerWithDuration:2.0]];
+  [self.leftBox addGestureRecognizer:[self doubleTapRecognizer]];
+  [self.leftBox addGestureRecognizer:[self longPressRecognizerWithDuration:1.0]];
+
+  self.rightBox.accessibilityIdentifier = @"right box";
+  self.rightBox.accessibilityLabel =
+  NSLocalizedString(@"Right box", @"The tappable view on the right side of the page");
+  [self.rightBox addGestureRecognizer:[self longPressRecognizerWithDuration:2.0]];
 
   self.lastGestureLabel.accessibilityIdentifier = @"last gesture";
 }

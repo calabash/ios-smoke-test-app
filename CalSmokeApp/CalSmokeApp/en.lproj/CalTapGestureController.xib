@@ -7,8 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalTapGestureController">
             <connections>
-                <outlet property="gestureBox" destination="3i4-CA-rhD" id="hef-bp-dUG"/>
                 <outlet property="lastGestureLabel" destination="5TJ-gU-rHA" id="I6y-SY-11v"/>
+                <outlet property="leftBox" destination="3i4-CA-rhD" id="6Vn-Sm-GoN"/>
+                <outlet property="rightBox" destination="0jJ-re-Alz" id="5VL-Us-o9w"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
