@@ -101,13 +101,13 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.view.accessibilityIdentifier = @"gestures page";
+  self.view.accessibilityIdentifier = @"tapping page";
   self.view.accessibilityLabel =
-  NSLocalizedString(@"Gestures page", @"Page where gestures are tested");
+  NSLocalizedString(@"Tapping page", @"Page where tap gestures are tested");
 
-  self.gestureBox.accessibilityIdentifier = @"gestures box";
+  self.gestureBox.accessibilityIdentifier = @"left box";
   self.gestureBox.accessibilityLabel =
-  NSLocalizedString(@"Gestures box", @"A square view to perform gestures in");
+  NSLocalizedString(@"Left box", @"The view on the left side of the page");
 
   [self.gestureBox addGestureRecognizer:[self doubleTapRecognizer]];
   [self.gestureBox addGestureRecognizer:[self longPressRecognizerWithDuration:1.0]];

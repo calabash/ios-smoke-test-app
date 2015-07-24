@@ -1,17 +1,19 @@
 @gestures
+@tapping
 Feature: Gestures
-  In order to test taps, pans, and swipes
+  In order to test tapping
   As a developer
-  I want a Gesture API
+  I want a Tap API
+
+  Background: Navigate to Tapping page
+    Given I see the tapping tab
 
   Scenario:  Double tap
-    Given I see the gestures tab
-    When I double tap the box
+    When I double tap the left box
     Then the gesture description changes to double tap
 
   Scenario:  Long press
-    Given I see the gestures tab
-    When I long press the box for 1 second
+    When I long press the left box for 1 second
     Then the gesture description changes to long press
-    When I long press the box for 2 seconds
+    When I long press the left box for 2 seconds
     Then the gesture description changes to long press

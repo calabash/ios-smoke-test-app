@@ -19,14 +19,14 @@ end
 
 World(CalSmokeApp::WaitForGesture)
 
-When(/^I double tap the box$/) do
-  query = "view marked:'gestures box'"
+When(/^I double tap the left box$/) do
+  query = "view marked:'left box'"
   wait_for_element_exists query
   double_tap(query)
 end
 
-When(/^I long press the box for (\d+) seconds?$/) do |duration|
-  query = "view marked:'gestures box'"
+When(/^I long press the left box for (\d+) seconds?$/) do |duration|
+  query = "view marked:'left box'"
   wait_for_element_exists query
   touch_hold(query, {:duration => duration.to_i})
   @last_long_press_duration = duration.to_i
