@@ -19,12 +19,12 @@
                          bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    NSString *title = NSLocalizedString(@"Gestures",
+    NSString *title = NSLocalizedString(@"Tapping",
                                         @"Title of tab bar button");
     self.title = title;
 
-    UIImage *unselected = [UIImage imageNamed:@"tab-bar-gestures"];
-    UIImage *selected = [UIImage imageNamed:@"tab-bar-gestures-selected"];
+    UIImage *unselected = [UIImage imageNamed:@"tab-bar-tapping"];
+    UIImage *selected = [UIImage imageNamed:@"tab-bar-tapping-selected"];
 
     UITabBarItem *item = [[UITabBarItem alloc]
                           initWithTitle:title
