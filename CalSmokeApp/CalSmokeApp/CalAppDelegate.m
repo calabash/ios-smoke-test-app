@@ -3,7 +3,7 @@
 #import "CalCollectionViewController.h"
 #import "CalDragDropController.h"
 #import "CalTabBarController.h"
-#import "CalGesturesController.h"
+#import "CalTapGestureController.h"
 
 #if LOAD_CALABASH_DYLIB
 #import <dlfcn.h>
@@ -12,7 +12,7 @@
 @interface CalAppDelegate ()
 
 @property(strong, nonatomic) CalDragDropController *dragAndDropController;
-@property(strong, nonatomic) CalGesturesController *gestureController;
+@property(strong, nonatomic) CalTapGestureController *gestureController;
 
 @end
 
@@ -289,9 +289,9 @@
                      bundle:nil];
   self.dragAndDropController = thirdController;
 
-  CalGesturesController *fourthController;
-  fourthController = [[CalGesturesController alloc]
-                      initWithNibName:NSStringFromClass([CalGesturesController class])
+  CalTapGestureController *fourthController;
+  fourthController = [[CalTapGestureController alloc]
+                      initWithNibName:NSStringFromClass([CalTapGestureController class])
                       bundle:nil];
   self.gestureController = fourthController;
 

@@ -1,6 +1,6 @@
-#import "CalGesturesController.h"
+#import "CalTapGestureController.h"
 
-@interface CalGesturesController () <UIGestureRecognizerDelegate>
+@interface CalTapGestureController () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *gestureBox;
 @property (weak, nonatomic) IBOutlet UILabel *lastGestureLabel;
@@ -10,7 +10,7 @@
 
 @end
 
-@implementation CalGesturesController
+@implementation CalTapGestureController
 
 
 #pragma mark - Memory Management

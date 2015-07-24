@@ -29,10 +29,10 @@
 		F52BFB2B1987EF8700299AEF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52BFB2A1987EF8700299AEF /* Images.xcassets */; };
 		F52BFB4A1987F5FF00299AEF /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB491987F5FF00299AEF /* UIView+Positioning.m */; };
 		F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55081B41ACD4F5400F226A1 /* WebKit.framework */; };
-		F550CDCB1B60CFA400D57B57 /* CalGesturesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F550CDC91B60CFA400D57B57 /* CalGesturesController.m */; };
-		F550CDCC1B60CFA400D57B57 /* CalGesturesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F550CDC91B60CFA400D57B57 /* CalGesturesController.m */; };
-		F550CDD11B60CFC400D57B57 /* CalGesturesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F550CDCF1B60CFC400D57B57 /* CalGesturesController.xib */; };
-		F550CDD21B60CFC400D57B57 /* CalGesturesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F550CDCF1B60CFC400D57B57 /* CalGesturesController.xib */; };
+		F550CDCB1B60CFA400D57B57 /* CalTapGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = F550CDC91B60CFA400D57B57 /* CalTapGestureController.m */; };
+		F550CDCC1B60CFA400D57B57 /* CalTapGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = F550CDC91B60CFA400D57B57 /* CalTapGestureController.m */; };
+		F550CDD11B60CFC400D57B57 /* CalTapGestureController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F550CDCF1B60CFC400D57B57 /* CalTapGestureController.xib */; };
+		F550CDD21B60CFC400D57B57 /* CalTapGestureController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F550CDCF1B60CFC400D57B57 /* CalTapGestureController.xib */; };
 		F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		F56592551B46AD3300C044C8 /* CalAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F56592541B46AD3300C044C8 /* CalAnimatedView.m */; };
@@ -75,9 +75,9 @@
 		F52BFB481987F5FF00299AEF /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
 		F52BFB491987F5FF00299AEF /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
 		F55081B41ACD4F5400F226A1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		F550CDC81B60CFA400D57B57 /* CalGesturesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalGesturesController.h; sourceTree = "<group>"; };
-		F550CDC91B60CFA400D57B57 /* CalGesturesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalGesturesController.m; sourceTree = "<group>"; };
-		F550CDD01B60CFC400D57B57 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalGesturesController.xib; sourceTree = "<group>"; };
+		F550CDC81B60CFA400D57B57 /* CalTapGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalTapGestureController.h; sourceTree = "<group>"; };
+		F550CDC91B60CFA400D57B57 /* CalTapGestureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalTapGestureController.m; sourceTree = "<group>"; };
+		F550CDD01B60CFC400D57B57 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalTapGestureController.xib; sourceTree = "<group>"; };
 		F55185541AC34BB600CE06DC /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F56592531B46AD3300C044C8 /* CalAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalAnimatedView.h; sourceTree = "<group>"; };
 		F56592541B46AD3300C044C8 /* CalAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalAnimatedView.m; sourceTree = "<group>"; };
@@ -168,8 +168,8 @@
 				66D6976F1A93DACC0035A763 /* CalCollectionViewController.m */,
 				F5C276351B3B547900DF63FA /* CalDragDropController.h */,
 				F5C276361B3B547900DF63FA /* CalDragDropController.m */,
-				F550CDC81B60CFA400D57B57 /* CalGesturesController.h */,
-				F550CDC91B60CFA400D57B57 /* CalGesturesController.m */,
+				F550CDC81B60CFA400D57B57 /* CalTapGestureController.h */,
+				F550CDC91B60CFA400D57B57 /* CalTapGestureController.m */,
 				F52BFB2A1987EF8700299AEF /* Images.xcassets */,
 				F55185541AC34BB600CE06DC /* iTunesArtwork */,
 				63BB20C9E0DC3BBD0058C825 /* CalCollectionViewCell.h */,
@@ -196,7 +196,7 @@
 		F5C276301B3B545A00DF63FA /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				F550CDCF1B60CFC400D57B57 /* CalGesturesController.xib */,
+				F550CDCF1B60CFC400D57B57 /* CalTapGestureController.xib */,
 				F5C276311B3B546A00DF63FA /* CalDragDropController.xib */,
 			);
 			name = XIB;
@@ -278,7 +278,7 @@
 				F5C276341B3B546A00DF63FA /* CalDragDropController.xib in Resources */,
 				F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */,
 				e3e0a6761f42ce3d10829b2b /* InfoPlist.strings in Resources */,
-				F550CDD21B60CFC400D57B57 /* CalGesturesController.xib in Resources */,
+				F550CDD21B60CFC400D57B57 /* CalTapGestureController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +290,7 @@
 				F5C276331B3B546A00DF63FA /* CalDragDropController.xib in Resources */,
 				F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */,
 				F52BFB1A1987EF8700299AEF /* InfoPlist.strings in Resources */,
-				F550CDD11B60CFC400D57B57 /* CalGesturesController.xib in Resources */,
+				F550CDD11B60CFC400D57B57 /* CalTapGestureController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +326,7 @@
 				66D697701A93DACC0035A763 /* CalCollectionViewController.m in Sources */,
 				F52BFB201987EF8700299AEF /* CalAppDelegate.m in Sources */,
 				63BB24D852A7A25FBE2ECEA0 /* CalCollectionViewCell.m in Sources */,
-				F550CDCB1B60CFA400D57B57 /* CalGesturesController.m in Sources */,
+				F550CDCB1B60CFA400D57B57 /* CalTapGestureController.m in Sources */,
 				F52B40BA1B4A66430022AEC8 /* CalTabBarController.m in Sources */,
 				F5BA6F021B4D274E00DB898F /* CalViewWithArbitrarySelectors.m in Sources */,
 			);
@@ -344,7 +344,7 @@
 				66D697711A93DACC0035A763 /* CalCollectionViewController.m in Sources */,
 				f23b5a94a19df2bb34667ee7 /* CalAppDelegate.m in Sources */,
 				63BB238FB84B0696F6A79DA1 /* CalCollectionViewCell.m in Sources */,
-				F550CDCC1B60CFA400D57B57 /* CalGesturesController.m in Sources */,
+				F550CDCC1B60CFA400D57B57 /* CalTapGestureController.m in Sources */,
 				F52B40BB1B4A66430022AEC8 /* CalTabBarController.m in Sources */,
 				F5BA6F031B4D274E00DB898F /* CalViewWithArbitrarySelectors.m in Sources */,
 			);
@@ -361,12 +361,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		F550CDCF1B60CFC400D57B57 /* CalGesturesController.xib */ = {
+		F550CDCF1B60CFC400D57B57 /* CalTapGestureController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F550CDD01B60CFC400D57B57 /* en */,
 			);
-			name = CalGesturesController.xib;
+			name = CalTapGestureController.xib;
 			sourceTree = "<group>";
 		};
 		F5C276311B3B546A00DF63FA /* CalDragDropController.xib */ = {

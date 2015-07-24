@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalGesturesController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalTapGestureController">
             <connections>
                 <outlet property="gestureBox" destination="3i4-CA-rhD" id="hef-bp-dUG"/>
                 <outlet property="lastGestureLabel" destination="5TJ-gU-rHA" id="I6y-SY-11v"/>
