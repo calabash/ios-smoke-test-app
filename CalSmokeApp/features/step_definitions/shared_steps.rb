@@ -1,9 +1,9 @@
-Given(/^I see the (first|second|special|tapping) tab$/) do |tab|
+Given(/^I see the (first|scrolls|special|tapping) tab$/) do |tab|
   wait_for_elements_exist('tabBarButton')
   case tab
     when 'first'
       index = 0
-    when 'second'
+    when 'scrolls'
       index = 1
     when 'special'
       index = 2

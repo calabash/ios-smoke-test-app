@@ -1,12 +1,24 @@
 #import "CalViewsThatScrollController.h"
+#import "UIColor+LjsAdditions.h"
+#import "UIView+Positioning.h"
+
+static NSString *const CalCellIdentifier = @"cell identifier";
 
 @interface CalViewsThatScrollController ()
+<UITableViewDataSource, UITableViewDelegate>
 
 @property(copy, nonatomic) NSArray *cellTitles;
+@property(weak, nonatomic) IBOutlet UITableView *tableView;
+@property(strong, nonatomic, readonly) UIColor *lightPink;
+
+- (void) setContentInsets:(UITableView *) tableView;
 
 @end
 
 @implementation CalViewsThatScrollController
+
+@synthesize tableView = _tableView;
+@synthesize lightPink = _lightPink;
 
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil
                           bundle:(NSBundle *)nibBundleOrNil {
@@ -16,12 +28,26 @@
     NSString *title =
     NSLocalizedString(@"Scrolls", @"Title of tab bar item for views that scroll".);
     self.title = title;
+
+    self.cellTitles = @[
+                        @"Table views",
+                        @"Collection views",
+                        @"Scroll views",
+                        @"Web views",
+                        @"Map views"
+                        ];
   }
   return self;
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
+}
+
+- (UIColor *) lightPink {
+  if (_lightPink) { return _lightPink; }
+  _lightPink = [UIColor colorWithR:255.0f g:0.0f b:0.0f a:0.04f];
+  return _lightPink;
 }
 
 #pragma mark - Orientation / Rotation
@@ -34,18 +60,91 @@
   return YES;
 }
 
+- (void) setContentInsets:(UITableView *)tableView {
+  UINavigationBar *navBar = self.navigationController.navigationBar;
+  CGFloat topHeight = navBar.height;
+  if (![[UIApplication sharedApplication] isStatusBarHidden]) {
+    CGRect frame = [[UIApplication sharedApplication] statusBarFrame];
+    topHeight = topHeight + frame.size.height;
+  }
+  UITabBar *tabBar = self.tabBarController.tabBar;
+  CGFloat bottomHeight = tabBar.height;
+
+  tableView.contentInset = UIEdgeInsetsMake(topHeight, 0, bottomHeight, 0);
+}
+
+#pragma mark - UITableViewDataSource
+
+
+- (NSInteger) tableView:(UITableView *) aTableView numberOfRowsInSection:(NSInteger) aSection {
+  return [[self cellTitles] count];
+}
+
+- (UITableViewCell *) tableView:(UITableView *) aTableView
+          cellForRowAtIndexPath:(NSIndexPath *) aIndexPath {
+  UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:CalCellIdentifier];
+  NSString *title = self.cellTitles[aIndexPath.row];
+  cell.textLabel.text = title;
+  cell.accessibilityIdentifier = [NSString stringWithFormat:@"%@ row",
+                                  [title lowercaseString]];
+
+  return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+
+#pragma mark UITableViewDelegate  Providing Table Cells for the Table View
+
+- (CGFloat) tableView:(UITableView *) aTableView heightForRowAtIndexPath:(NSIndexPath *) aIndexPath {
+  return 44;
+}
+
+- (void) tableView:(UITableView *) aTableView willDisplayCell:(UITableViewCell *) aCell
+ forRowAtIndexPath:(NSIndexPath *) aIndexPath {
+  aCell.textLabel.backgroundColor = self.lightPink;
+}
+
+#pragma mark - UITableViewDelegate Managing Selections
+
+
+- (void) tableView:(UITableView *) aTableView didSelectRowAtIndexPath:(NSIndexPath *) aIndexPath {
+
+}
+
+- (void) tableView:(UITableView *) aTableView didDeselectRowAtIndexPath:(NSIndexPath *) aIndexPath {
+
+}
+
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.view.accessibilityIdentifier = @"scrolling views page";
+  self.view.accessibilityIdentifier = @"scrolls page";
   self.view.accessibilityLabel =
   NSLocalizedString(@"List of views that scroll", @"A list of views that scroll.");
+
+  self.view.backgroundColor = self.lightPink;
+
+  UITableView *tableView = self.tableView;
+
+  [tableView registerClass:[UITableViewCell class]
+         forCellReuseIdentifier:CalCellIdentifier];
+  tableView.delegate = self;
+  tableView.dataSource = self;
+
+  tableView.accessibilityIdentifier = @"table";
+  tableView.accessibilityLabel =
+  NSLocalizedString(@"List of scrolling views",
+                    @"A table view that list the different kinds of scrolling views");
 }
 
 - (void) viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
+
+  [self setContentInsets:self.tableView];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -56,6 +155,7 @@
   [super viewWillAppear:animated];
 
   self.navigationItem.title = self.title;
+  [self setContentInsets:self.tableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
