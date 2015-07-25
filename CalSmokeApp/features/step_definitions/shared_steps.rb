@@ -31,6 +31,15 @@ When(/^I search for cell "([^"]*)" scrolling (up|down|left|right)$/) do |mark, d
   end
 end
 
+When(/^I touch the back button$/) do
+  query = "view marked:'Back'"
+  options = wait_options('Navbar back button')
+  wait_for_element_exists(query, options)
+
+  touch(query)
+  wait_for_none_animating
+end
+
 When(/^I scroll (up|down|left|right) for (\d+) times$/) do |direction, times|
   wait_for_elements_exist('collectionView')
   (1..times.to_i).each do

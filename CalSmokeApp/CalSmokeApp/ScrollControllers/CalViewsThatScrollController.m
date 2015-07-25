@@ -1,8 +1,17 @@
 #import "CalViewsThatScrollController.h"
 #import "UIColor+LjsAdditions.h"
 #import "UIView+Positioning.h"
+#import "CalCollectionViewController.h"
 
 static NSString *const CalCellIdentifier = @"cell identifier";
+
+typedef enum : NSInteger {
+  kRowTableViews = 0,
+  kRowsCollectionViews,
+  kRowsScrollViews,
+  kRowsWebViews,
+  kRowsMapViews
+} rows;
 
 @interface CalViewsThatScrollController ()
 <UITableViewDataSource, UITableViewDelegate>
@@ -109,7 +118,20 @@ static NSString *const CalCellIdentifier = @"cell identifier";
 
 
 - (void) tableView:(UITableView *) aTableView didSelectRowAtIndexPath:(NSIndexPath *) aIndexPath {
+  if (aIndexPath.row == kRowsCollectionViews) {
+    UIViewController *controller =
+    [[CalCollectionViewController alloc]
+    initWithNibName:NSStringFromClass([CalCollectionViewController class])
+     bundle:nil];
+    [self.navigationController pushViewController:controller
+                                         animated:YES];
+  }
 
+  double delayInSeconds = 0.4;
+  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    [aTableView deselectRowAtIndexPath:aIndexPath animated:YES];
+  });
 }
 
 - (void) tableView:(UITableView *) aTableView didDeselectRowAtIndexPath:(NSIndexPath *) aIndexPath {

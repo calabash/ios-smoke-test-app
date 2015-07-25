@@ -5,13 +5,23 @@ Feature: Testing scrolling
     Given I see the scrolls tab
     Then I see the scrolling views table
 
-@wip
   Scenario: Scrolling views table
     And I see rows for table, collection, scroll, web, and map views
     When I rotate to landscape
     Then I see rows for table, collection, scroll, web, and map views
     When I touch the collection views row
     Then I see the collection view page
+    When I touch the back button
+    Then I see the scrolling views table
+
+@wip
+Scenario:  Collection views
+    When I touch the collection views row
+    Then I see the collection view page
+    Then I scroll the logos collection to the steam icon by mark
+    Then I scroll the logos collection to the github icon by index
+    Then I scroll up on the logos collection to the android icon
+    Then I scroll the colors collection to the middle of the purple boxes
 
 #  Scenario: It should be able to find first & last cells moving up & down
 #    When I search for cell "cell 5" scrolling down

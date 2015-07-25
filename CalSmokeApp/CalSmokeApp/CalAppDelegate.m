@@ -340,7 +340,6 @@
 #if LOAD_CALABASH_DYLIB
   [self loadCalabashDylib];
 #endif
-
   return YES;
 }
 
