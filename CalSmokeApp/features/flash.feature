@@ -4,8 +4,8 @@ Feature: Flash
   As an app tester and develop
   I want Calabash to be able to visually indicate which views match a query
 
-  Background: Get me to the first view
-    Given I see the third tab
+  Background: Navigate to special tab
+    Given I see the special tab
 
   Scenario: Flashing
     Then I can flash the buttons

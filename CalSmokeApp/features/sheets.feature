@@ -16,8 +16,8 @@ Feature: Sheets
   # app is the sheet that appears when you try to cancel an email
   # message.
 
-  Background:  Get me to the third tab
-    Given I see the third tab
+  Background: Navigate to the special tab
+    Given I see the special tab
 
   @animations
   Scenario: Touch OK button on a sheet

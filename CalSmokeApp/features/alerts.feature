@@ -16,8 +16,8 @@ Feature: Alerts
   #
   # https://github.com/calabash/calabash-ios/wiki/Managing-Privacy-Alerts%3A--Location-Services%2C-APNS%2C-Contacts
 
-  Background:  Get me to the third tab
-    Given I see the third tab
+  Background: Navigate to the special tab
+    Given I see the special tab
 
   @animations
   Scenario: Touch OK button on alert

@@ -49,9 +49,15 @@ typedef enum : NSInteger {
                          bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
+
+    UIImage *image = [UIImage imageNamed:@"tab-bar-special"];
+    UIImage *selected = [UIImage imageNamed:@"tab-bar-special-selected"];
+    NSString *title = NSLocalizedString(@"Special",
+                                        @"Title of tab bar with special features");
     self.tabBarItem = [[UITabBarItem alloc]
-                       initWithTabBarSystemItem:UITabBarSystemItemContacts
-                       tag:2];
+                       initWithTitle:title
+                       image:image
+                       selectedImage:selected];
   }
   return self;
 }
@@ -269,9 +275,9 @@ typedef enum : NSInteger {
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.view.accessibilityIdentifier = @"third page";
-  self.view.accessibilityLabel = NSLocalizedString(@"Third page",
-                                                   @"The third page of the app.");
+  self.view.accessibilityIdentifier = @"special page";
+  self.view.accessibilityLabel = NSLocalizedString(@"Special page",
+                                                   @"A page with special features.");
 
   self.redImageView.accessibilityIdentifier = @"red";
   self.redImageView.accessibilityLabel = NSLocalizedString(@"red",
