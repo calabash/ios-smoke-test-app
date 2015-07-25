@@ -2,9 +2,23 @@
 
 @interface CalViewsThatScrollController ()
 
+@property(copy, nonatomic) NSArray *cellTitles;
+
 @end
 
 @implementation CalViewsThatScrollController
+
+- (instancetype) initWithNibName:(NSString *)nibNameOrNil
+                          bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+
+    NSString *title =
+    NSLocalizedString(@"Scrolls", @"Title of tab bar item for views that scroll".);
+    self.title = title;
+  }
+  return self;
+}
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
@@ -40,6 +54,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+
+  self.navigationItem.title = self.title;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

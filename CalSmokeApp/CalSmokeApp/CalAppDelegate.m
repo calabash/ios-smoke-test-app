@@ -293,7 +293,7 @@
 
   UINavigationController *secondViewController =
   [[UINavigationController alloc]
-   initWithRootViewController:self.scrollNavigationController];
+   initWithRootViewController:self.viewsThatScrollController];
 
   self.scrollNavigationController = secondViewController;
 
@@ -308,7 +308,6 @@
                                  image:image
                                  selectedImage:selected];
   self.scrollNavigationController.tabBarItem = scrollTabItem;
-
 
   CalDragDropController *thirdController;
   thirdController = [[CalDragDropController alloc]
