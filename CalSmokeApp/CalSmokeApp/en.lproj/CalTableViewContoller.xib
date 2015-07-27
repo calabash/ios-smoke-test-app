@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalTableViewContoller">
             <connections>
-                <outlet property="tableView" destination="wpg-Up-zyQ" id="s1o-ua-laM"/>
+                <outlet property="tableView" destination="wpg-Up-zyQ" id="Q9v-qP-7Um"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

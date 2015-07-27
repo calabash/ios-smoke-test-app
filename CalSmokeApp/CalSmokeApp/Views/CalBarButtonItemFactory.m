@@ -169,7 +169,7 @@
 
 - (UIView *) viewForBackButton {
   UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 64, 36)];
-  view.backgroundColor = [CalBarButtonItemFactory colorForViewBackground];
+  view.backgroundColor = [UIColor clearColor];
   view.accessibilityIdentifier = @"back item";
   return view;
 }
