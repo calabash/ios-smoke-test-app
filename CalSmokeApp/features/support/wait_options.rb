@@ -10,12 +10,12 @@ module CalSmokeApp
     #
     # Pass this to your wait_for_* functions
     #
-    # @param [String] view_desc a meaningful description of the view you are waiting for
+    # @param [String] query What you are waiting for
     # @param [Hash] opts wait options
     # @option opts :timeout defaults to wait_timeout()
     # @option opts :disappear iff true changes the error message to indicate
     #   that we were waiting for the view to disappear
-    def wait_options(view_desc, opts={})
+    def wait_options(query, opts={})
       default_opts = {:disappear => false,
                       :timeout => wait_timeout}
       merged = default_opts.merge(opts)
@@ -23,9 +23,9 @@ module CalSmokeApp
       # handle :timeout => nil
       timeout = merged[:timeout] || wait_timeout
       if merged[:disappear]
-        msg = "Waited for #{timeout} s but could still see '#{view_desc}'\n"
+        msg = "Waited for #{timeout} s but could still see '#{query}'\n"
       else
-        msg = "Waited for #{timeout} s but did not see '#{view_desc}'\n"
+        msg = "Waited for #{timeout} s but did not see '#{query}'\n"
       end
 
       {

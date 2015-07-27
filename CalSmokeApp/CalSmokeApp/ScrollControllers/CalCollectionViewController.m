@@ -236,34 +236,6 @@ typedef enum : NSUInteger {
   collectionView.contentInset = UIEdgeInsetsMake(topHeight, 0, bottomHeight, 0);
 }
 
-#pragma mark - View Lifecycle
-
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-
-
-  self.view.accessibilityIdentifier = @"collection views page";
-  self.view.accessibilityLabel =
-  NSLocalizedString(@"Collection views", @"A view with collections.");
-
-
-  self.logoCollectionView.accessibilityIdentifier = @"logo gallery";
-  self.logoCollectionView.accessibilityLabel =
-  NSLocalizedString(@"Logo gallery", @"A collection of corporate logos");
-
-  [self.logoCollectionView registerClass:[CalLogoCell class]
-              forCellWithReuseIdentifier:CalLogoCellReuseIdentifier];
-
-  self.boxesCollectionView.accessibilityIdentifier = @"color gallery";
-  self.boxesCollectionView.accessibilityLabel =
-  NSLocalizedString(@"Color gallery", @"A collection of colored boxes");
-
-  [self.boxesCollectionView registerClass:[CalBoxCell class]
-               forCellWithReuseIdentifier:CalBoxCellReuseIdentifier];
-}
-
-
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -289,7 +261,7 @@ typedef enum : NSUInteger {
   if (collectionView == _boxesCollectionView) {
     CalBoxCell *cell =
     (CalBoxCell *)[collectionView dequeueReusableCellWithReuseIdentifier:CalBoxCellReuseIdentifier
-                                                             forIndexPath:indexPath];
+                                                            forIndexPath:indexPath];
 
     cell.colorView.backgroundColor = [self colorForBoxAtIndexPath:indexPath];
     cell.colorView.accessibilityIdentifier = [self accessibilityIdentifierForBoxAtIndexPath:indexPath];
@@ -373,6 +345,32 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   return YES;
+}
+
+#pragma mark - View Lifecycle
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+
+
+  self.view.accessibilityIdentifier = @"collection views page";
+  self.view.accessibilityLabel =
+  NSLocalizedString(@"Collection views", @"A view with collections.");
+
+
+  self.logoCollectionView.accessibilityIdentifier = @"logo gallery";
+  self.logoCollectionView.accessibilityLabel =
+  NSLocalizedString(@"Logo gallery", @"A collection of corporate logos");
+
+  [self.logoCollectionView registerClass:[CalLogoCell class]
+              forCellWithReuseIdentifier:CalLogoCellReuseIdentifier];
+
+  self.boxesCollectionView.accessibilityIdentifier = @"color gallery";
+  self.boxesCollectionView.accessibilityLabel =
+  NSLocalizedString(@"Color gallery", @"A collection of colored boxes");
+
+  [self.boxesCollectionView registerClass:[CalBoxCell class]
+               forCellWithReuseIdentifier:CalBoxCellReuseIdentifier];
 }
 
 - (void) viewWillLayoutSubviews {

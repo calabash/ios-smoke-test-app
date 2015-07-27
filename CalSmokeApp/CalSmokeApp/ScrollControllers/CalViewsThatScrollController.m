@@ -2,6 +2,7 @@
 #import "UIColor+LjsAdditions.h"
 #import "UIView+Positioning.h"
 #import "CalCollectionViewController.h"
+#import "CalTableViewContoller.h"
 
 static NSString *const CalCellIdentifier = @"cell identifier";
 
@@ -69,30 +70,18 @@ typedef enum : NSInteger {
   return YES;
 }
 
-- (void) setContentInsets:(UITableView *)tableView {
-  UINavigationBar *navBar = self.navigationController.navigationBar;
-  CGFloat topHeight = navBar.height;
-  if (![[UIApplication sharedApplication] isStatusBarHidden]) {
-    CGRect frame = [[UIApplication sharedApplication] statusBarFrame];
-    topHeight = topHeight + frame.size.height;
-  }
-  UITabBar *tabBar = self.tabBarController.tabBar;
-  CGFloat bottomHeight = tabBar.height;
-
-  tableView.contentInset = UIEdgeInsetsMake(topHeight, 0, bottomHeight, 0);
-}
-
 #pragma mark - UITableViewDataSource
 
 
-- (NSInteger) tableView:(UITableView *) aTableView numberOfRowsInSection:(NSInteger) aSection {
+- (NSInteger) tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger) aSection {
   return [[self cellTitles] count];
 }
 
-- (UITableViewCell *) tableView:(UITableView *) aTableView
-          cellForRowAtIndexPath:(NSIndexPath *) aIndexPath {
-  UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:CalCellIdentifier];
-  NSString *title = self.cellTitles[aIndexPath.row];
+- (UITableViewCell *) tableView:(UITableView *) tableView
+          cellForRowAtIndexPath:(NSIndexPath *) indexPath {
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CalCellIdentifier];
+  NSString *title = self.cellTitles[indexPath.row];
+
   cell.textLabel.text = title;
   cell.accessibilityIdentifier = [NSString stringWithFormat:@"%@ row",
                                   [title lowercaseString]];
@@ -105,41 +94,62 @@ typedef enum : NSInteger {
 
 #pragma mark UITableViewDelegate  Providing Table Cells for the Table View
 
-- (CGFloat) tableView:(UITableView *) aTableView heightForRowAtIndexPath:(NSIndexPath *) aIndexPath {
+- (CGFloat) tableView:(UITableView *) tableView heightForRowAtIndexPath:(NSIndexPath *) indexPath {
   return 44;
 }
 
-- (void) tableView:(UITableView *) aTableView willDisplayCell:(UITableViewCell *) aCell
- forRowAtIndexPath:(NSIndexPath *) aIndexPath {
+- (void) tableView:(UITableView *) tableView willDisplayCell:(UITableViewCell *) aCell
+ forRowAtIndexPath:(NSIndexPath *) indexPath {
   aCell.textLabel.backgroundColor = self.lightPink;
 }
 
 #pragma mark - UITableViewDelegate Managing Selections
 
 
-- (void) tableView:(UITableView *) aTableView didSelectRowAtIndexPath:(NSIndexPath *) aIndexPath {
-  if (aIndexPath.row == kRowsCollectionViews) {
+- (void) tableView:(UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *) indexPath {
+  if (indexPath.row == kRowsCollectionViews) {
     UIViewController *controller =
     [[CalCollectionViewController alloc]
     initWithNibName:NSStringFromClass([CalCollectionViewController class])
      bundle:nil];
     [self.navigationController pushViewController:controller
                                          animated:YES];
+  } else if (indexPath.row == kRowTableViews) {
+    UIViewController *controller =
+    [[CalTableViewContoller alloc]
+     initWithNibName:NSStringFromClass([CalTableViewContoller class])
+     bundle:nil];
+    [self.navigationController pushViewController:controller
+                                         animated:YES];
+
   }
 
   double delayInSeconds = 0.4;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    [aTableView deselectRowAtIndexPath:aIndexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
   });
 }
 
-- (void) tableView:(UITableView *) aTableView didDeselectRowAtIndexPath:(NSIndexPath *) aIndexPath {
+- (void) tableView:(UITableView *) tableView didDeselectRowAtIndexPath:(NSIndexPath *) indexPath {
 
 }
 
 
 #pragma mark - View Lifecycle
+
+- (void) setContentInsets:(UITableView *)tableView {
+  UINavigationBar *navBar = self.navigationController.navigationBar;
+  CGFloat topHeight = navBar.height;
+  if (![[UIApplication sharedApplication] isStatusBarHidden]) {
+    CGRect frame = [[UIApplication sharedApplication] statusBarFrame];
+    topHeight = topHeight + frame.size.height;
+  }
+  UITabBar *tabBar = self.tabBarController.tabBar;
+  CGFloat bottomHeight = tabBar.height;
+
+  tableView.contentInset = UIEdgeInsetsMake(topHeight, 0, bottomHeight, 0);
+}
 
 - (void)viewDidLoad {
   [super viewDidLoad];
