@@ -3,6 +3,7 @@
 #import "UIView+Positioning.h"
 #import "CalCollectionViewController.h"
 #import "CalTableViewContoller.h"
+#import "CalScollViewController.h"
 
 static NSString *const CalCellIdentifier = @"cell identifier";
 
@@ -26,6 +27,8 @@ typedef enum : NSInteger {
 @end
 
 @implementation CalViewsThatScrollController
+
+#pragma mark - Memory Management
 
 @synthesize tableView = _tableView;
 @synthesize lightPink = _lightPink;
@@ -122,6 +125,12 @@ typedef enum : NSInteger {
     [self.navigationController pushViewController:controller
                                          animated:YES];
 
+  } else if (indexPath.row == kRowsScrollViews) {
+    UIViewController *controller =
+    [[CalScollViewController alloc]
+    initWithNibName:NSStringFromClass([CalScollViewController class])
+     bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
   }
 
   double delayInSeconds = 0.4;

@@ -52,6 +52,10 @@
 		F56592551B46AD3300C044C8 /* CalAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F56592541B46AD3300C044C8 /* CalAnimatedView.m */; };
 		F56592561B46AD3300C044C8 /* CalAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F56592541B46AD3300C044C8 /* CalAnimatedView.m */; };
 		F571F76B1B45843B00CA108B /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F571F76A1B45843B00CA108B /* Reveal.framework */; };
+		F590CBBF1B683A6200F0E39E /* CalScollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F590CBBD1B683A6200F0E39E /* CalScollViewController.m */; };
+		F590CBC01B683A6200F0E39E /* CalScollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F590CBBD1B683A6200F0E39E /* CalScollViewController.m */; };
+		F590CBC51B683A7C00F0E39E /* CalScollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */; };
+		F590CBC61B683A7C00F0E39E /* CalScollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */; };
 		F5A31D0C1B664BD00094B768 /* CalTableViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A31D0A1B664BD00094B768 /* CalTableViewContoller.m */; };
 		F5A31D0D1B664BD00094B768 /* CalTableViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A31D0A1B664BD00094B768 /* CalTableViewContoller.m */; };
 		F5A31D121B664BF90094B768 /* CalTableViewContoller.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A31D101B664BF90094B768 /* CalTableViewContoller.xib */; };
@@ -112,6 +116,9 @@
 		F56592531B46AD3300C044C8 /* CalAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalAnimatedView.h; sourceTree = "<group>"; };
 		F56592541B46AD3300C044C8 /* CalAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalAnimatedView.m; sourceTree = "<group>"; };
 		F571F76A1B45843B00CA108B /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		F590CBBC1B683A6200F0E39E /* CalScollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalScollViewController.h; path = ScrollControllers/CalScollViewController.h; sourceTree = "<group>"; };
+		F590CBBD1B683A6200F0E39E /* CalScollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalScollViewController.m; path = ScrollControllers/CalScollViewController.m; sourceTree = "<group>"; };
+		F590CBC41B683A7C00F0E39E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalScollViewController.xib; sourceTree = "<group>"; };
 		F5A31D091B664BD00094B768 /* CalTableViewContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalTableViewContoller.h; path = ScrollControllers/CalTableViewContoller.h; sourceTree = "<group>"; };
 		F5A31D0A1B664BD00094B768 /* CalTableViewContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalTableViewContoller.m; path = ScrollControllers/CalTableViewContoller.m; sourceTree = "<group>"; };
 		F5A31D111B664BF90094B768 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalTableViewContoller.xib; sourceTree = "<group>"; };
@@ -232,6 +239,8 @@
 				F5A31D0A1B664BD00094B768 /* CalTableViewContoller.m */,
 				F550CE111B63AE9E00D57B57 /* CalCollectionViewController.h */,
 				F550CE121B63AE9E00D57B57 /* CalCollectionViewController.m */,
+				F590CBBC1B683A6200F0E39E /* CalScollViewController.h */,
+				F590CBBD1B683A6200F0E39E /* CalScollViewController.m */,
 			);
 			name = ScrollControllers;
 			sourceTree = "<group>";
@@ -242,6 +251,7 @@
 				F550CDDE1B63770B00D57B57 /* CalViewsThatScrollController.xib */,
 				F5A31D101B664BF90094B768 /* CalTableViewContoller.xib */,
 				F550CDFC1B63A26500D57B57 /* CalCollectionViewController.xib */,
+				F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */,
 			);
 			name = ScrollControllers;
 			sourceTree = "<group>";
@@ -358,6 +368,7 @@
 				F5C276341B3B546A00DF63FA /* CalDragDropController.xib in Resources */,
 				F550CDE11B63770B00D57B57 /* CalViewsThatScrollController.xib in Resources */,
 				F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */,
+				F590CBC61B683A7C00F0E39E /* CalScollViewController.xib in Resources */,
 				e3e0a6761f42ce3d10829b2b /* InfoPlist.strings in Resources */,
 				F550CDD21B60CFC400D57B57 /* CalTapGestureController.xib in Resources */,
 				F550CDFF1B63A26500D57B57 /* CalCollectionViewController.xib in Resources */,
@@ -373,6 +384,7 @@
 				F5C276331B3B546A00DF63FA /* CalDragDropController.xib in Resources */,
 				F550CDE01B63770B00D57B57 /* CalViewsThatScrollController.xib in Resources */,
 				F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */,
+				F590CBC51B683A7C00F0E39E /* CalScollViewController.xib in Resources */,
 				F52BFB1A1987EF8700299AEF /* InfoPlist.strings in Resources */,
 				F550CDD11B60CFC400D57B57 /* CalTapGestureController.xib in Resources */,
 				F550CDFE1B63A26500D57B57 /* CalCollectionViewController.xib in Resources */,
@@ -415,6 +427,7 @@
 				F52BFB201987EF8700299AEF /* CalAppDelegate.m in Sources */,
 				F550CDCB1B60CFA400D57B57 /* CalTapGestureController.m in Sources */,
 				F52B40BA1B4A66430022AEC8 /* CalTabBarController.m in Sources */,
+				F590CBBF1B683A6200F0E39E /* CalScollViewController.m in Sources */,
 				F5BA6F021B4D274E00DB898F /* CalViewWithArbitrarySelectors.m in Sources */,
 				F550CE171B63AE9E00D57B57 /* CalViewsThatScrollController.m in Sources */,
 				F550CE0B1B63A57A00D57B57 /* NSString+IOSSizeOf.m in Sources */,
@@ -439,6 +452,7 @@
 				f23b5a94a19df2bb34667ee7 /* CalAppDelegate.m in Sources */,
 				F550CDCC1B60CFA400D57B57 /* CalTapGestureController.m in Sources */,
 				F52B40BB1B4A66430022AEC8 /* CalTabBarController.m in Sources */,
+				F590CBC01B683A6200F0E39E /* CalScollViewController.m in Sources */,
 				F5BA6F031B4D274E00DB898F /* CalViewWithArbitrarySelectors.m in Sources */,
 				F550CE181B63AE9E00D57B57 /* CalViewsThatScrollController.m in Sources */,
 				F550CE0C1B63A57A00D57B57 /* NSString+IOSSizeOf.m in Sources */,
@@ -481,6 +495,14 @@
 				F550CDFD1B63A26500D57B57 /* en */,
 			);
 			name = CalCollectionViewController.xib;
+			sourceTree = "<group>";
+		};
+		F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F590CBC41B683A7C00F0E39E /* en */,
+			);
+			name = CalScollViewController.xib;
 			sourceTree = "<group>";
 		};
 		F5A31D101B664BF90094B768 /* CalTableViewContoller.xib */ = {

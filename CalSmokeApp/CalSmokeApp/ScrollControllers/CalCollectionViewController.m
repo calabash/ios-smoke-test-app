@@ -120,10 +120,6 @@ typedef enum : NSUInteger {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
 
-    NSString *title =
-    NSLocalizedString(@"Collection Views", @"Title of tab bar item for views that scroll".);
-    self.title = title;
-
   }
   return self;
 }
@@ -385,7 +381,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-  self.navigationItem.title = self.title;
+  self.navigationItem.title = NSLocalizedString(@"Collections",
+  @"Title of navigation bar for page with collection views");
 
   CalBarButtonItemFactory *factory = [[CalBarButtonItemFactory alloc] init];
   UIBarButtonItem *backButton;
