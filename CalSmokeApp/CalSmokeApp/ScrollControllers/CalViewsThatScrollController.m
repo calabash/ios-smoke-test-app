@@ -192,6 +192,14 @@ typedef enum : NSInteger {
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+
+  UINavigationController *navcon = self.navigationController;
+  if ([navcon respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+    navcon.interactivePopGestureRecognizer.enabled = NO;
+    navcon.interactivePopGestureRecognizer.delegate = nil;
+    [navcon.interactivePopGestureRecognizer removeTarget:nil
+                                                  action:NULL];
+  }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

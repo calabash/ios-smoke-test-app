@@ -249,6 +249,14 @@ typedef enum : NSInteger {
   self.navigationItem.backBarButtonItem = nil;
   self.navigationItem.leftBarButtonItem = backButton;
 
+  UINavigationController *navcon = self.navigationController;
+  if ([navcon respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+    navcon.interactivePopGestureRecognizer.enabled = YES;
+    navcon.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
+    [navcon.interactivePopGestureRecognizer addTarget:self
+                                               action:@selector(buttonTouchedBack:)];
+  }
+
   [self setContentInsets:self.tableView];
 }
 
