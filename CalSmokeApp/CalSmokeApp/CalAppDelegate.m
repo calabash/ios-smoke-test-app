@@ -3,7 +3,8 @@
 #import "CalCollectionViewController.h"
 #import "CalDragDropController.h"
 #import "CalTabBarController.h"
-#import "CalGesturesController.h"
+#import "CalTapGestureController.h"
+#import "CalViewsThatScrollController.h"
 
 #if LOAD_CALABASH_DYLIB
 #import <dlfcn.h>
@@ -12,7 +13,9 @@
 @interface CalAppDelegate ()
 
 @property(strong, nonatomic) CalDragDropController *dragAndDropController;
-@property(strong, nonatomic) CalGesturesController *gestureController;
+@property(strong, nonatomic) CalTapGestureController *gestureController;
+@property(strong, nonatomic) CalViewsThatScrollController *viewsThatScrollController;
+@property(strong, nonatomic) UINavigationController *scrollNavigationController;
 
 @end
 
@@ -282,16 +285,39 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
   CalFirstViewController *firstController = [CalFirstViewController new];
-  CalCollectionViewController *secondViewController = [CalCollectionViewController new];
+
+  self.viewsThatScrollController =
+  [[CalViewsThatScrollController alloc]
+   initWithNibName:(NSStringFromClass([CalViewsThatScrollController class]))
+   bundle:nil];
+
+  UINavigationController *secondViewController =
+  [[UINavigationController alloc]
+   initWithRootViewController:self.viewsThatScrollController];
+
+  self.scrollNavigationController = secondViewController;
+
+  NSString *navControllerTitle =
+  NSLocalizedString(@"Scrolls", @"Title of tab bar item for views that scroll".);
+
+  UIImage *image = [UIImage imageNamed:@"tab-bar-scrolling"];
+  UIImage *selected = [UIImage imageNamed:@"tab-bar-scrolling-selected"];
+
+  UITabBarItem *scrollTabItem = [[UITabBarItem alloc]
+                                 initWithTitle:navControllerTitle
+                                 image:image
+                                 selectedImage:selected];
+  self.scrollNavigationController.tabBarItem = scrollTabItem;
+
   CalDragDropController *thirdController;
   thirdController = [[CalDragDropController alloc]
                      initWithNibName:NSStringFromClass([CalDragDropController class])
                      bundle:nil];
   self.dragAndDropController = thirdController;
 
-  CalGesturesController *fourthController;
-  fourthController = [[CalGesturesController alloc]
-                      initWithNibName:NSStringFromClass([CalGesturesController class])
+  CalTapGestureController *fourthController;
+  fourthController = [[CalTapGestureController alloc]
+                      initWithNibName:NSStringFromClass([CalTapGestureController class])
                       bundle:nil];
   self.gestureController = fourthController;
 
@@ -314,7 +340,6 @@
 #if LOAD_CALABASH_DYLIB
   [self loadCalabashDylib];
 #endif
-
   return YES;
 }
 
@@ -322,7 +347,8 @@
 supportedInterfaceOrientationsForWindow:(UIWindow *)window {
   UIViewController *presented = self.tabBarController.selectedViewController;
   if (presented == self.dragAndDropController ||
-      presented == self.gestureController) {
+      presented == self.gestureController ||
+      presented == self.scrollNavigationController) {
     return UIInterfaceOrientationMaskAll;
   } else {
     return UIInterfaceOrientationMaskPortrait;

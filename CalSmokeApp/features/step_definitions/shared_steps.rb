@@ -1,13 +1,13 @@
-Given(/^I see the (first|second|third|gestures) tab$/) do |tab|
+Given(/^I see the (first|scrolls|special|tapping) tab$/) do |tab|
   wait_for_elements_exist('tabBarButton')
   case tab
     when 'first'
       index = 0
-    when 'second'
+    when 'scrolls'
       index = 1
-    when 'third'
+    when 'special'
       index = 2
-    when 'gestures'
+    when 'tapping'
       index = 3
   end
   touch("tabBarButton index:#{index}")
@@ -29,6 +29,15 @@ When(/^I search for cell "([^"]*)" scrolling (up|down|left|right)$/) do |mark, d
              :timeout => 10}) do
     scroll('collectionView', "#{direction}")
   end
+end
+
+When(/^I touch the back button$/) do
+  query = "view marked:'Back'"
+  options = wait_options('Navbar back button')
+  wait_for_element_exists(query, options)
+
+  touch(query)
+  wait_for_none_animating
 end
 
 When(/^I scroll (up|down|left|right) for (\d+) times$/) do |direction, times|

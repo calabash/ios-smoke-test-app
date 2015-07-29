@@ -23,7 +23,7 @@ Feature: Rotation
     Then the orientation should be portrait
 
   Scenario: Controller does respond to orientation changes
-    Given I see the third tab
+    Given I see the special tab
     And I try to rotate the home button so it is on the right
     Then the home button should be on the right
 

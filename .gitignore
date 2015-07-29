@@ -27,7 +27,6 @@ __MACOSX
 reports
 screenshots
 *screenshot*.png
-vendor
 .ruby-version
 
 # briar
