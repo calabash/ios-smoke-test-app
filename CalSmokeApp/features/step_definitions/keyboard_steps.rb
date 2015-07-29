@@ -73,3 +73,8 @@ When(/^I (tap|double tap) the shift key$/) do |tap_type|
   expect(result['status']).to be == 'success'
   #sleep(0.4)
 end
+
+Then(/^I press the "([^"]*)" key$/) do |key_l10n_label|
+  delete_key_name = lookup_key_name(key_l10n_label)
+  uia("uia.keyboard().elements().firstWithName('#{delete_key_name}').tap()")
+end
