@@ -151,8 +151,17 @@ typedef enum : NSInteger {
 
 - (instancetype) init {
   self = [super init];
-  if (self){
-    self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
+  if (self) {
+
+    UIImage *image = [UIImage imageNamed:@"tab-bar-controls"];
+    UIImage *selected = [UIImage imageNamed:@"tab-bar-controls-selected"];
+    NSString *title =
+    NSLocalizedString(@"Controls",
+                      @"Title of tab bar page with controls like switches and buttons");
+    self.tabBarItem = [[UITabBarItem alloc]
+                       initWithTitle:title
+                       image:image
+                       selectedImage:selected];
   }
   return self;
 }
