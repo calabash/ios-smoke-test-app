@@ -1,4 +1,4 @@
-#import "CalFirstViewController.h"
+#import "CalControlsViewController.h"
 #import "UIView+Positioning.h"
 #import "CalViewWithArbitrarySelectors.h"
 
@@ -26,8 +26,10 @@ typedef enum : NSInteger {
 - (id) initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    self.accessibilityIdentifier = @"first page";
-    self.accessibilityLabel = NSLocalizedString(@"First page", @"ACCESSIBILITY: the first page");
+    self.accessibilityIdentifier = @"controls page";
+    self.accessibilityLabel =
+    NSLocalizedString(@"Controls page",
+                      @"A page with controls like buttons, textfields, and switches");
     self.backgroundColor = [UIColor whiteColor];
   }
   return self;
@@ -145,7 +147,7 @@ typedef enum : NSInteger {
 
 @end
 
-@implementation CalFirstViewController
+@implementation CalControlsViewController
 
 #pragma mark - Memory Management
 

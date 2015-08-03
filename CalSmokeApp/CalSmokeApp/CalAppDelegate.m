@@ -1,5 +1,5 @@
 #import "CalAppDelegate.h"
-#import "CalFirstViewController.h"
+#import "CalControlsViewController.h"
 #import "CalCollectionViewController.h"
 #import "CalDragDropController.h"
 #import "CalTabBarController.h"
@@ -286,7 +286,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
-  CalFirstViewController *firstController = [CalFirstViewController new];
+  CalControlsViewController *controlsController = [CalControlsViewController new];
 
   self.viewsThatScrollController =
   [[CalViewsThatScrollController alloc]
@@ -333,7 +333,7 @@
     self.tabBarController.tabBar.translucent = NO;
   }
 
-  self.tabBarController.viewControllers = @[firstController,
+  self.tabBarController.viewControllers = @[controlsController,
                                             self.gesturesController,
                                             self.scrollNavigationController,
                                             self.dragAndDropController,

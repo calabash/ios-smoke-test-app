@@ -17,8 +17,8 @@ Feature:  NSUserDefaults
   # homebrew tools. These are third-party software. If you have issues with these
   # tools, you are on your own. Please do not report problems with these tools
   # on the Calabash channels.
-  Background: I am on the first tab
-    Given I see the first tab
+  Background: Navigate to the controls page
+    Given I see the controls tab
 
   # Demonstrate that resetting the app works using NSUserDefaults as proxy.  The
   # on/off state of the switch on the first view is persisted in NSUserDefaults.

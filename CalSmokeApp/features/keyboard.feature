@@ -4,8 +4,8 @@ Feature: Typing on the Keyboard
   As an app tester
   I want Calabash to provide a Keyboard API
 
-  Background:  Get me to the first tab
-    Given I see the first tab
+  Background: Navigate to the controls tab
+    Given I see the controls tab
 
   @travis
   Scenario: I should be able to type something

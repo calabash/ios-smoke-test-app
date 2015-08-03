@@ -24,7 +24,7 @@
 		F52BFB1A1987EF8700299AEF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F52BFB181987EF8700299AEF /* InfoPlist.strings */; };
 		F52BFB1C1987EF8700299AEF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB1B1987EF8700299AEF /* main.m */; };
 		F52BFB201987EF8700299AEF /* CalAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB1F1987EF8700299AEF /* CalAppDelegate.m */; };
-		F52BFB291987EF8700299AEF /* CalFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB281987EF8700299AEF /* CalFirstViewController.m */; };
+		F52BFB291987EF8700299AEF /* CalControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB281987EF8700299AEF /* CalControlsViewController.m */; };
 		F52BFB2B1987EF8700299AEF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52BFB2A1987EF8700299AEF /* Images.xcassets */; };
 		F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55081B41ACD4F5400F226A1 /* WebKit.framework */; };
 		F550CDCB1B60CFA400D57B57 /* CalTapGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = F550CDC91B60CFA400D57B57 /* CalTapGestureController.m */; };
@@ -70,7 +70,7 @@
 		F5C276341B3B546A00DF63FA /* CalDragDropController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C276311B3B546A00DF63FA /* CalDragDropController.xib */; };
 		F5C276371B3B547900DF63FA /* CalDragDropController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C276361B3B547900DF63FA /* CalDragDropController.m */; };
 		F5C276381B3B547900DF63FA /* CalDragDropController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C276361B3B547900DF63FA /* CalDragDropController.m */; };
-		a851e37816c4ddd975adbf58 /* CalFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB281987EF8700299AEF /* CalFirstViewController.m */; };
+		a851e37816c4ddd975adbf58 /* CalControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB281987EF8700299AEF /* CalControlsViewController.m */; };
 		ab943fbf9d0ac91728d35abe /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BFB131987EF8700299AEF /* UIKit.framework */; };
 		cc8f9377c616d69147b3de31 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F52BFB2A1987EF8700299AEF /* Images.xcassets */; };
 		e3e0a6761f42ce3d10829b2b /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F52BFB181987EF8700299AEF /* InfoPlist.strings */; };
@@ -94,8 +94,8 @@
 		F52BFB1D1987EF8700299AEF /* CalSmoke-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CalSmoke-Prefix.pch"; sourceTree = "<group>"; };
 		F52BFB1E1987EF8700299AEF /* CalAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalAppDelegate.h; sourceTree = "<group>"; };
 		F52BFB1F1987EF8700299AEF /* CalAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalAppDelegate.m; sourceTree = "<group>"; };
-		F52BFB271987EF8700299AEF /* CalFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalFirstViewController.h; sourceTree = "<group>"; };
-		F52BFB281987EF8700299AEF /* CalFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalFirstViewController.m; sourceTree = "<group>"; };
+		F52BFB271987EF8700299AEF /* CalControlsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalControlsViewController.h; sourceTree = "<group>"; };
+		F52BFB281987EF8700299AEF /* CalControlsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalControlsViewController.m; sourceTree = "<group>"; };
 		F52BFB2A1987EF8700299AEF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F55081B41ACD4F5400F226A1 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F550CDC81B60CFA400D57B57 /* CalTapGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalTapGestureController.h; sourceTree = "<group>"; };
@@ -210,8 +210,8 @@
 				F52B40B91B4A66430022AEC8 /* CalTabBarController.m */,
 				F52BFB1E1987EF8700299AEF /* CalAppDelegate.h */,
 				F52BFB1F1987EF8700299AEF /* CalAppDelegate.m */,
-				F52BFB271987EF8700299AEF /* CalFirstViewController.h */,
-				F52BFB281987EF8700299AEF /* CalFirstViewController.m */,
+				F52BFB271987EF8700299AEF /* CalControlsViewController.h */,
+				F52BFB281987EF8700299AEF /* CalControlsViewController.m */,
 				F5097D091B6B7F1000326D6A /* CalGestureController.h */,
 				F5097D0A1B6B7F1000326D6A /* CalGestureController.m */,
 				F5C276351B3B547900DF63FA /* CalDragDropController.h */,
@@ -420,6 +420,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "script/xcode-build-phase/add-calabash-dylibs-to-bundle.sh";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -429,7 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F52BFB1C1987EF8700299AEF /* main.m in Sources */,
-				F52BFB291987EF8700299AEF /* CalFirstViewController.m in Sources */,
+				F52BFB291987EF8700299AEF /* CalControlsViewController.m in Sources */,
 				F550CE031B63A41300D57B57 /* CalBarButtonItemFactory.m in Sources */,
 				F56592551B46AD3300C044C8 /* CalAnimatedView.m in Sources */,
 				F550CE091B63A57A00D57B57 /* LjsLabelAttributes.m in Sources */,
@@ -455,7 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1a6fb43aa140ae563e019cce /* main.m in Sources */,
-				a851e37816c4ddd975adbf58 /* CalFirstViewController.m in Sources */,
+				a851e37816c4ddd975adbf58 /* CalControlsViewController.m in Sources */,
 				F550CE041B63A41300D57B57 /* CalBarButtonItemFactory.m in Sources */,
 				F56592561B46AD3300C044C8 /* CalAnimatedView.m in Sources */,
 				F550CE0A1B63A57A00D57B57 /* LjsLabelAttributes.m in Sources */,
