@@ -1,80 +1,57 @@
-#import "CalViewsThatScrollController.h"
-#import "UIColor+LjsAdditions.h"
+#import "CalGestureListController.h"
+#import "CalBarButtonItemFactory.h"
 #import "UIView+Positioning.h"
-#import "CalCollectionViewController.h"
-#import "CalTableViewContoller.h"
-#import "CalScollViewController.h"
 
 static NSString *const CalCellIdentifier = @"cell identifier";
 
 typedef enum : NSInteger {
-  kRowTableViews = 0,
-  kRowsCollectionViews,
-  kRowsScrollViews,
-  kRowsWebViews,
-  kRowsMapViews
+  kRowTapping = 0,
+  kRowPanning,
+  kRowSwiping,
+  kRowPinching,
+  kRowRotating
 } rows;
 
-@interface CalViewsThatScrollController ()
+@interface CalGestureListController ()
 <UITableViewDataSource, UITableViewDelegate>
 
 @property(copy, nonatomic) NSArray *cellTitles;
 @property(weak, nonatomic) IBOutlet UITableView *tableView;
-@property(strong, nonatomic, readonly) UIColor *lightPink;
-
-- (void) setContentInsets:(UITableView *) tableView;
 
 @end
 
-@implementation CalViewsThatScrollController
+@implementation CalGestureListController
 
 #pragma mark - Memory Management
-
-@synthesize tableView = _tableView;
-@synthesize lightPink = _lightPink;
 
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil
                           bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-
     NSString *title =
-    NSLocalizedString(@"Scrolls", @"Title of tab bar item for views that scroll".);
+    NSLocalizedString(@"Gestures", @"Title of tab bar item for views that respond to gestures.".);
     self.title = title;
 
     self.cellTitles = @[
-                        @"Table views",
-                        @"Collection views",
-                        @"Scroll views",
-                        @"Web views",
-                        @"Map views"
+                        @"Tapping",
+                        @"Panning",
+                        @"Swiping / Flicking",
+                        @"Pinching",
+                        @"Rotating"
                         ];
   }
   return self;
+}
+
+- (void) dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
 }
 
-- (UIColor *) lightPink {
-  if (_lightPink) { return _lightPink; }
-  _lightPink = [UIColor colorWithR:255.0f g:0.0f b:0.0f a:0.04f];
-  return _lightPink;
-}
-
-#pragma mark - Orientation / Rotation
-
-- (NSUInteger) supportedInterfaceOrientations {
-  return UIInterfaceOrientationMaskAll;
-}
-
-- (BOOL) shouldAutorotate {
-  return YES;
-}
-
 #pragma mark - UITableViewDataSource
-
 
 - (NSInteger) tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger) aSection {
   return [[self cellTitles] count];
@@ -83,6 +60,7 @@ typedef enum : NSInteger {
 - (UITableViewCell *) tableView:(UITableView *) tableView
           cellForRowAtIndexPath:(NSIndexPath *) indexPath {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CalCellIdentifier];
+
   NSString *title = self.cellTitles[indexPath.row];
 
   cell.textLabel.text = title;
@@ -103,34 +81,40 @@ typedef enum : NSInteger {
 
 - (void) tableView:(UITableView *) tableView willDisplayCell:(UITableViewCell *) aCell
  forRowAtIndexPath:(NSIndexPath *) indexPath {
-  aCell.textLabel.backgroundColor = self.lightPink;
+
 }
 
 #pragma mark - UITableViewDelegate Managing Selections
 
 
 - (void) tableView:(UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *) indexPath {
-  if (indexPath.row == kRowsCollectionViews) {
-    UIViewController *controller =
-    [[CalCollectionViewController alloc]
-    initWithNibName:NSStringFromClass([CalCollectionViewController class])
-     bundle:nil];
-    [self.navigationController pushViewController:controller
-                                         animated:YES];
-  } else if (indexPath.row == kRowTableViews) {
-    UIViewController *controller =
-    [[CalTableViewContoller alloc]
-     initWithNibName:NSStringFromClass([CalTableViewContoller class])
-     bundle:nil];
-    [self.navigationController pushViewController:controller
-                                         animated:YES];
+  NSInteger row = indexPath.row;
+  switch (row) {
+    case kRowTapping: {
 
-  } else if (indexPath.row == kRowsScrollViews) {
-    UIViewController *controller =
-    [[CalScollViewController alloc]
-    initWithNibName:NSStringFromClass([CalScollViewController class])
-     bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
+      break;
+    }
+    case kRowPanning: {
+
+      break;
+    }
+
+    case kRowSwiping: {
+
+      break;
+    }
+
+    case kRowPinching: {
+
+      break;
+    }
+
+    case kRowRotating: {
+
+      break;
+    }
+    default:
+      break;
   }
 
   double delayInSeconds = 0.4;
@@ -141,9 +125,19 @@ typedef enum : NSInteger {
 }
 
 - (void) tableView:(UITableView *) tableView didDeselectRowAtIndexPath:(NSIndexPath *) indexPath {
-
+  
 }
 
+
+#pragma mark - Orientation / Rotation
+
+- (NSUInteger)supportedInterfaceOrientations {
+  return UIInterfaceOrientationMaskAll;
+}
+
+- (BOOL) shouldAutorotate {
+  return YES;
+}
 
 #pragma mark - View Lifecycle
 
@@ -160,31 +154,21 @@ typedef enum : NSInteger {
   tableView.contentInset = UIEdgeInsetsMake(topHeight, 0, bottomHeight, 0);
 }
 
-- (void)viewDidLoad {
+
+- (void) viewDidLoad {
   [super viewDidLoad];
 
-  self.view.accessibilityIdentifier = @"scrolls page";
+  self.view.accessibilityIdentifier = @"gestures page";
   self.view.accessibilityLabel =
-  NSLocalizedString(@"List of views that scroll", @"A list of views that scroll.");
+  NSLocalizedString(@"Gestures!", @"A view that responds to gestures.");
 
-  self.view.backgroundColor = self.lightPink;
-
-  UITableView *tableView = self.tableView;
-
-  [tableView registerClass:[UITableViewCell class]
+  [self.tableView registerClass:[UITableViewCell class]
          forCellReuseIdentifier:CalCellIdentifier];
-  tableView.delegate = self;
-  tableView.dataSource = self;
-
-  tableView.accessibilityIdentifier = @"table";
-  tableView.accessibilityLabel =
-  NSLocalizedString(@"List of scrolling views",
-                    @"A table view that list the different kinds of scrolling views");
+  self.tableView.accessibilityIdentifier = @"List of gestures";
 }
 
 - (void) viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
-
   [self setContentInsets:self.tableView];
 }
 
@@ -195,13 +179,6 @@ typedef enum : NSInteger {
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-  self.navigationItem.title = self.title;
-  [self setContentInsets:self.tableView];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-
   UINavigationController *navcon = self.navigationController;
   if ([navcon respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
     navcon.interactivePopGestureRecognizer.enabled = NO;
@@ -209,6 +186,11 @@ typedef enum : NSInteger {
     [navcon.interactivePopGestureRecognizer removeTarget:nil
                                                   action:NULL];
   }
+  [self setContentInsets:self.tableView];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -218,5 +200,6 @@ typedef enum : NSInteger {
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
 }
+
 
 @end

@@ -5,7 +5,7 @@
 #import "CalTabBarController.h"
 #import "CalTapGestureController.h"
 #import "CalViewsThatScrollController.h"
-#import "CalGestureController.h"
+#import "CalGestureListController.h"
 
 #if LOAD_CALABASH_DYLIB
 #import <dlfcn.h>
@@ -16,7 +16,7 @@
 @property(strong, nonatomic) CalDragDropController *dragAndDropController;
 @property(strong, nonatomic) CalTapGestureController *tapGesturesController;
 @property(strong, nonatomic) CalViewsThatScrollController *viewsThatScrollController;
-@property(strong, nonatomic) CalGestureController *gesturesController;
+@property(strong, nonatomic) UINavigationController *gesturesNavigationController;
 @property(strong, nonatomic) UINavigationController *scrollNavigationController;
 
 @end
@@ -288,6 +288,24 @@
   
   CalControlsViewController *controlsController = [CalControlsViewController new];
 
+  UIViewController *gesturesListController =
+  [[CalGestureListController alloc]
+  initWithNibName:NSStringFromClass([CalGestureListController class])
+   bundle:nil];
+
+  self.gesturesNavigationController =
+  [[UINavigationController alloc]
+   initWithRootViewController:gesturesListController];
+
+  UIImage *gesturesImage = [UIImage imageNamed:@"tab-bar-gestures"];
+  UIImage *gesturesSelected = [UIImage imageNamed:@"tab-bar-gestures-selected"];
+  NSString *gesturesTitle = NSLocalizedString(@"Gestures",
+                                              @"Title of tab bar page where gestures can be performed");
+  self.gesturesNavigationController.tabBarItem = [[UITabBarItem alloc]
+                                                  initWithTitle:gesturesTitle
+                                                  image:gesturesImage
+                                                  selectedImage:gesturesSelected];
+
   self.viewsThatScrollController =
   [[CalViewsThatScrollController alloc]
    initWithNibName:(NSStringFromClass([CalViewsThatScrollController class]))
@@ -297,18 +315,17 @@
   [[UINavigationController alloc]
    initWithRootViewController:self.viewsThatScrollController];
 
-  NSString *navControllerTitle =
+  NSString *scrollingTitle =
   NSLocalizedString(@"Scrolls", @"Title of tab bar item for views that scroll".);
 
-  UIImage *image = [UIImage imageNamed:@"tab-bar-scrolling"];
-  UIImage *selected = [UIImage imageNamed:@"tab-bar-scrolling-selected"];
+  UIImage *scrollingImage = [UIImage imageNamed:@"tab-bar-scrolling"];
+  UIImage *scrollingSelected = [UIImage imageNamed:@"tab-bar-scrolling-selected"];
 
   UITabBarItem *scrollTabItem = [[UITabBarItem alloc]
-                                 initWithTitle:navControllerTitle
-                                 image:image
-                                 selectedImage:selected];
+                                 initWithTitle:scrollingTitle
+                                 image:scrollingImage
+                                 selectedImage:scrollingSelected];
   self.scrollNavigationController.tabBarItem = scrollTabItem;
-
 
   self.dragAndDropController =
   [[CalDragDropController alloc]
@@ -320,11 +337,6 @@
    initWithNibName:NSStringFromClass([CalTapGestureController class])
    bundle:nil];
 
-  self.gesturesController =
-  [[CalGestureController alloc]
-  initWithNibName:NSStringFromClass([CalGestureController class])
-   bundle:nil];
-
   self.tabBarController = [CalTabBarController new];
 
   SEL transSel = NSSelectorFromString(@"translucent");
@@ -334,7 +346,7 @@
   }
 
   self.tabBarController.viewControllers = @[controlsController,
-                                            self.gesturesController,
+                                            self.gesturesNavigationController,
                                             self.scrollNavigationController,
                                             self.dragAndDropController,
                                             self.tapGesturesController];
@@ -355,7 +367,7 @@ supportedInterfaceOrientationsForWindow:(UIWindow *)window {
   if (presented == self.dragAndDropController ||
       presented == self.tapGesturesController ||
       presented == self.scrollNavigationController ||
-      presented == self.gesturesController) {
+      presented == self.gesturesNavigationController) {
     return UIInterfaceOrientationMaskAll;
   } else {
     return UIInterfaceOrientationMaskPortrait;
