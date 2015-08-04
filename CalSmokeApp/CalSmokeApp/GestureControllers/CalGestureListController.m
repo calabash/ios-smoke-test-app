@@ -1,6 +1,7 @@
 #import "CalGestureListController.h"
 #import "CalBarButtonItemFactory.h"
 #import "UIView+Positioning.h"
+#import "CalPanController.h"
 
 static NSString *const CalCellIdentifier = @"cell identifier";
 
@@ -89,13 +90,16 @@ typedef enum : NSInteger {
 
 - (void) tableView:(UITableView *) tableView didSelectRowAtIndexPath:(NSIndexPath *) indexPath {
   NSInteger row = indexPath.row;
+  UIViewController *controller = nil;
   switch (row) {
     case kRowTapping: {
 
       break;
     }
     case kRowPanning: {
-
+      controller = [[CalPanController alloc]
+                    initWithNibName:NSStringFromClass([CalPanController class])
+                    bundle:nil];
       break;
     }
 
@@ -115,6 +119,10 @@ typedef enum : NSInteger {
     }
     default:
       break;
+  }
+
+  if (controller) {
+    [self.navigationController pushViewController:controller animated:YES];
   }
 
   double delayInSeconds = 0.4;
