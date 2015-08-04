@@ -2,7 +2,7 @@ module CalSmoke
   module Selectors
 
     def call_selector(array_or_symbol)
-      query("view marked:'first page'", array_or_symbol)
+      query("view marked:'controls page'", array_or_symbol)
     end
 
     def returned_from_selector(array_or_symbol)
@@ -24,9 +24,9 @@ end
 World(CalSmoke::Selectors)
 
 When(/^I call an unknown selector on a view$/) do
-  result = query("view marked:'first page'", :unknownSelector)
+  result = query("view marked:'controls page'", :unknownSelector)
   if result.empty?
-    raise "Expected a query match for \"view marked:'first page'\""
+    raise "Expected a query match for \"view marked:'controls page'\""
   end
   @received_back_from_selector = result.first
 end
@@ -41,22 +41,22 @@ When(/^I call a method that references the matched view$/) do
 end
 
 Then(/^the view alarm property is off$/) do
-  result = query("view marked:'first page'", :alarm, :isOn)
+  result = query("view marked:'controls page'", :alarm, :isOn)
   if result.empty?
-    raise "Expected query match for \"view marked:'first page'\""
+    raise "Expected query match for \"view marked:'controls page'\""
   end
   expect(result.first).to be == 0
 end
 
 And(/^I can turn the alarm on$/) do
-  result = query("view marked:'first page'", :alarm, [{setIsOn:1}])
+  result = query("view marked:'controls page'", :alarm, [{setIsOn:1}])
   if result.empty?
-    raise "Expected query match for \"view marked:'first page'\""
+    raise "Expected query match for \"view marked:'controls page'\""
   end
 
-  result = query("view marked:'first page'", :alarm, :isOn)
+  result = query("view marked:'controls page'", :alarm, :isOn)
   if result.empty?
-    raise "Expected query match for \"view marked:'first page'\""
+    raise "Expected query match for \"view marked:'controls page'\""
   end
 
   expect(result.first).to be == 1
@@ -291,6 +291,6 @@ Then(/^I make a chained call to a selector with 3 arguments$/) do
  array = [{selectorWithArg:args[0]},
           {arg:args[1]},
           {arg:args[2]}]
-  result = query("view marked:'first page'", :alarm, array)
+  result = query("view marked:'controls page'", :alarm, array)
   expect(result).to be == args
 end

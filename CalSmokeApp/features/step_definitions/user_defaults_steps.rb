@@ -2,7 +2,7 @@ module Calabash
   module IOS
     module ResetBetweenScenarioSteps
       def qstr_for_switch
-        "view marked:'first page' switch marked:'switch'"
+        "view marked:'controls page' switch marked:'switch'"
       end
 
       def switch_state

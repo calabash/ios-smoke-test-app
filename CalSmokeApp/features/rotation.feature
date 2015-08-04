@@ -18,7 +18,7 @@ Feature: Rotation
   # https://github.com/jmoody/briar-ios-example
 
   Scenario: Controller does not respond to orientation changes
-    Given I see the first tab
+    Given I see the controls tab
     And I try to rotate the home button so it is on the left
     Then the orientation should be portrait
 

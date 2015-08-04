@@ -63,8 +63,8 @@ Feature: Calling Arbitrary Selectors
   #
   # query('GSMapView', :JSONRepresentationOfPins)
 
-  Background: Get me to the first tab
-    Given I see the first tab
+  Background: Navigate to the controls page
+    Given I see the controls tab
 
   Scenario: Unknown selector
     When I call an unknown selector on a view

@@ -1,4 +1,4 @@
-#import "CalFirstViewController.h"
+#import "CalControlsViewController.h"
 #import "UIView+Positioning.h"
 #import "CalViewWithArbitrarySelectors.h"
 
@@ -26,8 +26,10 @@ typedef enum : NSInteger {
 - (id) initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    self.accessibilityIdentifier = @"first page";
-    self.accessibilityLabel = NSLocalizedString(@"First page", @"ACCESSIBILITY: the first page");
+    self.accessibilityIdentifier = @"controls page";
+    self.accessibilityLabel =
+    NSLocalizedString(@"Controls page",
+                      @"A page with controls like buttons, textfields, and switches");
     self.backgroundColor = [UIColor whiteColor];
   }
   return self;
@@ -145,14 +147,23 @@ typedef enum : NSInteger {
 
 @end
 
-@implementation CalFirstViewController
+@implementation CalControlsViewController
 
 #pragma mark - Memory Management
 
 - (instancetype) init {
   self = [super init];
-  if (self){
-    self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemSearch tag:0];
+  if (self) {
+
+    UIImage *image = [UIImage imageNamed:@"tab-bar-controls"];
+    UIImage *selected = [UIImage imageNamed:@"tab-bar-controls-selected"];
+    NSString *title =
+    NSLocalizedString(@"Controls",
+                      @"Title of tab bar page with controls like switches and buttons");
+    self.tabBarItem = [[UITabBarItem alloc]
+                       initWithTitle:title
+                       image:image
+                       selectedImage:selected];
   }
   return self;
 }

@@ -20,8 +20,8 @@ Feature:  iOS Keychain
   # homebrew tools. These are third-party software. If you have issues with these
   # tools, you are on your own. Please do not report problems with these tools
   # on the Calabash channels.
-  Background: I am on the first tab
-    Given I see the first tab
+  Background: Navigate to the controls page
+    Given I see the controls tab
 
   # Demonstrate that the keychain API works.
   Scenario: 00 I set the keychain item
