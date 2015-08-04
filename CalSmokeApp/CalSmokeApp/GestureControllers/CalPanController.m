@@ -2,6 +2,28 @@
 #import "UIView+Positioning.h"
 #import "CalBarButtonItemFactory.h"
 
+static NSString *const CalPanClearTouchPointsNotification =
+@"sh.calaba.CalSmokeApp Pan Clearn Touch Points";
+
+@interface UIView (CalPanClearTouchPoints)
+
+@end
+
+@implementation UIView (CalPanClearTouchPoints)
+
+- (void) clearTouchPoints {
+  [[NSNotificationCenter defaultCenter]
+   postNotificationName:CalPanClearTouchPointsNotification
+   object:nil];
+}
+
+@end
+
+typedef enum : NSInteger {
+  kTagPanBegin = 3030,
+  kTagPanEnd
+} PanPointViews;
+
 @interface CalPanController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *screenPanStartLabel;
@@ -20,7 +42,11 @@
                           bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(handleClearTouchPointsNotification:)
+     name:CalPanClearTouchPointsNotification
+     object:nil];
   }
   return self;
 }
@@ -53,19 +79,66 @@
   }
 }
 
+- (void) handleClearTouchPointsNotification:(NSNotification *) notification {
+  [self removePreviousTouches];
+  self.screenPanStartLabel.text = @"";
+  self.screenPanEndLabel.text = @"";
+}
+
+- (void) removePreviousTouches {
+  [@[@(kTagPanBegin), @(kTagPanEnd)] enumerateObjectsUsingBlock:^(NSNumber *tag,
+                                                    NSUInteger idx,
+                                                    BOOL *stop) {
+    UIView *view = [self.view viewWithTag:[tag integerValue]];
+    if (view) {
+      [view removeFromSuperview];
+    }
+  }];
+}
+
+- (UIView *) viewForPanTouchWithCenter:(CGPoint) center
+                                   tag:(PanPointViews) tag {
+  CGRect frame = CGRectMake(0, 0, 44, 44);
+  UIView *view = [[UIView alloc] initWithFrame:frame];
+  view.center = center;
+  view.layer.cornerRadius = 44/2;
+  view.tag = tag;
+  
+  switch (tag) {
+    case kTagPanBegin: {
+      view.backgroundColor = [UIColor blueColor];
+      view.accessibilityIdentifier = @"begin";
+      break;
+    }
+
+    case kTagPanEnd: {
+      view.backgroundColor = [UIColor redColor];
+      view.accessibilityIdentifier = @"end";
+      break;
+    }
+  }
+  return view;
+}
+
 - (void) panView:(UIPanGestureRecognizer *) recognizer {
   CGPoint point = [recognizer locationInView:self.view];
   UIGestureRecognizerState state = [recognizer state];
   if (UIGestureRecognizerStateBegan == state) {
+    [self removePreviousTouches];
+
     self.screenPanStartLabel.text = [NSString stringWithFormat:@"Start: (%@, %@)",
                                      @([@(point.x) integerValue]),
                                      @([@(point.y) integerValue])];
     self.screenPanEndLabel.text = @"Waiting...";
 
-    } else if (UIGestureRecognizerStateEnded == state) {
+    [self.view addSubview:[self viewForPanTouchWithCenter:point tag:kTagPanBegin]];
+
+  } else if (UIGestureRecognizerStateEnded == state) {
     self.screenPanEndLabel.text = [NSString stringWithFormat:@"End: (%@, %@)",
                                    @([@(point.x) integerValue]),
                                    @([@(point.y) integerValue])];
+
+    [self.view addSubview:[self viewForPanTouchWithCenter:point tag:kTagPanEnd]];
   }
 }
 
@@ -75,6 +148,10 @@
 }
 
 #pragma mark - View Lifecycle
+
+- (void) buttonTouchedBack:(id) sender {
+  [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void) layoutLabelContainer:(UIView *) containerView {
   UITabBar *tabBar = self.tabBarController.tabBar;
@@ -86,9 +163,9 @@
   [super viewDidLoad];
 
 
-  self.view.accessibilityIdentifier = @"scroll views page";
+  self.view.accessibilityIdentifier = @"panning page";
   self.view.accessibilityLabel =
-  NSLocalizedString(@"Scroll views", @"A view with scroll views.");
+  NSLocalizedString(@"Panning page", @"A view with you can pan on.");
 
   UITapGestureRecognizer *doubleTap;
   doubleTap = [[UITapGestureRecognizer alloc]
@@ -153,14 +230,6 @@
   self.navigationItem.hidesBackButton = YES;
   self.navigationItem.backBarButtonItem = nil;
   self.navigationItem.leftBarButtonItem = backButton;
-
-  UINavigationController *navcon = self.navigationController;
-  if ([navcon respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-    navcon.interactivePopGestureRecognizer.enabled = YES;
-    navcon.interactivePopGestureRecognizer.delegate = (id<UIGestureRecognizerDelegate>)self;
-    [navcon.interactivePopGestureRecognizer addTarget:self
-                                               action:@selector(buttonTouchedBack:)];
-  }
 
   [self layoutLabelContainer:self.labelContainer];
 }
