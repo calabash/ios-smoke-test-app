@@ -60,6 +60,19 @@
 		F58C9FA11B707631007D307B /* CalPanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9F1B707631007D307B /* CalPanController.m */; };
 		F58C9FA81B707842007D307B /* CalPanController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FA61B707842007D307B /* CalPanController.xib */; };
 		F58C9FA91B707842007D307B /* CalPanController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FA61B707842007D307B /* CalPanController.xib */; };
+		F58C9FAD1B72191B007D307B /* CalPinchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FAB1B72191B007D307B /* CalPinchController.m */; };
+		F58C9FAE1B72191B007D307B /* CalPinchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FAB1B72191B007D307B /* CalPinchController.m */; };
+		F58C9FB31B72194D007D307B /* CalPinchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FB11B72194D007D307B /* CalPinchController.xib */; };
+		F58C9FB41B72194D007D307B /* CalPinchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FB11B72194D007D307B /* CalPinchController.xib */; };
+		F58C9FB61B7262E6007D307B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58C9FB51B7262E6007D307B /* MapKit.framework */; };
+		F58C9FB71B7262F2007D307B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58C9FB51B7262E6007D307B /* MapKit.framework */; };
+		F58C9FB81B72630C007D307B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55081B41ACD4F5400F226A1 /* WebKit.framework */; };
+		F58C9FBB1B7264AF007D307B /* CalMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FBA1B7264AF007D307B /* CalMapView.m */; };
+		F58C9FBC1B7264AF007D307B /* CalMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FBA1B7264AF007D307B /* CalMapView.m */; };
+		F58C9FC01B72663D007D307B /* CalMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FBE1B72663D007D307B /* CalMapController.m */; };
+		F58C9FC11B72663D007D307B /* CalMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FBE1B72663D007D307B /* CalMapController.m */; };
+		F58C9FC61B72665E007D307B /* CalMapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FC41B72665E007D307B /* CalMapController.xib */; };
+		F58C9FC71B72665E007D307B /* CalMapController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FC41B72665E007D307B /* CalMapController.xib */; };
 		F590CBBF1B683A6200F0E39E /* CalScollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F590CBBD1B683A6200F0E39E /* CalScollViewController.m */; };
 		F590CBC01B683A6200F0E39E /* CalScollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F590CBBD1B683A6200F0E39E /* CalScollViewController.m */; };
 		F590CBC51B683A7C00F0E39E /* CalScollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */; };
@@ -130,6 +143,15 @@
 		F58C9F9E1B707631007D307B /* CalPanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalPanController.h; sourceTree = "<group>"; };
 		F58C9F9F1B707631007D307B /* CalPanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalPanController.m; sourceTree = "<group>"; };
 		F58C9FA71B707842007D307B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalPanController.xib; sourceTree = "<group>"; };
+		F58C9FAA1B72191B007D307B /* CalPinchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalPinchController.h; sourceTree = "<group>"; };
+		F58C9FAB1B72191B007D307B /* CalPinchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalPinchController.m; sourceTree = "<group>"; };
+		F58C9FB21B72194D007D307B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalPinchController.xib; sourceTree = "<group>"; };
+		F58C9FB51B7262E6007D307B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F58C9FB91B7264AF007D307B /* CalMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalMapView.h; sourceTree = "<group>"; };
+		F58C9FBA1B7264AF007D307B /* CalMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalMapView.m; sourceTree = "<group>"; };
+		F58C9FBD1B72663D007D307B /* CalMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalMapController.h; path = ScrollControllers/CalMapController.h; sourceTree = "<group>"; };
+		F58C9FBE1B72663D007D307B /* CalMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalMapController.m; path = ScrollControllers/CalMapController.m; sourceTree = "<group>"; };
+		F58C9FC51B72665E007D307B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalMapController.xib; sourceTree = "<group>"; };
 		F590CBBC1B683A6200F0E39E /* CalScollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalScollViewController.h; path = ScrollControllers/CalScollViewController.h; sourceTree = "<group>"; };
 		F590CBBD1B683A6200F0E39E /* CalScollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalScollViewController.m; path = ScrollControllers/CalScollViewController.m; sourceTree = "<group>"; };
 		F590CBC41B683A7C00F0E39E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalScollViewController.xib; sourceTree = "<group>"; };
@@ -150,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F58C9FB71B7262F2007D307B /* MapKit.framework in Frameworks */,
 				F571F76B1B45843B00CA108B /* Reveal.framework in Frameworks */,
 				F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */,
 				814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */,
@@ -164,6 +187,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F58C9FB81B72630C007D307B /* WebKit.framework in Frameworks */,
+				F58C9FB61B7262E6007D307B /* MapKit.framework in Frameworks */,
 				F52BFB121987EF8700299AEF /* CoreGraphics.framework in Frameworks */,
 				F52BFB141987EF8700299AEF /* UIKit.framework in Frameworks */,
 				F52BFB101987EF8700299AEF /* Foundation.framework in Frameworks */,
@@ -194,6 +219,7 @@
 		F52BFB0E1987EF8700299AEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F58C9FB51B7262E6007D307B /* MapKit.framework */,
 				F571F76A1B45843B00CA108B /* Reveal.framework */,
 				F55081B41ACD4F5400F226A1 /* WebKit.framework */,
 				F52BFB0F1987EF8700299AEF /* Foundation.framework */,
@@ -256,6 +282,8 @@
 				F550CE121B63AE9E00D57B57 /* CalCollectionViewController.m */,
 				F590CBBC1B683A6200F0E39E /* CalScollViewController.h */,
 				F590CBBD1B683A6200F0E39E /* CalScollViewController.m */,
+				F58C9FBD1B72663D007D307B /* CalMapController.h */,
+				F58C9FBE1B72663D007D307B /* CalMapController.m */,
 			);
 			name = ScrollControllers;
 			sourceTree = "<group>";
@@ -267,6 +295,7 @@
 				F5A31D101B664BF90094B768 /* CalTableViewContoller.xib */,
 				F550CDFC1B63A26500D57B57 /* CalCollectionViewController.xib */,
 				F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */,
+				F58C9FC41B72665E007D307B /* CalMapController.xib */,
 			);
 			name = ScrollControllers;
 			sourceTree = "<group>";
@@ -293,6 +322,8 @@
 			children = (
 				F550CE011B63A41300D57B57 /* CalBarButtonItemFactory.h */,
 				F550CE021B63A41300D57B57 /* CalBarButtonItemFactory.m */,
+				F58C9FB91B7264AF007D307B /* CalMapView.h */,
+				F58C9FBA1B7264AF007D307B /* CalMapView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -302,6 +333,7 @@
 			children = (
 				F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */,
 				F58C9FA61B707842007D307B /* CalPanController.xib */,
+				F58C9FB11B72194D007D307B /* CalPinchController.xib */,
 			);
 			name = GesturesControllers;
 			sourceTree = "<group>";
@@ -313,6 +345,8 @@
 				F58C9F9B1B707501007D307B /* CalGestureListController.m */,
 				F58C9F9E1B707631007D307B /* CalPanController.h */,
 				F58C9F9F1B707631007D307B /* CalPanController.m */,
+				F58C9FAA1B72191B007D307B /* CalPinchController.h */,
+				F58C9FAB1B72191B007D307B /* CalPinchController.m */,
 			);
 			path = GestureControllers;
 			sourceTree = "<group>";
@@ -403,12 +437,14 @@
 				cc8f9377c616d69147b3de31 /* Images.xcassets in Resources */,
 				F5C276341B3B546A00DF63FA /* CalDragDropController.xib in Resources */,
 				F550CDE11B63770B00D57B57 /* CalViewsThatScrollController.xib in Resources */,
+				F58C9FC71B72665E007D307B /* CalMapController.xib in Resources */,
 				F58C9FA91B707842007D307B /* CalPanController.xib in Resources */,
 				F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */,
 				F590CBC61B683A7C00F0E39E /* CalScollViewController.xib in Resources */,
 				e3e0a6761f42ce3d10829b2b /* InfoPlist.strings in Resources */,
 				F550CDD21B60CFC400D57B57 /* CalTapGestureController.xib in Resources */,
 				F550CDFF1B63A26500D57B57 /* CalCollectionViewController.xib in Resources */,
+				F58C9FB41B72194D007D307B /* CalPinchController.xib in Resources */,
 				F5097D081B6B7C0E00326D6A /* CalGestureListController.xib in Resources */,
 				F5A31D131B664BF90094B768 /* CalTableViewContoller.xib in Resources */,
 			);
@@ -421,12 +457,14 @@
 				F52BFB2B1987EF8700299AEF /* Images.xcassets in Resources */,
 				F5C276331B3B546A00DF63FA /* CalDragDropController.xib in Resources */,
 				F550CDE01B63770B00D57B57 /* CalViewsThatScrollController.xib in Resources */,
+				F58C9FC61B72665E007D307B /* CalMapController.xib in Resources */,
 				F58C9FA81B707842007D307B /* CalPanController.xib in Resources */,
 				F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */,
 				F590CBC51B683A7C00F0E39E /* CalScollViewController.xib in Resources */,
 				F52BFB1A1987EF8700299AEF /* InfoPlist.strings in Resources */,
 				F550CDD11B60CFC400D57B57 /* CalTapGestureController.xib in Resources */,
 				F550CDFE1B63A26500D57B57 /* CalCollectionViewController.xib in Resources */,
+				F58C9FB31B72194D007D307B /* CalPinchController.xib in Resources */,
 				F5097D071B6B7C0E00326D6A /* CalGestureListController.xib in Resources */,
 				F5A31D121B664BF90094B768 /* CalTableViewContoller.xib in Resources */,
 			);
@@ -459,8 +497,10 @@
 			files = (
 				F58C9FA01B707631007D307B /* CalPanController.m in Sources */,
 				F52BFB1C1987EF8700299AEF /* main.m in Sources */,
+				F58C9FC01B72663D007D307B /* CalMapController.m in Sources */,
 				F52BFB291987EF8700299AEF /* CalControlsViewController.m in Sources */,
 				F550CE031B63A41300D57B57 /* CalBarButtonItemFactory.m in Sources */,
+				F58C9FAD1B72191B007D307B /* CalPinchController.m in Sources */,
 				F56592551B46AD3300C044C8 /* CalAnimatedView.m in Sources */,
 				F550CE091B63A57A00D57B57 /* LjsLabelAttributes.m in Sources */,
 				F5A31D0C1B664BD00094B768 /* CalTableViewContoller.m in Sources */,
@@ -470,6 +510,7 @@
 				F52BFB201987EF8700299AEF /* CalAppDelegate.m in Sources */,
 				F550CDCB1B60CFA400D57B57 /* CalTapGestureController.m in Sources */,
 				F52B40BA1B4A66430022AEC8 /* CalTabBarController.m in Sources */,
+				F58C9FBB1B7264AF007D307B /* CalMapView.m in Sources */,
 				F590CBBF1B683A6200F0E39E /* CalScollViewController.m in Sources */,
 				F5BA6F021B4D274E00DB898F /* CalViewWithArbitrarySelectors.m in Sources */,
 				F550CE171B63AE9E00D57B57 /* CalViewsThatScrollController.m in Sources */,
@@ -486,8 +527,10 @@
 			files = (
 				F58C9FA11B707631007D307B /* CalPanController.m in Sources */,
 				1a6fb43aa140ae563e019cce /* main.m in Sources */,
+				F58C9FC11B72663D007D307B /* CalMapController.m in Sources */,
 				a851e37816c4ddd975adbf58 /* CalControlsViewController.m in Sources */,
 				F550CE041B63A41300D57B57 /* CalBarButtonItemFactory.m in Sources */,
+				F58C9FAE1B72191B007D307B /* CalPinchController.m in Sources */,
 				F56592561B46AD3300C044C8 /* CalAnimatedView.m in Sources */,
 				F550CE0A1B63A57A00D57B57 /* LjsLabelAttributes.m in Sources */,
 				F5A31D0D1B664BD00094B768 /* CalTableViewContoller.m in Sources */,
@@ -497,6 +540,7 @@
 				f23b5a94a19df2bb34667ee7 /* CalAppDelegate.m in Sources */,
 				F550CDCC1B60CFA400D57B57 /* CalTapGestureController.m in Sources */,
 				F52B40BB1B4A66430022AEC8 /* CalTabBarController.m in Sources */,
+				F58C9FBC1B7264AF007D307B /* CalMapView.m in Sources */,
 				F590CBC01B683A6200F0E39E /* CalScollViewController.m in Sources */,
 				F5BA6F031B4D274E00DB898F /* CalViewWithArbitrarySelectors.m in Sources */,
 				F550CE181B63AE9E00D57B57 /* CalViewsThatScrollController.m in Sources */,
@@ -556,6 +600,22 @@
 				F58C9FA71B707842007D307B /* en */,
 			);
 			name = CalPanController.xib;
+			sourceTree = "<group>";
+		};
+		F58C9FB11B72194D007D307B /* CalPinchController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F58C9FB21B72194D007D307B /* en */,
+			);
+			name = CalPinchController.xib;
+			sourceTree = "<group>";
+		};
+		F58C9FC41B72665E007D307B /* CalMapController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F58C9FC51B72665E007D307B /* en */,
+			);
+			name = CalMapController.xib;
 			sourceTree = "<group>";
 		};
 		F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */ = {

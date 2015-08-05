@@ -4,6 +4,7 @@
 #import "CalCollectionViewController.h"
 #import "CalTableViewContoller.h"
 #import "CalScollViewController.h"
+#import "CalMapController.h"
 
 static NSString *const CalCellIdentifier = @"cell identifier";
 
@@ -129,6 +130,12 @@ typedef enum : NSInteger {
     UIViewController *controller =
     [[CalScollViewController alloc]
     initWithNibName:NSStringFromClass([CalScollViewController class])
+     bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
+  } else if (indexPath.row == kRowsMapViews) {
+    UIViewController *controller =
+    [[CalMapController alloc]
+     initWithNibName:NSStringFromClass([CalMapController class])
      bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
   }

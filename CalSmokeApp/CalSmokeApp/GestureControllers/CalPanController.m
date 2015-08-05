@@ -35,7 +35,6 @@ typedef enum : NSInteger {
 
 @implementation CalPanController
 
-
 #pragma mark - Memory Management
 
 - (instancetype) initWithNibName:(NSString *)nibNameOrNil
@@ -245,4 +244,5 @@ typedef enum : NSInteger {
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
 }
+
 @end

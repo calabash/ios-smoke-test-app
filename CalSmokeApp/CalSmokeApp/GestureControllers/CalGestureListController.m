@@ -2,6 +2,7 @@
 #import "CalBarButtonItemFactory.h"
 #import "UIView+Positioning.h"
 #import "CalPanController.h"
+#import "CalPinchController.h"
 
 static NSString *const CalCellIdentifier = @"cell identifier";
 
@@ -109,7 +110,9 @@ typedef enum : NSInteger {
     }
 
     case kRowPinching: {
-
+      controller = [[CalPinchController alloc]
+                    initWithNibName:NSStringFromClass([CalPinchController class])
+                    bundle:nil];
       break;
     }
 
