@@ -60,6 +60,10 @@
 		F58C9FA11B707631007D307B /* CalPanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9F1B707631007D307B /* CalPanController.m */; };
 		F58C9FA81B707842007D307B /* CalPanController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FA61B707842007D307B /* CalPanController.xib */; };
 		F58C9FA91B707842007D307B /* CalPanController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FA61B707842007D307B /* CalPanController.xib */; };
+		F58C9FAD1B72191B007D307B /* CalPinchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FAB1B72191B007D307B /* CalPinchController.m */; };
+		F58C9FAE1B72191B007D307B /* CalPinchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FAB1B72191B007D307B /* CalPinchController.m */; };
+		F58C9FB31B72194D007D307B /* CalPinchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FB11B72194D007D307B /* CalPinchController.xib */; };
+		F58C9FB41B72194D007D307B /* CalPinchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FB11B72194D007D307B /* CalPinchController.xib */; };
 		F590CBBF1B683A6200F0E39E /* CalScollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F590CBBD1B683A6200F0E39E /* CalScollViewController.m */; };
 		F590CBC01B683A6200F0E39E /* CalScollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F590CBBD1B683A6200F0E39E /* CalScollViewController.m */; };
 		F590CBC51B683A7C00F0E39E /* CalScollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */; };
@@ -130,6 +134,9 @@
 		F58C9F9E1B707631007D307B /* CalPanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalPanController.h; sourceTree = "<group>"; };
 		F58C9F9F1B707631007D307B /* CalPanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalPanController.m; sourceTree = "<group>"; };
 		F58C9FA71B707842007D307B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalPanController.xib; sourceTree = "<group>"; };
+		F58C9FAA1B72191B007D307B /* CalPinchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalPinchController.h; sourceTree = "<group>"; };
+		F58C9FAB1B72191B007D307B /* CalPinchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalPinchController.m; sourceTree = "<group>"; };
+		F58C9FB21B72194D007D307B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalPinchController.xib; sourceTree = "<group>"; };
 		F590CBBC1B683A6200F0E39E /* CalScollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalScollViewController.h; path = ScrollControllers/CalScollViewController.h; sourceTree = "<group>"; };
 		F590CBBD1B683A6200F0E39E /* CalScollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalScollViewController.m; path = ScrollControllers/CalScollViewController.m; sourceTree = "<group>"; };
 		F590CBC41B683A7C00F0E39E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalScollViewController.xib; sourceTree = "<group>"; };
@@ -302,6 +309,7 @@
 			children = (
 				F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */,
 				F58C9FA61B707842007D307B /* CalPanController.xib */,
+				F58C9FB11B72194D007D307B /* CalPinchController.xib */,
 			);
 			name = GesturesControllers;
 			sourceTree = "<group>";
@@ -313,6 +321,8 @@
 				F58C9F9B1B707501007D307B /* CalGestureListController.m */,
 				F58C9F9E1B707631007D307B /* CalPanController.h */,
 				F58C9F9F1B707631007D307B /* CalPanController.m */,
+				F58C9FAA1B72191B007D307B /* CalPinchController.h */,
+				F58C9FAB1B72191B007D307B /* CalPinchController.m */,
 			);
 			path = GestureControllers;
 			sourceTree = "<group>";
@@ -409,6 +419,7 @@
 				e3e0a6761f42ce3d10829b2b /* InfoPlist.strings in Resources */,
 				F550CDD21B60CFC400D57B57 /* CalTapGestureController.xib in Resources */,
 				F550CDFF1B63A26500D57B57 /* CalCollectionViewController.xib in Resources */,
+				F58C9FB41B72194D007D307B /* CalPinchController.xib in Resources */,
 				F5097D081B6B7C0E00326D6A /* CalGestureListController.xib in Resources */,
 				F5A31D131B664BF90094B768 /* CalTableViewContoller.xib in Resources */,
 			);
@@ -427,6 +438,7 @@
 				F52BFB1A1987EF8700299AEF /* InfoPlist.strings in Resources */,
 				F550CDD11B60CFC400D57B57 /* CalTapGestureController.xib in Resources */,
 				F550CDFE1B63A26500D57B57 /* CalCollectionViewController.xib in Resources */,
+				F58C9FB31B72194D007D307B /* CalPinchController.xib in Resources */,
 				F5097D071B6B7C0E00326D6A /* CalGestureListController.xib in Resources */,
 				F5A31D121B664BF90094B768 /* CalTableViewContoller.xib in Resources */,
 			);
@@ -461,6 +473,7 @@
 				F52BFB1C1987EF8700299AEF /* main.m in Sources */,
 				F52BFB291987EF8700299AEF /* CalControlsViewController.m in Sources */,
 				F550CE031B63A41300D57B57 /* CalBarButtonItemFactory.m in Sources */,
+				F58C9FAD1B72191B007D307B /* CalPinchController.m in Sources */,
 				F56592551B46AD3300C044C8 /* CalAnimatedView.m in Sources */,
 				F550CE091B63A57A00D57B57 /* LjsLabelAttributes.m in Sources */,
 				F5A31D0C1B664BD00094B768 /* CalTableViewContoller.m in Sources */,
@@ -488,6 +501,7 @@
 				1a6fb43aa140ae563e019cce /* main.m in Sources */,
 				a851e37816c4ddd975adbf58 /* CalControlsViewController.m in Sources */,
 				F550CE041B63A41300D57B57 /* CalBarButtonItemFactory.m in Sources */,
+				F58C9FAE1B72191B007D307B /* CalPinchController.m in Sources */,
 				F56592561B46AD3300C044C8 /* CalAnimatedView.m in Sources */,
 				F550CE0A1B63A57A00D57B57 /* LjsLabelAttributes.m in Sources */,
 				F5A31D0D1B664BD00094B768 /* CalTableViewContoller.m in Sources */,
@@ -556,6 +570,14 @@
 				F58C9FA71B707842007D307B /* en */,
 			);
 			name = CalPanController.xib;
+			sourceTree = "<group>";
+		};
+		F58C9FB11B72194D007D307B /* CalPinchController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F58C9FB21B72194D007D307B /* en */,
+			);
+			name = CalPinchController.xib;
 			sourceTree = "<group>";
 		};
 		F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */ = {
