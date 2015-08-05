@@ -24,6 +24,10 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationUsageDescription</key>
+	<string>CalSmoke needs to use your location to demonstrate the awesome Map API</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>CalSmoke needs to use your location to demonstrate the awesome Map API</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
