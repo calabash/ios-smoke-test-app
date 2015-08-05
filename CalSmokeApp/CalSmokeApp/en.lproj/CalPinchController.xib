@@ -17,11 +17,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKK-vj-9aj">
-                    <rect key="frame" x="278" y="278" width="44" height="44"/>
+                    <rect key="frame" x="256" y="256" width="88" height="88"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="K4x-uh-PGe"/>
-                        <constraint firstAttribute="height" constant="44" id="fZ4-me-Wic"/>
+                        <constraint firstAttribute="width" constant="88" id="Tow-At-eTw"/>
+                        <constraint firstAttribute="height" constant="88" id="VxS-2M-bQQ"/>
                     </constraints>
                 </view>
             </subviews>

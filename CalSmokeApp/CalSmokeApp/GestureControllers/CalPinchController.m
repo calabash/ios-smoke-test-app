@@ -63,14 +63,14 @@ static NSString *const CalRestZoomLevelNotification =
 #pragma mark - Pinching
 
 - (void) handleResetZoomLevel:(NSNotification *) notification {
-  self.box.height = 44;
-  self.box.width = 44;
+  self.box.height = 88;
+  self.box.width = 88;
   self.box.center = self.view.center;
 }
 
 - (void) handlePinch:(UIPinchGestureRecognizer *) recognizer {
   UIView *view = recognizer.view;
-  if (view.height < 44 || view.width < 44) {
+  if (view.height < 88 || view.width < 88) {
     [self handleResetZoomLevel:nil];
   } else {
     view.transform = CGAffineTransformScale(view.transform,
