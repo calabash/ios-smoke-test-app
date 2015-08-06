@@ -3,6 +3,7 @@
 #import "UIView+Positioning.h"
 #import "CalPanController.h"
 #import "CalPinchController.h"
+#import "CalTapGestureController.h"
 
 static NSString *const CalCellIdentifier = @"cell identifier";
 
@@ -94,7 +95,9 @@ typedef enum : NSInteger {
   UIViewController *controller = nil;
   switch (row) {
     case kRowTapping: {
-
+      controller = [[CalTapGestureController alloc]
+                    initWithNibName:NSStringFromClass([CalTapGestureController class])
+                    bundle:nil];
       break;
     }
     case kRowPanning: {

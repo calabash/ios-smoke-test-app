@@ -6,7 +6,8 @@ Feature: Gestures
   I want a Tap API
 
   Background: Navigate to Tapping page
-    Given I see the tapping tab
+    Given I see the gestures tab
+    And I see the tapping page
 
   Scenario:  Double tap
     When I double tap the left box

@@ -1,4 +1,5 @@
 #import "CalTapGestureController.h"
+#import "CalBarButtonItemFactory.h"
 
 @interface CalTapGestureController () <UIGestureRecognizerDelegate>
 
@@ -20,19 +21,7 @@
                          bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    NSString *title = NSLocalizedString(@"Tapping",
-                                        @"Title of tab bar button");
-    self.title = title;
 
-    UIImage *unselected = [UIImage imageNamed:@"tab-bar-tapping"];
-    UIImage *selected = [UIImage imageNamed:@"tab-bar-tapping-selected"];
-
-    UITabBarItem *item = [[UITabBarItem alloc]
-                          initWithTitle:title
-                          image:unselected
-                          selectedImage:selected];
-
-    self.tabBarItem = item;
   }
   return self;
 }
@@ -99,6 +88,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 #pragma mark - View Lifecycle
 
+- (void) buttonTouchedBack:(id) sender {
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
 
@@ -131,6 +124,22 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+
+  self.navigationItem.title =
+  NSLocalizedString(@"Tapping",
+                    @"Title of navbar for view where you can tap and press");
+
+  CalBarButtonItemFactory *factory = [[CalBarButtonItemFactory alloc] init];
+  UIBarButtonItem *backButton;
+  backButton = [factory barButtonItemBackWithTarget:self
+                                             action:@selector(buttonTouchedBack:)];
+
+  backButton.accessibilityLabel = [CalBarButtonItemFactory stringLocalizedBack];
+
+  self.navigationItem.hidesBackButton = YES;
+  self.navigationItem.backBarButtonItem = nil;
+  self.navigationItem.leftBarButtonItem = backButton;
+
   self.lastGestureLabel.text = @"";
 }
 
