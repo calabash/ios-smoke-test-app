@@ -1,5 +1,5 @@
 #import "CalAppDelegate.h"
-#import "CalControlsViewController.h"
+#import "CalControlsController.h"
 #import "CalCollectionViewController.h"
 #import "CalDragDropController.h"
 #import "CalTabBarController.h"
@@ -284,7 +284,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
-  CalControlsViewController *controlsController = [CalControlsViewController new];
+  CalControlsController *controlsController =
+  [[CalControlsController alloc]
+  initWithNibName:NSStringFromClass([CalControlsController class])
+   bundle:nil];
 
   UIViewController *gesturesListController =
   [[CalGestureListController alloc]
