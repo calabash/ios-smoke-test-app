@@ -19,6 +19,21 @@ end
 
 World(CalSmokeApp::WaitForGesture)
 
+And(/^I see the tapping page$/) do
+  query = "UITableViewCell marked:'tapping row'"
+
+  options = wait_options(query)
+  wait_for_element_exists(query, options)
+
+  touch(query)
+
+  wait_for_none_animating
+
+  query = "view marked:'tapping page'"
+  options = wait_options(query)
+  wait_for_element_exists(query, options)
+end
+
 When(/^I double tap the left box$/) do
   query = "view marked:'left box'"
   wait_for_element_exists query

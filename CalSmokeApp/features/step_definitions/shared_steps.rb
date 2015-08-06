@@ -1,4 +1,4 @@
-Given(/^I see the (controls|gestures|scrolls|special|tapping) tab$/) do |tab|
+Given(/^I see the (controls|gestures|scrolls|special) tab$/) do |tab|
   wait_for_elements_exist('tabBarButton')
   case tab
     when 'controls'
@@ -9,8 +9,6 @@ Given(/^I see the (controls|gestures|scrolls|special|tapping) tab$/) do |tab|
       index = 2
     when 'special'
       index = 3
-    when 'tapping'
-      index = 4
   end
   touch("tabBarButton index:#{index}")
   expected_view = "#{tab} page"
