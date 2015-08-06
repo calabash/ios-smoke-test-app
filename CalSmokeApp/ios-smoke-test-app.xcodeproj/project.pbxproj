@@ -77,6 +77,12 @@
 		F58C9FD31B73715A007D307B /* CalControlsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FD01B73715A007D307B /* CalControlsController.xib */; };
 		F58C9FD61B7395C2007D307B /* CalViewWithArbitrarySelectors.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FD51B7395C2007D307B /* CalViewWithArbitrarySelectors.m */; };
 		F58C9FD71B7395C2007D307B /* CalViewWithArbitrarySelectors.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FD51B7395C2007D307B /* CalViewWithArbitrarySelectors.m */; };
+		F58C9FDA1B73AD91007D307B /* CalDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FD91B73AD91007D307B /* CalDatePickerController.m */; };
+		F58C9FDB1B73AD91007D307B /* CalDatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FD91B73AD91007D307B /* CalDatePickerController.m */; };
+		F58C9FDE1B73AE68007D307B /* CalDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FDD1B73AE68007D307B /* CalDatePickerView.m */; };
+		F58C9FDF1B73AE68007D307B /* CalDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9FDD1B73AE68007D307B /* CalDatePickerView.m */; };
+		F58C9FE21B73B7EA007D307B /* CalDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FE01B73B7EA007D307B /* CalDatePickerController.xib */; };
+		F58C9FE31B73B7EA007D307B /* CalDatePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58C9FE01B73B7EA007D307B /* CalDatePickerController.xib */; };
 		F590CBBF1B683A6200F0E39E /* CalScollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F590CBBD1B683A6200F0E39E /* CalScollViewController.m */; };
 		F590CBC01B683A6200F0E39E /* CalScollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F590CBBD1B683A6200F0E39E /* CalScollViewController.m */; };
 		F590CBC51B683A7C00F0E39E /* CalScollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */; };
@@ -157,6 +163,11 @@
 		F58C9FD11B73715A007D307B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalControlsController.xib; sourceTree = "<group>"; };
 		F58C9FD41B7395C2007D307B /* CalViewWithArbitrarySelectors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalViewWithArbitrarySelectors.h; sourceTree = "<group>"; };
 		F58C9FD51B7395C2007D307B /* CalViewWithArbitrarySelectors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalViewWithArbitrarySelectors.m; sourceTree = "<group>"; };
+		F58C9FD81B73AD91007D307B /* CalDatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDatePickerController.h; sourceTree = "<group>"; };
+		F58C9FD91B73AD91007D307B /* CalDatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalDatePickerController.m; sourceTree = "<group>"; };
+		F58C9FDC1B73AE68007D307B /* CalDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDatePickerView.h; sourceTree = "<group>"; };
+		F58C9FDD1B73AE68007D307B /* CalDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalDatePickerView.m; sourceTree = "<group>"; };
+		F58C9FE11B73B7EA007D307B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalDatePickerController.xib; sourceTree = "<group>"; };
 		F590CBBC1B683A6200F0E39E /* CalScollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalScollViewController.h; path = ScrollControllers/CalScollViewController.h; sourceTree = "<group>"; };
 		F590CBBD1B683A6200F0E39E /* CalScollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalScollViewController.m; path = ScrollControllers/CalScollViewController.m; sourceTree = "<group>"; };
 		F590CBC41B683A7C00F0E39E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalScollViewController.xib; sourceTree = "<group>"; };
@@ -237,18 +248,20 @@
 		F52BFB151987EF8700299AEF /* CalSmokeApp */ = {
 			isa = PBXGroup;
 			children = (
+				F52B40B81B4A66430022AEC8 /* CalTabBarController.h */,
+				F52B40B91B4A66430022AEC8 /* CalTabBarController.m */,
+				F52BFB1E1987EF8700299AEF /* CalAppDelegate.h */,
+				F52BFB1F1987EF8700299AEF /* CalAppDelegate.m */,
 				F550CE001B63A41300D57B57 /* Views */,
 				F550CDE21B63832500D57B57 /* Vendor */,
 				F52BFB271987EF8700299AEF /* CalControlsController.h */,
 				F52BFB281987EF8700299AEF /* CalControlsController.m */,
 				F58C9F991B707501007D307B /* GestureControllers */,
-				F550CDD51B63761000D57B57 /* ScrollControllers */,
-				F52B40B81B4A66430022AEC8 /* CalTabBarController.h */,
-				F52B40B91B4A66430022AEC8 /* CalTabBarController.m */,
-				F52BFB1E1987EF8700299AEF /* CalAppDelegate.h */,
-				F52BFB1F1987EF8700299AEF /* CalAppDelegate.m */,
 				F5C276351B3B547900DF63FA /* CalDragDropController.h */,
 				F5C276361B3B547900DF63FA /* CalDragDropController.m */,
+				F58C9FD81B73AD91007D307B /* CalDatePickerController.h */,
+				F58C9FD91B73AD91007D307B /* CalDatePickerController.m */,
+				F550CDD51B63761000D57B57 /* ScrollControllers */,
 				F52BFB2A1987EF8700299AEF /* Images.xcassets */,
 				F55185541AC34BB600CE06DC /* iTunesArtwork */,
 				F56592531B46AD3300C044C8 /* CalAnimatedView.h */,
@@ -319,6 +332,8 @@
 		F550CE001B63A41300D57B57 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F58C9FDC1B73AE68007D307B /* CalDatePickerView.h */,
+				F58C9FDD1B73AE68007D307B /* CalDatePickerView.m */,
 				F550CE011B63A41300D57B57 /* CalBarButtonItemFactory.h */,
 				F550CE021B63A41300D57B57 /* CalBarButtonItemFactory.m */,
 				F58C9FB91B7264AF007D307B /* CalMapView.h */,
@@ -370,6 +385,7 @@
 				F550CDDD1B6376C500D57B57 /* ScrollControllers */,
 				F550CDCF1B60CFC400D57B57 /* CalTapGestureController.xib */,
 				F5C276311B3B546A00DF63FA /* CalDragDropController.xib */,
+				F58C9FE01B73B7EA007D307B /* CalDatePickerController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -452,6 +468,7 @@
 				F58C9FC71B72665E007D307B /* CalMapController.xib in Resources */,
 				F58C9FA91B707842007D307B /* CalPanController.xib in Resources */,
 				F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */,
+				F58C9FE31B73B7EA007D307B /* CalDatePickerController.xib in Resources */,
 				F58C9FD31B73715A007D307B /* CalControlsController.xib in Resources */,
 				F590CBC61B683A7C00F0E39E /* CalScollViewController.xib in Resources */,
 				e3e0a6761f42ce3d10829b2b /* InfoPlist.strings in Resources */,
@@ -473,6 +490,7 @@
 				F58C9FC61B72665E007D307B /* CalMapController.xib in Resources */,
 				F58C9FA81B707842007D307B /* CalPanController.xib in Resources */,
 				F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */,
+				F58C9FE21B73B7EA007D307B /* CalDatePickerController.xib in Resources */,
 				F58C9FD21B73715A007D307B /* CalControlsController.xib in Resources */,
 				F590CBC51B683A7C00F0E39E /* CalScollViewController.xib in Resources */,
 				F52BFB1A1987EF8700299AEF /* InfoPlist.strings in Resources */,
@@ -524,6 +542,8 @@
 				F550CDED1B6383E400D57B57 /* UIImage+LjsCategory.m in Sources */,
 				F52BFB201987EF8700299AEF /* CalAppDelegate.m in Sources */,
 				F52B40BA1B4A66430022AEC8 /* CalTabBarController.m in Sources */,
+				F58C9FDA1B73AD91007D307B /* CalDatePickerController.m in Sources */,
+				F58C9FDE1B73AE68007D307B /* CalDatePickerView.m in Sources */,
 				F58C9FBB1B7264AF007D307B /* CalMapView.m in Sources */,
 				F58C9FD61B7395C2007D307B /* CalViewWithArbitrarySelectors.m in Sources */,
 				F590CBBF1B683A6200F0E39E /* CalScollViewController.m in Sources */,
@@ -554,6 +574,8 @@
 				F550CDEE1B6383E400D57B57 /* UIImage+LjsCategory.m in Sources */,
 				f23b5a94a19df2bb34667ee7 /* CalAppDelegate.m in Sources */,
 				F52B40BB1B4A66430022AEC8 /* CalTabBarController.m in Sources */,
+				F58C9FDB1B73AD91007D307B /* CalDatePickerController.m in Sources */,
+				F58C9FDF1B73AE68007D307B /* CalDatePickerView.m in Sources */,
 				F58C9FBC1B7264AF007D307B /* CalMapView.m in Sources */,
 				F58C9FD71B7395C2007D307B /* CalViewWithArbitrarySelectors.m in Sources */,
 				F590CBC01B683A6200F0E39E /* CalScollViewController.m in Sources */,
@@ -638,6 +660,14 @@
 				F58C9FD11B73715A007D307B /* en */,
 			);
 			name = CalControlsController.xib;
+			sourceTree = "<group>";
+		};
+		F58C9FE01B73B7EA007D307B /* CalDatePickerController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F58C9FE11B73B7EA007D307B /* en */,
+			);
+			name = CalDatePickerController.xib;
 			sourceTree = "<group>";
 		};
 		F590CBC31B683A7C00F0E39E /* CalScollViewController.xib */ = {
