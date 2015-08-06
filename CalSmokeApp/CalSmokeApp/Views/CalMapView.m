@@ -5,8 +5,6 @@
 static CLLocationDegrees const CalLosAngelesLatitude = 34.050;
 static CLLocationDegrees const CalLosAngelesLongitude = -118.25;
 
-#ifdef CALABASH
-
 @interface MKMapView (Calabash)
 - (CLLocationCoordinate2D) setCenterToLat:(double) lat lon:(double) lon;
 @end
@@ -20,11 +18,11 @@ static CLLocationDegrees const CalLosAngelesLongitude = -118.25;
 }
 @end
 
-@interface WtMapView (Calabash)
+@interface CalMapView (Calabash)
 - (NSDictionary *) JSONRepresentationOfCurrentLocation;
 @end
 
-@implementation WtMapView (Calabash)
+@implementation CalMapView (Calabash)
 
 - (NSDictionary *) JSONRepresentationOfCurrentLocation {
   CLLocation *location = self.lastLocation;
@@ -38,8 +36,6 @@ static CLLocationDegrees const CalLosAngelesLongitude = -118.25;
 
 @end
 
-#endif
-
 @interface CalMapView () <CLLocationManagerDelegate>
 @property(nonatomic) BOOL firstLocationUpdate;
 @property NSMutableDictionary *markers;
@@ -48,40 +44,6 @@ static CLLocationDegrees const CalLosAngelesLongitude = -118.25;
 @end
 
 @implementation CalMapView
-
-//- (id)initWithFrame:(CGRect)aFrame {
-//  self = [super initWithFrame:aFrame];
-//  if (self) {
-//    self.markers = [[NSMutableDictionary alloc] init];
-//
-//    self.locationManager = [[CLLocationManager alloc] init];
-//    self.locationManager.delegate = self;
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-//
-//
-//    SEL authorizationSelector = @selector(requestWhenInUseAuthorization);
-//    if ([self.locationManager respondsToSelector:authorizationSelector]) {
-//      [self.locationManager requestWhenInUseAuthorization];
-//    } else {
-//      if ([CLLocationManager locationServicesEnabled]) {
-//        [self.locationManager startUpdatingLocation];
-//        self.showsUserLocation = YES;
-//      }
-//    }
-//
-//    //Initialize map pane on Los Angeles lat/lon
-//    CLLocationDegrees longitude = CalLosAngelesLongitude;
-//    CLLocationDegrees latitude = CalLosAngelesLatitude;
-//    CLLocationCoordinate2D startCoord = CLLocationCoordinate2DMake(latitude, longitude);
-//    MKCoordinateRegion initialRegion = MKCoordinateRegionMakeWithDistance(startCoord, 10000.0, 10000.0);
-//    self.centerCoordinate = startCoord;
-//    [self setRegion:initialRegion];
-//    self.accessibilityIdentifier = @"map";
-//  }
-//  return self;
-//}
-
 
 - (void) awakeFromNib {
 
