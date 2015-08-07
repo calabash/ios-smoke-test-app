@@ -177,7 +177,10 @@ static NSString *const k_12H_date_format = @"EEE MMM d";
 - (id) initWithDate:(NSDate *) aDate
            delegate:(id<CalDatePickerViewDelegate>) aDelegate
                mode:(UIDatePickerMode) aDatePickerMode {
-  CGRect frame = CGRectMake(0, 0, 320 , 367);
+
+  CGFloat width = [[UIScreen mainScreen] bounds].size.width;
+  CGFloat x = (width/2.0) - (320/2.0);
+  CGRect frame = CGRectMake(x, 0, 320 , 367);
   self = [super initWithFrame:frame];
   if (self) {
     self.date = aDate;
