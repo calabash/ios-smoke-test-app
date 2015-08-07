@@ -95,6 +95,8 @@ static NSString *const kUserDefaultsSwitchState = @"sh.calaba.CalSmokeApp Switch
                     @"Name of page with UI controls like switches, buttons, text fields, and sliders.");
 
   self.textField.accessibilityIdentifier = @"text";
+  self.textField.clearButtonMode = UITextFieldViewModeAlways;
+  self.textField.returnKeyType = UIReturnKeyDone;
   self.uiSwitch.accessibilityIdentifier = @"switch";
   self.slider.accessibilityIdentifier = @"slider";
 }
