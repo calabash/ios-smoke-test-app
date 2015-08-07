@@ -1,4 +1,8 @@
-require 'calabash-cucumber/cucumber'
+# Do not use Calabash pre-defined steps.
+require 'calabash-cucumber/wait_helpers'
+require 'calabash-cucumber/operations'
+World(Calabash::Cucumber::Operations)
+
 require 'rspec'
 
 # Pry is not allowed on the Xamarin Test Cloud.  This will force a validation
