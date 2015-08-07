@@ -134,8 +134,8 @@ typedef enum : NSInteger {
 
 static NSString *const k_24H_time_format = @"H:mm";
 static NSString *const k_12H_time_format = @"h:mm a";
-static NSString *const k_24H_date_format = @"EEE d MMM";
-static NSString *const k_12H_date_format = @"EEE MMM d";
+static NSString *const k_24H_date_format = @"EEE d MMM yyyy";
+static NSString *const k_12H_date_format = @"EEE MMM d yyyy";
 
 @interface CalDatePickerView ()
 
@@ -309,7 +309,6 @@ static NSString *const k_12H_date_format = @"EEE MMM d";
 
   NSDateFormatter *df = [self dateFormatterWithFormat:fmt];
   NSString *str = [df stringFromDate:aDate];
-  NSLog(@"str = '%@'", str);
   return str;
 }
 
