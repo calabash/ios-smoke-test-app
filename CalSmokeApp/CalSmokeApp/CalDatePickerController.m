@@ -162,7 +162,7 @@ typedef enum : NSInteger {
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.view.accessibilityIdentifier = @"date related";
+  self.view.accessibilityIdentifier = @"date picker page";
   self.buttonTime.accessibilityIdentifier = @"show time picker";
   self.buttonTime.tag = kTagButtonTime;
   self.buttonDate.accessibilityIdentifier = @"show date picker";
