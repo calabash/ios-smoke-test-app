@@ -5,6 +5,7 @@
 #import "CalTabBarController.h"
 #import "CalViewsThatScrollController.h"
 #import "CalGestureListController.h"
+#import "CalDatePickerController.h"
 
 #if LOAD_CALABASH_DYLIB
 #import <dlfcn.h>
@@ -333,6 +334,11 @@
    initWithNibName:NSStringFromClass([CalDragDropController class])
    bundle:nil];
 
+  CalDatePickerController *dateController =
+  [[CalDatePickerController alloc]
+  initWithNibName:NSStringFromClass([CalDatePickerController class])
+   bundle:nil];
+
   self.tabBarController = [CalTabBarController new];
 
   SEL transSel = NSSelectorFromString(@"translucent");
@@ -344,7 +350,8 @@
   self.tabBarController.viewControllers = @[controlsController,
                                             self.gesturesNavigationController,
                                             self.scrollNavigationController,
-                                            self.dragAndDropController];
+                                            self.dragAndDropController,
+                                            dateController];
 
 
   self.window.rootViewController = self.tabBarController;

@@ -17,6 +17,9 @@ gem 'guard-bundler', '~> 2.0'
 gem 'growl', '~> 1.0'
 gem 'stub_env', '>= 1.0.1', '< 2.0'
 
+# chronic
+gem 'chronic', '>= 0.10', '< 1.0'
+
 # pry
 gem 'pry'
 gem 'pry-nav'
