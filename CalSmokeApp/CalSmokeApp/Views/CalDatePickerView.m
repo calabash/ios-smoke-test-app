@@ -154,6 +154,10 @@ static NSString *const k_12H_date_format = @"EEE MMM d yyyy";
 - (NSString *) stringForDate:(NSDate *)aDate withMode:(UIDatePickerMode) aMode;
 - (NSString *) accessibilityIdentifierForPickerWithMode:(UIDatePickerMode) aMode;
 
+- (BOOL) setMaximumDateToNow;
+- (BOOL) setMinimumDateToNow;
+- (BOOL) setDateToNow;
+
 @end
 
 @implementation CalDatePickerView
@@ -351,6 +355,21 @@ static NSString *const k_12H_date_format = @"EEE MMM d yyyy";
   formatter.timeZone = [NSTimeZone localTimeZone];
   [formatter setCalendar:[NSCalendar autoupdatingCurrentCalendar]];
   return formatter;
+}
+
+- (BOOL) setMaximumDateToNow {
+  [self.picker setMaximumDate:[NSDate date]];
+  return YES;
+}
+
+- (BOOL) setMinimumDateToNow {
+  [self.picker setMinimumDate:[NSDate date]];
+  return YES;
+}
+
+- (BOOL) setDateToNow {
+  [self.picker setDate:[NSDate date]];
+  return YES;
 }
 
 
