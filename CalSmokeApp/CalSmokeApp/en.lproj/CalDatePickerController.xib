@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalDatePickerController">
             <connections>
+                <outlet property="buttonCountdown" destination="w1f-wY-6Ja" id="ALa-FV-2u1"/>
                 <outlet property="buttonDate" destination="J23-ta-SaZ" id="qCG-uu-E8D"/>
                 <outlet property="buttonDateAndTime" destination="hMx-rT-Gz1" id="SNj-Sh-DtW"/>
                 <outlet property="buttonTime" destination="vPL-X8-cGd" id="VAR-cT-Suo"/>
@@ -57,6 +58,19 @@
                         <action selector="buttonTouchedDateAndTime:" destination="-1" eventType="touchUpInside" id="n6v-Lq-J8h"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w1f-wY-6Ja">
+                    <rect key="frame" x="256" y="98" width="88" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="60f-Cb-4aQ"/>
+                        <constraint firstAttribute="width" constant="88" id="8Ts-OC-wU5"/>
+                    </constraints>
+                    <state key="normal" title="countdown">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonTouchedCountdown:" destination="-1" eventType="touchUpInside" id="hLl-w4-Oeh"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -64,9 +78,11 @@
                 <constraint firstItem="J23-ta-SaZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="28o-1x-Mhc"/>
                 <constraint firstItem="vPL-X8-cGd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="5Ut-Qr-txe"/>
                 <constraint firstItem="J23-ta-SaZ" firstAttribute="leading" secondItem="hMx-rT-Gz1" secondAttribute="trailing" constant="20" id="BvX-dP-Qsd"/>
+                <constraint firstAttribute="centerX" secondItem="w1f-wY-6Ja" secondAttribute="centerX" id="Qdo-Uh-5wH"/>
                 <constraint firstAttribute="centerX" secondItem="hMx-rT-Gz1" secondAttribute="centerX" id="U8w-32-TBO"/>
                 <constraint firstItem="hMx-rT-Gz1" firstAttribute="leading" secondItem="vPL-X8-cGd" secondAttribute="trailing" constant="20" id="VB6-1G-4fS"/>
                 <constraint firstItem="hMx-rT-Gz1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="ZKf-xv-npM"/>
+                <constraint firstItem="w1f-wY-6Ja" firstAttribute="top" secondItem="hMx-rT-Gz1" secondAttribute="bottom" constant="10" id="cJ8-hQ-80S"/>
             </constraints>
         </view>
     </objects>

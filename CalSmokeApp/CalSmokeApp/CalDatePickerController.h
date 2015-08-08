@@ -13,4 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonDate;
 - (IBAction)buttonTouchedDate:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *buttonCountdown;
+- (IBAction)buttonTouchedCountdown:(id)sender;
+
 @end

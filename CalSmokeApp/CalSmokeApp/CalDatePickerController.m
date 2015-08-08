@@ -6,7 +6,8 @@ typedef enum : NSInteger {
   kTagPickerView = 3030,
   kTagButtonTime,
   kTagButtonDate,
-  kTagButtonDateAndTime
+  kTagButtonDateAndTime,
+  kTagButtonCountdown
 } view_tags;
 
 
@@ -69,7 +70,11 @@ typedef enum : NSInteger {
 
 
 - (void) setButtonsHidden:(BOOL) aHidden {
-  NSArray *buttons = @[self.buttonTime, self.buttonDate, self.buttonDateAndTime];
+  NSArray *buttons =
+  @[self.buttonTime,
+    self.buttonDate,
+    self.buttonDateAndTime,
+    self.buttonCountdown];
   [buttons enumerateObjectsUsingBlock:^(UIButton *button,
                                         NSUInteger idx,
                                         BOOL *stop) {
@@ -81,6 +86,7 @@ typedef enum : NSInteger {
   if (self.buttonTime == aButton) { return UIDatePickerModeTime; }
   if (self.buttonDate == aButton) { return UIDatePickerModeDate; }
   if (self.buttonDateAndTime == aButton) { return UIDatePickerModeDateAndTime; }
+  if (self.buttonCountdown == aButton) { return UIDatePickerModeCountDownTimer; }
   return NSNotFound;
 }
 
@@ -115,6 +121,11 @@ typedef enum : NSInteger {
   [self buttonTouched:sender];
 }
 
+- (IBAction)buttonTouchedCountdown:(id)sender {
+  NSLog(@"show countdown button touched");
+  [self buttonTouched:sender];
+}
+
 #pragma mark - <CalDatePickerViewDelegate>
 
 - (void) datePickerViewCancelButtonTouched {
@@ -146,7 +157,6 @@ typedef enum : NSInteger {
    }];
 }
 
-
 #pragma mark - Orientation
 
 - (NSUInteger) supportedInterfaceOrientations {
@@ -169,6 +179,8 @@ typedef enum : NSInteger {
   self.buttonDate.tag = kTagButtonDate;
   self.buttonDateAndTime.accessibilityIdentifier = @"show date and time picker";
   self.buttonDateAndTime.tag = kTagButtonDateAndTime;
+  self.buttonCountdown.accessibilityIdentifier = @"show countdown picker";
+  self.buttonCountdown.tag = kTagButtonCountdown;
 }
 
 - (void) viewWillLayoutSubviews {
