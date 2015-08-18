@@ -28,13 +28,6 @@ Then(/^I type "([^"]*)"$/) do |text_to_type|
   keyboard_enter_text text_to_type
 end
 
-When(/^I search for cell "([^"]*)" scrolling (up|down|left|right)$/) do |mark, direction|
-  wait_poll({:until_exists => "collectionViewCell marked:'#{mark}'",
-             :timeout => 10}) do
-    scroll('collectionView', "#{direction}")
-  end
-end
-
 When(/^I touch the back button$/) do
   query = "view marked:'Back'"
   options = wait_options('Navbar back button')
@@ -42,22 +35,6 @@ When(/^I touch the back button$/) do
 
   touch(query)
   wait_for_none_animating
-end
-
-When(/^I scroll (up|down|left|right) for (\d+) times$/) do |direction, times|
-  wait_for_elements_exist('collectionView')
-  (1..times.to_i).each do
-    scroll('collectionView', "#{direction}")
-    sleep pause
-  end
-end
-
-Then(/^I should see cell (\d+)$/) do |arg1|
-  wait_for { !query("view marked:'cell #{arg1.to_i}'").empty? }
-end
-
-Given(/^I see the cell (\d+)$/) do |arg1|
-  wait_for { !query("view marked:'cell #{arg1.to_i}'").empty? }
 end
 
 Given(/^the app has launched$/) do
