@@ -18,11 +18,13 @@ Given(/^I see the (controls|gestures|scrolls|special|date picker) tab$/) do |tab
 end
 
 Then(/^I type "([^"]*)"$/) do |text_to_type|
-  wait_for_elements_exist('textField', {:post_timeout => STEP_PAUSE})
-  sleep 1.0 if uia_not_available?
-  touch 'textField'
-  sleep STEP_PAUSE if uia_not_available?
+  query = 'UITextField'
+  options = wait_options(query)
+  wait_for_element_exists(query, options)
+
+  touch(query)
   wait_for_keyboard
+
   keyboard_enter_text text_to_type
 end
 
@@ -46,7 +48,7 @@ When(/^I scroll (up|down|left|right) for (\d+) times$/) do |direction, times|
   wait_for_elements_exist('collectionView')
   (1..times.to_i).each do
     scroll('collectionView', "#{direction}")
-    sleep STEP_PAUSE
+    sleep pause
   end
 end
 
