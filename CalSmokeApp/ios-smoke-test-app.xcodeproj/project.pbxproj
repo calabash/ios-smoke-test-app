@@ -435,7 +435,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Cal;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Calabash;
 			};
 			buildConfigurationList = F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "ios-smoke-test-app" */;
@@ -722,6 +722,7 @@
 					"-framework",
 					Reveal,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -747,6 +748,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -816,6 +818,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -836,6 +839,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -867,6 +871,7 @@
 					"-framework",
 					Reveal,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
