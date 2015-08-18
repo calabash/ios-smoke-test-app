@@ -363,7 +363,7 @@
   return YES;
 }
 
-- (NSUInteger)application:(UIApplication *)application
+- (UIInterfaceOrientationMask) application:(UIApplication *)application
 supportedInterfaceOrientationsForWindow:(UIWindow *)window {
   UIViewController *presented = self.tabBarController.selectedViewController;
   if (presented == self.dragAndDropController ||

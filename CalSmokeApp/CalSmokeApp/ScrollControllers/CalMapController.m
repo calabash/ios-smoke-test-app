@@ -31,7 +31,7 @@
 
 #pragma mark - Orientation / Rotation
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask) supportedInterfaceOrientations {
   return UIInterfaceOrientationMaskAll;
 }
 
