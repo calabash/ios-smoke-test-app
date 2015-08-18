@@ -51,7 +51,6 @@
 		F550CE181B63AE9E00D57B57 /* CalViewsThatScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = F550CE141B63AE9E00D57B57 /* CalViewsThatScrollController.m */; };
 		F55185551AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
-		F571F76B1B45843B00CA108B /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F571F76A1B45843B00CA108B /* Reveal.framework */; };
 		F58C9F9C1B707501007D307B /* CalGestureListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9B1B707501007D307B /* CalGestureListController.m */; };
 		F58C9F9D1B707501007D307B /* CalGestureListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9B1B707501007D307B /* CalGestureListController.m */; };
 		F58C9FA01B707631007D307B /* CalPanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9F1B707631007D307B /* CalPanController.m */; };
@@ -143,7 +142,6 @@
 		F550CE131B63AE9E00D57B57 /* CalViewsThatScrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalViewsThatScrollController.h; path = ScrollControllers/CalViewsThatScrollController.h; sourceTree = "<group>"; };
 		F550CE141B63AE9E00D57B57 /* CalViewsThatScrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalViewsThatScrollController.m; path = ScrollControllers/CalViewsThatScrollController.m; sourceTree = "<group>"; };
 		F55185541AC34BB600CE06DC /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
-		F571F76A1B45843B00CA108B /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		F58C9F9A1B707501007D307B /* CalGestureListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalGestureListController.h; sourceTree = "<group>"; };
 		F58C9F9B1B707501007D307B /* CalGestureListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalGestureListController.m; sourceTree = "<group>"; };
 		F58C9F9E1B707631007D307B /* CalPanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalPanController.h; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F58C9FB71B7262F2007D307B /* MapKit.framework in Frameworks */,
-				F571F76B1B45843B00CA108B /* Reveal.framework in Frameworks */,
 				F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */,
 				814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */,
 				ab943fbf9d0ac91728d35abe /* UIKit.framework in Frameworks */,
@@ -234,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				F58C9FB51B7262E6007D307B /* MapKit.framework */,
-				F571F76A1B45843B00CA108B /* Reveal.framework */,
 				F55081B41ACD4F5400F226A1 /* WebKit.framework */,
 				F52BFB0F1987EF8700299AEF /* Foundation.framework */,
 				F52BFB111987EF8700299AEF /* CoreGraphics.framework */,
@@ -718,9 +714,6 @@
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 					"-ObjC",
-					"-lz",
-					"-framework",
-					Reveal,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
@@ -867,9 +860,6 @@
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
 					"-lstdc++",
 					"-ObjC",
-					"-lz",
-					"-framework",
-					Reveal,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
