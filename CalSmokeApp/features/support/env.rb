@@ -4,6 +4,7 @@ require 'calabash-cucumber/operations'
 World(Calabash::Cucumber::Operations)
 
 require 'rspec'
+require 'chronic'
 
 # Pry is not allowed on the Xamarin Test Cloud.  This will force a validation
 # error if you mistakenly submit a binding.pry to the Test Cloud.
