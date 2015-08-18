@@ -20,3 +20,6 @@ gem 'pry-nav'
 # CI Stack
 gem 'travis', '~> 1.7'
 gem 'luffa', '~> 1.0', '>= 1.0.2'
+
+# Natural language to date parsing.
+gem 'chronic', '>= 0.10.2', '< 1.0'
