@@ -6,7 +6,7 @@ end
 
 And(/^I can flash the labels in the tab bar$/) do
   views = flash("UITabBar descendant UITabBarButton descendant label")
-  expect(views.length).to be == 4
+  expect(views.length).to be == 5
 end
 
 When(/^the flash query matches no views$/) do
