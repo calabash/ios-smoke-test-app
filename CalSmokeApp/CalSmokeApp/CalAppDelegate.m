@@ -363,8 +363,14 @@
   return YES;
 }
 
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
 - (UIInterfaceOrientationMask) application:(UIApplication *)application
+   supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+#else
+- (NSUInteger) application:(UIApplication *)application
 supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+#endif
   UIViewController *presented = self.tabBarController.selectedViewController;
   if (presented == self.dragAndDropController ||
       presented == self.scrollNavigationController ||
