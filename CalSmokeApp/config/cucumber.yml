@@ -33,10 +33,10 @@ end
 default_report = "./reports/calabash-#{date}.html"
 ss_path = "./screenshots/"
 
-xcode_tools = RunLoop::XCTools.new
+xcode = RunLoop::Xcode.new
 sims = {}
 
-xcode_version = xcode_tools.xcode_version
+xcode_version = xcode.version
 minor_version = xcode_version.minor
 
 if xcode_version >= RunLoop::Version.new('6.0')
