@@ -110,11 +110,6 @@ Before do |scenario|
 end
 
 After do |_|
-  launcher = LaunchControl.launcher
-  unless launcher.calabash_no_stop?
-    calabash_exit
-    if launcher.active?
-      launcher.stop
-    end
-  end
+
 end
+
