@@ -56,6 +56,8 @@ mv "${CAL_BUILD_DIR}/Build/Products/${CAL_BUILD_CONFIG}-iphonesimulator/${TARGET
 
 echo "export APP=${PWD}/${TARGET_NAME}.app"
 
-echo "INFO: Installing app on default simulator"
-bundle exec run-loop simctl install --app "${PWD}/${TARGET_NAME}.app"
+# Xcode 7.0 GM simctl install/unistall is broken.
+# But don't dispair!  Run-loop >= 1.5.2 will reinstall stale apps!
+#echo "INFO: Installing app on default simulator"
+#bundle exec run-loop simctl install --app "${PWD}/${TARGET_NAME}.app"
 
