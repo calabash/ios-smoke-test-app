@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'erb'
 require 'run_loop'
-require 'yaml'
 require 'luffa'
 
 cucumber_args = "#{ARGV.join(' ')}"
@@ -21,52 +19,35 @@ Dir.chdir(working_directory) do
                      {:pass_msg => 'reset the simulator',
                       :fail_msg => 'could not reset the simulator'})
 
+  xcode = RunLoop::Xcode.new
+  xcode_version = xcode.version
+  sim_major = xcode_version.major + 2
+  sim_minor = xcode_version.minor
 
-  cucumber_profiles = File.expand_path('config/cucumber.yml')
-  evaled_erb = ERB.new(File.read cucumber_profiles)
-  # noinspection RubyResolve
-  parsed_yaml = YAML.load(evaled_erb.result)
-  simulators_str = parsed_yaml['simulators'].split('=')[1..-1].join(' =').gsub(/=>/, ' => ').gsub!(/\A"|"\Z/, '')
-  hash_ready = simulators_str[1..simulators_str.length-2]
-  tokens = hash_ready.split(',').map { |elm| elm.strip }
-  simulator_profiles = {}
-  tokens.each do |token|
-    key_value = token.split('=>').map { |elm| elm.strip }
-    simulator_profiles[key_value[0].tr(':', '').to_sym] = key_value[1].gsub!(/\A"|"\Z/, '')
-  end
+  sim_version = RunLoop::Version.new("#{sim_major}.#{sim_minor}")
 
+  devices = {
+    :air => 'iPad Air',
+    :iphone4s => 'iPhone 4s',
+    :iphone5s => 'iPhone 5s',
+    :iphone6 => 'iPhone 6',
+    :iphone6plus => 'iPhone 6 Plus'
+  }
 
-  profiles =
-        {
-              #:ipad2 => simulator_profiles[:ipad2],
-              #:ipad2_mid => simulator_profiles[:ipad2_mid],
-
-              :air => simulator_profiles[:air],
-              #:air_mid => simulator_profiles[:air_mid],
-
-              #:ipad => simulator_profiles[:ipad],
-              #:ipad_mid => simulator_profiles[:ipad_mid],
-
-              :iphone4s => simulator_profiles[:iphone4s],
-              #:iphone4s_mid => simulator_profiles[:iphone4s_mid],
-
-              :iphone5s => simulator_profiles[:iphone5s],
-              #:iphone5s_mid => simulator_profiles[:iphone5s_mid],
-
-              :iphone5 => simulator_profiles[:iphone5],
-              #:iphone5_mid => simulator_profiles[:iphone5_mid],
-
-              :iphone6 => simulator_profiles[:iphone6],
-              :iphone6plus => simulator_profiles[:iphone6plus],
-        }
-
+  simulators = RunLoop::SimControl.new.simulators
 
   # noinspection RubyStringKeysInHashInspection
   env_vars = {'APP_BUNDLE_PATH' => './CalSmoke-cal.app'}
   passed_sims = []
   failed_sims = []
-  profiles.each do |profile, name|
-    cucumber_cmd = "bundle exec cucumber -p #{profile.to_s} #{cucumber_args}"
+  devices.each do |key, name|
+    cucumber_cmd = "bundle exec cucumber -p simulator #{cucumber_args}"
+
+    match = simulators.find do |sim|
+      sim.name == name && sim.version == sim_version
+    end
+
+    env_vars = {'DEVICE_TARGET' => match.udid}
 
     exit_code = Luffa.unix_command(cucumber_cmd, {:exit_on_nonzero_status => false,
                                                   :env_vars => env_vars})
@@ -85,7 +66,7 @@ Dir.chdir(working_directory) do
   Luffa.log_info 'FAILING SIMULATORS'
   Luffa.log_info "#{failed_sims.join("\n")}"
 
-  sims = profiles.count
+  sims = devices.count
   passed = passed_sims.count
   failed = failed_sims.count
 
