@@ -14,6 +14,8 @@
 		814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BFB111987EF8700299AEF /* CoreGraphics.framework */; };
 		F5097D071B6B7C0E00326D6A /* CalGestureListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */; };
 		F5097D081B6B7C0E00326D6A /* CalGestureListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */; };
+		F51ADFE81B9F2D4B008C02F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F51ADFE61B9F2D4B008C02F0 /* LaunchScreen.xib */; };
+		F51ADFE91B9F2D4B008C02F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F51ADFE61B9F2D4B008C02F0 /* LaunchScreen.xib */; };
 		F52252BD1B75FD27004235EF /* CalAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F52252BC1B75FD27004235EF /* CalAnimatedView.m */; };
 		F52252BE1B75FD27004235EF /* CalAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F52252BC1B75FD27004235EF /* CalAnimatedView.m */; };
 		F52B40BA1B4A66430022AEC8 /* CalTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F52B40B91B4A66430022AEC8 /* CalTabBarController.m */; };
@@ -104,6 +106,7 @@
 /* Begin PBXFileReference section */
 		42539422bf8ed8e8569bc355 /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
 		F5097D061B6B7C0E00326D6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalGestureListController.xib; sourceTree = "<group>"; };
+		F51ADFE71B9F2D4B008C02F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F52252BB1B75FD27004235EF /* CalAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalAnimatedView.h; sourceTree = "<group>"; };
 		F52252BC1B75FD27004235EF /* CalAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalAnimatedView.m; sourceTree = "<group>"; };
 		F52B40B81B4A66430022AEC8 /* CalTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalTabBarController.h; sourceTree = "<group>"; };
@@ -382,6 +385,7 @@
 				F550CDCF1B60CFC400D57B57 /* CalTapGestureController.xib */,
 				F5C276311B3B546A00DF63FA /* CalDragDropController.xib */,
 				F58C9FE01B73B7EA007D307B /* CalDatePickerController.xib */,
+				F51ADFE61B9F2D4B008C02F0 /* LaunchScreen.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -470,6 +474,7 @@
 				e3e0a6761f42ce3d10829b2b /* InfoPlist.strings in Resources */,
 				F550CDD21B60CFC400D57B57 /* CalTapGestureController.xib in Resources */,
 				F550CDFF1B63A26500D57B57 /* CalCollectionViewController.xib in Resources */,
+				F51ADFE91B9F2D4B008C02F0 /* LaunchScreen.xib in Resources */,
 				F58C9FB41B72194D007D307B /* CalPinchController.xib in Resources */,
 				F5097D081B6B7C0E00326D6A /* CalGestureListController.xib in Resources */,
 				F5A31D131B664BF90094B768 /* CalTableViewContoller.xib in Resources */,
@@ -492,6 +497,7 @@
 				F52BFB1A1987EF8700299AEF /* InfoPlist.strings in Resources */,
 				F550CDD11B60CFC400D57B57 /* CalTapGestureController.xib in Resources */,
 				F550CDFE1B63A26500D57B57 /* CalCollectionViewController.xib in Resources */,
+				F51ADFE81B9F2D4B008C02F0 /* LaunchScreen.xib in Resources */,
 				F58C9FB31B72194D007D307B /* CalPinchController.xib in Resources */,
 				F5097D071B6B7C0E00326D6A /* CalGestureListController.xib in Resources */,
 				F5A31D121B664BF90094B768 /* CalTableViewContoller.xib in Resources */,
@@ -592,6 +598,14 @@
 				F5097D061B6B7C0E00326D6A /* en */,
 			);
 			name = CalGestureListController.xib;
+			sourceTree = "<group>";
+		};
+		F51ADFE61B9F2D4B008C02F0 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F51ADFE71B9F2D4B008C02F0 /* en */,
+			);
+			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 		F52BFB181987EF8700299AEF /* InfoPlist.strings */ = {

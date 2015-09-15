@@ -66,6 +66,8 @@ fi
 mv "${APP_BUNDLE_PATH}" "${PWD}/${APP}"
 echo "export APP=${PWD}/${APP}"
 
-echo "INFO: Installing app on default simulator"
-bundle exec run-loop simctl install --app "${PWD}/${APP}"
+# Xcode 7.0 GM simctl install/unistall is broken.
+# But don't dispair!  Run-loop >= 1.5.2 will reinstall stale apps!
+#echo "INFO: Installing app on default simulator"
+#bundle exec run-loop simctl install --app "${PWD}/${TARGET_NAME}.app"
 

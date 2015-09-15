@@ -6,12 +6,13 @@ no_launch:   --tags ~@no_launch
 iphone_only: --tags ~@ipad --tags ~@ipad_only
 ipad_only:   --tags ~@iphone --tags ~@iphone_only
 
+args:         --expand --backtrace --no-multiline
 tags:        -p not_xtc -p not_sim -p no_launch
 
-default:     -p tags
+default:     -p tags -p args
 
-wip:         -p tags --tags @wip
-flicker:     -p tags --tags @flickering
-iphone:      -p tags -p iphone_only
-ipad:        -p tags -p ipad_only
+wip:         -p tags -p args --tags @wip
+flicker:     -p tags -p args --tags @flickering
+iphone:      -p tags -p args -p iphone_only
+ipad:        -p tags -p args -p ipad_only
 

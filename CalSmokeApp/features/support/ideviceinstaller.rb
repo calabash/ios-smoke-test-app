@@ -318,7 +318,7 @@ module Calabash
     # into a class variable or class instance variable because the state will
     # change when devices attached/detached or join/leave the network.
     def self.available_devices
-      RunLoop::XCTools.new.instruments(:devices)
+      RunLoop::Instruments.new.physical_devices
     end
 
     def retriable_intervals

@@ -62,7 +62,7 @@ module CalSmoke
     end
 
     def alert_view_query_str
-      if ios8?
+      if ios8? || ios9?
         "view:'_UIAlertControllerView'"
       elsif ios7?
         "view:'_UIModalItemAlertContentView'"
@@ -74,7 +74,7 @@ module CalSmoke
     def button_views
       wait_for_alert
 
-      if ios8?
+      if ios8? || ios9?
         query = "view:'_UIAlertControllerActionView'"
       elsif ios7?
         query = "view:'_UIModalItemAlertContentView' descendant UITableView descendant label"

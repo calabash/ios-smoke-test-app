@@ -88,10 +88,13 @@ end
 Before do |scenario|
   launcher = LaunchControl.launcher
 
-  unless launcher.calabash_no_launch?
-    launcher.relaunch
-    launcher.calabash_notify(self)
-  end
+  options = {
+    #:uia_strategy => :host
+    #:uia_strategy => :shared_element
+  }
+
+  launcher.relaunch(options)
+  launcher.calabash_notify(self)
 
   if xamarin_test_cloud?
     ENV['RESET_BETWEEN_SCENARIOS'] = '0'
@@ -107,11 +110,6 @@ Before do |scenario|
 end
 
 After do |_|
-  launcher = LaunchControl.launcher
-  unless launcher.calabash_no_stop?
-    calabash_exit
-    if launcher.active?
-      launcher.stop
-    end
-  end
+
 end
+
