@@ -6,7 +6,7 @@ GEM
     ansi (1.5.0)
     awesome_print (1.6.1)
     backports (3.6.6)
-    briar (1.3.2)
+    briar (1.4.1)
       ansi (~> 1.5)
       bundler
       calabash-cucumber (>= 0.12, < 1.0)
@@ -106,7 +106,7 @@ GEM
     net-http-persistent (2.9.4)
     net-http-pipeline (1.0.1)
     netrc (0.10.3)
-    notiffany (0.0.7)
+    notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
     pry (0.9.12.6)
@@ -146,7 +146,7 @@ GEM
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
     rubyzip (1.1.7)
-    run_loop (1.5.3)
+    run_loop (1.5.4)
       CFPropertyList (~> 2.2)
       awesome_print (~> 1.2)
       json (~> 1.8)
@@ -196,7 +196,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  briar (>= 1.3.1, < 2.0)
+  briar (>= 1.4.1, < 2.0)
   bundler (~> 1.6)
   calabash-cucumber (>= 0.16.1, < 1.0)
   chronic (>= 0.10, < 1.0)
@@ -209,7 +209,7 @@ DEPENDENCIES
   rake (~> 10.3)
   retriable (~> 2.0)
   rspec (~> 3.0)
-  run_loop (>= 1.5.3, < 2.0)
+  run_loop (>= 1.5.4, < 2.0)
   stub_env (>= 1.0.1, < 2.0)
   travis (~> 1.7)
   xcpretty (~> 0.1)
