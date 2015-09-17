@@ -18,10 +18,13 @@ if !File.exist?(dir)
 end
 
 rspec_resources_dir = File.join(dir, 'calabash-cucumber/spec/resources')
-FileUtils.cp_r(app, rspec_resources_dir)
 FileUtils.rm_rf(File.join(rspec_resources_dir, 'CalSmoke.app'))
+FileUtils.cp_r(app, rspec_resources_dir)
 FileUtils.mv(File.join(rspec_resources_dir, 'CalSmoke-no-Calabash-dylibs-embedded.app'),
              File.join(rspec_resources_dir, 'CalSmoke.app'))
+
+FileUtils.rm_rf(File.join(rspec_resources_dir, 'CalSmoke-cal.app'))
+FileUtils.cp_r(cal_app, rspec_resources_dir)
 
 #dylib_dir = File.join(dir, 'calabash-cucumber/test/dylib')
 #FileUtils.cp_r(app, File.join(dylib_dir, 'CalSmoke.app'))
