@@ -11,12 +11,12 @@ Background: Navigate to the controls tab
 Scenario: I should be able to type something
   Then I type "Hello"
 
-@not_xtc
-Scenario: I should be able to press a key by name
-  When I touch the text field
-  Then I type "123"
-  Then I press the "delete.key" key
-  Then the text should be "12"
+#@not_xtc
+#Scenario: I should be able to press a key by name
+#  When I touch the text field
+#  Then I type "123"
+#  Then I press the "delete.key" key
+#  Then the text should be "12"
 
 @not_xtc
 Scenario: Turn on auto correct
