@@ -14,10 +14,11 @@ Dir.chdir(working_directory) do
                      {:pass_msg => 'bundled',
                       :fail_msg => 'could not bundle'})
 
+  # No longer necessary as of run-loop 1.5.*
   # remove any stale targets
-  Luffa.unix_command('bundle exec calabash-ios sim reset',
-                     {:pass_msg => 'reset the simulator',
-                      :fail_msg => 'could not reset the simulator'})
+  # Luffa.unix_command('bundle exec calabash-ios sim reset',
+  #                   {:pass_msg => 'reset the simulator',
+  #                    :fail_msg => 'could not reset the simulator'})
 
   xcode = RunLoop::Xcode.new
   xcode_version = xcode.version
@@ -36,7 +37,6 @@ Dir.chdir(working_directory) do
 
   simulators = RunLoop::SimControl.new.simulators
 
-  # noinspection RubyStringKeysInHashInspection
   env_vars = {'APP_BUNDLE_PATH' => './CalSmoke-cal.app'}
   passed_sims = []
   failed_sims = []
@@ -61,10 +61,10 @@ Dir.chdir(working_directory) do
   Luffa.log_info '=== SUMMARY ==='
   Luffa.log_info ''
   Luffa.log_info 'PASSING SIMULATORS'
-  Luffa.log_info "#{passed_sims.join("\n")}"
+  passed_sims.each { |sim| Luffa.log_info(sim) }
   Luffa.log_info ''
   Luffa.log_info 'FAILING SIMULATORS'
-  Luffa.log_info "#{failed_sims.join("\n")}"
+  failed_sims.each { |sim| Luffa.log_info(sim) }
 
   sims = devices.count
   passed = passed_sims.count
@@ -72,7 +72,6 @@ Dir.chdir(working_directory) do
 
   puts ''
   Luffa.log_info "passed on '#{passed}' out of '#{sims}'"
-
 
   # if none failed then we have success
   exit 0 if failed == 0
