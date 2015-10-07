@@ -43,33 +43,17 @@ else
   XC_PIPE='cat'
 fi
 
-XC_TARGET="CalSmoke"
+XC_TARGET="CalSmoke-cal"
 XC_PROJECT="ios-smoke-test-app.xcodeproj"
 XC_SCHEME="${XC_TARGET}"
-
-if [ \( -z "${1}" \) -o \( "${1}" != "Debug" -a "${1}" != "Release" \) ]; then
-  error "Script requires one argument - the Xcode build configuration"
-  error "This can be either Debug or Release"
-  error "  Debug: embeds Calabash dylibs in the app and loads them at runtime."
-  error "Release: includes no Calabash libraries; suitable for testing dylib injection."
-  exit 1
-fi
-
-XC_CONFIG="${1}"
-
-if [ "${XC_CONFIG}" = "Release" ]; then
-  XC_BUILD_DIR=build/app/CalSmoke/no-calabash
-  INSTALL_DIR=Products/app/CalSmoke/no-calabash
-else
-  XC_BUILD_DIR="build/app/CalSmoke/embedded-calabash-dylib"
-  INSTALL_DIR="Products/app/CalSmoke/embedded-calabash-dylib"
-fi
-
+XC_BUILD_DIR=build/app/CalSmoke-cal
+XC_CONFIG=Debug
 
 APP="${XC_TARGET}.app"
 DSYM="${APP}.dSYM"
 IPA="${XC_TARGET}.ipa"
 
+INSTALL_DIR="Products/app/CalSmoke-cal"
 INSTALLED_APP="${INSTALL_DIR}/${APP}"
 INSTALLED_DSYM="${INSTALL_DIR}/${DSYM}"
 INSTALLED_IPA="${INSTALL_DIR}/${IPA}"

@@ -58,15 +58,13 @@ fi
 XC_CONFIG="${1}"
 
 if [ "${XC_CONFIG}" = "Release" ]; then
-  XC_BUILD_DIR=build/ipa/CalSmokeApp/no-calabash
-  INSTALL_DIR=Products/ipa/CalSmokeApp/no-calabash
+  XC_BUILD_DIR=build/ipa/CalSmoke/no-calabash
+  INSTALL_DIR=Products/ipa/CalSmoke/no-calabash
 else
-  XC_BUILD_DIR="build/ipa/CalSmokeApp/embedded-calabash-dylib"
-  INSTALL_DIR="Products/ipa/CalSmokeApp/embedded-calabash-dylib"
+  XC_BUILD_DIR="build/ipa/CalSmoke/embedded-calabash-dylib"
+  INSTALL_DIR="Products/ipa/CalSmoke/embedded-calabash-dylib"
 fi
 
-rm -rf "${INSTALL_DIR}"
-mkdir -p "${INSTALL_DIR}"
 
 APP="${XC_TARGET}.app"
 DSYM="${APP}.dSYM"
@@ -75,6 +73,9 @@ IPA="${XC_TARGET}.ipa"
 INSTALLED_APP="${INSTALL_DIR}/${APP}"
 INSTALLED_DSYM="${INSTALL_DIR}/${DSYM}"
 INSTALLED_IPA="${INSTALL_DIR}/${IPA}"
+
+rm -rf "${INSTALL_DIR}"
+mkdir -p "${INSTALL_DIR}"
 
 info "Prepared install directory ${INSTALL_DIR}"
 
@@ -158,7 +159,7 @@ fi
 
 banner "Preparing for XTC Submit"
 
-XTC_DIR="xtc-submit-embedded-dylibs"
+XTC_DIR="xtc-submit-calabash-embedded"
 rm -rf "${XTC_DIR}"
 mkdir -p "${XTC_DIR}"
 

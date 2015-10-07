@@ -43,33 +43,18 @@ else
   XC_PIPE='cat'
 fi
 
-XC_TARGET="CalSmoke"
+XC_TARGET="CalSmoke-cal"
 XC_PROJECT="ios-smoke-test-app.xcodeproj"
 XC_SCHEME="${XC_TARGET}"
-
-if [ \( -z "${1}" \) -o \( "${1}" != "Debug" -a "${1}" != "Release" \) ]; then
-  error "Script requires one argument - the Xcode build configuration"
-  error "This can be either Debug or Release"
-  error "  Debug: embeds Calabash dylibs in the app and loads them at runtime."
-  error "Release: includes no Calabash libraries; suitable for testing dylib injection."
-  exit 1
-fi
-
-XC_CONFIG="${1}"
-
-if [ "${XC_CONFIG}" = "Release" ]; then
-  XC_BUILD_DIR=build/app/CalSmoke/no-calabash
-  INSTALL_DIR=Products/app/CalSmoke/no-calabash
-else
-  XC_BUILD_DIR="build/app/CalSmoke/embedded-calabash-dylib"
-  INSTALL_DIR="Products/app/CalSmoke/embedded-calabash-dylib"
-fi
+XC_CONFIG=Debug
+XC_BUILD_DIR="build/ipa/CalSmoke-cal"
 
 
 APP="${XC_TARGET}.app"
 DSYM="${APP}.dSYM"
 IPA="${XC_TARGET}.ipa"
 
+INSTALL_DIR="Products/ipa/CalSmoke-cal"
 INSTALLED_APP="${INSTALL_DIR}/${APP}"
 INSTALLED_DSYM="${INSTALL_DIR}/${DSYM}"
 INSTALLED_IPA="${INSTALL_DIR}/${IPA}"
@@ -79,7 +64,7 @@ mkdir -p "${INSTALL_DIR}"
 
 info "Prepared install directory ${INSTALL_DIR}"
 
-BUILD_PRODUCTS_DIR="${XC_BUILD_DIR}/Build/Products/${XC_CONFIG}-iphonesimulator"
+BUILD_PRODUCTS_DIR="${XC_BUILD_DIR}/Build/Products/${XC_CONFIG}-iphoneos"
 BUILD_PRODUCTS_APP="${BUILD_PRODUCTS_DIR}/${APP}"
 BUILD_PRODUCTS_DSYM="${BUILD_PRODUCTS_DIR}/${DSYM}"
 
@@ -97,9 +82,9 @@ if [ -z "${CODE_SIGN_IDENTITY}" ]; then
     -project "${XC_PROJECT}" \
     -scheme "${XC_TARGET}" \
     -configuration "${XC_CONFIG}" \
-    -sdk iphonesimulator \
-    ARCHS="i386 x86_64" \
-    VALID_ARCHS="i386 x86_64" \
+    -sdk iphoneos \
+    ARCHS="armv7 armv7s arm64" \
+    VALID_ARCHS="armv7 armv7s arm64" \
     ONLY_ACTIVE_ARCH=NO \
     build | $XC_PIPE
 else
@@ -110,9 +95,9 @@ else
     -project "${XC_PROJECT}" \
     -scheme "${XC_TARGET}" \
     -configuration "${XC_CONFIG}" \
-    -sdk iphonesimulator \
-    ARCHS="i386 x86_64" \
-    VALID_ARCHS="i386 x86_64" \
+    -sdk iphoneos \
+    ARCHS="armv7 armv7s arm64" \
+    VALID_ARCHS="armv7 armv7s arm64" \
     ONLY_ACTIVE_ARCH=NO \
     build | $XC_PIPE
 fi
@@ -120,10 +105,10 @@ fi
 EXIT_CODE=${PIPESTATUS[0]}
 
 if [ $EXIT_CODE != 0 ]; then
-  error "Building app failed."
+  error "Building ipa failed."
   exit $EXIT_CODE
 else
-  info "Building app succeeded."
+  info "Building ipa succeeded."
 fi
 
 banner "Installing"
@@ -131,7 +116,43 @@ banner "Installing"
 ditto_or_exit "${BUILD_PRODUCTS_APP}" "${INSTALLED_APP}"
 info "Installed ${INSTALLED_APP}"
 
+PAYLOAD_DIR="${INSTALL_DIR}/Payload"
+mkdir -p "${PAYLOAD_DIR}"
+
+ditto_or_exit "${INSTALLED_APP}" "${PAYLOAD_DIR}/${APP}"
+
+xcrun ditto -ck --rsrc --sequesterRsrc --keepParent \
+  "${PAYLOAD_DIR}" \
+  "${INSTALLED_IPA}"
+
+info "Installed ${INSTALLED_IPA}"
+
 ditto_or_exit "${BUILD_PRODUCTS_DSYM}" "${INSTALLED_DSYM}"
 info "Installed ${INSTALLED_DSYM}"
+
+banner "Code Signing Details"
+
+DETAILS=`xcrun codesign --display --verbose=2 ${INSTALLED_APP} 2>&1`
+
+echo "$(tput setaf 4)$DETAILS$(tput sgr0)"
+
+banner "Preparing for XTC Submit"
+
+XTC_DIR="xtc-submit-calabash-linked"
+rm -rf "${XTC_DIR}"
+mkdir -p "${XTC_DIR}"
+
+ditto_or_exit features "${XTC_DIR}/features"
+info "Copied features to ${XTC_DIR}/"
+
+ditto_or_exit config/xtc-profiles.yml "${XTC_DIR}/cucumber.yml"
+info "Copied config/xtc-profiles.yml to ${XTC_DIR}/"
+
+ditto_or_exit "${INSTALLED_IPA}" "${XTC_DIR}/"
+info "Copied ${IPA} to ${XTC_DIR}/"
+
+ditto_or_exit "${INSTALLED_DSYM}" "${XTC_DIR}/${DSYM}"
+info "Copied ${DSYM} to ${XTC_DIR}/"
+
 info "Done!"
 

@@ -1,7 +1,9 @@
 all:
 	$(MAKE) ipa
+	$(MAKE) ipa-calabash-embedded
 	$(MAKE) ipa-cal
 	$(MAKE) app
+	$(MAKE) app-calabash-embedded
 	$(MAKE) app-cal
 
 clean:
@@ -55,23 +57,22 @@ app:
 app-calabash-embedded:
 	bin/make/app.sh Debug
 
-# Builds an ipa from the -cal target.
+# Builds an ipa from the CalSmoke-cal target.
+#
+# This ipa links the calabash.framework at during the build.
+#
+# This kind of build is suitable for the Xamarin Test Cloud.
 ipa-cal:
-	bin/make/xtc-prepare.sh
+	bin/make/ipa-cal.sh
 
-
-# Builds an app that loads the Calabash dylib at runtime.
-# If code signing fails, you might need to set the signing identity.
-# $ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8<snip>F)"
-app-dylib:
-	rm -rf build
-	rm -rf CalSmoke-Calabash-dylibs-embeded.app
-	bin/make/make-app.sh Debug
-
-# Builds an app from the -cal target.
+# Builds an app from the CalSmoke-cal target.
+#
+# This app links the calabash.framework during the build.
 app-cal:
-	rm -rf CalSmoke-cal.app
-	bin/make/make-app-cal.sh
+	bin/make/app-cal.sh
+
+# The following make rules are for project maintainers.
+# At any given time, they may or may not work.
 
 # For project maintainers only.
 install_test_binaries:
