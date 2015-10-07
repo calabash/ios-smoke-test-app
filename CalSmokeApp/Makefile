@@ -9,11 +9,13 @@ all:
 clean:
 	rm -rf build
 	rm -rf Products
+	rm -rf xtc-submit-*
 
   # Legacy
 	rm -rf CalSmoke*.ipa
 	rm -rf CalSmoke*.app.dSYM
 	rm -rf CalSmoke*.app
+	rm -rf xtc-staging
 
 # Builds an ipa with no Calabash server.
 #
