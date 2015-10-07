@@ -6,11 +6,12 @@ before_script:
   - luffa authorize
 
 script:
-  - script/ci/travis/bundle-install.rb
-  - script/ci/travis/build-and-stage-app.sh
-  - script/ci/travis/cucumber-ci.rb --tags @travis
+  - script/ci/travis/run.rb --tags @travis
 
 notifications:
   email:
+    - joshuajmoody@gmail.com
+    - karl.krukow@xamarin.com
+    - chris.fuentes@xamarin.com
     on_success: change
     on_failure: always
