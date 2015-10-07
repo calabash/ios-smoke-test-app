@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-bundle
-
 XAMARIN_DIR="${PWD}/xtc-staging"
 
 echo "INFO: creating the ./xtc-staging directory"

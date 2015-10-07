@@ -14,11 +14,13 @@ Dir.chdir(working_directory) do
                      {:pass_msg => 'bundled',
                       :fail_msg => 'could not bundle'})
 
-  # No longer necessary as of run-loop 1.5.*
-  # remove any stale targets
-  # Luffa.unix_command('bundle exec calabash-ios sim reset',
-  #                   {:pass_msg => 'reset the simulator',
-  #                    :fail_msg => 'could not reset the simulator'})
+  Luffa.unix_command('make clean',
+                     {:pass_msg => 'cleaned',
+                      :fail_msg => 'could not clean'})
+
+  Luffa.unix_command('make app',
+                     {:pass_msg => 'built app',
+                      :fail_msg => 'could not build app'})
 
   xcode = RunLoop::Xcode.new
   xcode_version = xcode.version

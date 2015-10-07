@@ -36,8 +36,9 @@ screenshots
 # Jenkins CI
 ci-reports
 
-# xamarin build directory for XTC
-xtc-staging
+# Directories in which binaries, features, a Gemfile, and
+# cucumber.yml are staged for XTC submission.
+xtc-submit*
 
 # Xcode 4+
 *.xcodeproj/*.mode*

@@ -9,10 +9,12 @@ ctags -V -R -f ../.git/tags \
   --exclude=reports \
   --exclude=*.app \
   --exclude=*.dSYM \
-  --exclude=xtc-staging \
+  --exclude=Products \
+  --exclude=xtc-submit-* \
   --exclude=*.framework \
   --exclude=.irb-history \
   --exclude=*.xcodeproj \
   --exclude=*.xcworkspace \
   --exclude=.idea \
-  --exclude=*.plist
+  --exclude=*.plist \
+  --exclude=CalSmokeApp

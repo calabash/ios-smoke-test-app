@@ -2,10 +2,10 @@
 
 require 'fileutils'
 
-cal_app = File.expand_path('./CalSmoke-cal.app')
-cal_ipa = File.expand_path('./xtc-staging/CalSmoke-cal.ipa')
-app = File.expand_path('./CalSmoke-no-Calabash-dylibs-embedded.app')
-ipa = File.expand_path('./CalSmoke-no-Calabash-dylibs-embedded.ipa')
+cal_app = File.expand_path('Products/app/CalSmoke-cal/CalSmoke-cal.app')
+cal_ipa = File.expand_path('Products/ipa/CalSmoke-cal/CalSmoke-cal.ipa')
+app = File.expand_path('Products/app/CalSmoke/no-calabash/CalSmoke.app')
+ipa = File.expand_path('Products/ipa/CalSmoke/no-calabash/CalSmoke.ipa')
 
 # calabash-ios
 dir = File.expand_path('~/git/calabash/calabash-ios')
