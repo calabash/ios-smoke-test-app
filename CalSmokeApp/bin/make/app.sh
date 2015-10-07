@@ -58,11 +58,11 @@ fi
 XC_CONFIG="${1}"
 
 if [ "${XC_CONFIG}" = "Release" ]; then
-  XC_BUILD_DIR=build/ipa/CalSmokeApp/no-calabash
-  INSTALL_DIR=Products/ipa/CalSmokeApp/no-calabash
+  XC_BUILD_DIR=build/app/CalSmokeApp/no-calabash
+  INSTALL_DIR=Products/app/CalSmokeApp/no-calabash
 else
-  XC_BUILD_DIR="build/ipa/CalSmokeApp/embedded-calabash-dylib"
-  INSTALL_DIR="Products/ipa/CalSmokeApp/embedded-calabash-dylib"
+  XC_BUILD_DIR="build/app/CalSmokeApp/embedded-calabash-dylib"
+  INSTALL_DIR="Products/app/CalSmokeApp/embedded-calabash-dylib"
 fi
 
 rm -rf "${INSTALL_DIR}"
@@ -78,7 +78,7 @@ INSTALLED_IPA="${INSTALL_DIR}/${IPA}"
 
 info "Prepared install directory ${INSTALL_DIR}"
 
-BUILD_PRODUCTS_DIR="${XC_BUILD_DIR}/Build/Products/${XC_CONFIG}-iphoneos"
+BUILD_PRODUCTS_DIR="${XC_BUILD_DIR}/Build/Products/${XC_CONFIG}-iphonesimulator"
 BUILD_PRODUCTS_APP="${BUILD_PRODUCTS_DIR}/${APP}"
 BUILD_PRODUCTS_DSYM="${BUILD_PRODUCTS_DIR}/${DSYM}"
 
@@ -96,9 +96,9 @@ if [ -z "${CODE_SIGN_IDENTITY}" ]; then
     -project "${XC_PROJECT}" \
     -scheme "${XC_TARGET}" \
     -configuration "${XC_CONFIG}" \
-    -sdk iphoneos \
-    ARCHS="armv7 armv7s arm64" \
-    VALID_ARCHS="armv7 armv7s arm64" \
+    -sdk iphonesimulator \
+    ARCHS="i386 x86_64" \
+    VALID_ARCHS="i386 x86_64" \
     ONLY_ACTIVE_ARCH=NO \
     build | $XC_PIPE
 else
@@ -109,9 +109,9 @@ else
     -project "${XC_PROJECT}" \
     -scheme "${XC_TARGET}" \
     -configuration "${XC_CONFIG}" \
-    -sdk iphoneos \
-    ARCHS="armv7 armv7s arm64" \
-    VALID_ARCHS="armv7 armv7s arm64" \
+    -sdk iphonesimulator \
+    ARCHS="i386 x86_64" \
+    VALID_ARCHS="i386 x86_64" \
     ONLY_ACTIVE_ARCH=NO \
     build | $XC_PIPE
 fi
@@ -119,10 +119,10 @@ fi
 EXIT_CODE=${PIPESTATUS[0]}
 
 if [ $EXIT_CODE != 0 ]; then
-  error "Building ipa failed."
+  error "Building app failed."
   exit $EXIT_CODE
 else
-  info "Building ipa succeeded."
+  info "Building app succeeded."
 fi
 
 banner "Installing"
@@ -130,49 +130,7 @@ banner "Installing"
 ditto_or_exit "${BUILD_PRODUCTS_APP}" "${INSTALLED_APP}"
 info "Installed ${INSTALLED_APP}"
 
-PAYLOAD_DIR="${INSTALL_DIR}/Payload"
-mkdir -p "${PAYLOAD_DIR}"
-
-ditto_or_exit "${INSTALLED_APP}" "${PAYLOAD_DIR}/${APP}"
-
-xcrun ditto -ck --rsrc --sequesterRsrc --keepParent \
-  "${PAYLOAD_DIR}" \
-  "${INSTALLED_IPA}"
-
-info "Installed ${INSTALLED_IPA}"
-
 ditto_or_exit "${BUILD_PRODUCTS_DSYM}" "${INSTALLED_DSYM}"
 info "Installed ${INSTALLED_DSYM}"
-
-banner "Code Signing Details"
-
-DETAILS=`xcrun codesign --display --verbose=2 ${INSTALLED_APP} 2>&1`
-
-echo "$(tput setaf 4)$DETAILS$(tput sgr0)"
-
-if [ "${XC_CONFIG}" = "Release" ]; then
-  echo ""
-  info "Done!"
-  exit 0
-fi
-
-banner "Preparing for XTC Submit"
-
-XTC_DIR="xtc-submit-embedded-dylibs"
-rm -rf "${XTC_DIR}"
-mkdir -p "${XTC_DIR}"
-
-ditto_or_exit features "${XTC_DIR}/features"
-info "Copied features to ${XTC_DIR}/"
-
-ditto_or_exit config/xtc-profiles.yml "${XTC_DIR}/cucumber.yml"
-info "Copied config/xtc-profiles.yml to ${XTC_DIR}/"
-
-ditto_or_exit "${INSTALLED_IPA}" "${XTC_DIR}/"
-info "Copied ${IPA} to ${XTC_DIR}/"
-
-ditto_or_exit "${INSTALLED_DSYM}" "${XTC_DIR}/${DSYM}"
-info "Copied ${DSYM} to ${XTC_DIR}/"
-
 info "Done!"
 

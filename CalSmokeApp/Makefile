@@ -15,7 +15,8 @@ clean:
 
 # Builds an ipa with no Calabash server.
 #
-# This ipa is suitable for testing dylib injection.
+# This ipa is suitable for testing dylib injection on physical
+# devices.
 #
 # Dylib injection is not supported for ipas yet and is not
 # supported on the Xamarin Test Cloud.
@@ -36,15 +37,28 @@ ipa:
 ipa-calabash-embedded:
 	bin/make/ipa.sh Debug
 
+# Builds an app with no Calabash server.
+#
+# This app is suitable for testing dylib injection on iOS Simulators.
+app:
+	bin/make/app.sh Release
+
+# Builds an app that loads an embedded Calabash dylib at runtime.
+#
+# This behaves exactly like the -cal target which links the
+# calabash.framework during the link build phase.
+#
+# If code signing fails, you might need to set the signing identity.
+# $ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8<snip>F)"
+#
+# See the README.md for more details about code signing.
+app-calabash-embedded:
+	bin/make/app.sh Debug
+
 # Builds an ipa from the -cal target.
 ipa-cal:
 	bin/make/xtc-prepare.sh
 
-# Builds an app with no Calabash server.
-app:
-	rm -rf build
-	rm -rf CalSmoke-no-Calabash-dylibs-embedded.app
-	bin/make/make-app.sh Release
 
 # Builds an app that loads the Calabash dylib at runtime.
 # If code signing fails, you might need to set the signing identity.
