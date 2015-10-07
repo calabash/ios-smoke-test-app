@@ -1,97 +1,152 @@
 #!/usr/bin/env bash
 
-bundle
+function info {
+  echo "$(tput setaf 2)INFO: $1$(tput sgr0)"
+}
 
-TARGET_NAME="CalSmoke"
-XC_PROJECT="ios-smoke-test-app.xcodeproj"
-XC_SCHEME="${TARGET_NAME}"
+function error {
+  echo "$(tput setaf 1)ERROR: $1$(tput sgr0)"
+}
 
-if [ ! -z "${1}" ]; then
-  CONFIG="${1}"
+function banner {
+  echo ""
+  echo "$(tput setaf 5)######## $1 #######$(tput sgr0)"
+  echo ""
+}
+
+function ditto_or_exit {
+  ditto "${1}" "${2}"
+  if [ "$?" != 0 ]; then
+    error "Could not copy:"
+    error "  source: ${1}"
+    error "  target: ${2}"
+    if [ ! -e "${1}" ]; then
+      error "The source file does not exist"
+      error "Did a previous xcodebuild step fail?"
+    fi
+    error "Exiting 1"
+    exit 1
+  fi
+}
+
+banner "Preparing"
+
+if [ "${XCPRETTY}" = "0" ]; then
+  USE_XCPRETTY=
 else
-  CONFIG=Debug
+  USE_XCPRETTY=`which xcpretty | tr -d '\n'`
 fi
 
-CAL_DISTRO_DIR="${PWD}/build/ipa"
-ARCHIVE_BUNDLE="${CAL_DISTRO_DIR}/${TARGET_NAME}.xcarchive"
-APP_BUNDLE_PATH="${ARCHIVE_BUNDLE}/Products/Applications/${TARGET_NAME}.app"
-DYSM_PATH="${ARCHIVE_BUNDLE}/dSYMs/${TARGET_NAME}.app.dSYM"
-IPA_PATH="${CAL_DISTRO_DIR}/${TARGET_NAME}.ipa"
+if [ ! -z ${USE_XCPRETTY} ]; then
+  XC_PIPE='xcpretty -c'
+else
+  XC_PIPE='cat'
+fi
 
+XC_TARGET="CalSmoke"
+XC_PROJECT="ios-smoke-test-app.xcodeproj"
+XC_SCHEME="${XC_TARGET}"
 
-rm -rf "${CAL_DISTRO_DIR}"
-mkdir -p "${CAL_DISTRO_DIR}"
+if [ \( -z "${1}" \) -o \( "${1}" != "Debug" -a "${1}" != "Release" \) ]; then
+  error "Script requires one argument - the Xcode build configuration"
+  error "This can be either Debug or Release"
+  error "  Debug: loads Calabash dylibs at runtime."
+  error "Release: includes not Calabash libraries."
+  exit 1
+fi
 
-set +o errexit
+XC_CONFIG="${1}"
+
+if [ "${XC_CONFIG}" = "Release" ]; then
+  XC_BUILD_DIR=build/ipa/CalSmokeApp/no-calabash
+  INSTALL_DIR=Products/ipa/CalSmokeApp/no-calabash
+else
+  XC_BUILD_DIR="build/ipa/CalSmokeApp/calabash-dylib"
+  INSTALL_DIR="Products/ipa/CalSmokeApp/calabash-dylib"
+fi
+
+rm -rf "${INSTALL_DIR}"
+mkdir -p "${INSTALL_DIR}"
+
+APP="${XC_TARGET}.app"
+DSYM="${APP}.dSYM"
+IPA="${XC_TARGET}.ipa"
+
+INSTALLED_APP="${INSTALL_DIR}/${APP}"
+INSTALLED_DSYM="${INSTALL_DIR}/${DSYM}"
+INSTALLED_IPA="${INSTALL_DIR}/${IPA}"
+
+info "Prepared install directory ${INSTALL_DIR}"
+
+BUILD_PRODUCTS_DIR="${XC_BUILD_DIR}/Build/Products/${XC_CONFIG}-iphoneos"
+BUILD_PRODUCTS_APP="${BUILD_PRODUCTS_DIR}/${APP}"
+BUILD_PRODUCTS_DSYM="${BUILD_PRODUCTS_DIR}/${DSYM}"
+
+rm -rf "${BUILD_PRODUCTS_APP}"
+rm -rf "${BUILD_PRODUCTS_DSYM}"
+
+info "Prepared archive directory"
+
+banner "Building ${IPA}"
 
 if [ -z "${CODE_SIGN_IDENTITY}" ]; then
-  xcrun xcodebuild archive \
-    -SYMROOT="${CAL_DISTRO_DIR}" \
-    -derivedDataPath "${CAL_DISTRO_DIR}" \
+  COMMAND_LINE_BUILD=1 xcrun xcodebuild \
+    -SYMROOT="${XC_BUILD_DIR}" \
+    -derivedDataPath "${XC_BUILD_DIR}" \
     -project "${XC_PROJECT}" \
-    -scheme "${XC_SCHEME}" \
-    -configuration "${CONFIG}" \
-    -archivePath "${ARCHIVE_BUNDLE}" \
+    -scheme "${XC_TARGET}" \
+    -configuration "${XC_CONFIG}" \
+    -sdk iphoneos \
     ARCHS="armv7 armv7s arm64" \
     VALID_ARCHS="armv7 armv7s arm64" \
     ONLY_ACTIVE_ARCH=NO \
-    -sdk iphoneos | bundle exec xcpretty -c
+    build | $XC_PIPE
 else
-  xcrun xcodebuild archive \
+  COMMAND_LINE_BUILD=1 xcrun xcodebuild \
     CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY}" \
-    -SYMROOT="${CAL_DISTRO_DIR}" \
-    -derivedDataPath "${CAL_DISTRO_DIR}" \
+    -SYMROOT="${XC_BUILD_DIR}" \
+    -derivedDataPath "${XC_BUILD_DIR}" \
     -project "${XC_PROJECT}" \
-    -scheme "${XC_SCHEME}" \
-    -configuration "${CONFIG}" \
-    -archivePath "${ARCHIVE_BUNDLE}" \
+    -scheme "${XC_TARGET}" \
+    -configuration "${XC_CONFIG}" \
+    -sdk iphoneos \
     ARCHS="armv7 armv7s arm64" \
     VALID_ARCHS="armv7 armv7s arm64" \
     ONLY_ACTIVE_ARCH=NO \
-    -sdk iphoneos | bundle exec xcpretty -c
+    build | $XC_PIPE
 fi
 
-RETVAL=${PIPESTATUS[0]}
+EXIT_CODE=${PIPESTATUS[0]}
 
-set -o errexit
-
-if [ $RETVAL != 0 ]; then
-  echo "FAIL:  archive failed"
-  exit $RETVAL
-fi
-
-set +o errexit
-
-PACKAGE_LOG="${CAL_DISTRO_DIR}/package.log"
-
-xcrun \
-  -sdk \
-  iphoneos \
-  PackageApplication \
-  -v "${APP_BUNDLE_PATH}" \
-  -o "${IPA_PATH}" > "${PACKAGE_LOG}"
-
-RETVAL=$?
-
-echo "INFO: Package Application Log: ${PACKAGE_LOG}"
-
-set -o errexit
-
-if [ $RETVAL != 0 ]; then
-  echo "FAIL:  export archive failed"
-  exit $RETVAL
-fi
-
-if [ "${CONFIG}" = "Debug" ]; then
-  IPA="${TARGET_NAME}-Calabash-dylibs-embedded.ipa"
-  IPA_DSYM="${TARGET_NAME}-Calabash-dylibs-embedded.app.dSYM"
+if [ $EXIT_CODE != 0 ]; then
+  error "Building ipa failed."
+  exit $EXIT_CODE
 else
-  IPA="${TARGET_NAME}-no-Calabash-dylibs-embedded.ipa"
-  IPA_DSYM="${TARGET_NAME}-no-Calabash-dylibs-embedded.app.dSYM"
+  info "Building ipa succeeded."
 fi
 
-mv "${IPA_PATH}" "${PWD}/${IPA}"
-echo "Created ${PWD}/${IPA}"
+banner "Installing"
 
-mv "${DYSM_PATH}" "${PWD}/${IPA_DSYM}"
-echo "Created ${PWD}/${IPA_DSYM}"
+ditto_or_exit "${BUILD_PRODUCTS_APP}" "${INSTALLED_APP}"
+info "Installed ${INSTALLED_APP}"
+
+PAYLOAD_DIR="${INSTALL_DIR}/Payload"
+mkdir -p "${PAYLOAD_DIR}"
+
+ditto_or_exit "${INSTALLED_APP}" "${PAYLOAD_DIR}/${APP}"
+
+xcrun ditto -ck --rsrc --sequesterRsrc --keepParent \
+  "${PAYLOAD_DIR}" \
+  "${INSTALLED_IPA}"
+
+info "Installed ${INSTALLED_IPA}"
+
+ditto_or_exit "${BUILD_PRODUCTS_DSYM}" "${INSTALLED_DSYM}"
+info "Installed ${INSTALLED_DSYM}"
+
+banner "Code Signing Details"
+
+DETAILS=`xcrun codesign --display --verbose=2 ${INSTALLED_APP} 2>&1`
+
+echo "$(tput setaf 4)$DETAILS$(tput sgr0)"
+
