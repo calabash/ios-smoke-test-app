@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-bundle
-
 TARGET_NAME="CalSmoke-cal"
 XC_PROJECT="ios-smoke-test-app.xcodeproj"
 XC_SCHEME="${TARGET_NAME}"
@@ -9,7 +7,6 @@ CAL_BUILD_CONFIG=Debug
 CAL_BUILD_DIR="${PWD}/build/ci"
 
 rm -rf "${TARGET_NAME}.app"
-rm -rf "${CAL_BUILD_DIR}"
 mkdir -p "${CAL_BUILD_DIR}"
 
 set +o errexit
@@ -25,7 +22,7 @@ if [ -z "${CODE_SIGN_IDENTITY}" ]; then
     -scheme "${TARGET_NAME}" \
     -sdk iphonesimulator \
     -configuration "${CAL_BUILD_CONFIG}" \
-    clean build | bundle exec xcpretty -c
+    build | bundle exec xcpretty -c
 else
   xcrun xcodebuild \
     CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY}" \
@@ -38,7 +35,7 @@ else
     -scheme "${TARGET_NAME}" \
     -sdk iphonesimulator \
     -configuration "${CAL_BUILD_CONFIG}" \
-    clean build | bundle exec xcpretty -c
+    build | bundle exec xcpretty -c
 fi
 
 RETVAL=${PIPESTATUS[0]}

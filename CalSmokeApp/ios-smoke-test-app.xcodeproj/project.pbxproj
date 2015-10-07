@@ -519,7 +519,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "script/xcode-build-phase/add-calabash-dylibs-to-bundle.sh";
+			shellScript = "bin/xcode-build-phase/add-calabash-dylibs-to-bundle.sh";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
