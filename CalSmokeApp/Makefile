@@ -6,23 +6,35 @@ all:
 
 clean:
 	rm -rf build
+	rm -rf Products
+
+  # Legacy
 	rm -rf CalSmoke*.ipa
 	rm -rf CalSmoke*.app.dSYM
 	rm -rf CalSmoke*.app
 
 # Builds an ipa with no Calabash server.
+#
+# This ipa is suitable for testing dylib injection.
+#
+# Dylib injection is not supported for ipas yet and is not
+# supported on the Xamarin Test Cloud.
 ipa:
-	rm -rf build
-	rm -rf CalSmoke-no-Calabash-dylibs-embedded.ipa
-	bin/make/make-ipa.sh Release
+	bin/make/ipa.sh Release
 
-# Builds an ipa that loads the Calabash dylib at runtime.
+# Builds an ipa that loads an embedded Calabash dylib at runtime.
+#
+# This behaves exactly like the -cal target which links the
+# calabash.framework during the link build phase.
+#
+# This kind of build is suitable for the Xamarin Test Cloud.
+#
 # If code signing fails, you might need to set the signing identity.
-# $ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8<snip>F)" make ipa-dylib
-ipa-dylib:
-	rm -rf build
-	rm -rf CalSmoke-Calabash-dylibs-embedded.ipa
-	bin/make/make-ipa.sh Debug
+# $ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8<snip>F)"
+#
+# See the README.md for more details about code signing.
+ipa-calabash-embedded:
+	bin/make/ipa.sh Debug
 
 # Builds an ipa from the -cal target.
 ipa-cal:
@@ -36,7 +48,7 @@ app:
 
 # Builds an app that loads the Calabash dylib at runtime.
 # If code signing fails, you might need to set the signing identity.
-# $ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8<snip>F)" make app-dylib
+# $ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8<snip>F)"
 app-dylib:
 	rm -rf build
 	rm -rf CalSmoke-Calabash-dylibs-embeded.app

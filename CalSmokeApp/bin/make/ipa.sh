@@ -61,8 +61,8 @@ if [ "${XC_CONFIG}" = "Release" ]; then
   XC_BUILD_DIR=build/ipa/CalSmokeApp/no-calabash
   INSTALL_DIR=Products/ipa/CalSmokeApp/no-calabash
 else
-  XC_BUILD_DIR="build/ipa/CalSmokeApp/calabash-dylib"
-  INSTALL_DIR="Products/ipa/CalSmokeApp/calabash-dylib"
+  XC_BUILD_DIR="build/ipa/CalSmokeApp/embedded-calabash-dylib"
+  INSTALL_DIR="Products/ipa/CalSmokeApp/embedded-calabash-dylib"
 fi
 
 rm -rf "${INSTALL_DIR}"
@@ -149,4 +149,30 @@ banner "Code Signing Details"
 DETAILS=`xcrun codesign --display --verbose=2 ${INSTALLED_APP} 2>&1`
 
 echo "$(tput setaf 4)$DETAILS$(tput sgr0)"
+
+if [ "${XC_CONFIG}" = "Release" ]; then
+  echo ""
+  info "Done!"
+  exit 0
+fi
+
+banner "Preparing for XTC Submit"
+
+XTC_DIR="xtc-submit-embedded-dylibs"
+rm -rf "${XTC_DIR}"
+mkdir -p "${XTC_DIR}"
+
+ditto_or_exit features "${XTC_DIR}/features"
+info "Copied features to ${XTC_DIR}/"
+
+ditto_or_exit config/xtc-profiles.yml "${XTC_DIR}/cucumber.yml"
+info "Copied config/xtc-profiles.yml to ${XTC_DIR}/"
+
+ditto_or_exit "${INSTALLED_IPA}" "${XTC_DIR}/"
+info "Copied ${IPA} to ${XTC_DIR}/"
+
+ditto_or_exit "${INSTALLED_DSYM}" "${XTC_DIR}/${DSYM}"
+info "Copied ${DSYM} to ${XTC_DIR}/"
+
+info "Done!"
 
