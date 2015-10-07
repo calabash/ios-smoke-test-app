@@ -401,6 +401,7 @@
 				F52BFB091987EF8700299AEF /* Frameworks */,
 				F52BFB0A1987EF8700299AEF /* Resources */,
 				F51F2E8E1AB359A6002326D0 /* Run Script Add Calabash dylibs to Bundle */,
+				F51FA0E41BC5723900B6BF70 /* Run Script Stage Binaries to Products */,
 			);
 			buildRules = (
 			);
@@ -418,6 +419,7 @@
 				b17dee660dc338602790258e /* Sources */,
 				146d6a283e5268ae50e42bb6 /* Frameworks */,
 				5fe138bfdd8a11df266b0f94 /* Resources */,
+				F51FA0E31BC569BA00B6BF70 /* Run Script Stage Binaries to Products/ */,
 			);
 			buildRules = (
 			);
@@ -520,6 +522,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "bin/xcode-build-phase/add-calabash-dylibs-to-bundle.sh";
+			showEnvVarsInLog = 0;
+		};
+		F51FA0E31BC569BA00B6BF70 /* Run Script Stage Binaries to Products/ */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script Stage Binaries to Products/";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bin/xcode-build-phase/stage-CalSmoke-cal-products.sh";
+			showEnvVarsInLog = 0;
+		};
+		F51FA0E41BC5723900B6BF70 /* Run Script Stage Binaries to Products */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script Stage Binaries to Products";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bin/xcode-build-phase/stage-CalSmoke-products.sh";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -825,6 +857,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
@@ -868,6 +901,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-force_load",
