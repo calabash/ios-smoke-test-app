@@ -8,7 +8,7 @@ require 'pry'
 if ENV['APP']
   app = ENV['APP']
 else
-  app = File.expand_path('./CalSmoke-cal.app')
+  app = File.expand_path('Products/app/CalSmoke-cal/CalSmoke-cal.app')
   ENV['APP'] = app
 end
 
