@@ -52,7 +52,7 @@ Try again without xpretty to reveal the problem:
 ```
 $ XCPRETTY=0 make ipa
 iPhone Developer: ambiguous (matches "iPhone Developer: Some Developer
-(89543FK9SZ)" and "iPhone Developer: Joshua Moody (7QJQJFT49Q)" in
+(89543FK9SZ)" and "iPhone Developer: Some Other Developer (7QJQJFT49Q)" in
 /Users/moody/Library/Keychains/login.keychain)
 Command /bin/sh failed with exit code 1
 
