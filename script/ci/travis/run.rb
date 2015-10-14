@@ -18,7 +18,7 @@ Dir.chdir(working_directory) do
                      {:pass_msg => 'cleaned',
                       :fail_msg => 'could not clean'})
 
-  Luffa.unix_command('make app',
+  Luffa.unix_command('make app-cal',
                      {:pass_msg => 'built app',
                       :fail_msg => 'could not build app'})
 
@@ -39,7 +39,8 @@ Dir.chdir(working_directory) do
 
   simulators = RunLoop::SimControl.new.simulators
 
-  env_vars = {'APP_BUNDLE_PATH' => './CalSmoke-cal.app'}
+  env_vars = {}
+
   passed_sims = []
   failed_sims = []
   devices.each do |key, name|
