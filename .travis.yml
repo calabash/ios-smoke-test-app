@@ -1,6 +1,7 @@
 language: objective-c
 
 before_script:
+  - gem install run_loop --no-document --env-shebang --no-prerelease
   - gem install luffa --no-document --env-shebang --no-prerelease
   - luffa authorize
 
