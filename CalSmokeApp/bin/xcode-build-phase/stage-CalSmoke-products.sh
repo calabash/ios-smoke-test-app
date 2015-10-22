@@ -36,12 +36,6 @@ if [ ! -z $COMMAND_LINE_BUILD ]; then
   exit 0
 fi
 
-if [ ${CONFIGURATION} != "Debug" ]; then
-  info "Skipping staging to Products; only necessary for Debug configuration"
-  info "Nothing to do; exiting 0."
-  exit 0
-fi
-
 if [ ${EFFECTIVE_PLATFORM_NAME} = "-iphoneos" ]; then
   if [ ${CONFIGURATION} = "Debug" ]; then
     APP_TARGET_DIR="${SOURCE_ROOT}/Products/ipa/${TARGET_NAME}/embedded-calabash-dylib"
