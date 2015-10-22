@@ -104,7 +104,9 @@ If you are building from Xcode and have code signing problems, you'll
 need to update the `bin/xcode-build-phase/add-calabash-dylibs-to-bundle.sh`
 with your identity details.
 
-### Make the -cal Target
+## Information for Maintainers (or the Curious)
+
+### Make the -cal target
 
 The -cal target links the calabash.framework.
 
