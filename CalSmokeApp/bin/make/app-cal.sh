@@ -51,12 +51,10 @@ XC_CONFIG=Debug
 
 APP="${XC_TARGET}.app"
 DSYM="${APP}.dSYM"
-IPA="${XC_TARGET}.ipa"
 
 INSTALL_DIR="Products/app/CalSmoke-cal"
 INSTALLED_APP="${INSTALL_DIR}/${APP}"
 INSTALLED_DSYM="${INSTALL_DIR}/${DSYM}"
-INSTALLED_IPA="${INSTALL_DIR}/${IPA}"
 
 rm -rf "${INSTALL_DIR}"
 mkdir -p "${INSTALL_DIR}"
@@ -72,7 +70,7 @@ rm -rf "${BUILD_PRODUCTS_DSYM}"
 
 info "Prepared archive directory"
 
-banner "Building ${IPA}"
+banner "Building ${APP}"
 
 if [ -z "${CODE_SIGN_IDENTITY}" ]; then
   COMMAND_LINE_BUILD=1 xcrun xcodebuild \
