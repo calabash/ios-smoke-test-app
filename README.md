@@ -16,6 +16,40 @@ $ git clone --depth 10 git@github.com:calabash/ios-smoke-test-app.git
 $ cd ios-smoke-test-app/CalSmokeApp
 ```
 
+We use this app to document, demonstrate, and test Calabash iOS.
+
+You can use this app to explore Calabash and as an example for how to
+configure your Xcode project and Calabash workflow.
+
+If you have problems building or running, please see the **xcpretty**
+and **Code Signing** sections below for how debug.
+
+### Getting Started
+
+```
+$ git clone --depth 10 git@github.com:calabash/ios-smoke-test-app.git
+$ cd ios-smoke-test-app/CalSmokeApp
+$ bundle
+$ make app-cal
+```
+
+Run your first cucumber test:
+
+```
+# A test that is run in Travis CI
+$ bundle exec cucumber --tags @travis
+```
+
+Explore your app on from calabash console:
+
+```
+$ bundle exec calabash-ios console
+> start_test_server_in_background
+> query("UITextField")
+> touch("UITextField")
+> keyboard_enter_text("Hello!")
+```
+
 ### xcpretty
 
 https://github.com/supermarin/xcpretty
@@ -131,4 +165,3 @@ $ make ipa-calabash-embedded
 # Update the config/cucumber.yml
 bundle_id:    BUNDLE_ID=sh.calaba.CalSmoke
 ```
-
