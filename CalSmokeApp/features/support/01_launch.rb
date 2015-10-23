@@ -1,19 +1,3 @@
-########################################
-#                                      #
-#       Important Note                 #
-#                                      #
-#   When running calabash-ios tests at #
-#   www.xamarin.com/test-cloud         #
-#   this file will be overwritten by   #
-#   a file which automates             #
-#   app launch on devices.             #
-#                                      #
-#   Don't rely on this file being      #
-#   present when running at            #
-#   Xamarin Test Cloud                 #
-#                                      #
-########################################
-
 require 'calabash-cucumber/launcher'
 
 module LaunchControl
