@@ -49,7 +49,8 @@ Before('@reset_app_btw_scenarios') do
   elsif LaunchControl.target_is_simulator?
     target = LaunchControl.target
     simulator = RunLoop::Device.device_with_identifier(target)
-    bridge = RunLoop::Simctl::Bridge.new(simulator, ENV['APP'])
+    app = RunLoop::App.new(ENV['APP'] || ENV['APP_BUNDLE_PATH'])
+    bridge = RunLoop::CoreSimulator.new(simulator, app)
     bridge.reset_app_sandbox
   else
     LaunchControl.install_on_physical_device
@@ -73,8 +74,9 @@ Before do |scenario|
   launcher = LaunchControl.launcher
 
   options = {
-    #:uia_strategy => :host
+    :uia_strategy => :host
     #:uia_strategy => :shared_element
+    #:uia_strategy => :preferences
   }
 
   launcher.relaunch(options)
