@@ -12,7 +12,7 @@ end
 if ENV['APP']
   app = ENV['APP']
 else
-  app = File.expand_path('./CalSmoke-no-Calabash-dylibs-embedded.app')
+  app = File.expand_path('./Products/app/CalSmoke/no-calabash/CalSmoke.app')
   ENV['APP'] = app
 end
 
