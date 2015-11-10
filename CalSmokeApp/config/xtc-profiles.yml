@@ -1,5 +1,3 @@
-# careful using the @not_xtc tag
-# use for stuff like Scenario Outlines which are nyi on XTC
 not_xtc:     --tags ~@not_xtc
 not_sim:     --tags ~@simulator --tags ~@simulator_only
 no_launch:   --tags ~@no_launch
