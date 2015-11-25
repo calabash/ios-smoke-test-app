@@ -72,9 +72,9 @@ Before do |scenario|
   launcher = LaunchControl.launcher
 
   options = {
-    :uia_strategy => :host
+    #:uia_strategy => :host
     #:uia_strategy => :shared_element
-    #:uia_strategy => :preferences
+    :uia_strategy => :preferences
   }
 
   launcher.relaunch(options)
