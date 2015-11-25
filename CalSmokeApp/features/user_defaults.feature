@@ -1,7 +1,7 @@
 @resetting
 @ideviceinstaller
 @user_defaults
-Feature:  NSUserDefaults
+Feature:  NSUserDefaults and App Sandbox
 
 # These tests are dependent on each other and must be run in a particular
 # order. In general, this is a bad practice, but there are times when it is
@@ -27,18 +27,18 @@ Background: Navigate to the controls page
 # `reset_app_sandbox`.
 @reset_app_btw_scenarios
 @backdoor
-Scenario: 20 I turn the switch on the first view on
+Scenario: 20 I turn the switch on and add files to sandbox
   And I drop some files in the sandbox
   Given I turn the switch on
 
 @backdoor
-Scenario: 21 The switch should be on because I did not reset the app before this Scenario
+Scenario: 21 The switch should be on and the files in the sandbox
   Then I should see the files I put in the sandbox
   Then I should see the switch is on
 
 @reset_app_btw_scenarios
 @backdoor
-Scenario: 22 The switch should be off because I did reset the app before this Scenario
+Scenario: 22 The switch should be off and there should be no files in sandbox
   Then I should not see the files I put in the sandbox
   Then I should see the switch is off
 
