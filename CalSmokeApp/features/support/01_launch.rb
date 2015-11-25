@@ -44,14 +44,8 @@ module LaunchControl
 end
 
 Before('@reset_app_btw_scenarios') do
-  if xamarin_test_cloud?
+  if xamarin_test_cloud? || LaunchControl.target_is_simulator?
     ENV['RESET_BETWEEN_SCENARIOS'] = '1'
-  elsif LaunchControl.target_is_simulator?
-    target = LaunchControl.target
-    simulator = RunLoop::Device.device_with_identifier(target)
-    app = RunLoop::App.new(ENV['APP'] || ENV['APP_BUNDLE_PATH'])
-    bridge = RunLoop::CoreSimulator.new(simulator, app)
-    bridge.reset_app_sandbox
   else
     LaunchControl.install_on_physical_device
   end
@@ -62,9 +56,13 @@ Before('@reset_device_settings') do
     ENV['RESET_BETWEEN_SCENARIOS'] = '1'
   elsif LaunchControl.target_is_simulator?
     target = LaunchControl.target
-    RunLoop::Core.simulator_target?({:device_target => target})
-    sim_control = RunLoop::SimControl.new
-    sim_control.reset_sim_content_and_settings
+    instruments = RunLoop::Instruments.new
+    xcode = instruments.xcode
+    device = instruments.simulators.find do |sim|
+      sim.udid == target || sim.instruments_identifier(xcode) == target
+    end
+
+    RunLoop::CoreSimulator.erase(device)
   else
     LaunchControl.install_on_physical_device
   end
@@ -82,9 +80,7 @@ Before do |scenario|
   launcher.relaunch(options)
   launcher.calabash_notify(self)
 
-  if xamarin_test_cloud?
-    ENV['RESET_BETWEEN_SCENARIOS'] = '0'
-  end
+  ENV['RESET_BETWEEN_SCENARIOS'] = '0'
 
   # Re-installing the app on a device does not clear the Keychain settings,
   # so we must clear them manually.
