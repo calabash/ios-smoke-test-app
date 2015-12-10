@@ -43,15 +43,13 @@ module LaunchControl
   end
 end
 
+Before("@no_relaunch") do
+  @no_relaunch = true
+end
+
 Before('@reset_app_btw_scenarios') do
-  if xamarin_test_cloud?
+  if xamarin_test_cloud? || LaunchControl.target_is_simulator?
     ENV['RESET_BETWEEN_SCENARIOS'] = '1'
-  elsif LaunchControl.target_is_simulator?
-    target = LaunchControl.target
-    simulator = RunLoop::Device.device_with_identifier(target)
-    app = RunLoop::App.new(ENV['APP'] || ENV['APP_BUNDLE_PATH'])
-    bridge = RunLoop::CoreSimulator.new(simulator, app)
-    bridge.reset_app_sandbox
   else
     LaunchControl.install_on_physical_device
   end
@@ -62,9 +60,13 @@ Before('@reset_device_settings') do
     ENV['RESET_BETWEEN_SCENARIOS'] = '1'
   elsif LaunchControl.target_is_simulator?
     target = LaunchControl.target
-    RunLoop::Core.simulator_target?({:device_target => target})
-    sim_control = RunLoop::SimControl.new
-    sim_control.reset_sim_content_and_settings
+    instruments = RunLoop::Instruments.new
+    xcode = instruments.xcode
+    device = instruments.simulators.find do |sim|
+      sim.udid == target || sim.instruments_identifier(xcode) == target
+    end
+
+    RunLoop::CoreSimulator.erase(device)
   else
     LaunchControl.install_on_physical_device
   end
@@ -74,17 +76,33 @@ Before do |scenario|
   launcher = LaunchControl.launcher
 
   options = {
-    :uia_strategy => :host
+    #:uia_strategy => :host
     #:uia_strategy => :shared_element
-    #:uia_strategy => :preferences
+    :uia_strategy => :preferences
   }
 
-  launcher.relaunch(options)
-  launcher.calabash_notify(self)
+  relaunch = true
 
-  if xamarin_test_cloud?
-    ENV['RESET_BETWEEN_SCENARIOS'] = '0'
+  if @no_relaunch
+    begin
+      launcher.ping_app
+      attach_options = options.dup
+      attach_options[:timeout] = 1
+      launcher.attach(attach_options)
+      relaunch = launcher.device == nil
+    rescue => e
+      RunLoop.log_info2("Tag says: don't relaunch, but cannot attach to the app.")
+      RunLoop.log_info2("#{e.class}: #{e.message}")
+      RunLoop.log_info2("The app probably needs to be launched!")
+    end
   end
+
+  if relaunch
+    launcher.relaunch(options)
+    launcher.calabash_notify(self)
+  end
+
+  ENV['RESET_BETWEEN_SCENARIOS'] = '0'
 
   # Re-installing the app on a device does not clear the Keychain settings,
   # so we must clear them manually.
@@ -95,7 +113,19 @@ Before do |scenario|
   end
 end
 
-After do |_|
+After do |scenario|
+  @no_relaunch = false
 
+  # Calabash can shutdown the app cleanly by calling the app life cycle methods
+  # in the UIApplicationDelegate.  This is really nice for CI environments, but
+  # not so good for local development.
+  #
+  # See the documentation for NO_STOP for a nice debugging workflow
+  #
+  # http://calabashapi.xamarin.com/ios/file.ENVIRONMENT_VARIABLES.html#label-NO_STOP
+  # http://calabashapi.xamarin.com/ios/Calabash/Cucumber/Core.html#console_attach-instance_method
+  unless launcher.calabash_no_stop?
+    calabash_exit
+  end
 end
 
