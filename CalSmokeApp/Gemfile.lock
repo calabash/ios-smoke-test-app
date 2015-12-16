@@ -6,7 +6,7 @@ GEM
     ansi (1.5.0)
     awesome_print (1.6.1)
     backports (3.6.7)
-    briar (1.4.2)
+    briar (2.0.1)
       ansi (~> 1.5)
       bundler
       calabash-cucumber (>= 0.12, < 1.0)
@@ -15,7 +15,7 @@ GEM
       rake
       rbx-require-relative (~> 0.0)
       retriable
-      xamarin-test-cloud (~> 1.0)
+      xamarin-test-cloud
     builder (3.2.2)
     calabash-common (0.0.2)
     calabash-cucumber (0.17.0)
@@ -56,7 +56,7 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     ffi (1.9.10)
     formatador (0.2.5)
-    geocoder (1.2.12)
+    geocoder (1.2.13)
     gh (0.14.0)
       addressable
       backports
@@ -201,7 +201,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  briar (>= 1.4.2, < 2.0)
+  briar (~> 2.0)
   bundler (~> 1.6)
   calabash-cucumber (~> 0.17)
   chronic (>= 0.10, < 1.0)
