@@ -26,6 +26,33 @@ and **Code Signing** sections below for how debug.
 
 ### Getting Started
 
+#### Ruby on MacOS
+
+If you have a managed Ruby installed (like rbenv or rvm), please skip this section
+and ignore the `calabash-sandbox` instructions in the examples.
+
+If you are new to Ruby or Ruby on MacOS, we recommend that you install and use the
+[Calabash Sandbox](https://github.com/calabash/install).
+
+```
+$ curl -sSL https://raw.githubusercontent.com/calabash/install/master/install-osx.sh | bash
+```
+
+Please do _*not*_ install gems with `sudo` or run the install script above with `sudo`.
+
+You can read more about [Ruby on MacOS](https://github.com/calabash/calabash-ios/wiki/Ruby-on-MacOS) on the Calabash iOS Wiki.
+
+The following examples assume you are running in a managed Ruby environment or you
+have installed the Calabash Sandbox and run this command:
+
+```
+$ calabash-sandbox
+This terminal is now ready to use with Calabash.
+To exit, type 'exit'.
+```
+
+#### Build a .app for the Simulator
+
 ```
 $ git clone --depth 10 git@github.com:calabash/ios-smoke-test-app.git
 $ cd ios-smoke-test-app/CalSmokeApp
@@ -33,12 +60,16 @@ $ bundle
 $ make app-cal
 ```
 
+#### Cucumber
+
 Run your first cucumber test:
 
 ```
 # A test that is run in Travis CI
 $ bundle exec cucumber --tags @travis
 ```
+
+#### Interactive console
 
 Explore your app on from calabash console:
 
