@@ -7,7 +7,7 @@
 Smoke testing for Calabash iOS and Calabash iOS Server.
 
 This repo is very large because the Calabash binaries are updated often
-during testing and debuging.  There is really no way around this.  You
+during testing and debugging.  There is really no way around this.  You
 can improve your experience by making a shallow clone using the
 `--depth` flag.  Maintainers may need to make a much deeper clone.
 
@@ -50,7 +50,9 @@ $ bundle exec calabash-ios console
 > keyboard_enter_text("Hello!")
 ```
 
-### xcpretty
+### Problems building?
+
+#### xcpretty
 
 https://github.com/supermarin/xcpretty
 
@@ -66,7 +68,7 @@ without xcpretty:
 $ XCPRETTY=0 make ipa
 ```
 
-### Code Signing
+#### Code Signing
 
 If you have multiple code signing identities, you might need to set the
 `CODE_SIGN_IDENTITY` variable for the make scripts.  If you are running
