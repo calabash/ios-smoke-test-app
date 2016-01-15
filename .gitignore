@@ -2,6 +2,8 @@
 (.*/)?\#[^/]*\#$
 tags
 *.bak
+*.swp
+*.swo
 
 # git mergetool (Guiffy)
 *.orig
