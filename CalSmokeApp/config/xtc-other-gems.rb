@@ -1,4 +1,3 @@
-gem 'cucumber', '~> 1.3.17'
 gem 'retriable', '~> 2.0'
 
 # workflow and build tools
