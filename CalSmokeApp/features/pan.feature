@@ -14,9 +14,9 @@ Scenario: Left-to-right screen pan in portrait
   Then I go back to the Scrolls page
 
 Scenario: Left-to-right screen pan in landscape
-  And I try to rotate the home button so it is on the right
   When I touch the collection views row
   Then I see the collection views page
+  And I try to rotate the home button so it is on the right
   When I pan left on the screen
   Then I go back to the Scrolls page
 
