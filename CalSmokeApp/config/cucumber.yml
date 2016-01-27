@@ -34,7 +34,7 @@ default_report = "./reports/calabash-#{date}.html"
 ss_path = "./screenshots/"
 
 if ENV["USER"] == "jenkins"
-  formatter = "progress"
+  formatter = "pretty"
   keep_sim_open_after = "0"
 else
   formatter = "Slowhandcuke::Formatter"
