@@ -10,6 +10,9 @@ working_directory = File.expand_path(File.join(File.dirname(__FILE__), '..', '..
 # on-simulator tests of features in test/cucumber
 Dir.chdir(working_directory) do
 
+  FileUtils.rm_rf("reports")
+  FileUtils.mkdir_p("reports")
+
   Luffa.unix_command('bundle install',
                      {:pass_msg => 'bundled',
                       :fail_msg => 'could not bundle'})
@@ -44,7 +47,7 @@ Dir.chdir(working_directory) do
   passed_sims = []
   failed_sims = []
   devices.each do |key, name|
-    cucumber_cmd = "bundle exec cucumber -p simulator #{cucumber_args}"
+    cucumber_cmd = "bundle exec cucumber -p simulator --format json -o reports/#{key}.json #{cucumber_args}"
 
     match = simulators.find do |sim|
       sim.name == name && sim.version == sim_version
