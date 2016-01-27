@@ -54,6 +54,8 @@ Dir.chdir(working_directory) do
     }
   end
 
+  RunLoop::CoreSimulator.terminate_core_simulator_processes
+
   simulators = RunLoop::SimControl.new.simulators
 
   env_vars = {}
