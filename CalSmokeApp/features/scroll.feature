@@ -8,6 +8,7 @@ Background: Navigate to the scrolls tab
   Given I see the scrolls tab
   Then I see the scrolling views table
 
+@wip
 Scenario: Collection views
   When I touch the collection views row
   Then I see the collection views page
@@ -16,6 +17,7 @@ Scenario: Collection views
   Then I scroll up on the logos collection to the android icon
   Then I scroll the colors collection to the middle of the purple boxes
 
+@wip
 Scenario: Table views
   When I touch the table views row
   Then I see the table views page
