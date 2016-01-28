@@ -6,13 +6,12 @@ before_script:
   - luffa authorize
 
 script:
-  - bin/ci/travis/run.rb --tags @travis
+  - bin/ci/cucumber.rb --tags @travis
 
 notifications:
   email:
     recipients:
       - joshuajmoody@gmail.com
-      - karl.krukow@xamarin.com
       - chris.fuentes@xamarin.com
     on_success: change
     on_failure: always

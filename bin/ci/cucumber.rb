@@ -5,7 +5,8 @@ require 'luffa'
 
 cucumber_args = "#{ARGV.join(' ')}"
 
-working_directory = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'CalSmokeApp'))
+this_dir = File.expand_path(File.dirname(__FILE__))
+working_directory = File.join(this_dir, '..', '..', 'CalSmokeApp')
 
 # on-simulator tests of features in test/cucumber
 Dir.chdir(working_directory) do
@@ -31,14 +32,6 @@ Dir.chdir(working_directory) do
   sim_minor = xcode_version.minor
 
   sim_version = RunLoop::Version.new("#{sim_major}.#{sim_minor}")
-
-  devices = {
-    :air => 'iPad Air',
-    :iphone4s => 'iPhone 4s',
-    :iphone5s => 'iPhone 5s',
-    :iphone6 => 'iPhone 6',
-    :iphone6plus => 'iPhone 6 Plus'
-  }
 
   if ENV["JENKINS_HOME"]
     devices = {
