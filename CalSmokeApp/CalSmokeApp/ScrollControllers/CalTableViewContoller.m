@@ -42,25 +42,39 @@ typedef enum : NSInteger {
 - (NSArray *) logoNames {
   if (_logoNames) { return _logoNames; }
 
-  NSString *bundleRoot = [[NSBundle mainBundle] bundlePath];
-  NSArray *dirContents = [[NSFileManager defaultManager]
-                          contentsOfDirectoryAtPath:bundleRoot
-                          error:nil];
-
-  NSPredicate *begins = [NSPredicate predicateWithFormat:@"self BEGINSWITH 'logo-'"];
-  NSPredicate *png = [NSPredicate predicateWithFormat:@"pathExtension='png'"];
-  NSPredicate *at = [NSPredicate predicateWithFormat:@"self CONTAINS '@'"];
-  NSPredicate *notAt = [NSCompoundPredicate notPredicateWithSubpredicate:at];
-  NSPredicate *and = [NSCompoundPredicate andPredicateWithSubpredicates:@[begins, png, notAt]];
-  NSArray *logos = [dirContents filteredArrayUsingPredicate:and];
-
-  NSMutableArray *stripped = [[NSMutableArray alloc] initWithCapacity:[logos count]];
-  [logos enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
-    NSArray *tokens = [name componentsSeparatedByString:@"."];
-    [stripped addObject:tokens[0]];
-  }];
-
-  _logoNames = [NSArray arrayWithArray:stripped];
+  _logoNames =
+  @[
+    @"amazon",
+    @"android",
+    @"apple",
+    @"basecamp",
+    @"blogger",
+    @"digg",
+    @"dropbox",
+    @"evernote",
+    @"facebook",
+    @"fancy",
+    @"flickr",
+    @"foursquare",
+    @"github",
+    @"google-plus",
+    @"google",
+    @"icloud",
+    @"instagram",
+    @"linkedin",
+    @"paypal",
+    @"pinterest",
+    @"quora",
+    @"rdio",
+    @"reddit",
+    @"skype",
+    @"spotify",
+    @"steam",
+    @"twitter",
+    @"windows",
+    @"wordpress",
+    @"youtube"
+    ];
 
   return _logoNames;
 }
@@ -114,7 +128,9 @@ typedef enum : NSInteger {
 - (UIImage *) imageForRowAtIndexPath:(NSIndexPath *) indexPath {
   NSUInteger row = indexPath.row;
   if (row >= self.logoImages.count) {
-    UIImage *image = [UIImage imageNamed:self.logoNames[row]];
+    NSString *logoName = self.logoNames[row];
+    NSString *imageName = [NSString stringWithFormat:@"logo-%@", logoName];
+    UIImage *image = [UIImage imageNamed:imageName];
     self.logoImages[row] = image;
   }
   return self.logoImages[row];
@@ -124,8 +140,7 @@ typedef enum : NSInteger {
   NSUInteger row = indexPath.row;
   if (row >= self.companyNames.count) {
     NSString *logoName = self.logoNames[row];
-    NSString *companyName = [logoName stringByReplacingOccurrencesOfString:@"logo-"
-                                                                withString:@""];
+    NSString *companyName = [logoName copy];
 
     if ([companyName isEqualToString:@"google-plus"]) {
       companyName = @"Google +";

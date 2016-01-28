@@ -5,10 +5,14 @@ require 'luffa'
 
 cucumber_args = "#{ARGV.join(' ')}"
 
-working_directory = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'CalSmokeApp'))
+this_dir = File.expand_path(File.dirname(__FILE__))
+working_directory = File.join(this_dir, '..', '..', 'CalSmokeApp')
 
 # on-simulator tests of features in test/cucumber
 Dir.chdir(working_directory) do
+
+  FileUtils.rm_rf("reports")
+  FileUtils.mkdir_p("reports")
 
   Luffa.unix_command('bundle install',
                      {:pass_msg => 'bundled',
@@ -29,13 +33,21 @@ Dir.chdir(working_directory) do
 
   sim_version = RunLoop::Version.new("#{sim_major}.#{sim_minor}")
 
-  devices = {
-    :air => 'iPad Air',
-    :iphone4s => 'iPhone 4s',
-    :iphone5s => 'iPhone 5s',
-    :iphone6 => 'iPhone 6',
-    :iphone6plus => 'iPhone 6 Plus'
-  }
+  if ENV["JENKINS_HOME"]
+    devices = {
+      :iphone6sPlus => 'iPhone 6s Plus',
+    }
+  else
+    devices = {
+      :air => 'iPad Air',
+      :iphone4s => 'iPhone 4s',
+      :iphone5s => 'iPhone 5s',
+      :iphone6 => 'iPhone 6',
+      :iphone6plus => 'iPhone 6 Plus'
+    }
+  end
+
+  RunLoop::CoreSimulator.terminate_core_simulator_processes
 
   simulators = RunLoop::SimControl.new.simulators
 
@@ -44,7 +56,7 @@ Dir.chdir(working_directory) do
   passed_sims = []
   failed_sims = []
   devices.each do |key, name|
-    cucumber_cmd = "bundle exec cucumber -p simulator #{cucumber_args}"
+    cucumber_cmd = "bundle exec cucumber -p simulator --format json -o reports/#{key}.json #{cucumber_args}"
 
     match = simulators.find do |sim|
       sim.name == name && sim.version == sim_version

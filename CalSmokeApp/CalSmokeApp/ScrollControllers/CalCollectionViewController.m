@@ -131,25 +131,39 @@ typedef enum : NSUInteger {
 - (NSArray *) logoNames {
   if (_logoNames) { return _logoNames; }
 
-  NSString *bundleRoot = [[NSBundle mainBundle] bundlePath];
-  NSArray *dirContents = [[NSFileManager defaultManager]
-                          contentsOfDirectoryAtPath:bundleRoot
-                          error:nil];
-
-  NSPredicate *begins = [NSPredicate predicateWithFormat:@"self BEGINSWITH 'logo-'"];
-  NSPredicate *png = [NSPredicate predicateWithFormat:@"pathExtension='png'"];
-  NSPredicate *at = [NSPredicate predicateWithFormat:@"self CONTAINS '@'"];
-  NSPredicate *notAt = [NSCompoundPredicate notPredicateWithSubpredicate:at];
-  NSPredicate *and = [NSCompoundPredicate andPredicateWithSubpredicates:@[begins, png, notAt]];
-  NSArray *logos = [dirContents filteredArrayUsingPredicate:and];
-
-  NSMutableArray *stripped = [[NSMutableArray alloc] initWithCapacity:[logos count]];
-  [logos enumerateObjectsUsingBlock:^(NSString *name, NSUInteger idx, BOOL *stop) {
-    NSArray *tokens = [name componentsSeparatedByString:@"."];
-    [stripped addObject:tokens[0]];
-  }];
-
-  _logoNames = [NSArray arrayWithArray:stripped];
+  _logoNames =
+  @[
+    @"amazon",
+    @"android",
+    @"apple",
+    @"basecamp",
+    @"blogger",
+    @"digg",
+    @"dropbox",
+    @"evernote",
+    @"facebook",
+    @"fancy",
+    @"flickr",
+    @"foursquare",
+    @"github",
+    @"google-plus",
+    @"google",
+    @"icloud",
+    @"instagram",
+    @"linkedin",
+    @"paypal",
+    @"pinterest",
+    @"quora",
+    @"rdio",
+    @"reddit",
+    @"skype",
+    @"spotify",
+    @"steam",
+    @"twitter",
+    @"windows",
+    @"wordpress",
+    @"youtube"
+    ];
 
   return _logoNames;
 }
@@ -275,13 +289,12 @@ typedef enum : NSUInteger {
                                                              forIndexPath:indexPath];
 
     NSString *logoName = [self logoNames][indexPath.item];
-    UIImage *image = [UIImage imageNamed:logoName];
+    NSString *imageName = [NSString stringWithFormat:@"logo-%@", logoName];
+    UIImage *image = [UIImage imageNamed:imageName];
     cell.imageView.image = image;
-    NSString *companyName = [logoName stringByReplacingOccurrencesOfString:@"logo-"
-                                                                withString:@""];
 
-    cell.accessibilityIdentifier = companyName;
-    cell.accessibilityLabel = [companyName capitalizedString];
+    cell.accessibilityIdentifier = logoName;
+    cell.accessibilityLabel = [logoName capitalizedString];
 
     cell.backgroundColor = [UIColor whiteColor];
 
