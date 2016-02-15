@@ -24,7 +24,7 @@ module LaunchControl
   end
 
   def self.ensure_ipa
-    ipa_path = File.expand_path('./xtc-staging/CalSmoke-cal.ipa')
+    ipa_path = File.expand_path('./xtc-submit-calabash-linked/CalSmoke-cal.ipa')
     unless File.exist?(ipa_path)
       system('make', 'ipa-cal')
     end
