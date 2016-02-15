@@ -78,7 +78,7 @@ Before do |scenario|
   options = {
     #:uia_strategy => :host
     #:uia_strategy => :shared_element
-    :uia_strategy => :preferences
+    #:uia_strategy => :preferences
   }
 
   relaunch = true
