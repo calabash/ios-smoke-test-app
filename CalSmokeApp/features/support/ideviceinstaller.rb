@@ -2,6 +2,7 @@ require 'tmpdir'
 require 'fileutils'
 require 'open3'
 require 'run_loop'
+require "retriable"
 
 module Calabash
 
@@ -355,7 +356,7 @@ module Calabash
     def exec_with_open3(args)
       begin
         @stdin, @stdout, out, @stderr, err, process_status, @pid, exit_status = nil
-        Timeout.timeout(timeout, TimeoutError) do
+        Timeout.timeout(timeout, Timeout::Error) do
           @stdin, @stdout, @stderr, process_status = Open3.popen3(binary, *args)
 
           @pid = process_status.pid
