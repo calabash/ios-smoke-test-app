@@ -24,7 +24,7 @@ module LaunchControl
   end
 
   def self.ensure_ipa
-    ipa_path = File.expand_path('./xtc-staging/CalSmoke-cal.ipa')
+    ipa_path = File.expand_path('./xtc-submit-calabash-linked/CalSmoke-cal.ipa')
     unless File.exist?(ipa_path)
       system('make', 'ipa-cal')
     end
@@ -78,7 +78,7 @@ Before do |scenario|
   options = {
     #:uia_strategy => :host
     #:uia_strategy => :shared_element
-    :uia_strategy => :preferences
+    #:uia_strategy => :preferences
   }
 
   relaunch = true
@@ -126,6 +126,7 @@ After do |scenario|
   # http://calabashapi.xamarin.com/ios/Calabash/Cucumber/Core.html#console_attach-instance_method
   unless launcher.calabash_no_stop?
     calabash_exit
+    sleep 1.0
   end
 end
 
