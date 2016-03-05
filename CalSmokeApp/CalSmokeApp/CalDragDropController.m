@@ -2,6 +2,7 @@
 
 #import "CalDragDropController.h"
 #import "CalAnimatedView.h"
+#import "CalGLController.h"
 
 typedef enum : NSInteger {
   kTagRedImageView = 3030,
@@ -17,9 +18,11 @@ typedef enum : NSInteger {
 @property (weak, nonatomic) IBOutlet UIImageView *greenImageView;
 @property (weak, nonatomic) IBOutlet UIView *leftDropTarget;
 @property (weak, nonatomic) IBOutlet UIView *rightDropTarget;
+
 @property (strong, nonatomic) UIImageView *dragObject;
 @property (assign, nonatomic) CGPoint touchOffset;
 @property (assign, nonatomic) CGPoint homePosition;
+@property (weak, nonatomic) IBOutlet UIButton *showOpenGLButton;
 
 @property (strong, nonatomic, readonly) UIColor *redColor;
 @property (strong, nonatomic, readonly) UIColor *blueColor;
@@ -34,6 +37,8 @@ typedef enum : NSInteger {
 @property (weak, nonatomic) IBOutlet UIButton *showSheetButton;
 
 @property (weak, nonatomic) IBOutlet CalAnimatedView *animatedView;
+
+- (IBAction) buttonTouchedShowOpenGL:(id) sender;
 
 @end
 
@@ -231,6 +236,17 @@ typedef enum : NSInteger {
   [sheet showFromTabBar:self.tabBarController.tabBar];
 }
 
+- (IBAction) buttonTouchedShowOpenGL:(id) sender {
+  NSLog(@"Button touched show opengl");
+  CalGLController *controller = [[CalGLController alloc]
+                                 initWithNibName:NSStringFromClass([CalGLController class])
+                                 bundle:nil];
+  [self presentViewController:controller
+                     animated:YES
+                   completion:^{
+                     NSLog(@"Presented");
+                   }];
+}
 
 #pragma mark - Alert View Delegate
 

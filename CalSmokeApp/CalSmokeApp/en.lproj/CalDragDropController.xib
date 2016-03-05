@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalDragDropController">
@@ -14,6 +14,7 @@
                 <outlet property="redImageView" destination="Spo-qO-ArV" id="tsc-yp-bEc"/>
                 <outlet property="rightDropTarget" destination="Rqu-Dh-Won" id="JKU-gn-3PH"/>
                 <outlet property="showAlertButton" destination="fkR-BC-Ech" id="0S6-g7-J8X"/>
+                <outlet property="showOpenGLButton" destination="ziD-PZ-Rq8" id="JRw-Ma-LE1"/>
                 <outlet property="showSheetButton" destination="jY6-2e-Pbf" id="zeO-a1-qzm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -94,6 +95,17 @@
                         <constraint firstAttribute="height" constant="44" id="zVo-an-tWC"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziD-PZ-Rq8">
+                    <rect key="frame" x="250" y="16" width="100" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Ejl-BB-BLZ"/>
+                        <constraint firstAttribute="width" constant="100" id="WF6-1f-0Ej"/>
+                    </constraints>
+                    <state key="normal" title="Show OpenGL"/>
+                    <connections>
+                        <action selector="buttonTouchedShowOpenGL:" destination="-1" eventType="touchUpInside" id="0Ui-Ms-uBq"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -102,6 +114,7 @@
                 <constraint firstAttribute="centerY" secondItem="Rqu-Dh-Won" secondAttribute="centerY" id="BSg-7t-KBb"/>
                 <constraint firstItem="i8y-6d-IrB" firstAttribute="top" secondItem="1Pb-27-PZ1" secondAttribute="bottom" constant="10" id="BfR-yd-Hwf"/>
                 <constraint firstItem="Rqu-Dh-Won" firstAttribute="centerX" secondItem="jY6-2e-Pbf" secondAttribute="centerX" id="Fxd-d1-eaE"/>
+                <constraint firstItem="BYe-cq-28H" firstAttribute="top" secondItem="ziD-PZ-Rq8" secondAttribute="bottom" constant="20" id="G2F-U9-c56"/>
                 <constraint firstItem="Spo-qO-ArV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="J1V-Ud-dcC"/>
                 <constraint firstItem="jHL-fj-mB6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="JhR-Q7-gRc"/>
                 <constraint firstItem="1Pb-27-PZ1" firstAttribute="bottom" secondItem="Rqu-Dh-Won" secondAttribute="bottom" id="Koz-Hs-Bzi"/>
@@ -117,6 +130,7 @@
                 <constraint firstItem="jHL-fj-mB6" firstAttribute="trailing" secondItem="Rqu-Dh-Won" secondAttribute="trailing" id="XxB-cW-A8i"/>
                 <constraint firstAttribute="bottom" secondItem="fkR-BC-Ech" secondAttribute="bottom" constant="70" id="Zup-ju-B2o"/>
                 <constraint firstAttribute="centerY" secondItem="1Pb-27-PZ1" secondAttribute="centerY" id="cwT-9L-v2U"/>
+                <constraint firstItem="ziD-PZ-Rq8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="e86-Ro-lZm"/>
                 <constraint firstItem="jHL-fj-mB6" firstAttribute="leading" secondItem="BYe-cq-28H" secondAttribute="trailing" constant="16" id="ipr-EX-gg4"/>
                 <constraint firstItem="Rqu-Dh-Won" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Pb-27-PZ1" secondAttribute="trailing" constant="16" id="l12-bw-AdH"/>
                 <constraint firstItem="fkR-BC-Ech" firstAttribute="bottom" secondItem="jY6-2e-Pbf" secondAttribute="bottom" id="m9e-j6-Pu2"/>
