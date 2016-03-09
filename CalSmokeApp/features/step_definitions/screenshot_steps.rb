@@ -21,6 +21,9 @@ module CalSmokeApp
         screenshot_dir = './screenshots'
       else
         screenshot_dir = ENV['SCREENSHOT_PATH']
+        if !screenshot_dir
+          screenshot_dir = "./screenshots"
+        end
       end
 
       unless File.exist?(screenshot_dir)
