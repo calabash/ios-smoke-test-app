@@ -1,4 +1,5 @@
 gem 'retriable', '~> 2.0'
+gem "cucumber", "~> 1.3"
 
 # workflow and build tools
 gem 'rake', '~> 10.3'
