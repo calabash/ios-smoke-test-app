@@ -1,7 +1,7 @@
 
 Then(/^I can flash the buttons$/) do
   views = flash('UIButton')
-  expect(views.length).to be == 2
+  expect(views.length).to be == 3
 end
 
 And(/^I can flash the labels in the tab bar$/) do

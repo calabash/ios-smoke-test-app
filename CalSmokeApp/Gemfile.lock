@@ -17,7 +17,7 @@ GEM
       retriable
       xamarin-test-cloud
     builder (3.2.2)
-    calabash-cucumber (0.18.1)
+    calabash-cucumber (0.18.2)
       CFPropertyList
       awesome_print
       bundler (~> 1.3)
@@ -26,7 +26,7 @@ GEM
       geocoder (>= 1.1.8, < 2.0)
       httpclient (>= 2.3.2, < 3.0)
       json
-      run_loop (>= 2.0.6, < 3.0)
+      run_loop (>= 2.0.9, < 3.0)
       sim_launcher (~> 0.4.13)
       slowhandcuke (~> 0.0.3)
     chronic (0.10.2)
@@ -187,7 +187,7 @@ PLATFORMS
 DEPENDENCIES
   briar (~> 2.0)
   bundler (~> 1.6)
-  calabash-cucumber (>= 0.18.1, < 2.0)
+  calabash-cucumber (>= 0.18.2, < 2.0)
   chronic (>= 0.10, < 1.0)
   cucumber (~> 1.3)
   growl (~> 1.0)
