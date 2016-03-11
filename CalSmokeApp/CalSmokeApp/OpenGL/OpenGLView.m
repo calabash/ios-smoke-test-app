@@ -313,7 +313,7 @@ const GLubyte Indices2[] = {
   
   GLubyte * spriteData = (GLubyte *) calloc(width*height*4, sizeof(GLubyte));
   
-  CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4, CGImageGetColorSpace(spriteImage), kCGImageAlphaPremultipliedLast);    
+  CGContextRef spriteContext = CGBitmapContextCreate(spriteData, width, height, 8, width*4, CGImageGetColorSpace(spriteImage), (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
   
   // 3
   CGContextDrawImage(spriteContext, CGRectMake(0, 0, width, height), spriteImage);
