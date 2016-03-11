@@ -9,6 +9,7 @@ tags:        -p not_xtc -p not_sim -p no_launch
 
 default:     -p tags -p args
 
+travis:      -p tags -p args --tags @travis
 wip:         -p tags -p args --tags @wip
 flicker:     -p tags -p args --tags @flickering
 iphone:      -p tags -p args -p iphone_only
