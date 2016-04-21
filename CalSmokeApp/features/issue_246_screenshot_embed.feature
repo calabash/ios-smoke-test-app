@@ -1,6 +1,5 @@
 @screenshot
 @issue_246
-@wip
 Feature:  Screenshot embed in and out of cucumber world
 
 # undefined method `embed` (NoMethodError) when calling screenshot_and_raise

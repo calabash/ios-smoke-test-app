@@ -11,22 +11,42 @@ module LaunchControl
     @@launcher = launcher
   end
 
+  def self.xcode
+    Calabash::Cucumber::Environment.xcode
+  end
+
+  def self.instruments
+    Calabash::Cucumber::Environment.instruments
+  end
+
+  def self.simctl
+    Calabash::Cucumber::Environment.simctl
+  end
+
+  def self.environment
+    {
+      :simctl => self.simctl,
+      :instruments => self.instruments,
+      :xcode => self.xcode
+    }
+  end
+
   def self.target
     ENV['DEVICE_TARGET'] || RunLoop::Core.default_simulator
   end
 
   def self.target_is_simulator?
-    RunLoop::Core.simulator_target?({:device_target => self.target})
+    self.launcher.simulator_target?
   end
 
   def self.target_is_physical_device?
-    !self.target_is_simulator?
+    self.launcher.device_target?
   end
 
   def self.ensure_ipa
-    ipa_path = File.expand_path('./xtc-submit-calabash-linked/CalSmoke-cal.ipa')
+    ipa_path = File.expand_path("./xtc-submit-calabash-linked/CalSmoke-cal.ipa")
     unless File.exist?(ipa_path)
-      system('make', 'ipa-cal')
+      system("make", "ipa-cal")
     end
     ipa_path
   end
@@ -47,25 +67,20 @@ Before("@no_relaunch") do
   @no_relaunch = true
 end
 
-Before('@reset_app_btw_scenarios') do
+Before("@reset_app_btw_scenarios") do
   if xamarin_test_cloud? || LaunchControl.target_is_simulator?
-    ENV['RESET_BETWEEN_SCENARIOS'] = '1'
+    ENV["RESET_BETWEEN_SCENARIOS"] = "1"
   else
     LaunchControl.install_on_physical_device
   end
 end
 
-Before('@reset_device_settings') do
+Before("@reset_device_settings") do
   if xamarin_test_cloud?
-    ENV['RESET_BETWEEN_SCENARIOS'] = '1'
+    ENV["RESET_BETWEEN_SCENARIOS"] = "1"
   elsif LaunchControl.target_is_simulator?
     target = LaunchControl.target
-    instruments = RunLoop::Instruments.new
-    xcode = instruments.xcode
-    device = instruments.simulators.find do |sim|
-      sim.udid == target || sim.instruments_identifier(xcode) == target
-    end
-
+    device = RunLoop::Device.device_with_identifier(target, LaunchControl.environment)
     RunLoop::CoreSimulator.erase(device)
   else
     LaunchControl.install_on_physical_device
@@ -99,14 +114,13 @@ Before do |scenario|
 
   if relaunch
     launcher.relaunch(options)
-    launcher.calabash_notify(self)
   end
 
-  ENV['RESET_BETWEEN_SCENARIOS'] = '0'
+  ENV["RESET_BETWEEN_SCENARIOS"] = "0"
 
   # Re-installing the app on a device does not clear the Keychain settings,
   # so we must clear them manually.
-  if scenario.source_tag_names.include?('@reset_device_settings')
+  if scenario.source_tag_names.include?("@reset_device_settings")
     if xamarin_test_cloud? || LaunchControl.target_is_physical_device?
       keychain_clear
     end
