@@ -187,6 +187,7 @@ DEPENDENCIES
   growl (~> 1.0)
   guard-bundler (~> 2.0)
   guard-rspec (~> 4.3)
+  listen (= 3.0.6)
   luffa (~> 1.0, >= 1.0.2)
   pry
   pry-nav

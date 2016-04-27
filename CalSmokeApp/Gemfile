@@ -13,6 +13,9 @@ gem 'briar', "~> 2.0"
 
 # rspec stack
 gem 'rspec', '~> 3.0'
+
+# Pin to 3.0.6; >= 3.1.0 requires ruby 2.2. This is guard dependency.
+gem "listen", "3.0.6"
 gem 'guard-rspec', '~> 4.3'
 gem 'guard-bundler', '~> 2.0'
 gem 'growl', '~> 1.0'
