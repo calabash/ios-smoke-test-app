@@ -22,10 +22,30 @@ module CalSmokeApp
 
       # handle :timeout => nil
       timeout = merged[:timeout] || wait_timeout
-      if merged[:disappear]
-        msg = "Waited for #{timeout} s but could still see '#{query}'\n"
+
+      if query.is_a?(String)
+        qstr = query
+      elsif query.is_a?(Array)
+        qstr = query.join($-0)
       else
-        msg = "Waited for #{timeout} s but did not see '#{query}'\n"
+        raise ArgumentError, %Q[
+Expected query to be a String or Array, but found:
+
+#{query}
+]
+      end
+      if merged[:disappear]
+        msg = %Q[
+Waited for #{timeout} seconds but could still see:
+
+#{qstr}
+]
+      else
+        msg = %Q[
+Waited for #{timeout} seconds but did not see:
+
+#{qstr}
+]
       end
 
       {
