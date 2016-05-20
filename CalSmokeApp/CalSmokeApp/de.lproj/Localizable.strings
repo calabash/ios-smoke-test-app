@@ -1,0 +1,62 @@
+﻿/* The message of the alert that is shown when the 'show alert' button is touched. */
+"Another day, another iOS alert" = "Another day, another iOS alert";
+
+/* The color blue */
+"blue" = "blue";
+
+/* The title of the cancel button on the Smoke Test alert.
+   The title of the cancel button on the Smoke Test sheet. */
+"Cancel" = "Cancel";
+
+/* Title of tab bar page with controls like switches and buttons */
+"Controls" = "Controls";
+
+/* Title of tab with date pickers. */
+"Date Picker" = "Date Picker";
+
+/* The title of the delete button on the Smoke Test sheet. */
+"Delete" = "Delete";
+
+/* Title of tab bar page where gestures can be performed */
+"Gestures" = "Gestures";
+
+/* The color green */
+"green" = "green";
+
+/* Special: label with localized text */
+"Label with Localized Text" = "Beschriften mit lokalisiertem Text";
+
+/* The drop target on the left side */
+"Left drop target" = "Left drop target";
+
+/* The title of the default button on the Smoke Test alert. */
+"OK" = "OK";
+
+/* The color red */
+"red" = "red";
+
+/* The drop target on the right side */
+"Right drop target" = "Right drop target";
+
+/* Title of tab bar item for views that scroll */
+"Scrolls" = "Scrolls";
+
+/* Touching this button shows an alert */
+"Show alert" = "Show alert";
+
+/* Touching this button shows an action sheet */
+"Show sheet" = "Show sheet";
+
+/* The title of the alert that is shown when the 'show alert' button is touched.
+   The title of the sheet that is shown when the 'show sheet' button is touched. */
+"Smoke Test!" = "Smoke Test!";
+
+/* Title of tab bar with special features */
+"Special" = "Special";
+
+/* A page with special features. */
+"Special page" = "Special page";
+
+/* Name of page with UI controls like switches, buttons, text fields, and sliders. */
+"UI controls" = "UI controls";
+

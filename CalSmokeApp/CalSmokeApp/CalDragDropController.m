@@ -40,6 +40,9 @@ typedef enum : NSInteger {
 
 - (IBAction) buttonTouchedShowOpenGL:(id) sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *label;
+
+
 @end
 
 @implementation CalDragDropController
@@ -335,6 +338,10 @@ typedef enum : NSInteger {
 
   self.animatedView.accessibilityIdentifier = @"animated view";
 
+  self.label.accessibilityIdentifier = @"localized label";
+  NSString *localized = NSLocalizedString(@"Label with Localized Text",
+                                          @"Special: label with localized text");
+  self.label.text = localized;
 }
 
 - (void) viewWillLayoutSubviews {

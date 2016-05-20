@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalTapGestureController">
+            <connections>
+                <outlet property="lastGestureLabel" destination="5TJ-gU-rHA" id="I6y-SY-11v"/>
+                <outlet property="leftBox" destination="3i4-CA-rhD" id="6Vn-Sm-GoN"/>
+                <outlet property="rightBox" destination="0jJ-re-Alz" id="5VL-Us-o9w"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TJ-gU-rHA">
+                    <rect key="frame" x="202" y="191" width="196" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="196" id="F7n-dz-s5w"/>
+                        <constraint firstAttribute="height" constant="21" id="XRJ-Zz-7zZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Ti-k5-Mty">
+                    <rect key="frame" x="184" y="236" width="231" height="128"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3i4-CA-rhD" userLabel="View Blue box">
+                            <rect key="frame" x="20" y="20" width="88" height="88"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <accessibilityTraits key="traits" none="YES" button="YES"/>
+                                <bool key="isElement" value="YES"/>
+                            </accessibility>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="88" id="r6g-TB-V3Q"/>
+                                <constraint firstAttribute="width" constant="88" id="y2E-7u-bR1"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0jJ-re-Alz" userLabel="View - Orange box">
+                            <rect key="frame" x="123" y="20" width="88" height="88"/>
+                            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration" label="">
+                                <accessibilityTraits key="traits" none="YES" button="YES"/>
+                                <bool key="isElement" value="YES"/>
+                            </accessibility>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="88" id="PyV-E1-DRe"/>
+                                <constraint firstAttribute="width" constant="88" id="mdo-4P-g6B"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="3i4-CA-rhD" secondAttribute="bottom" constant="20" id="CTJ-bU-cxQ"/>
+                        <constraint firstAttribute="width" constant="231" id="DjJ-Ri-jA3"/>
+                        <constraint firstItem="0jJ-re-Alz" firstAttribute="top" secondItem="4Ti-k5-Mty" secondAttribute="top" constant="20" id="KKb-AX-a55"/>
+                        <constraint firstAttribute="height" constant="128" id="Q4h-ol-PJt"/>
+                        <constraint firstAttribute="bottom" secondItem="0jJ-re-Alz" secondAttribute="bottom" constant="20" id="TVZ-B4-woZ"/>
+                        <constraint firstItem="3i4-CA-rhD" firstAttribute="top" secondItem="4Ti-k5-Mty" secondAttribute="top" constant="20" id="bhS-o2-kNb"/>
+                        <constraint firstAttribute="trailing" secondItem="0jJ-re-Alz" secondAttribute="trailing" constant="20" id="ocf-P2-ex3"/>
+                        <constraint firstItem="3i4-CA-rhD" firstAttribute="leading" secondItem="4Ti-k5-Mty" secondAttribute="leading" constant="20" id="zIk-Zj-sbw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="4Ti-k5-Mty" secondAttribute="centerY" id="Lxa-Ur-pMd"/>
+                <constraint firstAttribute="centerX" secondItem="5TJ-gU-rHA" secondAttribute="centerX" id="Rca-uV-7xP"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5TJ-gU-rHA" secondAttribute="trailing" constant="10" id="bGQ-8R-WcH"/>
+                <constraint firstItem="4Ti-k5-Mty" firstAttribute="top" secondItem="5TJ-gU-rHA" secondAttribute="bottom" constant="24" id="eKJ-YV-hBG"/>
+                <constraint firstAttribute="centerX" secondItem="4Ti-k5-Mty" secondAttribute="centerX" id="jIu-R4-dSO"/>
+                <constraint firstItem="5TJ-gU-rHA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="jvH-gk-hbP"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
