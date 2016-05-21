@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalViewsThatScrollController">
+            <connections>
+                <outlet property="tableView" destination="tly-Gn-cvG" id="Fo4-Xp-ht9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tly-Gn-cvG">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="tly-Gn-cvG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AxW-vC-wKc"/>
+                <constraint firstItem="tly-Gn-cvG" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="BVc-sp-Lue"/>
+                <constraint firstAttribute="centerX" secondItem="tly-Gn-cvG" secondAttribute="centerX" id="JMI-y6-wNt"/>
+                <constraint firstAttribute="bottom" secondItem="tly-Gn-cvG" secondAttribute="bottom" id="RA5-vn-wHt"/>
+                <constraint firstAttribute="trailing" secondItem="tly-Gn-cvG" secondAttribute="trailing" id="c59-YN-HE1"/>
+                <constraint firstItem="tly-Gn-cvG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qc4-lo-6GZ"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <point key="canvasLocation" x="426" y="457"/>
+        </view>
+    </objects>
+</document>

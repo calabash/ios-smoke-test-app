@@ -34,11 +34,7 @@ typedef struct {
 - (void) loadCalabashDylib {
   NSBundle *bundle = [NSBundle mainBundle];
   NSString *dylibPath;
-#if TARGET_IPHONE_SIMULATOR
-  dylibPath = [bundle pathForResource:@"libCalabashDynSim" ofType:@"dylib"];
-#else
-  dylibPath = [bundle pathForResource:@"libCalabashDyn" ofType:@"dylib"];
-#endif
+  dylibPath = [bundle pathForResource:@"libCalabashDynFAT" ofType:@"dylib"];
 
   NSLog(@"Attempting to load Calabash dylib: '%@'", dylibPath);
   void *dylib = NULL;

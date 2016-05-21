@@ -63,6 +63,20 @@ module LaunchControl
   end
 end
 
+Before("@german") do
+  if !xamarin_test_cloud?
+    target = ENV["DEVICE_TARGET"] || RunLoop::Core.default_simulator
+
+    simulator = RunLoop::Device.device_with_identifier(target)
+
+    RunLoop::CoreSimulator.erase(simulator)
+    RunLoop::CoreSimulator.set_locale(simulator, "de")
+    RunLoop::CoreSimulator.set_language(simulator, "de")
+
+    @args = ["-AppleLanguages", "(de)", "-AppleLocale", "de"]
+  end
+end
+
 Before("@no_relaunch") do
   @no_relaunch = true
 end
@@ -124,6 +138,16 @@ Before do |scenario|
     if xamarin_test_cloud? || LaunchControl.target_is_physical_device?
       keychain_clear
     end
+  end
+end
+
+After("@german") do
+  if !xamarin_test_cloud?
+    target = ENV["DEVICE_TARGET"] || RunLoop::Core.default_simulator
+
+    simulator = RunLoop::Device.device_with_identifier(target)
+    RunLoop::CoreSimulator.set_locale(simulator, "en_US")
+    RunLoop::CoreSimulator.set_language(simulator, "en-US")
   end
 end
 

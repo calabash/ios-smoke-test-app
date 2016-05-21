@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F31a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalDragDropController">
@@ -10,6 +10,7 @@
                 <outlet property="animatedView" destination="i8y-6d-IrB" id="9w7-n6-edl"/>
                 <outlet property="blueImageView" destination="BYe-cq-28H" id="rV0-Yh-mPZ"/>
                 <outlet property="greenImageView" destination="jHL-fj-mB6" id="foH-wH-JVs"/>
+                <outlet property="label" destination="ymn-wl-Ztn" id="aJW-eU-uyB"/>
                 <outlet property="leftDropTarget" destination="1Pb-27-PZ1" id="Axi-Qv-oi3"/>
                 <outlet property="redImageView" destination="Spo-qO-ArV" id="tsc-yp-bEc"/>
                 <outlet property="rightDropTarget" destination="Rqu-Dh-Won" id="JKU-gn-3PH"/>
@@ -106,9 +107,19 @@
                         <action selector="buttonTouchedShowOpenGL:" destination="-1" eventType="touchUpInside" id="0Ui-Ms-uBq"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label With Localized Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymn-wl-Ztn" userLabel="Localized Label">
+                    <rect key="frame" x="8" y="51" width="584" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="qp3-VM-Y1a"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="ymn-wl-Ztn" secondAttribute="trailing" constant="8" id="0Gg-U4-Udy"/>
                 <constraint firstItem="1Pb-27-PZ1" firstAttribute="top" secondItem="Rqu-Dh-Won" secondAttribute="top" id="55L-hT-56x"/>
                 <constraint firstItem="fkR-BC-Ech" firstAttribute="top" secondItem="jY6-2e-Pbf" secondAttribute="top" id="BFf-Uw-fcy"/>
                 <constraint firstAttribute="centerY" secondItem="Rqu-Dh-Won" secondAttribute="centerY" id="BSg-7t-KBb"/>
@@ -118,7 +129,9 @@
                 <constraint firstItem="Spo-qO-ArV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="J1V-Ud-dcC"/>
                 <constraint firstItem="jHL-fj-mB6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="JhR-Q7-gRc"/>
                 <constraint firstItem="1Pb-27-PZ1" firstAttribute="bottom" secondItem="Rqu-Dh-Won" secondAttribute="bottom" id="Koz-Hs-Bzi"/>
+                <constraint firstItem="ymn-wl-Ztn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="M1C-LB-0CA"/>
                 <constraint firstAttribute="centerX" secondItem="i8y-6d-IrB" secondAttribute="centerX" id="O31-Ua-k3g"/>
+                <constraint firstItem="ymn-wl-Ztn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="P5d-Cl-ycq"/>
                 <constraint firstAttribute="centerX" secondItem="BYe-cq-28H" secondAttribute="centerX" id="PLE-f8-yuv"/>
                 <constraint firstItem="BYe-cq-28H" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="Pa5-Ve-IzE"/>
                 <constraint firstItem="1Pb-27-PZ1" firstAttribute="leading" secondItem="Spo-qO-ArV" secondAttribute="leading" id="SA7-I7-pOI"/>
@@ -132,6 +145,7 @@
                 <constraint firstAttribute="centerY" secondItem="1Pb-27-PZ1" secondAttribute="centerY" id="cwT-9L-v2U"/>
                 <constraint firstItem="ziD-PZ-Rq8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="e86-Ro-lZm"/>
                 <constraint firstItem="jHL-fj-mB6" firstAttribute="leading" secondItem="BYe-cq-28H" secondAttribute="trailing" constant="16" id="ipr-EX-gg4"/>
+                <constraint firstItem="BYe-cq-28H" firstAttribute="top" secondItem="ymn-wl-Ztn" secondAttribute="bottom" constant="8" id="jz1-zh-GyF"/>
                 <constraint firstItem="Rqu-Dh-Won" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Pb-27-PZ1" secondAttribute="trailing" constant="16" id="l12-bw-AdH"/>
                 <constraint firstItem="fkR-BC-Ech" firstAttribute="bottom" secondItem="jY6-2e-Pbf" secondAttribute="bottom" id="m9e-j6-Pu2"/>
                 <constraint firstItem="jY6-2e-Pbf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fkR-BC-Ech" secondAttribute="trailing" constant="16" id="q7j-v0-2ej"/>
