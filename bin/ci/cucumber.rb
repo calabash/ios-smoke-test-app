@@ -14,7 +14,7 @@ Dir.chdir(working_directory) do
   FileUtils.rm_rf("reports")
   FileUtils.mkdir_p("reports")
 
-  Luffa.unix_command('bundle install',
+  Luffa.unix_command('bundle update',
                      {:pass_msg => 'bundled',
                       :fail_msg => 'could not bundle'})
 
