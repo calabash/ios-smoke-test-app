@@ -15,7 +15,7 @@ Dir.chdir(working_directory) do
   FileUtils.mkdir_p("reports")
 
 
-  if Luffa::Enviroment.jenkins_ci?
+  if Luffa::Environment.jenkins_ci?
     Luffa::Gem.update_rubygems
     Luffa::Gem.uninstall_gem("calabash-cucumber")
     Luffa::Gem.uninstall_gem("run_loop")
