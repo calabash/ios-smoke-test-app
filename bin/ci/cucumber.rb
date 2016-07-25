@@ -14,9 +14,12 @@ Dir.chdir(working_directory) do
   FileUtils.rm_rf("reports")
   FileUtils.mkdir_p("reports")
 
-  Luffa::Gem.update_rubygems
-  Luffa::Gem.uninstall_gem("calabash-cucumber")
-  Luffa::Gem.uninstall_gem("run_loop")
+
+  if Luffa::Enviroment.jenkins_ci?
+    Luffa::Gem.update_rubygems
+    Luffa::Gem.uninstall_gem("calabash-cucumber")
+    Luffa::Gem.uninstall_gem("run_loop")
+  end
 
   Luffa.unix_command('bundle update',
                      {:pass_msg => 'bundled',
