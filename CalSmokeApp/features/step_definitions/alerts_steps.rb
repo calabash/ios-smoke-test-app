@@ -2,20 +2,28 @@ module CalSmoke
   module Alerts
 
     def alert_exists?(alert_title=nil)
-      if alert_title.nil?
-        res = uia('uia.alert() != null')
-      else
-        if ios6?
-          res = uia("uia.alert().staticTexts()['#{alert_title}'].label()")
+      if uia_available?
+        if alert_title.nil?
+          res = uia('uia.alert() != null')
         else
-          res = uia("uia.alert().name() == '#{alert_title}'")
+          if ios6?
+            res = uia("uia.alert().staticTexts()['#{alert_title}'].label()")
+          else
+            res = uia("uia.alert().name() == '#{alert_title}'")
+          end
         end
-      end
 
-      if res['status'] == 'success'
-        res['value']
+        if res['status'] == 'success'
+          res['value']
+        else
+          false
+        end
       else
-        false
+        if !alert_title.nil?
+         !query("view:'_UIAlertControllerView' descendant label marked:'#{alert_title}'").empty?
+        else 
+         !query("view:'_UIAlertControllerView'").empty?
+        end
       end
     end
 
@@ -55,9 +63,13 @@ module CalSmoke
     def tap_alert_button(button_title)
       wait_for_alert
 
-      res = uia("uia.alert().buttons()['#{button_title}'].tap()")
-      if res['status'] != 'success'
-        fail("UIA responded with:\n'#{res['value']}' when I tried to tap alert button '#{button_title}'")
+      if uia_available?
+        res = uia("uia.alert().buttons()['#{button_title}'].tap()")
+        if res['status'] != 'success'
+          fail("UIA responded with:\n'#{res['value']}' when I tried to tap alert button '#{button_title}'")
+        end
+      else 
+        touch("view:'_UIAlertControllerView' descendant label marked:'#{button_title}'")
       end
     end
 
