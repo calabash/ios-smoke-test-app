@@ -44,14 +44,19 @@ When(/^I long press the (left|right) box for (\d+) seconds?$/) do |which, durati
   query = "view marked:'#{which} box'"
   wait_for_element_exists query
   touch_hold(query, {:duration => duration.to_i})
-  @last_long_press_duration = duration.to_i
+  # Minimum long press duration defined inside CalSmokeApp
+  if which == "left"
+    @minimum_long_press_duration = 1
+  elsif which == "right"
+    @minimum_long_press_duration = 2
+  end
 end
 
 Then(/^the gesture description changes to (double tap|long press)$/) do |type|
   if type == 'double tap'
     expected = 'Double tap'
   else
-    expected = "Long press: #{@last_long_press_duration} seconds"
+    expected = "Long press: #{@minimum_long_press_duration} seconds"
   end
 
   wait_for_gesture(expected)

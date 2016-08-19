@@ -1,4 +1,3 @@
-
 When(/^I pan left on the screen$/) do
   top_view = query('*').first
   rect = top_view['rect']
@@ -11,8 +10,8 @@ When(/^I pan left on the screen$/) do
   to_y = from_y
   to_offset = {x: to_x, y: to_y}
 
-  uia_pan_offset(from_offset, to_offset, {duration: 0.5})
-  wait_for_none_animating
+  pan_coordinates(from_offset, to_offset, {duration: 0.5})
+  wait_for_animations
 end
 
 Then(/^I go back to the Scrolls page$/) do
