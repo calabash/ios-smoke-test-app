@@ -1,43 +1,41 @@
 module CalSmoke
   module Alerts
 
-    def alert_exists?(alert_title=nil)
-      if uia_available?
-        if alert_title.nil?
-          res = uia('uia.alert() != null')
-        else
-          if ios6?
-            res = uia("uia.alert().staticTexts()['#{alert_title}'].label()")
-          else
-            res = uia("uia.alert().name() == '#{alert_title}'")
-          end
-        end
-
-        if res['status'] == 'success'
-          res['value']
-        else
-          false
-        end
+    def alert_view_query_str
+      if ios7?
+        "view:'_UIModalItemAlertContentView'"
       else
-        if !alert_title.nil?
-         !query("view:'_UIAlertControllerView' descendant label marked:'#{alert_title}'").empty?
-        else 
-         !query("view:'_UIAlertControllerView'").empty?
-        end
+        "view:'_UIAlertControllerView'"
+      end
+    end
+
+    def alert_view_button_query_str
+      if ios7?
+        "view:'_UIModalItemAlertContentView' descendant UITableView descendant label"
+      else
+        "view:'_UIAlertControllerActionView'"
+      end
+    end
+
+    def alert_visible?(alert_title=nil)
+      if alert_title.nil?
+        return !query(alert_view_query_str).empty?
+      end
+
+      query = "#{alert_view_query_str} descendant label"
+      results = query(query)
+
+      results.detect do |element|
+        element["text"] == alert_title
       end
     end
 
     def alert_button_exists?(button_title)
-      unless alert_exists?
+      if !alert_visible?
         fail('Expected an alert to be showing')
       end
 
-      res = uia("uia.alert().buttons()['#{button_title}']")
-      if res['status'] == 'success'
-        res['value']
-      else
-        false
-      end
+      !query("#{alert_view_button_query_str} marked:'#{button_title}'").empty?
     end
 
     def wait_for_alert
@@ -46,7 +44,7 @@ module CalSmoke
       options = {timeout: timeout, timeout_message: message}
 
       wait_for(options) do
-        alert_exists?
+        alert_visible?
       end
     end
 
@@ -56,44 +54,18 @@ module CalSmoke
       options = {timeout: timeout, timeout_message: message}
 
       wait_for(options) do
-        alert_exists?(alert_title)
+        alert_visible?(alert_title)
       end
     end
 
     def tap_alert_button(button_title)
       wait_for_alert
-
-      if uia_available?
-        res = uia("uia.alert().buttons()['#{button_title}'].tap()")
-        if res['status'] != 'success'
-          fail("UIA responded with:\n'#{res['value']}' when I tried to tap alert button '#{button_title}'")
-        end
-      else 
-        touch("view:'_UIAlertControllerView' descendant label marked:'#{button_title}'")
-      end
-    end
-
-    def alert_view_query_str
-      if ios8? || ios9?
-        "view:'_UIAlertControllerView'"
-      elsif ios7?
-        "view:'_UIModalItemAlertContentView'"
-      else
-        'UIAlertView'
-      end
+      touch("#{alert_view_button_query_str} marked:'#{button_title}'")
     end
 
     def button_views
       wait_for_alert
-
-      if ios8? || ios9?
-        query = "view:'_UIAlertControllerActionView'"
-      elsif ios7?
-        query = "view:'_UIModalItemAlertContentView' descendant UITableView descendant label"
-      else
-        query = 'UIAlertView descendant button'
-      end
-      query(query)
+      query(alert_view_button_query_str)
     end
 
     def button_titles
@@ -121,10 +93,10 @@ module CalSmoke
     end
 
     def non_button_views
-      button_titles = button_titles()
-      all_labels = all_labels()
-      all_labels.select do |res|
-        !button_titles.include?(res['label']) &&
+      titles = button_titles
+      labels = all_labels
+      labels.select do |res|
+        !titles.include?(res['label']) &&
               res['label'] != nil
       end
     end
