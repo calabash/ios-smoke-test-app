@@ -543,6 +543,12 @@
 				CLASSPREFIX = Cal;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Calabash;
+				TargetAttributes = {
+					aa8f030ac9159ee56ef3af27 = {
+						DevelopmentTeam = FYD86LA7RE;
+						ProvisioningStyle = Manual;
+					};
+				};
 			};
 			buildConfigurationList = F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "ios-smoke-test-app" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -906,6 +912,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = FYD86LA7RE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -924,7 +931,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "03b6a358-8de9-401b-99ff-7dd3c76d3888";
+				PROVISIONING_PROFILE_SPECIFIER = CalabashWildcard;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1050,6 +1058,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = FYD86LA7RE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1074,7 +1083,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "03b6a358-8de9-401b-99ff-7dd3c76d3888";
+				PROVISIONING_PROFILE_SPECIFIER = CalabashWildcard;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
