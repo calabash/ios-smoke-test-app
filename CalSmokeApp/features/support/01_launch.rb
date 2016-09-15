@@ -105,9 +105,7 @@ Before do |scenario|
   launcher = LaunchControl.launcher
 
   options = {
-    #:uia_strategy => :host
-    #:uia_strategy => :shared_element
-    #:uia_strategy => :preferences
+
   }
 
   relaunch = true
