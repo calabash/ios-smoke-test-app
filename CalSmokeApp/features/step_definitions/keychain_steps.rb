@@ -38,9 +38,35 @@ Given(/^that the keychain contains the account password "(.*?)" for "(.*?)"$/) d
   keychain_set_password(keychain_service_name, username, password)
 end
 
-Then(/^the keychain should be empty$/) do
+Then(/^the keychain should be empty because I called clear_keychain$/) do
   accounts = keychain_accounts_for_service(keychain_service_name)
-  unless accounts.empty?
-    raise "expected no accounts but found '#{accounts}'"
+
+  # Locally, the Keychain is cleared.
+  #
+  # On the XTC, there is additional Keychain item created for all apps during
+  # test execution that should not be cleared.  This keychain item is _always_
+  # cleared when the device is reset: between Scenarios and between tests.
+  # Put another way, this Keychain item will _never_ leak - it is always destroyed
+  # between tests.  There is a Scenario that demonstrates this behavior.
+  #
+  # Waiting on iOS 10 change in XTC. When this starts failing, we know the XTC
+  # has updated.
+  #
+  # https://github.com/xamarin/test-cloud-frontend/issues/2506
+  if xamarin_test_cloud? && !ios10?
+    if accounts.count != 1
+      raise "Expected one keychain account on the XTC"
+    end
+  else
+    if !accounts.empty?
+      raise "Expected no accounts but found '#{accounts}'"
+    end
+  end
+end
+
+Then(/^the keychain should be empty because I reset the device$/) do
+  accounts = keychain_accounts_for_service(keychain_service_name)
+  if !accounts.empty?
+    raise "Expected no accounts but found '#{accounts}'"
   end
 end
