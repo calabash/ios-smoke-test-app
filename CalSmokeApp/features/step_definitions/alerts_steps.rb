@@ -39,21 +39,25 @@ module CalSmoke
     end
 
     def wait_for_alert
-      timeout = 4
+      timeout = 30
       message = "Waited #{timeout} seconds for an alert to appear"
-      options = {timeout: timeout, timeout_message: message}
-
-      wait_for(options) do
+      bridge_wait_for(message, timeout: timeout) do
         alert_visible?
       end
     end
 
-    def wait_for_alert_with_title(alert_title)
-      timeout = 4
-      message = "Waited #{timeout} seconds for an alert with title '#{alert_title}' to appear"
-      options = {timeout: timeout, timeout_message: message}
+    def wait_for_no_alert
+      timeout = 30
+      message = "Waited #{timeout} seconds for all alerts to disappear"
+      bridge_wait_for(message, timeout: timeout) do
+        !alert_visible?
+      end
+    end
 
-      wait_for(options) do
+    def wait_for_alert_with_title(alert_title)
+      timeout = 30
+      message = "Waited #{timeout} seconds for an alert with title '#{alert_title}' to appear"
+      bridge_wait_for(message, timeout: timeout) do
         alert_visible?(alert_title)
       end
     end
@@ -135,6 +139,7 @@ end
 
 And(/^I can dismiss the alert with the OK button$/) do
   tap_alert_button('OK')
+  wait_for_no_alert
 end
 
 And(/^the title of the alert is "([^"]*)"$/) do |title|
