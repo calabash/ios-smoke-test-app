@@ -1,5 +1,4 @@
 @backdoor
-@no_relaunch
 Feature:  Backdoors
 In order make UI testing faster and easier
 As a tester
