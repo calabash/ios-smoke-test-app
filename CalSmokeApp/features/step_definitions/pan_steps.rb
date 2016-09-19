@@ -11,7 +11,7 @@ When(/^I pan left on the screen$/) do
   to_offset = {x: to_x, y: to_y}
 
   pan_coordinates(from_offset, to_offset, {duration: 0.5})
-  wait_for_animations
+  wait_for_none_animating
 end
 
 Then(/^I go back to the Scrolls page$/) do

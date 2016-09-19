@@ -46,6 +46,7 @@ static CLLocationDegrees const CalLosAngelesLongitude = -118.25;
 @implementation CalMapView
 
 - (void) awakeFromNib {
+  [super awakeFromNib];
 
   self.markers = [[NSMutableDictionary alloc] init];
 

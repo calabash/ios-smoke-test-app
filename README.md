@@ -53,12 +53,15 @@ To exit, type 'exit'.
 
 #### Build a .app for the Simulator
 
+**You will need to touch the Xcode project file an adjust the code signing settings to match your environment.**
+
 ```
 $ git clone --depth 10 git@github.com:calabash/ios-smoke-test-app.git
 $ cd ios-smoke-test-app/CalSmokeApp
 $ bundle
 $ make app-cal
 ```
+
 
 #### Cucumber
 
@@ -80,6 +83,28 @@ $ bundle exec calabash-ios console
 > touch("UITextField")
 > keyboard_enter_text("Hello!")
 ```
+
+#### Running Physical Devices
+
+**You will need to touch the Xcode project file an adjust the code signing settings to match your environment.**
+
+```
+$ cd ios-smoke-test-app/CalSmokeApp
+$ bundle
+$ make ipa-cal
+$ CODE_SIGN_IDENTITY="iPhone Developer: Your Name (ABCDE12345)" \
+  DEVICE_TARGET=< device name | udid > \
+  DEVICE_ENDPOINT=http://<ip>:37265 \
+  be cucumber -p device
+  
+Example:
+
+$ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8QEQJFT59F)" \
+   DEVICE_TARGET=denis \
+   DEVICE_ENDPOINT=http://denis.local:37265 \
+   be cucumber -p device
+```
+
 
 ### Problems building?
 

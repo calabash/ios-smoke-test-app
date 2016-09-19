@@ -1,8 +1,7 @@
-require 'tmpdir'
-require 'fileutils'
-require 'open3'
-require 'run_loop'
-require "retriable"
+require "tmpdir"
+require "fileutils"
+require "run_loop"
+require "csv"
 
 module Calabash
 
@@ -187,7 +186,7 @@ module Calabash
     #  `path_to_ipa`.
     # @raise [DeviceNotFound] If the device specified by `udid_or_name` cannot
     #  be found.
-    def initialize(path_to_ipa, udid_or_name, options={})
+    def initialize(path_to_ipa, udid, options={})
       merged_opts = DEFAULT_RETRYABLE_OPTIONS.merge(options)
 
       @binary = IDeviceInstaller.expect_binary(merged_opts[:path_to_binary])
@@ -198,15 +197,7 @@ module Calabash
         raise CannotCreateIPA, e
       end
 
-      match = IDeviceInstaller.available_devices.detect do |device|
-        device.udid == udid_or_name || device.name == udid_or_name
-      end
-
-      unless match
-        raise DeviceNotFound, "Expected to find a device with name or udid '#{udid_or_name}'"
-      end
-
-      @udid = match.udid
+      @udid = udid
 
       @tries = merged_opts[:tries]
       @interval = merged_opts[:interval]
@@ -219,9 +210,17 @@ module Calabash
     end
 
     def app_installed?
-      args = ['--udid', udid, '--list-apps']
-      hash = execute_ideviceinstaller_cmd(args)
-      hash[:out].split(/\s/).include? ipa.bundle_identifier
+      command = [binary, "--udid", udid, "--list-apps"]
+      hash = execute_ideviceinstaller_cmd(command)
+      out = hash[:out].gsub(/\"/, "")
+
+      csv = CSV.new(out, {headers: true}).to_a.map do |row|
+        row.to_hash
+      end
+
+      csv.detect do |row|
+        row["CFBundleIdentifier"] == ipa.bundle_identifier
+      end
     end
 
     # Install the ipa on the target device.
@@ -241,11 +240,17 @@ module Calabash
     def install_app
       uninstall_app if app_installed?
 
-      args = ['--udid', udid, '--install', ipa.path]
-      execute_ideviceinstaller_cmd(args)
+      args = [binary, "--udid", udid, "--install", ipa.path]
+      result = execute_ideviceinstaller_cmd(args)
 
-      unless app_installed?
-        raise InstallError, "Could not install '#{ipa}' on '#{udid}'"
+      if result[:exit_status] != 0
+        raise InstallError, %Q[
+
+Could not install '#{ipa}' on '#{udid}':
+
+#{result[:out]}
+
+]
       end
       true
     end
@@ -266,8 +271,8 @@ module Calabash
     # @raise [UninstallError] If the app was not uninstalled.
     def uninstall_app
       return true unless app_installed?
-      args = ['--udid', udid, '--uninstall', ipa.bundle_identifier]
-      execute_ideviceinstaller_cmd(args)
+      command = [binary, "--udid", udid, "--uninstall", ipa.bundle_identifier]
+      execute_ideviceinstaller_cmd(command)
       if app_installed?
         raise UninstallError, "Could not uninstall '#{ipa}' on '#{udid}'"
       end
@@ -275,9 +280,6 @@ module Calabash
     end
 
     private
-
-    # @!visibility private
-    attr_reader :stdin, :stdout, :stderr, :pid
 
     def self.homebrew_binary
       '/usr/local/bin/ideviceinstaller'
@@ -306,10 +308,14 @@ module Calabash
         if user_supplied
           raise BinaryNotFound, "Expected binary at '#{user_supplied}'"
         else
-          raise BinaryNotFound,
-                ["Expected binary to be $PATH or '/usr/local/bin/ideviceinstaller'",
-                 'You must install ideviceinstaller to use this class.',
-                 'We recommend installing ideviceinstaller with homebrew'].join("\n")
+          raise BinaryNotFound, %Q[
+Expected binary to be in $PATH or '/usr/local/bin/ideviceinstaller'
+
+You must install ideviceinstaller to use this class.
+
+We recommend installing ideviceinstaller with homebrew.
+
+]
         end
       end
       binary
@@ -319,14 +325,14 @@ module Calabash
     # into a class variable or class instance variable because the state will
     # change when devices attached/detached or join/leave the network.
     def self.available_devices
-      RunLoop::Instruments.new.physical_devices
+      physical_devices
     end
 
     def retriable_intervals
       Array.new(tries, interval)
     end
 
-    def execute_ideviceinstaller_cmd(args)
+    def execute_ideviceinstaller_cmd(command)
 
       result = {}
 
@@ -342,59 +348,27 @@ module Calabash
                   on: on
             }
 
-      Retriable.retriable(options) do
-        result = exec_with_open3(args)
+      require "retriable"
+      ::Retriable.retriable(options) do
+        options = {:timeout => 120, :log_cmd => true}
+        result = RunLoop::Shell.run_shell_command(command, options)
 
         exit_status = result[:exit_status]
         if exit_status != 0
-          raise InvocationError, "Could not execute:\n #{binary} #{args.join(' ')}"
+          raise InvocationError, %Q[
+
+Could not execute:
+
+#{command.join(" ")}
+
+Command generated this output:
+
+#{result[:out]}
+
+]
         end
       end
       result
-    end
-
-    def exec_with_open3(args)
-      begin
-        @stdin, @stdout, out, @stderr, err, process_status, @pid, exit_status = nil
-        Timeout.timeout(timeout, Timeout::Error) do
-          @stdin, @stdout, @stderr, process_status = Open3.popen3(binary, *args)
-
-          @pid = process_status.pid
-          exit_status = process_status.value.exitstatus
-
-          err = @stderr.read.chomp
-          if err && err != ''
-            unless err[/iTunesMetadata.plist/,0] || err[/SC_Info/,0]
-              puts "ERROR: #{err}"
-            end
-          end
-          out = @stdout.read.chomp
-        end
-        {
-              :err => err,
-              :out => out,
-              :pid => pid,
-              :exit_status => exit_status
-        }
-      rescue StandardError => e
-        raise InvocationError, e
-      ensure
-        stdin.close if stdin && !stdin.closed?
-        stdout.close if stdout && !stdout.closed?
-        stderr.close if stderr && !stderr.closed?
-
-        if pid
-          terminator = RunLoop::ProcessTerminator.new(pid, 'TERM', binary)
-          unless terminator.kill_process
-            terminator = RunLoop::ProcessTerminator.new(pid, 'KILL', binary)
-            terminator.kill_process
-          end
-        end
-
-        if process_status
-          process_status.join
-        end
-      end
     end
   end
 end

@@ -34,4 +34,4 @@ Scenario: Verify the alert title, message, and buttons
   And the message of the alert is "Another day, another iOS alert"
   And the left hand button is "Cancel"
   And the right hand button is "OK"
-
+  And I can dismiss the alert with the OK button

@@ -30,7 +30,7 @@ Scenario: 00 I set the keychain item
 Scenario: 01 I should see the keychain item exists in the next Scenario
   Then the keychain should contain the account password "pa$$w0rd" for "clever_user98"
   When I clear the keychain
-  Then the keychain should be empty
+  Then the keychain should be empty because I called clear_keychain
 
 # Demonstrate that resetting the simulator content and settings works using
 # the keychain as proxy.
@@ -51,5 +51,5 @@ Scenario: 11 I should see the keychain item exists because I did not reset the d
 
 @reset_device_settings
 Scenario: 12 The keychain should be empty because I reset the device settings before this Scenario
-  Then the keychain should be empty
+  Then the keychain should be empty because I reset the device
 

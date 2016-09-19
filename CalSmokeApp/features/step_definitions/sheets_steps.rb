@@ -2,10 +2,10 @@ module CalSmoke
   module Sheets
 
     def sheet_query
-      if ios8? || ios9?
-        "view:'_UIAlertControllerView'"
-      else
+      if ios7?
         'UIActionSheet'
+      else
+        "view:'_UIAlertControllerView'"
       end
     end
 
@@ -18,7 +18,7 @@ module CalSmoke
     end
 
     def wait_for_sheet
-      timeout = 4
+      timeout = 30
       message = "Waited #{timeout} seconds for a sheet to appear"
       options = {timeout: timeout, timeout_message: message}
 
@@ -28,7 +28,7 @@ module CalSmoke
     end
 
     def wait_for_sheet_with_title(sheet_title)
-      timeout = 4
+      timeout = 30
       message = "Waited #{timeout} seconds for a sheet with title '#{sheet_title}' to appear"
       options = {timeout: timeout, timeout_message: message}
 
@@ -40,10 +40,10 @@ module CalSmoke
     def tap_sheet_button(button_title)
       wait_for_sheet
 
-      if ios8? || ios9?
-        query = "view:'_UIAlertControllerActionView' marked:'#{button_title}'"
-      else
+      if ios7?
         query = "UIActionSheet child button child label marked:'#{button_title}'"
+      else
+        query = "view:'_UIAlertControllerActionView' marked:'#{button_title}'"
       end
 
       touch(query)

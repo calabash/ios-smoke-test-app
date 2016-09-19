@@ -242,6 +242,8 @@
 		F5C276321B3B546A00DF63FA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalDragDropController.xib; sourceTree = "<group>"; };
 		F5C276351B3B547900DF63FA /* CalDragDropController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalDragDropController.h; sourceTree = "<group>"; };
 		F5C276361B3B547900DF63FA /* CalDragDropController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalDragDropController.m; sourceTree = "<group>"; };
+		F5C8A42C1D8C0333009339CD /* CalSmoke-cal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CalSmoke-cal.entitlements"; sourceTree = "<group>"; };
+		F5C8A42D1D8C068F009339CD /* CalSmoke.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CalSmoke.entitlements; sourceTree = "<group>"; };
 		F5FE79621988070200842E74 /* CalSmoke-cal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CalSmoke-cal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		a66015686499dbb45da8c3c4 /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -281,6 +283,8 @@
 		F52BFB031987EF8700299AEF = {
 			isa = PBXGroup;
 			children = (
+				F5C8A42D1D8C068F009339CD /* CalSmoke.entitlements */,
+				F5C8A42C1D8C0333009339CD /* CalSmoke-cal.entitlements */,
 				F52BFB151987EF8700299AEF /* CalSmokeApp */,
 				F52BFB0E1987EF8700299AEF /* Frameworks */,
 				F52BFB0D1987EF8700299AEF /* Products */,
@@ -541,8 +545,27 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Cal;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Calabash;
+				TargetAttributes = {
+					F52BFB0B1987EF8700299AEF = {
+						DevelopmentTeam = FYD86LA7RE;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+					aa8f030ac9159ee56ef3af27 = {
+						DevelopmentTeam = FYD86LA7RE;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "ios-smoke-test-app" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -905,7 +928,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "CalSmoke-cal.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = FYD86LA7RE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -924,7 +949,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "03b6a358-8de9-401b-99ff-7dd3c76d3888";
+				PROVISIONING_PROFILE_SPECIFIER = CalabashWildcard;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -933,6 +959,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -942,13 +969,18 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -972,6 +1004,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -981,12 +1014,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1005,6 +1043,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = CalSmoke.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
@@ -1028,6 +1067,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = CalSmoke.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
@@ -1049,7 +1089,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "CalSmoke-cal.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = FYD86LA7RE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1074,7 +1116,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "03b6a358-8de9-401b-99ff-7dd3c76d3888";
+				PROVISIONING_PROFILE_SPECIFIER = CalabashWildcard;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
