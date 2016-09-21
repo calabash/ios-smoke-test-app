@@ -35,6 +35,20 @@ Then(/^I scroll the logos collection to the steam icon by mark$/) do
   wait_for_none_animating
 end
 
+Then(/^I scroll the logos table to the apple row using a subview mark$/) do
+  query = "UITableView marked:'logos'"
+  options = wait_options(query)
+  wait_for_element_exists(query, options)
+
+  options = {
+    :query => query,
+    :scroll_position => :middle,
+    :animate => true
+  }
+  scroll_to_row_with_mark("Apple SUBVIEW", options)
+  wait_for_none_animating
+end
+
 Then(/^I scroll the logos collection to the github icon by index$/) do
   query = "UICollectionView marked:'logo gallery'"
   options = wait_options(query)

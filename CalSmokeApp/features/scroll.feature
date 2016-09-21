@@ -17,11 +17,12 @@ Scenario: Collection views
   Then I scroll the colors collection to the middle of the purple boxes
 
 Scenario: Table views
-  When I touch the table views row
-  Then I see the table views page
-  Then I scroll the logos table to the steam row by mark
-  Then I scroll the logos table to the github row by index
-  Then I scroll up on the logos table to the android row
+When I touch the table views row
+Then I see the table views page
+Then I scroll the logos table to the steam row by mark
+Then I scroll the logos table to the apple row using a subview mark
+Then I scroll the logos table to the github row by index
+Then I scroll up on the logos table to the android row
 
 Scenario: Scroll views
   When I touch the scroll views row
