@@ -38,7 +38,7 @@
 + (NSCalendar *) gregorianCalendarWithMondayAsFirstDayOfWeek {
   NSCalendar *calendar;
   calendar = [[NSCalendar alloc]
-              initWithCalendarIdentifier:NSGregorianCalendar];
+              initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
   // iso spec http://en.wikipedia.org/wiki/ISO_week_date#First_week
   // not respected in iOS 5.0 so we set it here
   [calendar setMinimumDaysInFirstWeek:4];
