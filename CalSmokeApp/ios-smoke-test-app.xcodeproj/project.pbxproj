@@ -55,6 +55,8 @@
 		F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		F558C47B1CEF7CF5006E8525 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F558C4791CEF7CF5006E8525 /* Localizable.strings */; };
 		F558C47C1CEF7CF5006E8525 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F558C4791CEF7CF5006E8525 /* Localizable.strings */; };
+		F574ED0E1D92818B0040AF2E /* RevealServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F574ED0D1D92818B0040AF2E /* RevealServer.framework */; };
+		F574ED0F1D9281990040AF2E /* RevealServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F574ED0D1D92818B0040AF2E /* RevealServer.framework */; };
 		F58C9F9C1B707501007D307B /* CalGestureListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9B1B707501007D307B /* CalGestureListController.m */; };
 		F58C9F9D1B707501007D307B /* CalGestureListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9B1B707501007D307B /* CalGestureListController.m */; };
 		F58C9FA01B707631007D307B /* CalPanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9F1B707631007D307B /* CalPanController.m */; };
@@ -188,6 +190,7 @@
 		F558C4781CEF7C5C006E8525 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F558C47A1CEF7CF5006E8525 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F558C47D1CEF7CFA006E8525 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F574ED0D1D92818B0040AF2E /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RevealServer.framework; sourceTree = "<group>"; };
 		F58C9F9A1B707501007D307B /* CalGestureListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalGestureListController.h; sourceTree = "<group>"; };
 		F58C9F9B1B707501007D307B /* CalGestureListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalGestureListController.m; sourceTree = "<group>"; };
 		F58C9F9E1B707631007D307B /* CalPanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalPanController.h; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F574ED0F1D9281990040AF2E /* RevealServer.framework in Frameworks */,
 				F58C9FB71B7262F2007D307B /* MapKit.framework in Frameworks */,
 				F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */,
 				814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */,
@@ -267,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F574ED0E1D92818B0040AF2E /* RevealServer.framework in Frameworks */,
 				F5A5CB651C8A5E22001ECC15 /* OpenGLES.framework in Frameworks */,
 				F5A5CB631C8A5E11001ECC15 /* QuartzCore.framework in Frameworks */,
 				F58C9FB81B72630C007D307B /* WebKit.framework in Frameworks */,
@@ -303,6 +308,7 @@
 		F52BFB0E1987EF8700299AEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F574ED0D1D92818B0040AF2E /* RevealServer.framework */,
 				F5A5CB641C8A5E22001ECC15 /* OpenGLES.framework */,
 				F5A5CB621C8A5E11001ECC15 /* QuartzCore.framework */,
 				F58C9FB51B7262E6007D307B /* MapKit.framework */,
@@ -508,6 +514,7 @@
 				F52BFB081987EF8700299AEF /* Sources */,
 				F52BFB091987EF8700299AEF /* Frameworks */,
 				F52BFB0A1987EF8700299AEF /* Resources */,
+				F574ED101D9283860040AF2E /* Run Script Integrate Reveal */,
 				F51F2E8E1AB359A6002326D0 /* Run Script Add Calabash dylibs to Bundle */,
 				F51FA0E41BC5723900B6BF70 /* Run Script Stage Binaries to Products */,
 			);
@@ -527,6 +534,7 @@
 				b17dee660dc338602790258e /* Sources */,
 				146d6a283e5268ae50e42bb6 /* Frameworks */,
 				5fe138bfdd8a11df266b0f94 /* Resources */,
+				F574ED111D9286380040AF2E /* Run Script Integrate Reveal */,
 				F51FA0E31BC569BA00B6BF70 /* Run Script Stage Binaries to Products/ */,
 			);
 			buildRules = (
@@ -692,6 +700,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "bin/xcode-build-phase/stage-CalSmoke-products.sh";
+			showEnvVarsInLog = 0;
+		};
+		F574ED101D9283860040AF2E /* Run Script Integrate Reveal */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script Integrate Reveal";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bin/xcode-build-phase/integrate-reveal-framework.sh ";
+			showEnvVarsInLog = 0;
+		};
+		F574ED111D9286380040AF2E /* Run Script Integrate Reveal */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script Integrate Reveal";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bin/xcode-build-phase/integrate-reveal-framework.sh ";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -944,8 +982,6 @@
 					"$(inherited)",
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
-					"-lstdc++",
-					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
@@ -994,7 +1030,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = " $(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+					"-weak_framework",
+					RevealServer,
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1032,6 +1075,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = " $(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+					"-weak_framework",
+					RevealServer,
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1045,6 +1095,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = CalSmoke.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = LOAD_CALABASH_DYLIB;
@@ -1055,6 +1109,7 @@
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
@@ -1069,6 +1124,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = CalSmoke.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
@@ -1077,6 +1136,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
@@ -1111,8 +1171,6 @@
 					"$(inherited)",
 					"-force_load",
 					"\"$(SRCROOT)/calabash.framework/calabash\"",
-					"-lstdc++",
-					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
