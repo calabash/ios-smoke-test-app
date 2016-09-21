@@ -1,0 +1,1 @@
+../CalSmokeApp/CalSmokeApp/Fingertips/FINGERTIPS_LICENSE.md

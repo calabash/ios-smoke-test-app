@@ -6,6 +6,7 @@
 #import "CalViewsThatScrollController.h"
 #import "CalGestureListController.h"
 #import "CalDatePickerController.h"
+#import "MBFingerTipWindow.h"
 
 #if LOAD_CALABASH_DYLIB
 #import <dlfcn.h>
@@ -423,8 +424,17 @@ typedef struct {
 
 #pragma mark - UIApplicationDelegate
 
+- (UIWindow *)window {
+  if (!_window) {
+    MBFingerTipWindow *ftWindow = [[MBFingerTipWindow alloc]
+                                   initWithFrame:[[UIScreen mainScreen] bounds]];
+    ftWindow.alwaysShowTouches = YES;
+    _window = ftWindow;
+  }
+  return _window;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
   CalControlsController *controlsController =
   [[CalControlsController alloc]
