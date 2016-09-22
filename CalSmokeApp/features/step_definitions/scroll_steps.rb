@@ -63,6 +63,36 @@ Then(/^I scroll the logos collection to the github icon by index$/) do
   wait_for_none_animating
 end
 
+Then(/^I scroll the logos collection to the wordpress icon using a subview mark$/) do
+  query = "UICollectionView marked:'logo gallery'"
+  options = wait_options(query)
+  wait_for_element_exists(query, options)
+
+  options = {
+    :query => query,
+    :scroll_position => :center_vertical,
+    :animated => true
+  }
+  scroll_to_collection_view_item_with_mark("wordpress LEAF", options)
+  wait_for_none_animating
+end
+
+Then(/^I scroll the colors collection to the Wedge Antilles box using a subview mark$/) do
+  query = "UICollectionView marked:'color gallery'"
+  options = wait_options(query)
+  wait_for_element_exists(query, options)
+
+  options = {
+    :query => query,
+    :scroll_position => :top,
+    :animated => true
+  }
+
+  scroll_to_collection_view_item_with_mark("red 2 LEAF", options)
+  wait_for_none_animating
+end
+
+
 Then(/^I scroll up on the logos collection to the android icon$/) do
   query = "UICollectionView marked:'logo gallery'"
   options = wait_options(query)
