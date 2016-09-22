@@ -44,6 +44,18 @@ module Calabash
       end
     end
 
+    def maybe_pry_on_failure(scenario, world)
+      if scenario.failed?
+        if RunLoop::Environment.xtc?
+          shutdown(world)
+          sleep(1.0)
+        else
+          require "pry"
+          binding.pry
+        end
+      end
+    end
+
     def lp_server_running?
       begin
         running = launcher.ping_app
@@ -284,11 +296,13 @@ After("@german") do
 end
 
 After do |scenario|
-  case :debug
+  case :pry
     when :default
       Calabash::Launchctl.instance.shutdown(self)
     when :debug
       Calabash::Launchctl.instance.maybe_exit_cucumber_on_failure(scenario, self)
+    when :pry
+      Calabash::Launchctl.instance.maybe_pry_on_failure(scenario, self)
     else
       RunLoop.log_error("Unknown action in After hook")
       Calabash::Launchctl.instance.maybe_exit_cucumber_on_failure(scenario, self)
