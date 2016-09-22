@@ -26,13 +26,17 @@ Then I scroll the logos table to the apple row using a subview mark
 Then I scroll the logos table to the github row by index
 Then I scroll up on the logos table to the android row
 
+@wip
 Scenario: Scroll views
-  When I touch the scroll views row
-  Then I see the scroll views page
-  Then I center the cayenne box to the middle
-  Then I scroll up to the purple box
-  Then I scroll left to the light blue box
-  Then I center the cayenne box to the middle
-  Then I scroll down to the gray box
-  Then I scroll right to the dark gray box
-
+#When I touch the scroll views row
+#Then I see the scroll views page
+#Then I center the cayenne box to the middle
+#Then I scroll up to the purple box
+#Then I scroll left to the light blue box
+#Then I center the cayenne box to the middle
+#Then I scroll down to the gray box
+#Then I scroll right to the dark gray box
+#Then I scroll to the cayenne box by mark
+And I scroll to the purple box by mark
+And I scroll to the gray box by mark
+And I scroll to the dark gray box by mark

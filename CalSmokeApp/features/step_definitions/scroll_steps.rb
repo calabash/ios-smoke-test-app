@@ -283,3 +283,13 @@ Then(/^I scroll right to the dark gray box$/) do
   expect(query(box_query).count).to be == 1
 end
 
+Then(/^I scroll to the (cayenne|purple|gray|dark gray) box by mark$/) do |mark|
+  query = "UIScrollView marked:'scroll'"
+  options = wait_options(query)
+  wait_for_element_exists(query, options)
+
+  scroll_to_mark(mark)
+  wait_for_animations
+
+  wait_for_view("* marked:'#{mark}'")
+end
