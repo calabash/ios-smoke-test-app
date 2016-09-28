@@ -1,11 +1,11 @@
 
 module Calabash
   class Launchctl
-    require "singleton"
+    require 'singleton'
     include Singleton
 
-    require "calabash-cucumber/launcher"
-    require "calabash-cucumber/environment"
+    require 'calabash-cucumber/launcher'
+    require 'calabash-cucumber/environment'
 
     attr_reader :first_launch
     attr_reader :launcher
@@ -68,10 +68,10 @@ module Calabash
 
     def running?
       return false if first_launch
-      return false if !launcher.run_loop
-      return false if !launcher.automator
+      return false unless launcher.run_loop
+      return false unless launcher.automator
 
-      return false if !lp_server_running?
+      return false unless lp_server_running?
 
       running = true
 
@@ -96,9 +96,9 @@ module Calabash
 
     def environment
       {
-        :simctl => self.simctl,
-        :instruments => self.instruments,
-        :xcode => self.xcode
+          :simctl => self.simctl,
+          :instruments => self.instruments,
+          :xcode => self.xcode
       }
     end
 
@@ -117,7 +117,7 @@ module Calabash
     def reset_simulator_lang_and_locale
       return if RunLoop::Environment.xtc?
       if device.physical_device?
-        raise "Should only be called when target is a simulator"
+        raise 'Should only be called when target is a simulator'
       else
         RunLoop::CoreSimulator.erase(device, {:simctl => simctl})
         set_sim_locale_and_lang
@@ -127,15 +127,15 @@ module Calabash
     def maybe_clear_keychain(scenario, world)
       names = scenario.tags.map { |tag| tag.name }
 
-      return if !names.include?("@reset_device_settings")
+      return unless names.include?('@reset_device_settings')
 
       world.send(:keychain_clear)
     end
 
     def ensure_app
-      app_path = File.expand_path("Products/app/CalSmoke-cal/CalSmoke-cal.app")
-      if !File.exist?(app_path)
-        hash = RunLoop::Shell.run_shell_command(["make", "app-cal"], {:log_cmd => true})
+      app_path = File.expand_path('Products/app/CalSmoke-cal/CalSmoke-cal.app')
+      unless File.exist?(app_path)
+        hash = RunLoop::Shell.run_shell_command(['make', 'app-cal'], {:log_cmd => true})
         if hash[:exit_status] != 0
           RunLoop.log_error("Could not build app; run: 'make app-cal' to diagnose")
           exit hash[:exit_status]
@@ -145,9 +145,9 @@ module Calabash
     end
 
     def ensure_ipa
-      ipa_path = File.expand_path("Products/ipa/CalSmoke-cal/CalSmoke-cal.ipa")
-      if !File.exist?(ipa_path)
-        hash = RunLoop::Shell.run_shell_command(["make", "ipa-cal"], {:log_cmd => true})
+      ipa_path = File.expand_path('Products/ipa/CalSmoke-cal/CalSmoke-cal.ipa')
+      unless File.exist?(ipa_path)
+        hash = RunLoop::Shell.run_shell_command(['make', 'ipa-cal'], {:log_cmd => true})
         if hash[:exit_status] != 0
           RunLoop.log_error("Could not build ipa; run: 'make ipa-cal' to diagnose")
           exit hash[:exit_status]
@@ -178,7 +178,7 @@ module Calabash
     end
 
     def app_locale
-      @app_locale ||= ENV["APP_LOCALE"] || "en_US"
+      @app_locale ||= ENV['APP_LOCALE'] || 'en_US'
     end
 
     def app_locale=(locale)
@@ -186,7 +186,7 @@ module Calabash
     end
 
     def app_lang
-      @app_lang ||= ENV["APP_LANG"] || "en-US"
+      @app_lang ||= ENV['APP_LANG'] || 'en-US'
     end
 
     def app_lang=(lang)
@@ -200,7 +200,7 @@ module Calabash
 
     def set_sim_locale_and_lang
       if device.physical_device?
-        raise "Should only be called when target is a simulator"
+        raise 'Should only be called when target is a simulator'
       end
 
       RunLoop::CoreSimulator.set_locale(device, app_locale)
@@ -209,31 +209,31 @@ module Calabash
   end
 end
 
-Before("@german") do
+Before('@german') do
   # Will not run on device or XTC because of @simulator tag on Scenario
   Calabash::Launchctl.instance.shutdown(self)
-  Calabash::Launchctl.instance.app_locale = "de"
-  Calabash::Launchctl.instance.app_lang = "de"
+  Calabash::Launchctl.instance.app_locale = 'de'
+  Calabash::Launchctl.instance.app_lang = 'de'
   Calabash::Launchctl.instance.reset_simulator_lang_and_locale
 end
 
-Before("@reset_app_btw_scenarios") do
+Before('@reset_app_btw_scenarios') do
   if xamarin_test_cloud?
-    ENV["RESET_BETWEEN_SCENARIOS"] = "1"
+    ENV['RESET_BETWEEN_SCENARIOS'] = '1'
     Calabash::Launchctl.instance.shutdown(self)
   elsif Calabash::Launchctl.instance.device.simulator?
-    ENV["RESET_BETWEEN_SCENARIOS"] = "1"
+    ENV['RESET_BETWEEN_SCENARIOS'] = '1'
     Calabash::Launchctl.instance.shutdown(self)
   else
-    ENV["RESET_BETWEEN_SCENARIOS"] = "1"
+    ENV['RESET_BETWEEN_SCENARIOS'] = '1'
     Calabash::Launchctl.instance.shutdown(self)
     Calabash::Launchctl.instance.install_on_physical_device
   end
 end
 
-Before("@reset_device_settings") do
+Before('@reset_device_settings') do
   if xamarin_test_cloud?
-    ENV["RESET_BETWEEN_SCENARIOS"] = "1"
+    ENV['RESET_BETWEEN_SCENARIOS'] = '1'
     Calabash::Launchctl.instance.shutdown(self)
   elsif Calabash::Launchctl.instance.device.simulator?
     Calabash::Launchctl.instance.shutdown(self)
@@ -255,8 +255,8 @@ Before do |scenario|
 
     options = Calabash::Launchctl.instance.environment
     options[:args] = [
-      "-AppleLanguages", "(#{Calabash::Launchctl.instance.app_lang})",
-      "-AppleLocale", Calabash::Launchctl.instance.app_locale,
+        '-AppleLanguages', "(#{Calabash::Launchctl.instance.app_lang})",
+        '-AppleLocale', Calabash::Launchctl.instance.app_locale,
     ]
 
     if Calabash::Launchctl.instance.first_launch
@@ -271,13 +271,13 @@ Before do |scenario|
     Calabash::Launchctl.instance.launch(options)
   end
 
-  ENV["RESET_BETWEEN_SCENARIOS"] = "0"
+  ENV['RESET_BETWEEN_SCENARIOS'] = '0'
   Calabash::Launchctl.instance.maybe_clear_keychain(scenario, self)
   rotate_home_button_to(:down)
   sleep(0.5)
 end
 
-After("@german") do
+After('@german') do
   # Will not run on device or XTC because of @simulator tag on Scenario
   Calabash::Launchctl.instance.shutdown(self)
   Calabash::Launchctl.instance.clear_locale_and_lang!
@@ -290,7 +290,7 @@ After do |scenario|
     when :debug
       Calabash::Launchctl.instance.maybe_exit_cucumber_on_failure(scenario, self)
     else
-      RunLoop.log_error("Unknown action in After hook")
+      RunLoop.log_error('Unknown action in After hook')
       Calabash::Launchctl.instance.maybe_exit_cucumber_on_failure(scenario, self)
   end
 end
