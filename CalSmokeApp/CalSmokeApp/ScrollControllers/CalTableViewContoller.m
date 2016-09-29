@@ -9,7 +9,8 @@ static NSString *const CalLogoRowIdentifier = @"logoRow";
 
 typedef enum : NSInteger {
   kTagRowImageView = 3030,
-  kTagRowLabel
+  kTagRowLabel,
+  kTagRowLabelSubview
 } row_tags;
 
 @interface CalTableViewContoller ()
@@ -104,23 +105,28 @@ typedef enum : NSInteger {
   return 1;
 }
 
-- (UILabel *) labelForRowAtIndexPath:(NSIndexPath *) indexPath {
+- (UILabel *) labelForRowTitle {
   CGRect frame = CGRectMake(78, 10, 120, 24);
   UILabel *label = [[UILabel alloc] initWithFrame:frame];
   label.tag = kTagRowLabel;
-  label.text = [self textForRowAtIndexPath:indexPath];
   label.backgroundColor = [UIColor whiteColor];
   label.textAlignment = NSTextAlignmentLeft;
   label.textColor = [UIColor blackColor];
   label.font = [UIFont fontWithName:@"Avenir" size:18];
+
   return label;
 }
 
-- (UIImageView *) imageViewForRowAtIndexPath:(NSIndexPath *) indexPath {
+- (UIView *)subviewForRowTitleLabel {
+  UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+  view.tag = kTagRowLabelSubview;
+  return view;
+}
+
+- (UIImageView *) imageViewForRow {
   CGRect frame = CGRectMake(20, 2, 40, 40);
   UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
   imageView.tag = kTagRowImageView;
-  imageView.image = [self imageForRowAtIndexPath:indexPath];
   imageView.opaque = YES;
   return imageView;
 }
@@ -159,32 +165,33 @@ typedef enum : NSInteger {
 - (UITableViewCell *) tableView:(UITableView *) tableView
           cellForRowAtIndexPath:(NSIndexPath *) indexPath {
   UITableViewCell *cell;
+
   cell = [tableView dequeueReusableCellWithIdentifier:CalLogoRowIdentifier];
 
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                   reuseIdentifier:CalLogoRowIdentifier];
+    UILabel *titleLabel = [self labelForRowTitle];
+    [titleLabel addSubview:[self subviewForRowTitleLabel]];
+    [cell.contentView addSubview:titleLabel];
+    [cell.contentView addSubview:[self imageViewForRow]];
 
-    [cell.contentView addSubview:[self imageViewForRowAtIndexPath:indexPath]];
-    [cell.contentView addSubview:[self labelForRowAtIndexPath:indexPath]];
-    cell.accessibilityIdentifier = [[self textForRowAtIndexPath:indexPath]
-                                    lowercaseString];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.contentView.backgroundColor = [UIColor whiteColor];
     cell.textLabel.backgroundColor = [UIColor whiteColor];
     cell.imageView.backgroundColor = [UIColor whiteColor];
-  } else {
-    UIImage *image = [self imageForRowAtIndexPath:indexPath];
-    NSString *text = [self textForRowAtIndexPath:indexPath];
-
-    UIView *contentView = cell.contentView;
-    UIImageView *imageView = (UIImageView *)[contentView viewWithTag:kTagRowImageView];
-    imageView.image = image;
-
-    UILabel *label = (UILabel *)[contentView viewWithTag:kTagRowLabel];
-    label.text = text;
-    cell.accessibilityLabel = [text lowercaseString];
   }
+
+  UILabel *titleLabel = [cell.contentView viewWithTag:kTagRowLabel];
+  UIView *subview = [titleLabel viewWithTag:kTagRowLabelSubview];
+  UIImageView *imageView = [cell.contentView viewWithTag:kTagRowImageView];
+
+  NSString *text = [self textForRowAtIndexPath:indexPath];
+  titleLabel.text = text;
+  subview.accessibilityIdentifier = [text stringByAppendingString:@" SUBVIEW"];
+
+  imageView.image = [self imageForRowAtIndexPath:indexPath];
+  cell.accessibilityIdentifier = [text lowercaseString];
 
   return cell;
 }

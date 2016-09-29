@@ -11,12 +11,16 @@ static NSString *const CalLogoCellReuseIdentifier = @"logoCell";
 @interface CalLogoCell : UICollectionViewCell
 
 @property(strong, nonatomic) UIImageView *imageView;
+@property(strong, nonatomic) UIView *branch;
+
+- (void)setLeafAccessibilityIdentifier:(NSString *)identifier;
 
 @end
 
 @implementation CalLogoCell
 
 @synthesize imageView = _imageView;
+@synthesize branch = _branch;
 
 - (instancetype) initWithFrame:(CGRect) frame {
   self = [super initWithFrame:frame];
@@ -32,8 +36,20 @@ static NSString *const CalLogoCellReuseIdentifier = @"logoCell";
 
     [contentView addSubview:_imageView];
 
+    _branch = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *subview = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *nestedSubview = [[UIView alloc] initWithFrame:CGRectZero];
+    nestedSubview.tag = 2046;
+    [subview addSubview:nestedSubview];
+    [_branch addSubview:subview];
+    [contentView addSubview:_branch];
   }
   return self;
+}
+
+- (void)setLeafAccessibilityIdentifier:(NSString *)identifier {
+  UIView *view = [self.contentView viewWithTag:2046];
+  view.accessibilityIdentifier = identifier;
 }
 
 @end
@@ -45,6 +61,9 @@ static NSString *const CalBoxCellReuseIdentifier = @"boxCell";
 @interface CalBoxCell : UICollectionViewCell
 
 @property(strong, atomic) UIView *colorView;
+@property(strong, nonatomic) UIView *branch;
+
+- (void)setLeafAccessibilityIdentifier:(NSString *)identifier;
 
 @end
 
@@ -76,8 +95,21 @@ static NSString *const CalBoxCellReuseIdentifier = @"boxCell";
 
     [outer addSubview:_colorView];
 
+    _branch = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *subview = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *nestedSubview = [[UIView alloc] initWithFrame:CGRectZero];
+    nestedSubview.tag = 2046;
+    [subview addSubview:nestedSubview];
+    [_branch addSubview:subview];
+    [contentView addSubview:_branch];
+
   }
   return self;
+}
+
+- (void)setLeafAccessibilityIdentifier:(NSString *)identifier {
+  UIView *view = [self.contentView viewWithTag:2046];
+  view.accessibilityIdentifier = identifier;
 }
 
 @end
@@ -219,15 +251,9 @@ typedef enum : NSUInteger {
 
 #pragma mark - Orientation / Rotation
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
   return UIInterfaceOrientationMaskAll;
 }
-#else
-- (NSUInteger) supportedInterfaceOrientations {
-  return UIInterfaceOrientationMaskAll;
-}
-#endif
 
 - (BOOL) shouldAutorotate {
   return YES;
@@ -280,7 +306,10 @@ typedef enum : NSUInteger {
                                                             forIndexPath:indexPath];
 
     cell.colorView.backgroundColor = [self colorForBoxAtIndexPath:indexPath];
-    cell.colorView.accessibilityIdentifier = [self accessibilityIdentifierForBoxAtIndexPath:indexPath];
+    NSString *identifier = [self accessibilityIdentifierForBoxAtIndexPath:indexPath];
+    cell.colorView.accessibilityIdentifier = identifier;
+    [cell setLeafAccessibilityIdentifier:[identifier stringByAppendingString:@" LEAF"]];
+
     return cell;
   } else {
 
@@ -292,6 +321,8 @@ typedef enum : NSUInteger {
     NSString *imageName = [NSString stringWithFormat:@"logo-%@", logoName];
     UIImage *image = [UIImage imageNamed:imageName];
     cell.imageView.image = image;
+
+    [cell setLeafAccessibilityIdentifier:[logoName stringByAppendingString:@" LEAF"]];
 
     cell.accessibilityIdentifier = logoName;
     cell.accessibilityLabel = [logoName capitalizedString];
