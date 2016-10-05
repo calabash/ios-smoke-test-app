@@ -12,7 +12,10 @@ Given(/^I see the (controls|gestures|scrolls|special|date picker) tab$/) do |tab
   when 'date picker'
     index = 4
   end
-  touch("tabBarButton index:#{index}")
+
+  sleep(0.5)
+  touch("UITabBarButton index:#{index}")
+  wait_for_animations
   expected_view = "#{tab} page"
   wait_for_element_exists("view marked:'#{expected_view}'")
 end
