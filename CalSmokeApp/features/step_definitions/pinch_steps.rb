@@ -38,4 +38,27 @@ Then(/^the box grows$/) do
   @pinch_box_width = new_width
 end
 
+And(/^I see the map page$/) do
+  query = "* marked:'map views row'"
+  wait_for_view(query)
+  wait_for_animations
+  touch(query)
 
+  query = "* marked:'map'"
+  wait_for_view(query)
+
+  # Cannot wait for animations because the beacon is animating
+  sleep(0.5)
+end
+
+Then(/^I zoom in on the map by pinching out$/) do
+  pinch(:out)
+  # TODO Figure out how to test this
+  sleep(1.0)
+end
+
+Then(/^I zoom out on the map by pinching in$/) do
+  pinch(:in)
+  # TODO Figure out how to test this
+  sleep(1.0)
+end
