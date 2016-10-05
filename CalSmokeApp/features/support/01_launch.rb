@@ -296,7 +296,7 @@ After("@german") do
 end
 
 After do |scenario|
-  case :pry
+  case :default
     when :default
       Calabash::Launchctl.instance.shutdown(self)
     when :debug
