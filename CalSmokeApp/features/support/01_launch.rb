@@ -298,8 +298,6 @@ end
 After do |scenario|
   case :default
     when :default
-      Calabash::Launchctl.instance.shutdown(self)
-    when :debug
       Calabash::Launchctl.instance.maybe_exit_cucumber_on_failure(scenario, self)
     when :pry
       Calabash::Launchctl.instance.maybe_pry_on_failure(scenario, self)
