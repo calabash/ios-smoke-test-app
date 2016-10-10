@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalControlsController">
             <connections>
+                <outlet property="calTextField" destination="AKm-96-YaB" id="N8p-ti-xGC"/>
                 <outlet property="slider" destination="z6t-L3-d5U" id="KHi-R4-P5l"/>
                 <outlet property="textField" destination="mOe-99-2zQ" id="lma-Gp-HnT"/>
                 <outlet property="uiSwitch" destination="CN0-IX-EjJ" id="zfx-zL-Lfe"/>
@@ -42,6 +43,16 @@
                         <action selector="switchValueChanged:" destination="-1" eventType="valueChanged" id="tlW-Zt-eBI"/>
                     </connections>
                 </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CalTextField" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKm-96-YaB" userLabel="CalTextField" customClass="CalTextField">
+                    <rect key="frame" x="20" y="228" width="560" height="21"/>
+                    <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" allowsDirectInteraction="YES"/>
+                    </accessibility>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -49,10 +60,13 @@
                 <constraint firstAttribute="trailing" secondItem="mOe-99-2zQ" secondAttribute="trailing" constant="20" id="31x-F6-cQF"/>
                 <constraint firstItem="CN0-IX-EjJ" firstAttribute="top" secondItem="mOe-99-2zQ" secondAttribute="bottom" constant="32" id="Ate-j1-ti5"/>
                 <constraint firstItem="z6t-L3-d5U" firstAttribute="top" secondItem="CN0-IX-EjJ" secondAttribute="bottom" constant="32" id="PIH-zb-U7Q"/>
+                <constraint firstItem="AKm-96-YaB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="QlC-Q0-omX"/>
                 <constraint firstItem="z6t-L3-d5U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="Sif-Cn-wCa"/>
                 <constraint firstAttribute="centerX" secondItem="z6t-L3-d5U" secondAttribute="centerX" id="fQC-Oh-jpZ"/>
                 <constraint firstAttribute="trailing" secondItem="z6t-L3-d5U" secondAttribute="trailing" constant="22" id="jMD-XF-OdG"/>
                 <constraint firstAttribute="centerX" secondItem="CN0-IX-EjJ" secondAttribute="centerX" id="nt8-xR-eDu"/>
+                <constraint firstAttribute="trailing" secondItem="AKm-96-YaB" secondAttribute="trailing" constant="20" id="tcV-ml-6XB"/>
+                <constraint firstItem="AKm-96-YaB" firstAttribute="top" secondItem="z6t-L3-d5U" secondAttribute="bottom" constant="25" id="xVB-zc-VGZ"/>
                 <constraint firstItem="mOe-99-2zQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="z54-xg-hFb"/>
                 <constraint firstAttribute="centerX" secondItem="mOe-99-2zQ" secondAttribute="centerX" id="znx-Zn-zJo"/>
             </constraints>
