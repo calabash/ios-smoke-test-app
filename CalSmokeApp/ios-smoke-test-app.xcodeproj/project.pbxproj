@@ -61,6 +61,8 @@
 		F574ED181D9298B40040AF2E /* FINGERTIPS_LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = F574ED131D9298660040AF2E /* FINGERTIPS_LICENSE.md */; };
 		F574ED1A1D9298CB0040AF2E /* MBFingerTipWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F574ED151D9298660040AF2E /* MBFingerTipWindow.m */; };
 		F574ED1B1D9299F10040AF2E /* FINGERTIPS_LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = F574ED131D9298660040AF2E /* FINGERTIPS_LICENSE.md */; };
+		F584EF091DABC7EF00687D5F /* CalTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F584EF081DABC7EF00687D5F /* CalTextField.m */; };
+		F584EF0A1DABC7EF00687D5F /* CalTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F584EF081DABC7EF00687D5F /* CalTextField.m */; };
 		F58C9F9C1B707501007D307B /* CalGestureListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9B1B707501007D307B /* CalGestureListController.m */; };
 		F58C9F9D1B707501007D307B /* CalGestureListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9B1B707501007D307B /* CalGestureListController.m */; };
 		F58C9FA01B707631007D307B /* CalPanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F58C9F9F1B707631007D307B /* CalPanController.m */; };
@@ -198,6 +200,8 @@
 		F574ED131D9298660040AF2E /* FINGERTIPS_LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = FINGERTIPS_LICENSE.md; sourceTree = "<group>"; };
 		F574ED141D9298660040AF2E /* MBFingerTipWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBFingerTipWindow.h; sourceTree = "<group>"; };
 		F574ED151D9298660040AF2E /* MBFingerTipWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBFingerTipWindow.m; sourceTree = "<group>"; };
+		F584EF071DABC7EF00687D5F /* CalTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalTextField.h; sourceTree = "<group>"; };
+		F584EF081DABC7EF00687D5F /* CalTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalTextField.m; sourceTree = "<group>"; };
 		F58C9F9A1B707501007D307B /* CalGestureListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalGestureListController.h; sourceTree = "<group>"; };
 		F58C9F9B1B707501007D307B /* CalGestureListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalGestureListController.m; sourceTree = "<group>"; };
 		F58C9F9E1B707631007D307B /* CalPanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalPanController.h; sourceTree = "<group>"; };
@@ -426,6 +430,8 @@
 				F58C9FBA1B7264AF007D307B /* CalMapView.m */,
 				F58C9FD41B7395C2007D307B /* CalViewWithArbitrarySelectors.h */,
 				F58C9FD51B7395C2007D307B /* CalViewWithArbitrarySelectors.m */,
+				F584EF071DABC7EF00687D5F /* CalTextField.h */,
+				F584EF081DABC7EF00687D5F /* CalTextField.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -780,6 +786,7 @@
 				F5A5CB5F1C8A5DCE001ECC15 /* OpenGLView.m in Sources */,
 				F52252BD1B75FD27004235EF /* CalAnimatedView.m in Sources */,
 				F5A5CB5B1C8A5DCE001ECC15 /* CC3Foundation.m in Sources */,
+				F584EF091DABC7EF00687D5F /* CalTextField.m in Sources */,
 				F58C9FDE1B73AE68007D307B /* CalDatePickerView.m in Sources */,
 				F58C9FBB1B7264AF007D307B /* CalMapView.m in Sources */,
 				F58C9FD61B7395C2007D307B /* CalViewWithArbitrarySelectors.m in Sources */,
@@ -819,6 +826,7 @@
 				F5A5CB701C8A6FB0001ECC15 /* OpenGLView.m in Sources */,
 				F52252BE1B75FD27004235EF /* CalAnimatedView.m in Sources */,
 				F5A5CB6A1C8A6F58001ECC15 /* CC3Foundation.m in Sources */,
+				F584EF0A1DABC7EF00687D5F /* CalTextField.m in Sources */,
 				F58C9FDF1B73AE68007D307B /* CalDatePickerView.m in Sources */,
 				F58C9FBC1B7264AF007D307B /* CalMapView.m in Sources */,
 				F58C9FD71B7395C2007D307B /* CalViewWithArbitrarySelectors.m in Sources */,
