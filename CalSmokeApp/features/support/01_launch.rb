@@ -296,9 +296,7 @@ After("@german") do
 end
 
 After do |scenario|
-  case :pry
-    when :default
-      Calabash::Launchctl.instance.shutdown(self)
+  case :debug
     when :debug
       Calabash::Launchctl.instance.maybe_exit_cucumber_on_failure(scenario, self)
     when :pry
