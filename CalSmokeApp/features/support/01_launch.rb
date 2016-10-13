@@ -306,3 +306,17 @@ After do |scenario|
       Calabash::Launchctl.instance.maybe_exit_cucumber_on_failure(scenario, self)
   end
 end
+
+at_exit do
+  # Unload Xcode 8 on Jenkins.
+  if ENV["JENKINS_HOME"]
+    current = RunLoop::Xcode.new.version
+    p("Unloading Xcode #{current.to_s} on Jenkins")
+
+    ENV["DEVELOPER_DIR"] = "/Xcode/7.3.1/Xcode.app/Contents/Developer"
+
+    current = RunLoop::Xcode.new.version
+    p("Loading Xcode #{current.to_s} on Jenkins")
+    RunLoop::Simctl.ensure_valid_core_simulator_service
+  end
+end
