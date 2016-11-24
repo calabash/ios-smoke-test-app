@@ -40,6 +40,8 @@
   if (UIGestureRecognizerStateEnded == state) {
     NSLog(@"state ended");
     if (![self isFirstResponder]) {
+      // Possibly implement the Focus protocols
+      // [self setNeedsFocusUpdate];
       NSLog(@"become first responder!");
       [self becomeFirstResponder];
     } else {
@@ -57,18 +59,30 @@
 }
 
 - (BOOL)hasText {
-  return [self.text length] > 0;
+  return self.text && self.text.length > 0;
+}
+
+- (void)setText:(NSString *)text {
+  if (!text || text.length <= 0) {
+    [super setText:@" "];
+  } else {
+    [super setText:text];
+  }
 }
 
 - (void)insertText:(NSString *)text {
-  NSString *appended = [[self text] stringByAppendingString:text];
-  self.text = appended;
+  if ([self.text isEqualToString:@" "]) {
+    self.text = text;
+  } else {
+    NSString *appended = [[self text] stringByAppendingString:text];
+    self.text = appended;
+  }
 }
 
 - (void)deleteBackward {
   if (![self hasText]) { return; }
   if ([[self text] length] == 1) {
-     self.text = @"";
+     self.text = @" ";
   } else {
     self.text = [self.text substringToIndex:[[self text] length] - 2];
   }
