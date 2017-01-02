@@ -54,10 +54,7 @@ When(/^I long press the (left|right) box for (\d+) seconds?$/) do |which, durati
   query = "view marked:'#{which} box'"
   wait_for_element_exists query
 
-  # Work around until we resolve the touch duration issue.
-  # https://github.com/calabash/DeviceAgent.iOS/pull/161
-  # Touch: increase touch duration by 0.01
-  touch_hold(query, {:duration => duration.to_i + 0.01})
+  touch_hold(query, {:duration => duration.to_i + 0.2})
   @last_long_press_duration = duration.to_i
 end
 
