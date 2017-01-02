@@ -5,6 +5,14 @@ Then(/^I see the scrolling views table$/) do
   wait_for_element_exists(query, options)
 end
 
+Then(/^I go back to the Scrolls page by touching the navbar item$/) do
+  query = "* marked:'back item'"
+  wait_for_view(query)
+  touch(query)
+  wait_for_animations
+  wait_for_view("* marked:'scrolls page'")
+end
+
 When(/^I touch the (collection|table|scroll) views row$/) do |row_name|
   query = "UITableViewCell marked:'#{row_name} views row'"
 

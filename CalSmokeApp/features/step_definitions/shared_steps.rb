@@ -12,9 +12,23 @@ Given(/^I see the (controls|gestures|scrolls|special|date picker) tab$/) do |tab
   when 'date picker'
     index = 4
   end
-  touch("tabBarButton index:#{index}")
-  expected_view = "#{tab} page"
-  wait_for_element_exists("view marked:'#{expected_view}'")
+
+  count = 0
+  expected_view = "* marked:'#{tab} page'"
+
+  # Touch is not always registering.
+  # https://github.com/calabash/calabash-ios/issues/304
+  begin
+    touch("UITabBarButton index:#{index}")
+    wait_for_view(expected_view, {:timeout => 4})
+  rescue => e
+    if count == 3
+      fail(e.message)
+    else
+      count = count + 1
+      retry
+    end
+  end
 end
 
 Then(/^I type "([^"]*)"$/) do |text_to_type|
