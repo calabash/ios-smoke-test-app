@@ -139,20 +139,36 @@ echo "$(tput setaf 4)$DETAILS$(tput sgr0)"
 banner "Preparing for XTC Submit"
 
 XTC_DIR="xtc-submit-calabash-linked"
-rm -rf "${XTC_DIR}"
 mkdir -p "${XTC_DIR}"
 
+rm -rf "${XTC_DIR}/features"
 ditto_or_exit features "${XTC_DIR}/features"
 info "Copied features to ${XTC_DIR}/"
 
+rm -rf "${XTC_DIR}/cucumber.yml"
 ditto_or_exit config/xtc-profiles.yml "${XTC_DIR}/cucumber.yml"
 info "Copied config/xtc-profiles.yml to ${XTC_DIR}/"
 
 ditto_or_exit "${INSTALLED_IPA}" "${XTC_DIR}/"
 info "Copied ${IPA} to ${XTC_DIR}/"
 
+rm -rf "${XTC_DIR}/${DSYM}"
 ditto_or_exit "${INSTALLED_DSYM}" "${XTC_DIR}/${DSYM}"
 info "Copied ${DSYM} to ${XTC_DIR}/"
+
+rm -rf "${XTC_DIR}/.xtc"
+ditto_or_exit ".xtc" "${XTC_DIR}/.xtc"
+info "Copied .xtc to ${XTC_DIR}/.xtc"
+
+cat >"${XTC_DIR}/Gemfile" <<EOF
+source "https://rubygems.org"
+
+gem "calabash-cucumber"
+EOF
+
+cat "config/xtc-other-gems.rb" >> "${XTC_DIR}/Gemfile"
+info "Wrote ${XTC_DIR}/Gemfile with contents"
+cat "${XTC_DIR}/Gemfile"
 
 info "Done!"
 
