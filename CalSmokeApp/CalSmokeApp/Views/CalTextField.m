@@ -10,14 +10,6 @@
 
 @implementation CalTextField
 
-//- (id)initWithFrame:(CGRect)frame {
-//  self = [super initWithFrame:frame];
-//  if (self) {
-//    [self addTapGestureRecognizer];
-//  }
-//  return self;
-//}
-
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
@@ -62,30 +54,42 @@
   return self.text && self.text.length > 0;
 }
 
-- (void)setText:(NSString *)text {
-  if (!text || text.length <= 0) {
-    [super setText:@" "];
-  } else {
-    [super setText:text];
-  }
+- (void)drawRect:(CGRect)rect {
+  UIRectFrame(rect);
+
+  NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+  paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+  paragraphStyle.alignment = NSTextAlignmentCenter;
+
+  NSDictionary *attrs = @{
+                          NSFontAttributeName : [UIFont systemFontOfSize:18],
+                          NSParagraphStyleAttributeName : paragraphStyle,
+                          NSForegroundColorAttributeName : [UIColor whiteColor]
+                          };
+  [self.text drawInRect:rect withAttributes:attrs];
 }
 
 - (void)insertText:(NSString *)text {
-  if ([self.text isEqualToString:@" "]) {
-    self.text = text;
+  if (!self.text) {
+    self.text = @"";
+  }
+
+  if ([text length] == 1 && [text characterAtIndex:0] == 10) {
+    [self resignFirstResponder];
   } else {
     NSString *appended = [[self text] stringByAppendingString:text];
     self.text = appended;
   }
+  [self setNeedsDisplay];
 }
 
 - (void)deleteBackward {
-  if (![self hasText]) { return; }
-  if ([[self text] length] == 1) {
-     self.text = @" ";
-  } else {
-    self.text = [self.text substringToIndex:[[self text] length] - 2];
+  if ([self hasText]) {
+    NSString *text = self.text;
+    self.text = [text substringToIndex:[text length] - 1];
   }
+
+  [self setNeedsDisplay];
 }
 
 @end

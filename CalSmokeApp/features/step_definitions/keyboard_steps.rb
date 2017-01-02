@@ -52,8 +52,7 @@ end
 And(/^I dismiss the keyboard that is attached to the CalTextField$/) do
   # Do not do this unless absolutely necessary.
   # Your UI should provide a way for the user to dismiss a keyboard.
-  query = "* marked:'cal text field'"
-  query(query, :resignFirstResponder)
+  tap_keyboard_action_key
   wait_for_no_keyboard
 end
 
@@ -69,13 +68,7 @@ Then(/^I clear the text in the (CalTextField|text field|numeric text field) usin
   wait_for_view(query)
 
   query(query, {setText:""})
-  if where == "CalTextField"
-    # CalTextField needs to have some text or the height of the view will be 0
-    # which will make the view untouchable.
-    expect(query(query)[0]["text"]).to be == " "
-  else
-    expect(query(query)[0]["text"]).to be == ""
-  end
+  expect(query(query)[0]["text"]).to be == ""
 end
 
 Then(/^I type "([^"]*)" in the text field$/) do |string|
@@ -118,13 +111,7 @@ Then(/^I clear the text in the (CalTextField|text field|numeric text field) usin
     device_agent.clear_text
   end
 
-  if where == "CalTextField"
-    # CalTextField needs to have some text or the height of the view will be 0
-    # which will make the view untouchable.
-    expect(query(query)[0]["text"]).to be == " "
-  else
-    expect(query(query)[0]["text"]).to be == ""
-  end
+  expect(query(query)[0]["text"]).to be == ""
 end
 
 But(/^I cannot clear the text in the CalTextField using device_agent#clear_text$/) do
