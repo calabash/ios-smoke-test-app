@@ -9,5 +9,5 @@ fi
 gem install run_loop --no-document --env-shebang --no-prerelease
 gem install luffa --no-document --env-shebang --no-prerelease
 
-bin/ci/cucumber.rb
+DEVELOPER_DIR=/Xcode/8.0/Xcode.app/Contents/Developer bin/ci/cucumber.rb --tags @travis
 

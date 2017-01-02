@@ -1,6 +1,7 @@
 #import "CalControlsController.h"
 #import "UIView+Positioning.h"
 #import "CalViewWithArbitrarySelectors.h"
+#import "CalTextField.h"
 
 static NSString *const kUserDefaultsSwitchState = @"sh.calaba.CalSmokeApp Switch State";
 
@@ -9,6 +10,7 @@ static NSString *const kUserDefaultsSwitchState = @"sh.calaba.CalSmokeApp Switch
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UISwitch *uiSwitch;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet CalTextField *calTextField;
 
 @end
 
@@ -122,6 +124,8 @@ static NSString *const kUserDefaultsSwitchState = @"sh.calaba.CalSmokeApp Switch
   self.textField.returnKeyType = UIReturnKeyDone;
   self.uiSwitch.accessibilityIdentifier = @"switch";
   self.slider.accessibilityIdentifier = @"slider";
+
+  self.calTextField.accessibilityIdentifier = @"cal text field";
 }
 
 - (void) viewWillLayoutSubviews {

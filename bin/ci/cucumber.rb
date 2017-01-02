@@ -40,19 +40,9 @@ Dir.chdir(working_directory) do
 
   sim_version = RunLoop::Version.new("#{sim_major}.#{sim_minor}")
 
-  if ENV["JENKINS_HOME"]
-    devices = {
-      :iphone6sPlus => 'iPhone 6s Plus',
-    }
-  else
-    devices = {
-      :air => 'iPad Air',
-      :iphone4s => 'iPhone 4s',
-      :iphone5s => 'iPhone 5s',
-      :iphone6 => 'iPhone 6',
-      :iphone6plus => 'iPhone 6 Plus'
-    }
-  end
+  devices = {
+    :iphone6sPlus => 'iPhone 6s Plus'
+  }
 
   RunLoop::CoreSimulator.terminate_core_simulator_processes
 
@@ -69,14 +59,18 @@ Dir.chdir(working_directory) do
       sim.name == name && sim.version == sim_version
     end
 
-    env_vars = {'DEVICE_TARGET' => match.udid}
+    if match
+      env_vars = {'DEVICE_TARGET' => match.udid}
 
-    exit_code = Luffa.unix_command(cucumber_cmd, {:exit_on_nonzero_status => false,
-                                                  :env_vars => env_vars})
-    if exit_code == 0
-      passed_sims << name
+      exit_code = Luffa.unix_command(cucumber_cmd, {:exit_on_nonzero_status => false,
+                                                    :env_vars => env_vars})
+      if exit_code == 0
+        passed_sims << name
+      else
+        failed_sims << name
+      end
     else
-      failed_sims << name
+      raise "Expected to find a match for simulator '#{name}' with version #{sim_version.to_s}"
     end
   end
 

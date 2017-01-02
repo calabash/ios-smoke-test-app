@@ -12,20 +12,23 @@ Given(/^I see the (controls|gestures|scrolls|special|date picker) tab$/) do |tab
   when 'date picker'
     index = 4
   end
-  touch("tabBarButton index:#{index}")
-  expected_view = "#{tab} page"
-  wait_for_element_exists("view marked:'#{expected_view}'")
-end
 
-Then(/^I type "([^"]*)"$/) do |text_to_type|
-  query = 'UITextField'
-  options = wait_options(query)
-  wait_for_element_exists(query, options)
+  count = 0
+  expected_view = "* marked:'#{tab} page'"
 
-  touch(query)
-  wait_for_keyboard
-
-  keyboard_enter_text text_to_type
+  # Touch is not always registering.
+  # https://github.com/calabash/calabash-ios/issues/304
+  begin
+    touch("UITabBarButton index:#{index}")
+    wait_for_view(expected_view, {:timeout => 4})
+  rescue => e
+    if count == 3
+      fail(e.message)
+    else
+      count = count + 1
+      retry
+    end
+  end
 end
 
 When(/^I touch the back button$/) do

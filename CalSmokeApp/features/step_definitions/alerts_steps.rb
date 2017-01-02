@@ -138,6 +138,7 @@ Then(/^I see the "([^"]*)" alert$/) do |alert_title|
 end
 
 And(/^I can dismiss the alert with the OK button$/) do
+  wait_for_animations
   tap_alert_button('OK')
   wait_for_no_alert
 end
