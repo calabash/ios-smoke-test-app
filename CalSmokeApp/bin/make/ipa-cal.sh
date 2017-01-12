@@ -157,8 +157,12 @@ ditto_or_exit "${INSTALLED_DSYM}" "${XTC_DIR}/${DSYM}"
 info "Copied ${DSYM} to ${XTC_DIR}/"
 
 rm -rf "${XTC_DIR}/.xtc"
-ditto_or_exit ".xtc" "${XTC_DIR}/.xtc"
-info "Copied .xtc to ${XTC_DIR}/.xtc"
+if [ -d ".xtc" ]; then
+  ditto_or_exit ".xtc" "${XTC_DIR}/.xtc"
+  info "Copied .xtc to ${XTC_DIR}/.xtc"
+else
+  info "No .xtc directory; skipping copy"
+fi
 
 cat >"${XTC_DIR}/Gemfile" <<EOF
 source "https://rubygems.org"
