@@ -124,8 +124,12 @@ ditto_or_exit "${INSTALLED_APP}" "${PAYLOAD_DIR}/${APP}"
 xcrun ditto -ck --rsrc --sequesterRsrc --keepParent \
   "${PAYLOAD_DIR}" \
   "${INSTALLED_IPA}"
-
 info "Installed ${INSTALLED_IPA}"
+
+xcrun ditto -ck --rsrc --sequesterRsrc --keepParent \
+  "${INSTALLED_APP}" \
+  "${INSTALLED_APP}.zip"
+info "Installed ${INSTALLED_APP}.zip"
 
 ditto_or_exit "${BUILD_PRODUCTS_DSYM}" "${INSTALLED_DSYM}"
 info "Installed ${INSTALLED_DSYM}"
