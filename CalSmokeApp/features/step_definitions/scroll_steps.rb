@@ -19,6 +19,8 @@ When(/^I touch the (collection|table|scroll) views row$/) do |row_name|
   options = wait_options(query)
   wait_for_elements_exist(query, options)
 
+  sleep(0.4)
+  wait_for_none_animating
   touch(query)
   wait_for_none_animating
 end

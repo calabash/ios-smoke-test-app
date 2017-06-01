@@ -35,8 +35,9 @@ And(/^I see the tapping page$/) do
   options = wait_options(query)
   wait_for_element_exists(query, options)
 
+  sleep(0.4)
+  wait_for_none_animating
   touch(query)
-
   wait_for_none_animating
 
   query = "view marked:'tapping page'"
