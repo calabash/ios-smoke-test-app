@@ -96,16 +96,15 @@ fi
 
 banner "Installing"
 
-ditto_or_exit "${BUILD_PRODUCTS_APP}" "${INSTALLED_APP}"
-info "Installed ${INSTALLED_APP}"
+install_with_ditto "${BUILD_PRODUCTS_APP}" "${INSTALLED_APP}"
 
-ditto_or_exit "${BUILD_PRODUCTS_DSYM}" "${INSTALLED_DSYM}"
-info "Installed ${INSTALLED_DSYM}"
+install_with_ditto "${BUILD_PRODUCTS_DSYM}" "${INSTALLED_DSYM}"
 
-xcrun ditto -ck --rsrc --sequesterRsrc --keepParent \
-  "${INSTALLED_APP}" \
-  "${INSTALLED_APP}.zip"
-info "Installed ${INSTALLED_APP}.zip"
+ditto_to_zip "${INSTALLED_APP}" \
+  "${INSTALL_DIR}/CalSmoke-sim.app.zip"
+info "Installed ${INSTALL_DIR}/CalSmoke-sim.app.zip"
+
+install_with_ditto "${BUILD_PRODUCTS_DSYM}" \
+  "${INSTALL_DIR}/CalSmoke-sim.app.dSYM"
 
 info "Done!"
-

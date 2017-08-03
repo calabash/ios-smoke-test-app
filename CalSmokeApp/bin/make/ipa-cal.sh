@@ -92,8 +92,7 @@ fi
 
 banner "Installing"
 
-ditto_or_exit "${BUILD_PRODUCTS_APP}" "${INSTALLED_APP}"
-info "Installed ${INSTALLED_APP}"
+install_with_ditto "${BUILD_PRODUCTS_APP}" "${INSTALLED_APP}"
 
 PAYLOAD_DIR="${INSTALL_DIR}/Payload"
 mkdir -p "${PAYLOAD_DIR}"
@@ -103,11 +102,17 @@ ditto_or_exit "${INSTALLED_APP}" "${PAYLOAD_DIR}/${APP}"
 ditto_to_zip "${PAYLOAD_DIR}" "${INSTALLED_IPA}"
 info "Installed ${INSTALLED_IPA}"
 
-ditto_to_zip "${INSTALLED_APP}" "${INSTALLED_APP}.zip"
-info "Installed ${INSTALLED_APP}.zip"
+install_with_ditto "${INSTALLED_IPA}" \
+  "${INSTALL_DIR}/CalSmoke-device.ipa"
 
-ditto_or_exit "${BUILD_PRODUCTS_DSYM}" "${INSTALLED_DSYM}"
-info "Installed ${INSTALLED_DSYM}"
+ditto_to_zip "${INSTALLED_APP}" \
+  "${INSTALL_DIR}/CalSmoke-device.app.zip"
+info "Installed ${INSTALL_DIR}/CalSmoke-device.app.zip"
+
+install_with_ditto "${BUILD_PRODUCTS_DSYM}" "${INSTALLED_DSYM}"
+
+install_with_ditto "${BUILD_PRODUCTS_DSYM}" \
+  "${INSTALL_DIR}/CalSmoke-device.app.dSYM"
 
 banner "Code Signing Details"
 
@@ -154,4 +159,3 @@ info "Wrote ${XTC_DIR}/Gemfile with contents"
 cat "${XTC_DIR}/Gemfile"
 
 info "Done!"
-
