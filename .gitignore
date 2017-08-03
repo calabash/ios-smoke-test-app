@@ -12,7 +12,9 @@ tags
 *.ipa
 *.apk
 *.app
+*.app.zip
 *.dSYM
+Products
 
 # Mac OS X
 .DS_Store
