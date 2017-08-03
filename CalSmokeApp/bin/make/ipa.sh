@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-set -e
+source bin/log.sh
+source bin/ditto.sh
+source bin/simctl.sh
 
-source bin/log-functions.sh
-source bin/copy-with-ditto.sh
+ensure_valid_core_sim_service
+
+set -e
 
 if [ "${XCPRETTY}" = "0" ]; then
   USE_XCPRETTY=
@@ -110,9 +113,7 @@ mkdir -p "${PAYLOAD_DIR}"
 
 ditto_or_exit "${INSTALLED_APP}" "${PAYLOAD_DIR}/${APP}"
 
-xcrun ditto -ck --rsrc --sequesterRsrc --keepParent \
-  "${PAYLOAD_DIR}" \
-  "${INSTALLED_IPA}"
+ditto_to_zip "${PAYLOAD_DIR}" "${INSTALLED_IPA}"
 
 info "Installed ${INSTALLED_IPA}"
 

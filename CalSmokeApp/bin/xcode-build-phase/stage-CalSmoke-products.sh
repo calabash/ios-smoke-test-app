@@ -7,8 +7,8 @@ fi
 
 set -e
 
-source bin/log-functions.sh
-source bin/copy-with-ditto.sh
+source bin/log.sh
+source bin/ditto.sh
 
 if [ ${EFFECTIVE_PLATFORM_NAME} = "-iphoneos" ]; then
   if [ ${CONFIGURATION} = "Debug" ]; then

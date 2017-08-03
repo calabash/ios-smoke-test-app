@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-source bin/log-functions.sh
+source bin/log.sh
 
 function ditto_or_exit {
-  ditto "${1}" "${2}"
+  xcrun ditto "${1}" "${2}"
   if [ "$?" != 0 ]; then
     error "Could not copy:"
     error "  source: ${1}"
@@ -17,3 +17,9 @@ function ditto_or_exit {
   fi
 }
 
+function ditto_to_zip {
+  xcrun ditto \
+  -ck --rsrc --sequesterRsrc --keepParent \
+  "${1}" \
+  "${2}"
+}
