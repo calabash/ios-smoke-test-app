@@ -4,7 +4,8 @@ Then(/^I call backdoor on a method that returns a CGSize$/) do
 end
 
 Then(/^I see that CGSize is not fully supported$/) do
-  expect(backdoor("backdoorSize")).to be == "CGSize"
+  # Should be {"Height" => 0, "Width" => 0}
+  expect(backdoor("backdoorSize")).to be == [0, 0]
 end
 
 Then(/^I call backdoor on a method that returns LPSmokeAlarm struct$/) do
