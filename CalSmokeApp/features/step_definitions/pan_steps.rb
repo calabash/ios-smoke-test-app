@@ -1,16 +1,10 @@
-When(/^I pan left on the screen$/) do
-  top_view = query('*').first
-  rect = top_view['rect']
 
-  from_x = 0
-  from_y = rect['height'] * 0.5
-  from_offset = {x: from_x, y: from_y}
+When(/^I pan left-to-right on the screen$/) do
+  points = Calabash::Cucumber::Automator::Coordinates.points_for_full_screen_pan(:right)
 
-  to_x = rect['width'] * 0.75
-  to_y = from_y
-  to_offset = {x: to_x, y: to_y}
+  points[:start][:x] = 0
 
-  pan_coordinates(from_offset, to_offset, {duration: 0.5})
+  pan_coordinates(points[:start], points[:end], {duration: 0.5})
   wait_for_none_animating
 end
 
