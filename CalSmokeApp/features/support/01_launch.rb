@@ -36,6 +36,7 @@ module Calabash
     def maybe_exit_cucumber_on_failure(scenario, world)
       if scenario.failed?
         if RunLoop::Environment.xtc?
+          ENV["RESET_BETWEEN_SCENARIOS"] = "1"
           shutdown(world)
           sleep(1.0)
         else
