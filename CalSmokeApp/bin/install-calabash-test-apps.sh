@@ -5,8 +5,6 @@ source bin/ditto.sh
 
 set -e
 
-~/.calabash/calabash-codesign/apple/create-keychain.sh
-
 CALABASH_BASE_DIR="$(greadlink -f ../../calabash-ios/calabash-cucumber)"
 
 if [ ! -d "${CALABASH_BASE_DIR}" ]; then
@@ -48,7 +46,7 @@ install_product \
   "${RSPEC}/CalSmoke-cal.app"
 
 install_product \
-  "Products/app/CalSmoke/CalSmoke.app" \
+  "Products/app/CalSmoke/no-calabash/CalSmoke.app" \
   "${RSPEC}/CalSmoke.app"
 
 CUCUMBER="${CALABASH_BASE_DIR}/test/xtc"
