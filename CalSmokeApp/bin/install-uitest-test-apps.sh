@@ -7,6 +7,7 @@ if [ ! -x "$(command -v greadlink)" ]; then
   error "This script requires greadlink which can be installed with homebrew"
   error "$ brew update"
   error "$ brew install coreutils"
+  exit 1
 fi
 
 INSTALL_DIR="$(greadlink -f ../../../xtc/test-cloud-test-apps/uitest-test-apps/iOS)"
@@ -19,7 +20,6 @@ fi
 
 make app-cal
 make ipa-cal
-
 
 banner "Installing to UITest Apps"
 
@@ -42,4 +42,3 @@ install_with_ditto \
 install_with_ditto \
   "Products/ipa/CalSmoke-cal/CalSmoke-device.ipa" \
   "${INSTALL_DIR}/CalSmoke-device.ipa"
-
