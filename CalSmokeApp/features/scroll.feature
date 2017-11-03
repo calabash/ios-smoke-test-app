@@ -1,4 +1,5 @@
 @scroll
+@gestures
 Feature: Testing scrolling
 In order to scroll on tables, collections, map views, and web views
 As a developer

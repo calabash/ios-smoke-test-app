@@ -1,4 +1,5 @@
 @pan
+@gestures
 Feature: Pan
   In order to perform swipes
   As a developer

@@ -1,4 +1,5 @@
 @sheets
+@gestures
 Feature: Sheets
 In order to demonstrate interactions with sheets
 As a Calabash maintainer

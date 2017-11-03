@@ -1,4 +1,5 @@
 @alerts
+@gestures
 Feature: Alerts
 In order to demonstrate interactions with alerts
 As a Calabash maintainer

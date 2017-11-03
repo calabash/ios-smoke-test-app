@@ -1,4 +1,5 @@
 @slider
+@gestures
 Feature: UISlider
 In order to interact with sliders
 As a developer
