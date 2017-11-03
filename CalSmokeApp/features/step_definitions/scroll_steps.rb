@@ -222,7 +222,7 @@ Then(/^I scroll up to the purple box$/) do
 
   count = 0
   loop do
-    break if visible.call || count == 3
+    break if visible.call || count == 5
     scroll(query, :up)
     wait_for_none_animating
     count = count + 1;
@@ -243,7 +243,7 @@ Then(/^I scroll left to the light blue box$/) do
 
   count = 0
   loop do
-    break if visible.call || count == 3
+    break if visible.call || count == 5
     scroll(query, :left)
     wait_for_none_animating
     count = count + 1;
@@ -264,7 +264,7 @@ Then(/^I scroll down to the gray box$/) do
 
   count = 0
   loop do
-    break if visible.call || count == 3
+    break if visible.call || count == 5
     scroll(query, :down)
     wait_for_none_animating
     count = count + 1;
@@ -285,7 +285,7 @@ Then(/^I scroll right to the dark gray box$/) do
 
   count = 0
   loop do
-    break if visible.call || count == 3
+    break if visible.call || count == 5
     scroll(query, :right)
     wait_for_none_animating
     count = count + 1;
