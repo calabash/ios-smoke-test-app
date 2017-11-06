@@ -8,6 +8,7 @@ Background: Navigate to the special tab
   Given I see the special tab
 
 @backdoor
+@gestures
 Scenario: Start an animation and wait for it to finish
   And I have started an animation that lasts 4 seconds
   Then I can wait for the animation to stop

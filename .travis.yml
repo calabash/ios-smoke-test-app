@@ -1,19 +1,14 @@
 language: objective-c
-osx_image: xcode8
-
-before_script:
-  - gem install run_loop --no-document --env-shebang --no-prerelease
-  - gem install luffa --no-document --env-shebang --no-prerelease
-  - luffa authorize
+osx_image: xcode9
 
 script:
-  - bin/ci/cucumber.rb --tags @travis
+  - bundle install
+  - bundle exec bin/ci/cucumber.rb --tags @travis
 
 notifications:
   email:
     recipients:
-      - joshuajmoody@gmail.com
-      - chris.fuentes@xamarin.com
+      - josmoo@microsoft.com
     on_success: change
     on_failure: always
   slack:
