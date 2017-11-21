@@ -23,8 +23,6 @@ typedef enum : NSInteger {
 @property(weak, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic, readonly) UIColor *lightPink;
 
-- (void) setContentInsets:(UITableView *) tableView;
-
 @end
 
 @implementation CalViewsThatScrollController
@@ -160,19 +158,6 @@ typedef enum : NSInteger {
 
 #pragma mark - View Lifecycle
 
-- (void) setContentInsets:(UITableView *)tableView {
-  UINavigationBar *navBar = self.navigationController.navigationBar;
-  CGFloat topHeight = navBar.height;
-  if (![[UIApplication sharedApplication] isStatusBarHidden]) {
-    CGRect frame = [[UIApplication sharedApplication] statusBarFrame];
-    topHeight = topHeight + frame.size.height;
-  }
-  UITabBar *tabBar = self.tabBarController.tabBar;
-  CGFloat bottomHeight = tabBar.height;
-
-  tableView.contentInset = UIEdgeInsetsMake(topHeight, 0, bottomHeight, 0);
-}
-
 - (void)viewDidLoad {
   [super viewDidLoad];
 
@@ -197,8 +182,6 @@ typedef enum : NSInteger {
 
 - (void) viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
-
-  [self setContentInsets:self.tableView];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -207,9 +190,7 @@ typedef enum : NSInteger {
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-
   self.navigationItem.title = self.title;
-  [self setContentInsets:self.tableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
