@@ -81,19 +81,19 @@ float CyclicDifference(float minuend, float subtrahend, float period);
 #pragma mark Random number generation
 
 /** Returns a random unsigned integer over the full unsigned interger range (between 0 and 0xFFFFFFFF). */
-unsigned int RandomUInt();
+unsigned int RandomUInt(void);
 
 /** Returns a random unsigned integer between 0 inclusive and the specified max exclusive. */
 unsigned int RandomUIntBelow(unsigned int max);
 
 /** Returns a random double between 0.0 inclusive and 1.0 exclusive. */
-double RandomDouble();
+double RandomDouble(void);
 
 /** Returns a random double between the specified min inclusive and the specified max exclusive. */
 double RandomDoubleBetween(double min, double max);
 
 /** Returns a random float between 0.0 inclusive and 1.0 exclusive. */
-float RandomFloat();
+float RandomFloat(void);
 
 /** Returns a random float between the specified min inclusive and the specified max exclusive. */
 float RandomFloatBetween(float min, float max);
