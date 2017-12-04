@@ -181,6 +181,8 @@
   return self;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wvarargs"
 -(instancetype) initWithElements: (GLfloat) e00, ... {
   va_list args;
   va_start(args, e00);
@@ -196,6 +198,7 @@
   va_end(args);
   return mtx;
 }
+#pragma clang diagnostic pop
 
 -(instancetype) initOnGLMatrix: (GLfloat*) aGLMtx {
   return [[CC3GLPointerMatrix alloc] initOnGLMatrix: aGLMtx];

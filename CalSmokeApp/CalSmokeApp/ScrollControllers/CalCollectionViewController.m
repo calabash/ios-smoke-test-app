@@ -137,8 +137,6 @@ typedef enum : NSUInteger {
 - (UIColor *) colorForBoxAtIndexPath:(NSIndexPath *) indexPath;
 - (NSString *) accessibilityIdentifierForBoxAtIndexPath:(NSIndexPath *) indexPath;
 
-- (void) updateContentInsetsCollectionView:(UICollectionView *) collectionView;
-
 @end
 
 @implementation CalCollectionViewController
@@ -263,19 +261,6 @@ typedef enum : NSUInteger {
 
 - (void) buttonTouchedBack:(id) sender {
   [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void) updateContentInsetsCollectionView:(UICollectionView *) collectionView {
-  UINavigationBar *navBar = self.navigationController.navigationBar;
-  CGFloat topHeight = navBar.height;
-  if (![[UIApplication sharedApplication] isStatusBarHidden]) {
-    CGRect frame = [[UIApplication sharedApplication] statusBarFrame];
-    topHeight = topHeight + frame.size.height;
-  }
-  UITabBar *tabBar = self.tabBarController.tabBar;
-  CGFloat bottomHeight = tabBar.height;
-
-  collectionView.contentInset = UIEdgeInsetsMake(topHeight, 0, bottomHeight, 0);
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -421,7 +406,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 
 - (void) viewWillLayoutSubviews {
   [super viewWillLayoutSubviews];
-  [self updateContentInsetsCollectionView:self.boxesCollectionView];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -452,8 +436,6 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     [navcon.interactivePopGestureRecognizer addTarget:self
                                                action:@selector(buttonTouchedBack:)];
   }
-
-  [self updateContentInsetsCollectionView:self.boxesCollectionView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
