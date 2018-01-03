@@ -23,6 +23,8 @@ __MACOSX
 # Jetbrains
 .idea
 
+InfoPlist.h
+
 # ruby/calabash/cucumber
 .irb-history
 .irbrc-*

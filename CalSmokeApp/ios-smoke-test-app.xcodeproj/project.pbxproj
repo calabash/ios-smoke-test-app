@@ -6,6 +6,20 @@
 	objectVersion = 48;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		F5529E651FFCD6DD00A6F861 /* Versioning */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F5529E661FFCD6DD00A6F861 /* Build configuration list for PBXAggregateTarget "Versioning" */;
+			buildPhases = (
+				F5529E6D1FFCD71300A6F861 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Versioning;
+			productName = Versioning;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1a6fb43aa140ae563e019cce /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB1B1987EF8700299AEF /* main.m */; };
 		4306c7a674ae559b3806ebb3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = a66015686499dbb45da8c3c4 /* CFNetwork.framework */; };
@@ -136,6 +150,23 @@
 		e3e0a6761f42ce3d10829b2b /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F52BFB181987EF8700299AEF /* InfoPlist.strings */; };
 		f23b5a94a19df2bb34667ee7 /* CalAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB1F1987EF8700299AEF /* CalAppDelegate.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F5529E691FFCD70800A6F861 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F52BFB041987EF8700299AEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5529E651FFCD6DD00A6F861;
+			remoteInfo = Versioning;
+		};
+		F5529E6B1FFCD70E00A6F861 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F52BFB041987EF8700299AEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5529E651FFCD6DD00A6F861;
+			remoteInfo = Versioning;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		42539422bf8ed8e8569bc355 /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
@@ -545,6 +576,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F5529E6A1FFCD70800A6F861 /* PBXTargetDependency */,
 			);
 			name = CalSmoke;
 			productName = chou;
@@ -564,6 +596,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F5529E6C1FFCD70E00A6F861 /* PBXTargetDependency */,
 			);
 			name = "CalSmoke-cal";
 			productName = "chou-cal";
@@ -587,6 +620,10 @@
 								enabled = 1;
 							};
 						};
+					};
+					F5529E651FFCD6DD00A6F861 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
 					};
 					aa8f030ac9159ee56ef3af27 = {
 						DevelopmentTeam = FYD86LA7RE;
@@ -613,6 +650,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				F5529E651FFCD6DD00A6F861 /* Versioning */,
 				F52BFB0B1987EF8700299AEF /* CalSmoke */,
 				aa8f030ac9159ee56ef3af27 /* CalSmoke-cal */,
 			);
@@ -726,6 +764,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "bin/xcode-build-phase/stage-CalSmoke-products.sh";
+			showEnvVarsInLog = 0;
+		};
+		F5529E6D1FFCD71300A6F861 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bin/xcode-build-phase/increment-build-number.sh";
 			showEnvVarsInLog = 0;
 		};
 		F574ED101D9283860040AF2E /* Run Script Integrate Reveal */ = {
@@ -842,6 +894,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F5529E6A1FFCD70800A6F861 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5529E651FFCD6DD00A6F861 /* Versioning */;
+			targetProxy = F5529E691FFCD70800A6F861 /* PBXContainerItemProxy */;
+		};
+		F5529E6C1FFCD70E00A6F861 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5529E651FFCD6DD00A6F861 /* Versioning */;
+			targetProxy = F5529E6B1FFCD70E00A6F861 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */ = {
@@ -1007,6 +1072,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
+				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1145,6 +1212,8 @@
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = LOAD_CALABASH_DYLIB;
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
+				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1173,6 +1242,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
+				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1183,6 +1254,28 @@
 				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F5529E671FFCD6DD00A6F861 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FYD86LA7RE;
+				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
+				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
+				PRODUCT_NAME = CalSmoke;
+			};
+			name = Debug;
+		};
+		F5529E681FFCD6DD00A6F861 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FYD86LA7RE;
+				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
+				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
+				PRODUCT_NAME = CalSmoke;
 			};
 			name = Release;
 		};
@@ -1207,6 +1300,8 @@
 					CALABASH,
 				);
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
+				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -1248,6 +1343,15 @@
 			buildConfigurations = (
 				F52BFB421987EF8700299AEF /* Debug */,
 				F52BFB431987EF8700299AEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F5529E661FFCD6DD00A6F861 /* Build configuration list for PBXAggregateTarget "Versioning" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5529E671FFCD6DD00A6F861 /* Debug */,
+				F5529E681FFCD6DD00A6F861 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
