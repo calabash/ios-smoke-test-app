@@ -4,19 +4,12 @@
 
 #pragma mark - Orientation / Rotation
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
-  return UIInterfaceOrientationMaskAll;
+  return [self.selectedViewController supportedInterfaceOrientations];
 }
-#else
-- (NSUInteger) supportedInterfaceOrientations {
-  return UIInterfaceOrientationMaskAll;
-}
-#endif
-
 
 - (BOOL) shouldAutorotate {
-  return YES;
+  return [self.selectedViewController shouldAutorotate];
 }
 
 @end

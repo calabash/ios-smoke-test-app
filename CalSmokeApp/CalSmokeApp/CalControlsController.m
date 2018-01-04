@@ -88,25 +88,21 @@ static NSString *const kUserDefaultsSwitchState = @"sh.calaba.CalSmokeApp Switch
 
 #pragma mark - Orientation / Rotation
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
   NSLog(@"in iOS >= 9 supported interface orientations");
+  [super supportedInterfaceOrientations];
   return UIInterfaceOrientationMaskPortrait;
 }
-#else
-- (NSUInteger) supportedInterfaceOrientations {
-  NSLog(@"in iOS < 9 supported interface orientations");
-  return UIInterfaceOrientationMaskPortrait;
+
+- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation {
+  [super preferredInterfaceOrientationForPresentation];
+  return UIInterfaceOrientationPortrait;
 }
-#endif
 
 - (BOOL) shouldAutorotate {
   NSLog(@"in should auto rotate");
+  [super shouldAutorotate];
   return NO;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-  return UIInterfaceOrientationPortrait;
 }
 
 #pragma mark View Lifecycle
