@@ -103,5 +103,4 @@ bundle exec test-cloud submit \
   --config cucumber.yml \
   --profile default \
   --dsym-file "CalSmoke-cal.app.dSYM" \
-  --include .xtc \
-  --test-parameters "${PIPELINE}"
+  --include .xtc
