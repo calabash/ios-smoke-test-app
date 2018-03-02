@@ -46,6 +46,8 @@ ci-reports
 # Directories in which binaries, features, a Gemfile, and
 # cucumber.yml are staged for XTC submission.
 xtc-submit*
+.xtc-credentials
+.xtc
 
 # Xcode 4+
 *.xcodeproj/*.mode*
