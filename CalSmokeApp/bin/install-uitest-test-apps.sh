@@ -10,7 +10,7 @@ if [ ! -x "$(command -v greadlink)" ]; then
   exit 1
 fi
 
-INSTALL_DIR="$(greadlink -f ../../../xtc/test-cloud-test-apps/uitest-test-apps/iOS)"
+INSTALL_DIR="$(greadlink -f ../../../xtc/xamarin/test-cloud-test-apps/uitest-test-apps/iOS)"
 
 if [ ! -d $INSTALL_DIR ]; then
   error "Expected the test-cloud-test-apps repo to be installed here:"
