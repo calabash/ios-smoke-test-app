@@ -132,9 +132,9 @@ if [ "${XC_CONFIG}" = "Release" ]; then
   exit 0
 fi
 
-banner "Preparing for XTC Submit"
+banner "Preparing for Test Cloud Submit"
 
-XTC_DIR="xtc-submit-calabash-embedded"
+XTC_DIR="testcloud-submit"
 rm -rf "${XTC_DIR}"
 mkdir -p "${XTC_DIR}"
 
