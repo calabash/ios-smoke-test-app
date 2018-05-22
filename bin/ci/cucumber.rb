@@ -72,7 +72,12 @@ Dir.chdir(working_directory) do
     passed_sims = []
     failed_sims = []
     devices.each do |key, simulator|
-      cucumber_cmd = "bundle exec cucumber -p simulator --format json -o reports/#{key}.json #{cucumber_args}"
+      args = [
+        "bundle", "exec", "cucumber",
+        "-p", "simulator",
+        "-f", "junit", "-o", "reports/junit/#{key}",
+        "#{cucumber_args}"
+      ]
 
       env_vars = {
         "DEVICE_TARGET" => simulator.udid,
@@ -80,7 +85,7 @@ Dir.chdir(working_directory) do
 
       RunLoop::CoreSimulator.terminate_core_simulator_processes
 
-      exit_code = Luffa.unix_command(cucumber_cmd,
+      exit_code = Luffa.unix_command(args.join(" "),
                                      {:exit_on_nonzero_status => false,
                                       :env_vars => env_vars})
       if exit_code == 0
