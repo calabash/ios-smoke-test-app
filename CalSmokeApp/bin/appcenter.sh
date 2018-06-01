@@ -9,9 +9,9 @@ if [ -z ${1} ]; then
 
 Examples:
 
-$ bin/xtc.sh e9232255
-$ SKIP_IPA_BUILD=1 SERIES='Args and env' bin/xtc.sh e9232255
-$ SERIES='DeviceAgent 2.0' bin/xtc.sh e9232255 48d137d6228ccda303b2a71b0d09e1d0629bf980
+$ bin/appcenter.sh e9232255
+$ SKIP_IPA_BUILD=1 SERIES='Args and env' bin/appcenter.sh e9232255
+$ SERIES='DeviceAgent 2.0' bin/appcenter.sh e9232255 48d137d6228ccda303b2a71b0d09e1d0629bf980
 
 The DeviceAgent-SHA optional argument allows tests to be run against any
 DeviceAgent that has been uploaded to S3 rather than the current active
@@ -34,14 +34,12 @@ BUILD_RUN_LOOP: iff 1, then rebuild Calabash iOS gem before uploading.
   exit 64
 fi
 
-CREDS=.xtc-credentials
+CREDS=.appcenter-credentials
 if [ ! -e "${CREDS}" ]; then
   error "This script requires a ${CREDS} file"
   error "Generating a template now:"
   cat >${CREDS} <<EOF
-export XTC_PRODUCTION_API_TOKEN=
-export XTC_STAGING_API_TOKEN=
-export XTC_USER=
+export APPCENTER_TOKEN=
 EOF
   cat ${CREDS}
   error "Update the file with your credentials and run again."
@@ -65,42 +63,24 @@ fi
 
 PREPARE_XTC_ONLY="${SKIP_IPA_BUILD}" make ipa-cal
 
-cd xtc-submit-calabash-linked
+(cd testcloud-submit
 
 rm -rf .xtc
 mkdir -p .xtc
 
 if [ "${2}" != "" ]; then
   echo "${2}" > .xtc/device-agent-sha
-fi
+fi)
 
-if [ "${SERIES}" = "" ]; then
-  SERIES=master
-fi
-
-if [ -z $XTC_ENDPOINT ]; then
-  API_TOKEN="${XTC_PRODUCTION_API_TOKEN}"
-  ENDPOINT="${XTC_PRODUCTION_ENDPOINT}"
-  XTC_USER="${XTC_PRODUCTION_USER}"
-  info "Uploading to Production"
-else
-  API_TOKEN="${XTC_STAGING_API_TOKEN}"
-  ENDPOINT="${XTC_STAGING_ENDPOINT}"
-  XTC_USER="${XTC_STAGING_USER}"
-  info "Uploading to Staging"
-fi
-
-PIPELINE="pipeline:detect-dylibs-to-inject-in-app-bundle"
-
-XTC_ENDPOINT="${ENDPOINT}" \
-bundle exec test-cloud submit \
-  CalSmoke-cal.ipa \
-  $API_TOKEN \
-  --user "${XTC_USER}" \
-  --app-name "CalSmoke-cal" \
+appcenter test run calabash \
+  --debug \
+  --app-path testcloud-submit/CalSmoke-cal.ipa \
+  --app App-Center-Test-Cloud/CalSmokeApp \
+  --project-dir testcloud-submit \
+  --token $APPCENTER_TOKEN \
   --devices "${1}" \
-  --series "${SERIES}" \
-  --config cucumber.yml \
+  --config-path cucumber.yml \
   --profile default \
-  --dsym-file "CalSmoke-cal.app.dSYM" \
-  --include .xtc
+  --include .xtc \
+  --test-series ${SERIES} \
+  --disable-telemetry

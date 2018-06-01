@@ -103,9 +103,9 @@ if [ "${PREPARE_XTC_ONLY}" != "1" ]; then
   echo "$(tput setaf 4)$DETAILS$(tput sgr0)"
 fi
 
-banner "Preparing for XTC Submit"
+banner "Preparing for Test Cloud Submit"
 
-XTC_DIR="xtc-submit-calabash-linked"
+XTC_DIR="testcloud-submit"
 mkdir -p "${XTC_DIR}"
 
 rm -rf "${XTC_DIR}/features"
