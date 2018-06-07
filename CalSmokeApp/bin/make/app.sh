@@ -10,13 +10,7 @@ set -e
 
 banner "Preparing"
 
-if [ "${XCPRETTY}" = "0" ]; then
-  USE_XCPRETTY=
-else
-  USE_XCPRETTY=`which xcpretty | tr -d '\n'`
-fi
-
-if [ ! -z ${USE_XCPRETTY} ]; then
+if [ $(gem list -i xcpretty) = "true" ] && [ "${XCPRETTY}" != "0" ]; then
   XC_PIPE='xcpretty -c'
 else
   XC_PIPE='cat'
