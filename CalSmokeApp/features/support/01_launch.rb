@@ -296,6 +296,12 @@ After("@german") do
   Calabash::Launchctl.instance.clear_locale_and_lang!
 end
 
+After("@keyboard") do
+  if keyboard_visible?
+    query("* isFirstResponder:1", :resignFirstResponder)
+  end
+end
+
 After do |scenario|
   case :default
     when :default
