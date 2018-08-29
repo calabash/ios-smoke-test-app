@@ -75,7 +75,7 @@ fi)
 appcenter test run calabash \
   --debug \
   --app-path testcloud-submit/CalSmoke-cal.ipa \
-  --app App-Center-Test-Cloud/CalSmokeApp \
+  --app App-Center-Test-Cloud/iOSCalSmoke \
   --project-dir testcloud-submit \
   --token $APPCENTER_TOKEN \
   --devices "${1}" \
