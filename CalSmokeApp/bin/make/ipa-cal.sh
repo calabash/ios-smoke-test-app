@@ -133,7 +133,8 @@ fi
 cat >"${XTC_DIR}/Gemfile" <<EOF
 source "https://rubygems.org"
 
-gem "calabash-cucumber"
+gem "calabash-cucumber", "2.99.0"
+gem "json", "1.8.6"
 EOF
 
 cat "config/xtc-other-gems.rb" >> "${XTC_DIR}/Gemfile"
