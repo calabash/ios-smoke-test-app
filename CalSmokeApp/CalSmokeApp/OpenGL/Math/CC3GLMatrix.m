@@ -185,7 +185,10 @@
 #pragma clang diagnostic ignored "-Wvarargs"
 -(instancetype) initWithElements: (GLfloat) e00, ... {
   va_list args;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wvarargs"
   va_start(args, e00);
+#pragma clang diagnostic pop
   self = [self initWithFirstElement: e00 remainingElements: args];
   va_end(args);
   return self;
@@ -193,7 +196,10 @@
 
 +(instancetype) matrixWithElements: (GLfloat) e00, ... {
   va_list args;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wvarargs"
   va_start(args, e00);
+#pragma clang diagnostic pop
   CC3GLMatrix* mtx = [[CC3GLArrayMatrix alloc] initWithFirstElement: e00 remainingElements: args];
   va_end(args);
   return mtx;
