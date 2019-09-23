@@ -28,8 +28,6 @@ jobs:
         XCODE_VERSION: '11'
   pool:
     vmImage: $(IMAGE_POOL)
-  variables:
-  - group: XTCRunTimeArtifactsCI
 
   steps:
 
