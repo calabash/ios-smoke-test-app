@@ -46,11 +46,11 @@ jobs:
       bundle install
     displayName: "Prepare Ruby Environment"
 
-  - script: |
-      set -e
-      git clone https://$(CalabashKeychainGitHubAccessToken)@github.com/dmitry-shibanov/calabash-codesign.git
-      calabash-codesign/apple/create-keychain.sh
-    displayName: "Download and install keychain"
+  # - script: |
+  #     set -e
+  #     git clone https://$(CalabashKeychainGitHubAccessToken)@github.com/dmitry-shibanov/calabash-codesign.git
+  #     calabash-codesign/apple/create-keychain.sh
+  #   displayName: "Download and install keychain"
 
   - script: bundle exec bin/ci/cucumber.rb
     displayName: "exec cucumber"
