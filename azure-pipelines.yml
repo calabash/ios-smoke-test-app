@@ -19,13 +19,9 @@ jobs:
 
 - job:
   strategy:
-    matrix:
-      Mojave-Xcode-10.3:
-        IMAGE_POOL: 'macOS-10.14'
-        XCODE_VERSION: '10.3'
-      Mojave-Xcode-11.0:
-        IMAGE_POOL: 'macOS-10.14'
-        XCODE_VERSION: '11'
+    Mojave-Xcode-11.0:
+      IMAGE_POOL: 'macOS-10.14'
+      XCODE_VERSION: '11'
   pool:
     vmImage: $(IMAGE_POOL)
 
@@ -46,17 +42,15 @@ jobs:
       bundle install
     displayName: "Prepare Ruby Environment"
 
-  # - script: |
-  #     set -e
-  #     git clone https://$(CalabashKeychainGitHubAccessToken)@github.com/dmitry-shibanov/calabash-codesign.git
-  #     calabash-codesign/apple/create-keychain.sh
-  #   displayName: "Download and install keychain"
+  - script: |
+      set -e
+      git clone https://$(CalabashKeychainGitHubAccessToken)@github.com/dmitry-shibanov/calabash-codesign.git
+      calabash-codesign/apple/create-keychain.sh
+    displayName: "Download and install keychain"
 
   - script: bundle exec bin/ci/cucumber.rb
     displayName: "exec cucumber"
-    # We have to skip cucmber tests for Xcode 11 due to its instability.
-    # This tests will be enabled for the stable Xcode 11 release
-    condition: and(succeeded(), ne(variables['XCODE_VERSION'], '11'))
+    # condition: and(succeeded(), ne(variables['XCODE_VERSION'], '11'))
 
   # - task: PublishTestResults@2
   #   displayName: 'Publish Test Results'
