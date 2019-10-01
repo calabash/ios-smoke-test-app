@@ -20,6 +20,9 @@ jobs:
 - job:
   strategy:
     matrix:
+      Mojave-Xcode-10.3:
+        IMAGE_POOL: 'macOS-10.14'
+        XCODE_VERSION: '10.3'
       Mojave-Xcode-11.0:
         IMAGE_POOL: 'macOS-10.14'
         XCODE_VERSION: '11'
@@ -51,7 +54,6 @@ jobs:
 
   - script: bundle exec bin/ci/cucumber.rb
     displayName: "exec cucumber"
-    # condition: and(succeeded(), ne(variables['XCODE_VERSION'], '11'))
 
   # - task: PublishTestResults@2
   #   displayName: 'Publish Test Results'
