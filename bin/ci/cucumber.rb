@@ -45,25 +45,22 @@ Dir.chdir(working_directory) do
     xcode = RunLoop::Xcode.new
     simctl = RunLoop::Simctl.new
 
-    ipad_pro_12_9 = select_sim_by_name(simctl, "12\\.9[ -]inch\\)")
-    ipad_pro_10_5 = select_sim_by_name(simctl, "10\\.5[ -]inch\\)")
-    ipad_pro_9_7 = select_sim_by_name(simctl, "9\\.7[ -]inch\\)")
-    ipad_air = select_sim_by_name(simctl, "iPad Air 2")
-    iphone_se = select_sim_by_name(simctl, "SE")
-    iphone_6_ff = select_sim_by_name(simctl,
-                                     "iPhone #{xcode.version.major - 1}")
-    iphone_6_plus_ff = select_sim_by_name(simctl,
-                                          "iPhone #{xcode.version.major - 1} Plus")
+    iphone_xs = select_sim_by_name(simctl, "iPhone Xs")
+    iphone_xr = select_sim_by_name(simctl, "iPhone Xʀ")
+    iphone_11 = select_sim_by_name(simctl, "iPhone 11")
+    iphone_11_pro = select_sim_by_name(simctl, "iPhone 11 Pro")
 
-    devices = {
-      ipad_pro_12_9: ipad_pro_12_9,
-      ipad_pro_10_5: ipad_pro_10_5,
-      ipad_pro_9_7: ipad_pro_9_7,
-      ipad_air: ipad_air,
-      iphone_se: iphone_se,
-      iphone_6_form_factor: iphone_6_ff,
-      iphone_6_plus_form_factor: iphone_6_plus_ff
-    }
+    if xcode.version.major < 11
+      devices = {
+        :iphoneXs => iphone_xs,
+        :iphoneXr => iphone_xr
+      }
+    else
+      devices = {
+        :iphone11 => iphone_11,
+        :iphone11Pro => iphone_11_pro
+      }
+    end
 
     devices.delete_if { |k, v| v.nil? }
 
