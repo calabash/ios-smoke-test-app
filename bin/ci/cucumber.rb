@@ -24,24 +24,6 @@ Dir.chdir(working_directory) do
     FileUtils.rm_rf("reports")
     FileUtils.mkdir_p("reports")
 
-    if Luffa::Environment.jenkins_ci?
-      Luffa::Gem.update_rubygems
-      Luffa::Gem.uninstall_gem("calabash-cucumber")
-      Luffa::Gem.uninstall_gem("run_loop")
-    end
-
-    Luffa.unix_command('bundle update',
-                       {:pass_msg => 'bundled',
-                        :fail_msg => 'could not bundle'})
-
-    Luffa.unix_command('make clean',
-                       {:pass_msg => 'cleaned',
-                        :fail_msg => 'could not clean'})
-
-    Luffa.unix_command('make app-cal',
-                       {:pass_msg => 'built app',
-                        :fail_msg => 'could not build app'})
-
     xcode = RunLoop::Xcode.new
     simctl = RunLoop::Simctl.new
 

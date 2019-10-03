@@ -41,6 +41,12 @@ jobs:
       echo -e "install: --no-document --env-shebang\nupdate:  --no-document --env-shebang" > ~/.gemrc
       bundle install
     displayName: "bundle install"
+    
+  - script: cd ./CalSmokeApp && bundle install
+    displayName: "CalSmokeApp bundle install"
+
+  - script: cd ./CalSmokeApp && make app-cal
+    displayName: "make app-cal"
 
   - script: bundle exec bin/ci/cucumber.rb
     displayName: "cucumber tests"
