@@ -42,10 +42,12 @@ jobs:
       bundle install
     displayName: "bundle install"
     
-  - script: cd ./CalSmokeApp && bundle install
+  - script: bundle install
+    workingDirectory: 'CalSmokeApp'
     displayName: "CalSmokeApp bundle install"
 
-  - script: cd ./CalSmokeApp && make app-cal
+  - script: make app-cal
+    workingDirectory: 'CalSmokeApp'
     displayName: "make app-cal"
 
   - script: bundle exec bin/ci/cucumber.rb

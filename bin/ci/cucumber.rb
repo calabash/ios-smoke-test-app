@@ -92,9 +92,6 @@ Dir.chdir(working_directory) do
     # if none failed then we have success
     exit 0 if failed == 0
 
-    # the travis ci environment is not stable enough to have all tests passing
-    exit failed unless Luffa::Environment.travis_ci?
-
     # we'll take 75% passing as good indicator of health
     expected = 75
     actual = ((passed.to_f/sims.to_f) * 100).to_i
