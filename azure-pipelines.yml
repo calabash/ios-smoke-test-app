@@ -52,3 +52,10 @@ jobs:
 
   - script: bundle exec bin/ci/cucumber.rb
     displayName: "cucumber tests"
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    inputs:
+      testResultsFiles: 'CalSmokeApp/reports/**/*.xml'
+      failTaskOnFailedTests: true
+    condition: always()
