@@ -287,7 +287,7 @@ Before do |scenario|
   ENV["RESET_BETWEEN_SCENARIOS"] = "0"
   Calabash::Launchctl.instance.maybe_clear_keychain(scenario, self)
   rotate_home_button_to(:down)
-  sleep(1.0)
+  sleep(2.0)
 end
 
 After("@german") do
