@@ -1,0 +1,64 @@
+trigger:
+  tags:
+    include:
+    - '*'
+  branches:
+    include:
+    - master
+pr:
+  branches:
+    include:
+    - master
+
+jobs:
+
+- job:
+  strategy:
+    matrix:
+      Mojave-Xcode-10.3:
+        IMAGE_POOL: 'macOS-10.14'
+        XCODE_VERSION: '10.3'
+      Mojave-Xcode-11.0:
+        IMAGE_POOL: 'macOS-10.14'
+        XCODE_VERSION: '11'
+  pool:
+    vmImage: $(IMAGE_POOL)
+
+  steps:
+  - script: |
+      set -e
+      sudo xcode-select --switch "/Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer"
+    displayName: "$(IMAGE_POOL) - Xcode $(XCODE_VERSION)"
+    
+  - script: |
+      set -e
+      ruby -v
+      bundler -v
+    displayName: "ruby info"
+
+  - script: gem install bundler -v 1.17.3
+    displayName: "install bundler 1.17.3"
+
+  - script: |
+      set -e
+      echo -e "install: --no-document --env-shebang\nupdate:  --no-document --env-shebang" > ~/.gemrc
+      bundle install
+    displayName: "bundle install"
+    
+  - script: bundle _1.17.3_ install
+    workingDirectory: 'CalSmokeApp'
+    displayName: "CalSmokeApp bundle install"
+
+  - script: make app-cal
+    workingDirectory: 'CalSmokeApp'
+    displayName: "make app-cal"
+
+  - script: bundle exec bin/ci/cucumber.rb
+    displayName: "cucumber tests"
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    inputs:
+      testResultsFiles: 'CalSmokeApp/reports/**/*.xml'
+      failTaskOnFailedTests: true
+    condition: always()
