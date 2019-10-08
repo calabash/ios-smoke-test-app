@@ -45,7 +45,7 @@ jobs:
       bundle install
     displayName: "bundle install"
     
-  - script: bundle install
+  - script: bundle _1.17.3_ install
     workingDirectory: 'CalSmokeApp'
     displayName: "CalSmokeApp bundle install"
 
