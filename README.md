@@ -65,11 +65,10 @@ $ make app-cal
 
 #### Cucumber
 
-Run your first cucumber test:
+Run your cucumber tests:
 
 ```
-# A test that is run in Travis CI
-$ bundle exec cucumber --tags @travis
+$ bundle exec cucumber
 ```
 
 #### Interactive console
