@@ -36,6 +36,9 @@ jobs:
       bundler -v
     displayName: "ruby info"
 
+  - script: gem install bundler -v 1.17.3
+    displayName: "install bundler 1.17.3"
+
   - script: |
       set -e
       echo -e "install: --no-document --env-shebang\nupdate:  --no-document --env-shebang" > ~/.gemrc
