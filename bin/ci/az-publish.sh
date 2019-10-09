@@ -56,18 +56,19 @@ VERSION=$(plutil -p ${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmok
 echo "App version: ${VERSION}"
 
 # Evaluate the Xcode version used to build artifacts
-XC_VERSION=$(xcode_version)
+# XC_VERSION=$(xcode_version)
+XC_VERSION="10.3"
 echo "Xcode version: ${XC_VERSION}"
 
 az --version
 
 # Upload `CalSmoke-cal.app`
-APP="${WORKING_DIR}/Products/app/CalSmoke-cal/CalSmoke-cal.app"
+APP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app"
 APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app"
 azupload "${APP}" "${APP_NAME}"
 
 # Zip and upload `CalSmoke-cal.app.dSYM`
-APP="${WORKING_DIR}/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM"
+APP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM"
 ditto_or_exit "${APP}" "${WORKING_DIR}/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM.zip"
 APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.dSYM.zip"
 azupload "${APP}" "${APP_NAME}"
