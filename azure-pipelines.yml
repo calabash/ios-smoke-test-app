@@ -49,6 +49,12 @@ jobs:
       echo -e "install: --no-document --env-shebang\nupdate:  --no-document --env-shebang" > ~/.gemrc
       bundle install
     displayName: "Bundle install"
+
+  - script: |
+      set -e
+      git clone https://$(CalabashKeychainGitHubAccessToken)@github.com/xamarinhq/calabash-codesign.git
+      calabash-codesign/apple/create-keychain.sh
+    displayName: "Download and install keychain"
     
   - script: bundle _1.17.3_ install
     workingDirectory: 'CalSmokeApp'
