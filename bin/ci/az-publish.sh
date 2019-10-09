@@ -55,17 +55,17 @@ VERSION=$(plutil -p ${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmok
 
 az --version
 
-# Upload `CalSmoke-cal.app`
-APP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app"
-zip_with_ditto "${APP}" "${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.zip"
+# Upload `CalSmokeApp.app` (zipped)
+APP_ZIP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal.app.zip"
+zip_with_ditto "${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal.app" "${APP_ZIP}"
 APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.zip"
-azupload "${APP}" "${APP_NAME}"
+azupload "${APP_ZIP}" "${APP_NAME}"
 
-# Zip and upload `CalSmoke-cal.app.dSYM`
-APP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM"
-zip_with_ditto "${APP}" "${WORKING_DIR}/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM.zip"
-APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.dSYM.zip"
-azupload "${APP}" "${APP_NAME}"
+# Upload `CalSmokeApp.app.dSYM` (zipped)
+APP_DSYM_ZIP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal.app.dSYM.zip"
+zip_with_ditto "${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal.app.dSYM" "${APP_DSYM_ZIP}"
+APP_DSYM_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.dSYM.zip"
+azupload "${APP_DSYM_ZIP}" "${APP_DSYM_NAME}"
 
 # Upload `CalSmoke-cal.ipa`
 # APP="${WORKING_DIR}/Products/ipa/CalSmoke-cal/CalSmoke-cal.ipa"
