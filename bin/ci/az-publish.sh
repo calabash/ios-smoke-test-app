@@ -52,7 +52,7 @@ GIT_SHA=$(git rev-parse --verify HEAD | tr -d '\n')
 echo "Git sha: ${GIT_SHA}"
 
 # Evaluate CalSmokeApp version (from Info.plist)
-VERSION=$(plutil -p ${WORKING_DIR}/Products/app/CalSmoke-cal/CalSmoke-cal.app/Info.plist | grep CFBundleShortVersionString | grep -o '"[[:digit:].]*"' | sed 's/"//g')
+VERSION=$(plutil -p ${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app/Info.plist | grep CFBundleShortVersionString | grep -o '"[[:digit:].]*"' | sed 's/"//g')
 echo "App version: ${VERSION}"
 
 # Evaluate the Xcode version used to build artifacts
