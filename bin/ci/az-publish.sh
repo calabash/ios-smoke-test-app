@@ -56,7 +56,7 @@ XC_VERSION=$(xcode_version)
 az --version
 
 WORKING_DIR="${BUILD_SOURCESDIRECTORY}"
-
+echo "Working dir: ${WORKING_DIR}"
 
 # Upload `CalSmoke-cal.app`
 APP="${WORKING_DIR}/Products/app/CalSmoke-cal/CalSmoke-cal.app"
