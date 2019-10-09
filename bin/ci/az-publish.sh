@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -eo pipefail
-echo "Run az-publish.sh"
+
 # $1 => SOURCE PATH
 # $2 => TARGET NAME
 function azupload {
@@ -46,26 +46,19 @@ if [[ -z "${AZURE_STORAGE_CONNECTION_STRING}" ]]; then
 fi
 
 WORKING_DIR="${BUILD_SOURCESDIRECTORY}"
-echo "Working dir: ${WORKING_DIR}"
 
 # Evaluate git-sha value
 GIT_SHA=$(git rev-parse --verify HEAD | tr -d '\n')
-echo "Git sha: ${GIT_SHA}"
 
 # Evaluate CalSmokeApp version (from Info.plist)
 VERSION=$(plutil -p ${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app/Info.plist | grep CFBundleShortVersionString | grep -o '"[[:digit:].]*"' | sed 's/"//g')
-echo "App version: ${VERSION}"
-
-# Evaluate the Xcode version used to build artifacts
-# XC_VERSION=$(xcode_version)
-# XC_VERSION="10.3"
-echo "Xcode version: ${XC_VERSION}"
 
 az --version
 
 # Upload `CalSmoke-cal.app`
 APP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app"
-APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app"
+zip_with_ditto "${APP}" "${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.zip"
+APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.zip"
 azupload "${APP}" "${APP_NAME}"
 
 # Zip and upload `CalSmoke-cal.app.dSYM`
