@@ -39,16 +39,16 @@ jobs:
       set -e
       ruby -v
       bundler -v
-    displayName: "ruby info"
+    displayName: "Ruby info"
 
   - script: gem install bundler -v 1.17.3
-    displayName: "install bundler 1.17.3"
+    displayName: "Install bundler 1.17.3"
 
   - script: |
       set -e
       echo -e "install: --no-document --env-shebang\nupdate:  --no-document --env-shebang" > ~/.gemrc
       bundle install
-    displayName: "bundle install"
+    displayName: "Bundle install"
     
   - script: bundle _1.17.3_ install
     workingDirectory: 'CalSmokeApp'
@@ -56,7 +56,7 @@ jobs:
 
   - script: make app-cal
     workingDirectory: 'CalSmokeApp'
-    displayName: "make app-cal"
+    displayName: "Make app-cal"
 
   - task: Bash@3
     inputs:
@@ -72,7 +72,7 @@ jobs:
     condition: eq(variables['Agent.JobName'], variables['AzurePublishWhen'])
 
   - script: bundle exec bin/ci/cucumber.rb
-    displayName: "cucumber tests"
+    displayName: "Cucumber tests"
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
