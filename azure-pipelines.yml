@@ -57,6 +57,10 @@ jobs:
   - script: make app-cal
     workingDirectory: 'CalSmokeApp'
     displayName: "Make app-cal"
+  
+  - script: make ipa-cal
+    workingDirectory: 'CalSmokeApp'
+    displayName: "Make ipa-cal"
 
   - task: Bash@3
     inputs:
