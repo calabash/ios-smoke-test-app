@@ -56,25 +56,25 @@ VERSION=$(plutil -p ${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmok
 az --version
 
 # Upload `CalSmokeApp.app` (zipped)
-APP_ZIP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal.app.zip"
-zip_with_ditto "${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal.app" "${APP_ZIP}"
+APP_ZIP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.zip"
+zip_with_ditto "${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app" "${APP_ZIP}"
 APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.zip"
 azupload "${APP_ZIP}" "${APP_NAME}"
 
 # Upload `CalSmokeApp.app.dSYM` (zipped)
-APP_DSYM_ZIP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal.app.dSYM.zip"
-zip_with_ditto "${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal.app.dSYM" "${APP_DSYM_ZIP}"
+APP_DSYM_ZIP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM.zip"
+zip_with_ditto "${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM" "${APP_DSYM_ZIP}"
 APP_DSYM_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.dSYM.zip"
 azupload "${APP_DSYM_ZIP}" "${APP_DSYM_NAME}"
 
-# Upload `CalSmoke-cal.ipa`
-# APP="${WORKING_DIR}/Products/ipa/CalSmoke-cal/CalSmoke-cal.ipa"
-# APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa"
-# azupload "${APP}" "${APP_NAME}"
+# Upload `CalSmokeApp.ipa`
+# IPA="${WORKING_DIR}/CalSmokeApp/Products/ipa/CalSmoke-cal/CalSmoke-cal.ipa"
+# IPA_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa"
+# azupload "${IPA}" "${IPA_NAME}"
 
-# Zip and upload `CalSmoke-cal.ipa.dSYM`
-# APP="${WORKING_DIR}/Products/ipa/CalSmoke-cal/CalSmoke-cal.ipa.dSYM"
-# ditto_or_exit "${APP}" "${WORKING_DIR}/Products/ipa/CalSmoke-cal/CalSmoke-cal.ipa.dSYM.zip"
-# APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa.dSYM.zip"
-# azupload "${APP}" "${APP_NAME}"
+# # Upload `CalSmokeApp.ipa.dSYM` (zipped)
+# IPA_DSYM_ZIP="${WORKING_DIR}/CalSmokeApp/Products/ipa/CalSmoke-cal/CalSmoke-cal.app.dSYM.zip"
+# zip_with_ditto "${WORKING_DIR}/CalSmokeApp/Products/ipa/CalSmoke-cal/CalSmoke-cal.app.dSYM" "${IPA_DSYM_ZIP}"
+# IPA_DSYM_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa.dSYM.zip"
+# azupload "${IPA_DSYM_ZIP}" "${IPA_DSYM_NAME}"
 
