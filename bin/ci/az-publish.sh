@@ -5,10 +5,10 @@ echo "Run az-publish.sh"
 # $1 => SOURCE PATH
 # $2 => TARGET NAME
 function azupload {
-  # az storage blob upload \
-  #   --container-name ios-device-agent \
-  #   --file "${1}" \
-  #   --name "${2}"
+  az storage blob upload \
+    --container-name ios-device-agent \
+    --file "${1}" \
+    --name "${2}"
   echo "${1} artifact uploaded with name ${2}"
 }
 
@@ -57,8 +57,8 @@ echo "App version: ${VERSION}"
 
 # Evaluate the Xcode version used to build artifacts
 # XC_VERSION=$(xcode_version)
-XC_VERSION="10.3"
-echo "Xcode version: ${XC_VERSION}"
+# XC_VERSION="10.3"
+# echo "Xcode version: ${XC_VERSION}"
 
 az --version
 
