@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -eo pipefail
-
+echo "Run az-publish.sh"
 # $1 => SOURCE PATH
 # $2 => TARGET NAME
 function azupload {
@@ -46,12 +46,15 @@ fi
 
 # Evaluate git-sha value
 GIT_SHA=$(git rev-parse --verify HEAD | tr -d '\n')
+echo "Git sha: ${GIT_SHA}"
 
 # Evaluate CalSmokeApp version (from Info.plist)
 VERSION=$(plutil -p ./Products/app/CalSmoke-cal/CalSmoke-cal.app/Info.plist | grep CFBundleShortVersionString | grep -o '"[[:digit:].]*"' | sed 's/"//g')
+echo "App version: ${VERSION}"
 
 # Evaluate the Xcode version used to build artifacts
 XC_VERSION=$(xcode_version)
+echo "Xcode version: ${XC_VERSION}"
 
 az --version
 
