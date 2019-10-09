@@ -12,19 +12,20 @@ function azupload {
   echo "${1} artifact uploaded with name ${2}"
 }
 
-function ditto_or_exit {
-  xcrun ditto "${1}" "${2}"
-  if [ "$?" != 0 ]; then
-    echo "Could not copy:"
-    echo "  source: ${1}"
-    echo "  target: ${2}"
-    if [ ! -e "${1}" ]; then
-      echo "The source file does not exist"
-      echo "Did a previous xcodebuild step fail?"
-    fi
-    echo "Exiting 1"
-    exit 1
+function info {
+  if [ "${TERM}" = "dumb" ]; then
+    echo "INFO: $1"
+  else
+    echo "$(tput setaf 2)INFO: $1$(tput sgr0)"
   fi
+}
+
+function zip_with_ditto {
+  xcrun ditto \
+  -ck --rsrc --sequesterRsrc --keepParent \
+  "${1}" \
+  "${2}"
+  info "Installed ${2}"
 }
 
 # Pipeline Variables are set through the AzDevOps UI
@@ -58,7 +59,7 @@ echo "App version: ${VERSION}"
 # Evaluate the Xcode version used to build artifacts
 # XC_VERSION=$(xcode_version)
 # XC_VERSION="10.3"
-# echo "Xcode version: ${XC_VERSION}"
+echo "Xcode version: ${XC_VERSION}"
 
 az --version
 
@@ -69,7 +70,7 @@ azupload "${APP}" "${APP_NAME}"
 
 # Zip and upload `CalSmoke-cal.app.dSYM`
 APP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM"
-ditto_or_exit "${APP}" "${WORKING_DIR}/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM.zip"
+zip_with_ditto "${APP}" "${WORKING_DIR}/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM.zip"
 APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.dSYM.zip"
 azupload "${APP}" "${APP_NAME}"
 
