@@ -2,8 +2,8 @@
 
 set -eo pipefail
 
-$SIM_CONTAINER="ios-simulator-test-apps"
-$ARM_CONTAINER="ios-arm-test-apps"
+SIM_CONTAINER="ios-simulator-test-apps"
+ARM_CONTAINER="ios-arm-test-apps"
 
 # $1 => SOURCE PATH
 # $2 => TARGET NAME
