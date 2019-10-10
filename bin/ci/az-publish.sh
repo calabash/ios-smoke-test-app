@@ -30,6 +30,10 @@ function zip_with_ditto {
 
 # Pipeline Variables are set through the AzDevOps UI
 # See also the ./azdevops-pipeline.yml
+if [ -e ./.azure-credentials ]; then
+  source ./.azure-credentials
+fi
+
 if [[ -z "${AZURE_STORAGE_ACCOUNT}" ]]; then
   echo "AZURE_STORAGE_ACCOUNT is required"
   exit 1
@@ -61,14 +65,14 @@ GIT_SHA=$(git rev-parse --verify HEAD | tr -d '\n')
 az --version
 
 # Upload `CalSmokeApp.app` (zipped)
-APP_ZIP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.zip"
-zip_with_ditto "${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app" "${APP_ZIP}"
+APP_ZIP="${PRODUCT_DIR}/CalSmoke-cal.app.zip"
+zip_with_ditto "${PRODUCT_DIR}/CalSmoke-cal.app" "${APP_ZIP}"
 APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.zip"
 azupload "${APP_ZIP}" "${APP_NAME}"
 
 # Upload `CalSmokeApp.app.dSYM` (zipped)
-APP_DSYM_ZIP="${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM.zip"
-zip_with_ditto "${WORKING_DIR}/CalSmokeApp/Products/app/CalSmoke-cal/CalSmoke-cal.app.dSYM" "${APP_DSYM_ZIP}"
+APP_DSYM_ZIP="${PRODUCT_DIR}/CalSmoke-cal.app.dSYM.zip"
+zip_with_ditto "${PRODUCT_DIR}/CalSmoke-cal.app.dSYM" "${APP_DSYM_ZIP}"
 APP_DSYM_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.dSYM.zip"
 azupload "${APP_DSYM_ZIP}" "${APP_DSYM_NAME}"
 
