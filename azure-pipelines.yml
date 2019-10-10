@@ -94,6 +94,5 @@ jobs:
       AZURE_STORAGE_KEY: $(AzureStorageKey)
       AZURE_STORAGE_CONNECTION_STRING: $(AzureStorageConnectionString)
       SOURCE_BRANCH: $(Build.SourceBranch)
-      XC_VERSION: "$(XCODE_VERSION)"
     displayName: "Publish to Azure Blob Storage"
-    condition: and(succeeded(), eq(variables['Agent.JobName'], variables['AzurePublishWhen']), eq(variables['Build.SourceBranch'], '*'))
+    condition: and(succeeded(), eq(variables['Agent.JobName'], variables['AzurePublishWhen']))

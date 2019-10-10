@@ -50,6 +50,7 @@ PRODUCT_DIR="${WORKING_DIR}/Products/app/CalSmoke-cal"
 INFO_PLIST="${PRODUCT_DIR}/CalSmoke-cal.app/Info.plist"
 
 VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" ${INFO_PLIST})
+XC_VERSION=$(/usr/libexec/PlistBuddy -c "Print :DTXcode" ${INFO_PLIST})
 
 # Evaluate git-sha value
 GIT_SHA=$(git rev-parse --verify HEAD | tr -d '\n')
