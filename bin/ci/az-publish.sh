@@ -2,8 +2,12 @@
 
 set -eo pipefail
 
+$SIM_CONTAINER="ios-simulator-test-apps"
+$ARM_CONTAINER="ios-arm-test-apps"
+
 # $1 => SOURCE PATH
 # $2 => TARGET NAME
+# $3 => CONTAINER NAME
 function azupload {
   az storage blob upload \
     --container-name "${3}" \
@@ -66,30 +70,38 @@ XC_VERSION=$(/usr/libexec/PlistBuddy -c "Print :DTXcode" ${INFO_PLIST})
 # Evaluate git-sha value
 GIT_SHA=$(git rev-parse --verify HEAD | tr -d '\n')
 
+GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+# We don't need to use AdHoc when executing locally
+if [[ "${GIT_BRANCH}" =~ "tag/" && -e ./.azure-credentials ]]; then
+  BUILD_ID="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}"
+else
+  BUILD_ID="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}-AdHoc"
+fi
+
 # Upload `CalSmokeApp.app` (zipped)
 APP_ZIP="${APP_PRODUCT_DIR}/CalSmoke-sim.app.zip"
-APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.zip"
-azupload "${APP_ZIP}" "${APP_NAME}" "ios-simulator-test-apps"
+APP_NAME="${BUILD_ID}.app.zip"
+azupload "${APP_ZIP}" "${APP_NAME}" "${SIM_CONTAINER}"
 
 # Upload `CalSmokeApp.app.dSYM` (zipped)
 APP_DSYM_ZIP="${APP_PRODUCT_DIR}/CalSmoke-cal.app.dSYM.zip"
 zip_with_ditto "${APP_PRODUCT_DIR}/CalSmoke-cal.app.dSYM" "${APP_DSYM_ZIP}"
-APP_DSYM_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.dSYM.zip"
-azupload "${APP_DSYM_ZIP}" "${APP_DSYM_NAME}" "ios-simulator-test-apps"
+APP_DSYM_NAME="${BUILD_ID}.app.dSYM.zip"
+azupload "${APP_DSYM_ZIP}" "${APP_DSYM_NAME}" "${SIM_CONTAINER}"
 
 # Upload `CalSmokeApp.ipa`
 IPA="${IPA_PRODUCT_DIR}/CalSmoke-cal.ipa"
-IPA_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa"
-azupload "${IPA}" "${IPA_NAME}" "ios-arm-test-apps"
+IPA_NAME="${BUILD_ID}.ipa"
+azupload "${IPA}" "${IPA_NAME}" "${ARM_CONTAINER}"
 
 # Upload `CalSmokeApp.app` (zipped)
 IPA_ZIP="${IPA_PRODUCT_DIR}/CalSmoke-device.app.zip"
-IPA_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa.zip"
-azupload "${IPA_ZIP}" "${IPA_NAME}" "ios-arm-test-apps"
+IPA_NAME="${BUILD_ID}.ipa.zip"
+azupload "${IPA_ZIP}" "${IPA_NAME}" "${ARM_CONTAINER}"
 
 # Upload `CalSmokeApp.ipa.dSYM` (zipped)
 IPA_DSYM_ZIP="${IPA_PRODUCT_DIR}/CalSmoke-cal.app.dSYM.zip"
 zip_with_ditto "${IPA_PRODUCT_DIR}/CalSmoke-cal.app.dSYM" "${IPA_DSYM_ZIP}"
-IPA_DSYM_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa.dSYM.zip"
-azupload "${IPA_DSYM_ZIP}" "${IPA_DSYM_NAME}" "ios-arm-test-apps"
+IPA_DSYM_NAME="${BUILD_ID}.ipa.dSYM.zip"
+azupload "${IPA_DSYM_ZIP}" "${IPA_DSYM_NAME}" "${ARM_CONTAINER}"
 
