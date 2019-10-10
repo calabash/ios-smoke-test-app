@@ -80,7 +80,7 @@ azupload "${APP_DSYM_ZIP}" "${APP_DSYM_NAME}" "ios-simulator-test-apps"
 
 # Upload `CalSmoke-sim.app.zip`
 APP_SIM="${APP_PRODUCT_DIR}/CalSmoke-sim.app.zip"
-APP_SIM_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.zip"
+APP_SIM_NAME="CalSmoke-sim-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.zip"
 azupload "${APP_SIM}" "${APP_SIM_NAME}" "ios-simulator-test-apps"
 
 # Upload `CalSmokeApp.ipa`
