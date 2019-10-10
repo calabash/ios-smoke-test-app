@@ -79,7 +79,7 @@ APP_DSYM_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.dSYM.zip"
 azupload "${APP_DSYM_ZIP}" "${APP_DSYM_NAME}" "ios-simulator-test-apps"
 
 # Upload `CalSmoke-sim.app.zip`
-APP_SIM="${IPA_PRODUCT_DIR}/CalSmoke-sim.app.zip"
+APP_SIM="${APP_PRODUCT_DIR}/CalSmoke-sim.app.zip"
 APP_SIM_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.zip"
 azupload "${APP_SIM}" "${APP_SIM_NAME}" "ios-simulator-test-apps"
 
@@ -87,16 +87,6 @@ azupload "${APP_SIM}" "${APP_SIM_NAME}" "ios-simulator-test-apps"
 IPA="${IPA_PRODUCT_DIR}/CalSmoke-cal.ipa"
 IPA_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa"
 azupload "${IPA}" "${IPA_NAME}" "ios-arm-test-apps"
-
-# Upload `CalSmoke-device.ipa`
-IPA_DEV="${IPA_PRODUCT_DIR}/CalSmoke-device.ipa"
-IPA_NAME="CalSmoke-device-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa"
-azupload "${IPA_DEV}" "${IPA_NAME}" "ios-arm-test-apps"
-
-# Upload `CalSmoke-device.app.zip`
-IPA_DEV_APP="${IPA_PRODUCT_DIR}/CalSmoke-device.app.zip"
-IPA_NAME="CalSmoke-device-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.zip"
-azupload "${IPA_DEV_APP}" "${IPA_NAME}" "ios-arm-test-apps"
 
 # Upload `CalSmokeApp.app` (zipped)
 IPA_ZIP="${IPA_PRODUCT_DIR}/CalSmoke-cal.app.zip"
