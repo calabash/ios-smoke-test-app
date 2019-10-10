@@ -9,6 +9,13 @@ pr:
   branches:
     include:
     - master
+schedules:
+- cron: "0 1 * * Mon-Fri"
+  displayName: Nightly build
+  branches:
+    include:
+    - master
+  always: true
 
 jobs:
 
