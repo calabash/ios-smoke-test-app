@@ -67,8 +67,7 @@ XC_VERSION=$(/usr/libexec/PlistBuddy -c "Print :DTXcode" ${INFO_PLIST})
 GIT_SHA=$(git rev-parse --verify HEAD | tr -d '\n')
 
 # Upload `CalSmokeApp.app` (zipped)
-APP_ZIP="${APP_PRODUCT_DIR}/CalSmoke-cal.app.zip"
-zip_with_ditto "${APP_PRODUCT_DIR}/CalSmoke-cal.app" "${APP_ZIP}"
+APP_ZIP="${APP_PRODUCT_DIR}/CalSmoke-sim.app.zip"
 APP_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.app.zip"
 azupload "${APP_ZIP}" "${APP_NAME}" "ios-simulator-test-apps"
 
@@ -84,8 +83,7 @@ IPA_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa"
 azupload "${IPA}" "${IPA_NAME}" "ios-arm-test-apps"
 
 # Upload `CalSmokeApp.app` (zipped)
-IPA_ZIP="${IPA_PRODUCT_DIR}/CalSmoke-cal.app.zip"
-zip_with_ditto "${IPA_PRODUCT_DIR}/CalSmoke-cal.app" "${IPA_ZIP}"
+IPA_ZIP="${IPA_PRODUCT_DIR}/CalSmoke-device.app.zip"
 IPA_NAME="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}.ipa.zip"
 azupload "${IPA_ZIP}" "${IPA_NAME}" "ios-arm-test-apps"
 
