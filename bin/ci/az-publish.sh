@@ -6,7 +6,7 @@ set -eo pipefail
 # $2 => TARGET NAME
 function azupload {
   az storage blob upload \
-    --container-name "testapps/${3}" \
+    --container-name "${3}" \
     --file "${1}" \
     --name "${2}"
   echo "${1} artifact uploaded with name ${2}"
