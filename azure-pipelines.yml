@@ -68,15 +68,15 @@ jobs:
     workingDirectory: 'CalSmokeApp'
     displayName: "Make ipa-cal"
 
-  - script: bundle exec bin/ci/cucumber.rb
-    displayName: "Cucumber tests"
+  # - script: bundle exec bin/ci/cucumber.rb
+  #   displayName: "Cucumber tests"
 
-  - task: PublishTestResults@2
-    displayName: 'Publish Test Results'
-    inputs:
-      testResultsFiles: 'CalSmokeApp/reports/**/*.xml'
-      failTaskOnFailedTests: true
-    condition: always()
+  # - task: PublishTestResults@2
+  #   displayName: 'Publish Test Results'
+  #   inputs:
+  #     testResultsFiles: 'CalSmokeApp/reports/**/*.xml'
+  #     failTaskOnFailedTests: true
+  #   condition: always()
   
   - task: Bash@3
     inputs:
@@ -88,4 +88,4 @@ jobs:
       AZURE_STORAGE_CONNECTION_STRING: $(AzureStorageConnectionString)
       SOURCE_BRANCH: $(Build.SourceBranch)
     displayName: "Publish to Azure Blob Storage"
-    condition: and(succeeded(), eq(variables['Agent.JobName'], variables['AzurePublishWhen']), eq(variables['Build.SourceBranch'], 'master'))
+    condition: and(succeeded(), eq(variables['Agent.JobName'], variables['AzurePublishWhen']))
