@@ -50,6 +50,7 @@ testcloud-submit
 .xtc-credentials
 .xtc
 .appcenter-credentials
+.azure-credentials
 
 # Xcode 4+
 *.xcodeproj/*.mode*

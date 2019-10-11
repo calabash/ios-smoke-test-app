@@ -1,3 +1,8 @@
+variables:
+  # When Agent.JobName matches this value (and the git ref is a tag), then
+  # built artifacts will be published to Azure Blob Storage.
+  AzurePublishWhen: "Mojave-Xcode-10.3"
+
 trigger:
   tags:
     include:
@@ -41,16 +46,22 @@ jobs:
       set -e
       ruby -v
       bundler -v
-    displayName: "ruby info"
+    displayName: "Ruby info"
 
   - script: gem install bundler -v 1.17.3
-    displayName: "install bundler 1.17.3"
+    displayName: "Install bundler 1.17.3"
 
   - script: |
       set -e
       echo -e "install: --no-document --env-shebang\nupdate:  --no-document --env-shebang" > ~/.gemrc
       bundle install
-    displayName: "bundle install"
+    displayName: "Bundle install"
+
+  - script: |
+      set -e
+      git clone https://$(CalabashKeychainGitHubAccessToken)@github.com/xamarinhq/calabash-codesign.git
+      calabash-codesign/apple/create-keychain.sh
+    displayName: "Download and install keychain"
     
   - script: bundle _1.17.3_ install
     workingDirectory: 'CalSmokeApp'
@@ -58,10 +69,14 @@ jobs:
 
   - script: make app-cal
     workingDirectory: 'CalSmokeApp'
-    displayName: "make app-cal"
+    displayName: "Make app-cal"
+  
+  - script: make ipa-cal
+    workingDirectory: 'CalSmokeApp'
+    displayName: "Make ipa-cal"
 
   - script: bundle exec bin/ci/cucumber.rb
-    displayName: "cucumber tests"
+    displayName: "Cucumber tests"
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
@@ -69,3 +84,15 @@ jobs:
       testResultsFiles: 'CalSmokeApp/reports/**/*.xml'
       failTaskOnFailedTests: true
     condition: always()
+  
+  - task: Bash@3
+    inputs:
+      targetType: filePath
+      filePath: "./bin/ci/az-publish.sh"
+    env:
+      AZURE_STORAGE_ACCOUNT: $(AzureStorageAccount)
+      AZURE_STORAGE_KEY: $(AzureStorageKey)
+      AZURE_STORAGE_CONNECTION_STRING: $(AzureStorageConnectionString)
+      SOURCE_BRANCH: $(Build.SourceBranch)
+    displayName: "Publish to Azure Blob Storage"
+    condition: and(succeeded(), eq(variables['Agent.JobName'], variables['AzurePublishWhen']), eq(variables['Build.SourceBranch'], 'master'), eq(variables['Build.Reason'], 'IndividualCI'))
