@@ -89,13 +89,13 @@ IPA_NAME="${BUILD_ID}.ipa"
 azupload "${IPA}" "${IPA_NAME}" "${ARM_CONTAINER}"
 
 # Upload `CalSmokeApp.app` (zipped)
-IPA_ZIP="${IPA_PRODUCT_DIR}/CalSmoke-device.app.zip"
-IPA_NAME="${BUILD_ID}.ipa.zip"
-azupload "${IPA_ZIP}" "${IPA_NAME}" "${ARM_CONTAINER}"
+APP_ZIP="${IPA_PRODUCT_DIR}/CalSmoke-device.app.zip"
+APP_NAME="${BUILD_ID}.app.zip"
+azupload "${APP_ZIP}" "${APP_NAME}" "${ARM_CONTAINER}"
 
 # Upload `CalSmokeApp.ipa.dSYM` (zipped)
-IPA_DSYM_ZIP="${IPA_PRODUCT_DIR}/CalSmoke-cal.app.dSYM.zip"
-zip_with_ditto "${IPA_PRODUCT_DIR}/CalSmoke-cal.app.dSYM" "${IPA_DSYM_ZIP}"
-IPA_DSYM_NAME="${BUILD_ID}.ipa.dSYM.zip"
-azupload "${IPA_DSYM_ZIP}" "${IPA_DSYM_NAME}" "${ARM_CONTAINER}"
+APP_DSYM_ZIP="${IPA_PRODUCT_DIR}/CalSmoke-cal.app.dSYM.zip"
+zip_with_ditto "${IPA_PRODUCT_DIR}/CalSmoke-cal.app.dSYM" "${APP_DSYM_ZIP}"
+APP_DSYM_NAME="${BUILD_ID}.app.dSYM.zip"
+azupload "${APP_DSYM_ZIP}" "${APP_DSYM_NAME}" "${ARM_CONTAINER}"
 
