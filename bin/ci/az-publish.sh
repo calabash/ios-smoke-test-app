@@ -70,13 +70,7 @@ XC_VERSION=$(/usr/libexec/PlistBuddy -c "Print :DTXcode" ${INFO_PLIST})
 # Evaluate git-sha value
 GIT_SHA=$(git rev-parse --verify HEAD | tr -d '\n')
 
-GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-# We don't need to use AdHoc when executing locally
-if [[ "${GIT_BRANCH}" =~ "tag/" && -e ./.azure-credentials ]]; then
-  BUILD_ID="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}"
-else
-  BUILD_ID="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}-AdHoc"
-fi
+BUILD_ID="CalSmoke-${VERSION}-Xcode-${XC_VERSION}-${GIT_SHA}"
 
 # Upload `CalSmokeApp.app` (zipped)
 APP_ZIP="${APP_PRODUCT_DIR}/CalSmoke-sim.app.zip"
