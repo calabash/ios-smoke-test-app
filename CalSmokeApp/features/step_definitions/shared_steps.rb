@@ -28,6 +28,7 @@ Given(/^I see the (controls|gestures|scrolls|special|date picker) tab$/) do |tab
     if (query(expected_view) != [])
       debug("#{tab} tab is showing up")
     else
+      query("*")
       debug("#{tab} tab is missed")
     end
     wait_for_view(expected_view, {:timeout => 4})
