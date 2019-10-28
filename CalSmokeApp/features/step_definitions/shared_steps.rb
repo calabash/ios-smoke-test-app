@@ -26,6 +26,7 @@ Given(/^I see the (controls|gestures|scrolls|special|date picker) tab$/) do |tab
   begin
     touch("UITabBarButton index:#{index}")
     if (query(expected_view) != [])
+      puts query("*")
       debug("#{tab} tab is showing up")
     else
       puts query("*")
