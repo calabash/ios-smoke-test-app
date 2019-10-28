@@ -53,7 +53,7 @@ Dir.chdir(working_directory) do
     devices.each do |key, simulator|
       args = [
         "bundle", "exec", "cucumber",
-        "-t", "@rotation",
+        # "-t", "@rotation",
         "-p", "simulator",
         "-f", "junit", "-o", "reports/junit/#{key}",
         "#{cucumber_args}"
