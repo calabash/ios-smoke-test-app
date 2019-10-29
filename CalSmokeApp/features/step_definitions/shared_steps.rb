@@ -26,11 +26,11 @@ Given(/^I see the (controls|gestures|scrolls|special|date picker) tab$/) do |tab
   begin
     touch("UITabBarButton index:#{index}")
     if (query(expected_view) != [])
-      puts query("*")
+      # puts query("*")
       debug("#{tab} tab is showing up")
     else
       screenshot_embed({prefix: "./screenshots/", name: "failed_#{tab}_tab", label: "label"})
-      puts query("*")
+      # puts query("*")
       debug("#{tab} tab is missed")
     end
     wait_for_view(expected_view, {:timeout => 4})

@@ -1,5 +1,6 @@
 @pinch
 @gestures
+@wip
 Feature: Pinch
 In order to perform pinches
 As a developer

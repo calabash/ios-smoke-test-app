@@ -1,4 +1,5 @@
 @rotation
+@wip
 Feature: Rotation
 In order test my app in all orientations
 As a developer
