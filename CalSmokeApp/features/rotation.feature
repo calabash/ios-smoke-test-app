@@ -18,11 +18,13 @@ I want Calabash to be able to rotate my app
 # https://github.com/jmoody/briar-ios-example
 
 Scenario: Controller does not respond to orientation changes
+  Then screenshot
   Given I see the controls tab
   And I try to rotate the home button so it is on the left
   Then the orientation should be portrait
 
 Scenario: Controller does respond to orientation changes
+  Then screenshot
   Given I see the special tab
   And I try to rotate the home button so it is on the right
   Then the home button should be on the right

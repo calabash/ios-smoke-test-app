@@ -29,6 +29,7 @@ Given(/^I see the (controls|gestures|scrolls|special|date picker) tab$/) do |tab
       puts query("*")
       debug("#{tab} tab is showing up")
     else
+      screenshot_embed({prefix: "./screenshots/", name: "failed_#{tab}_tab", label: "label"})
       puts query("*")
       debug("#{tab} tab is missed")
     end
@@ -54,4 +55,9 @@ end
 
 Given(/^the app has launched$/) do
   wait_for_elements_exist('tabBarButton')
+end
+
+Then "screenshot" do
+  # binding.pry
+  screenshot_embed({prefix: "./screenshots/", name: "name", label: "label"})
 end
