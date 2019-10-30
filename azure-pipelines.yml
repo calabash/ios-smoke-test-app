@@ -1,7 +1,9 @@
 variables:
   # When Agent.JobName matches this value (and the git ref is a tag), then
   # built artifacts will be published to Azure Blob Storage.
-  AzurePublishWhen: "Mojave-Xcode-10.3"
+  - name: "AzurePublishWhen"
+    value: "Mojave-Xcode-11.1"
+  - group: "XamarinUITestCI"
 
 trigger:
   tags:
@@ -33,6 +35,12 @@ jobs:
       Mojave-Xcode-11.0:
         IMAGE_POOL: 'macOS-10.14'
         XCODE_VERSION: '11'
+      Mojave-Xcode-11.1:
+        IMAGE_POOL: 'macOS-10.14'
+        XCODE_VERSION: '11.1'
+      Mojave-Xcode-11.2:
+        IMAGE_POOL: 'macOS-10.14'
+        XCODE_VERSION: '11.2'
   pool:
     vmImage: $(IMAGE_POOL)
 
