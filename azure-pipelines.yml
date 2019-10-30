@@ -86,12 +86,14 @@ jobs:
   
   - script: zip -r $(Build.ArtifactStagingDirectory)/screenshots.zip $(Build.SourcesDirectory)/CalSmokeApp/screenshots
     displayName: "Archive screenshots"
+    condition: always()
 
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)/screenshots.zip'
       ArtifactName: 'screenshots'
       publishLocation: 'Container'
+    condition: always()
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
