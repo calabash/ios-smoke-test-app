@@ -39,6 +39,7 @@ Then(/^the box grows$/) do
 end
 
 And(/^I see the map page$/) do
+  screenshot_embed({prefix: "./screenshots/", name: "map_", label: "label"})
   query = "* marked:'map views row'"
   wait_for_view(query)
   wait_for_animations

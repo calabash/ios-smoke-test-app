@@ -33,6 +33,7 @@ Given(/^I see the (controls|gestures|scrolls|special|date picker) tab$/) do |tab
       # puts query("*")
       debug("#{tab} tab is missed")
     end
+    screenshot_embed({prefix: "./screenshots/", name: "#{tab}_tab", label: "label"})
     wait_for_view(expected_view, {:timeout => 4})
   rescue => e
     if count == 3
