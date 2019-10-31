@@ -27,15 +27,15 @@ jobs:
 - job:
   strategy:
     matrix:
-      # Mojave-Xcode-10.3:
-      #   IMAGE_POOL: 'macOS-10.14'
-      #   XCODE_VERSION: '10.3'
-      # Mojave-Xcode-11.0:
-      #   IMAGE_POOL: 'macOS-10.14'
-      #   XCODE_VERSION: '11'
-      # Mojave-Xcode-11.1:
-      #   IMAGE_POOL: 'macOS-10.14'
-      #   XCODE_VERSION: '11.1'
+      Mojave-Xcode-10.3:
+        IMAGE_POOL: 'macOS-10.14'
+        XCODE_VERSION: '10.3'
+      Mojave-Xcode-11.0:
+        IMAGE_POOL: 'macOS-10.14'
+        XCODE_VERSION: '11'
+      Mojave-Xcode-11.1:
+        IMAGE_POOL: 'macOS-10.14'
+        XCODE_VERSION: '11.1'
       Mojave-Xcode-11.2:
         IMAGE_POOL: 'macOS-10.14'
         XCODE_VERSION: '11.2'
@@ -83,17 +83,6 @@ jobs:
 
   - script: bundle exec bin/ci/cucumber.rb
     displayName: "Cucumber tests"
-  
-  - script: zip -r $(Build.ArtifactStagingDirectory)/screenshots.zip $(Build.SourcesDirectory)/CalSmokeApp/screenshots
-    displayName: "Archive screenshots"
-    condition: always()
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)/screenshots.zip'
-      ArtifactName: 'screenshots'
-      publishLocation: 'Container'
-    condition: always()
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'

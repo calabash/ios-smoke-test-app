@@ -17,7 +17,6 @@ When I pinch out on the box
 Then the box shrinks
 
 @map
-@wip
 Scenario: Full screen pinch on map
 Given I see the scrolls tab
 And I see the map page
