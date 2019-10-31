@@ -20,6 +20,6 @@ Then the box shrinks
 @wip
 Scenario: Full screen pinch on map
 Given I see the scrolls tab
-# And I see the map page
+And I see the map page
 Then I zoom in on the map by pinching out
 Then I zoom out on the map by pinching in
