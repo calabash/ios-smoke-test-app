@@ -34,20 +34,9 @@ BUILD_RUN_LOOP: iff 1, then rebuild Calabash iOS gem before uploading.
   exit 64
 fi
 
-CREDS=.appcenter-credentials
-if [ ! -e "${CREDS}" ]; then
-  error "This script requires a ${CREDS} file"
-  error "Generating a template now:"
-  cat >${CREDS} <<EOF
-export APPCENTER_TOKEN=
-EOF
-  cat ${CREDS}
-  error "Update the file with your credentials and run again."
-  error "Bye."
-  exit 1
+if [ "${APPCENTER_TOKEN}" = "" ]; then
+  APPCENTER_TOKEN=$("${HOME}/.calabash/find-keychain-credential.sh" api-token)
 fi
-
-source "${CREDS}"
 
 # The uninstall/install dance is required to test changes in
 # run-loop and calabash-cucumber in Test Cloud
