@@ -83,12 +83,12 @@ jobs:
     workingDirectory: 'CalSmokeApp'
     displayName: "Make ipa-cal"
 
+  - script: bundle exec bin/ci/cucumber.rb
+    displayName: "Cucumber tests"
+    
   - script: SKIP_IPA_BUILD=1 bin/appcenter.sh App-Center-Test-Cloud/daily-ios
     workingDirectory: 'CalSmokeApp'
     displayName: "Appcenter tests"
-
-  - script: bundle exec bin/ci/cucumber.rb
-    displayName: "Cucumber tests"
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
