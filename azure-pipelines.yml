@@ -43,6 +43,7 @@ jobs:
         XCODE_VERSION: '11.2'
   pool:
     vmImage: $(IMAGE_POOL)
+  timeoutInMinutes: 120
 
   steps:
   - script: |
@@ -85,7 +86,7 @@ jobs:
 
   - script: bundle exec bin/ci/cucumber.rb
     displayName: "Cucumber tests"
-    
+
   - script: SKIP_IPA_BUILD=1 bin/appcenter.sh App-Center-Test-Cloud/daily-ios
     workingDirectory: 'CalSmokeApp'
     displayName: "Appcenter tests"
