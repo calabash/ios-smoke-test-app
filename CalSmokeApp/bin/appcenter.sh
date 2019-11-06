@@ -36,7 +36,7 @@ fi
 
 APPCENTER_TOKEN=$("${HOME}/.calabash/find-keychain-credential.sh" api-token)
 
-if [ ! -n "${APPCENTER_TOKEN}" ]; then
+if [ -z "${APPCENTER_TOKEN}" ]; then
   error "Failed to load appcenter token"
   exit 1
 fi
