@@ -34,6 +34,11 @@ BUILD_RUN_LOOP: iff 1, then rebuild Calabash iOS gem before uploading.
   exit 64
 fi
 
+CREDS=.appcenter-credentials
+if [ -e "${CREDS}" ]; then
+  source "${CREDS}"
+fi
+
 if [ "${APPCENTER_TOKEN}" = "" ]; then
   APPCENTER_TOKEN=$("${HOME}/.calabash/find-keychain-credential.sh" api-token)
 fi
