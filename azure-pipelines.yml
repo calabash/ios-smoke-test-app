@@ -43,7 +43,7 @@ jobs:
         XCODE_VERSION: '11.2'
   pool:
     vmImage: $(IMAGE_POOL)
-  timeoutInMinutes: 120
+  timeoutInMinutes: 180
 
   steps:
   - script: |
