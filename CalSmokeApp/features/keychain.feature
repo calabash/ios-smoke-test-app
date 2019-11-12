@@ -1,3 +1,4 @@
+@not_xtc
 @resetting
 @ideviceinstaller
 @keychain
