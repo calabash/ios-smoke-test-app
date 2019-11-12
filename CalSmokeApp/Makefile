@@ -90,3 +90,6 @@ new:
 	bundle exec briar install calabash-server
 	$(MAKE) app-cal
 	bundle exec calabash-ios console
+
+appcenter-tests:
+	bin/appcenter.sh App-Center-Test-Cloud/daily-ios

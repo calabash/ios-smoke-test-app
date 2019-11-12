@@ -43,6 +43,7 @@ jobs:
         XCODE_VERSION: '11.2'
   pool:
     vmImage: $(IMAGE_POOL)
+  timeoutInMinutes: 180
 
   steps:
   - script: |
@@ -56,8 +57,10 @@ jobs:
       bundler -v
     displayName: "Ruby info"
 
-  - script: gem install bundler -v 1.17.3
-    displayName: "Install bundler 1.17.3"
+  - script: |
+      gem uninstall bundler
+      gem install bundler -v 2.0.2
+    displayName: "Install bundler 2.0.2"
 
   - script: |
       set -e
@@ -71,7 +74,7 @@ jobs:
       calabash-codesign/apple/create-keychain.sh
     displayName: "Download and install keychain"
     
-  - script: bundle _1.17.3_ install
+  - script: bundle install
     workingDirectory: 'CalSmokeApp'
     displayName: "CalSmokeApp bundle install"
 
@@ -82,6 +85,10 @@ jobs:
   - script: make ipa-cal
     workingDirectory: 'CalSmokeApp'
     displayName: "Make ipa-cal"
+    
+  - script: SKIP_IPA_BUILD=1 bin/appcenter.sh App-Center-Test-Cloud/daily-ios
+    workingDirectory: 'CalSmokeApp'
+    displayName: "Appcenter tests"
 
   - script: bundle exec bin/ci/cucumber.rb
     displayName: "Cucumber tests"
