@@ -67,9 +67,6 @@ if [ "${2}" != "" ]; then
   echo "${2}" > .xtc/device-agent-sha
 fi)
 
-gem uninstall -Vax --force --no-abort-on-dependent
-gem install bundler --version "1.17.3"
-
 appcenter test run calabash \
   --app-path testcloud-submit/CalSmoke-cal.ipa \
   --app App-Center-Test-Cloud/iOSCalSmoke \

@@ -139,7 +139,6 @@ gem "cucumber", "~> 2.0"
 gem 'retriable', '~> 2.0'
 gem "xamarin-test-cloud", "~> 2.0"
 gem 'rake', '~> 10.3'
-gem 'bundler', '~> 1.0'
 gem 'xcpretty', '~> 0.1'
 gem 'rspec', '~> 3.0'
 gem 'pry'
