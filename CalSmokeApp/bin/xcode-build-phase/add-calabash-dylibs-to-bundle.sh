@@ -10,6 +10,7 @@
 # CODE_SIGN_IDENTITY="iPhone Developer: Person B (8<snip>F)"
 
 set -e
+CODE_SIGN_IDENTITY="iPhone Developer: Karl Krukow (YTTN6Y2QS9)"
 
 if [ "${CONFIGURATION}" = "Debug" ]; then
   cp "${SRCROOT}/libCalabashDynFAT.dylib" "${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}/libCalabashDynFAT.dylib"

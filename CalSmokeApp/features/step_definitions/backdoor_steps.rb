@@ -5,7 +5,17 @@ end
 
 Then(/^I see that CGSize is not fully supported$/) do
   # Should be {"Height" => 0, "Width" => 0}
-  expect(backdoor("backdoorSize")).to be == [0, 0]
+  result = backdoor("backdoorSize")
+
+  if !(result == [0, 0] || result == "CGSize")
+    raise %Q[
+Expected CGSize serialization to be broken.
+
+  Expected: [0,0] for arm64* and CGSize for arm7*
+     Found: #{result}
+
+]
+  end
 end
 
 Then(/^I call backdoor on a method that returns LPSmokeAlarm struct$/) do

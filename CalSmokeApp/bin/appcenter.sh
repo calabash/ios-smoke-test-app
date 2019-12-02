@@ -9,9 +9,12 @@ if [ -z ${1} ]; then
 
 Examples:
 
-$ bin/appcenter.sh e9232255
-$ SKIP_IPA_BUILD=1 SERIES='Args and env' bin/appcenter.sh e9232255
-$ SERIES='DeviceAgent 2.0' bin/appcenter.sh e9232255 48d137d6228ccda303b2a71b0d09e1d0629bf980
+$ bin/appcenter.sh App-Center-Test-Cloud/coordinator-experiment
+$ SKIP_IPA_BUILD=1 SERIES='Args and env' bin/appcenter.sh \
+  App-Center-Test-Cloud/coordinator-experiment
+$ SERIES='DeviceAgent 2.0' bin/appcenter.sh \
+  App-Center-Test-Cloud/coordinator-experiment \
+  48d137d6228ccda303b2a71b0d09e1d0629bf980
 
 The DeviceAgent-SHA optional argument allows tests to be run against any
 DeviceAgent that has been uploaded to S3 rather than the current active
@@ -65,7 +68,6 @@ if [ "${2}" != "" ]; then
 fi)
 
 appcenter test run calabash \
-  --debug \
   --app-path testcloud-submit/CalSmoke-cal.ipa \
   --app App-Center-Test-Cloud/iOSCalSmoke \
   --project-dir testcloud-submit \

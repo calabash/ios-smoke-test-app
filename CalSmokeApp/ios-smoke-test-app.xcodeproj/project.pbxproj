@@ -734,7 +734,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bin/xcode-build-phase/add-calabash-dylibs-to-bundle.sh";
+			shellScript = "bin/xcode-build-phase/add-calabash-dylibs-to-bundle.sh\n";
 			showEnvVarsInLog = 0;
 		};
 		F51FA0E31BC569BA00B6BF70 /* Run Script Stage Binaries to Products/ */ = {
@@ -793,7 +793,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bin/xcode-build-phase/integrate-reveal-framework.sh ";
+			shellScript = "bin/xcode-build-phase/integrate-reveal-framework.sh \n";
 			showEnvVarsInLog = 0;
 		};
 		F574ED111D9286380040AF2E /* Run Script Integrate Reveal */ = {
@@ -808,7 +808,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bin/xcode-build-phase/integrate-reveal-framework.sh ";
+			shellScript = "bin/xcode-build-phase/integrate-reveal-framework.sh \n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
