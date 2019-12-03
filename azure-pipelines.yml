@@ -19,7 +19,7 @@ pr:
     include:
     - master
 schedules:
-- cron: "0 6 * * Mon-Fri"
+- cron: "0 1 * * Mon-Fri"
   displayName: Nightly build
   branches:
     include:
