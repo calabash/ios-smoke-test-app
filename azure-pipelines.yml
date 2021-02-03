@@ -61,8 +61,8 @@ jobs:
 
   - script: |
       gem uninstall bundler
-      gem install bundler -v 2.0.2
-    displayName: "Install bundler 2.0.2"
+      gem install bundler -v 2.2.7
+    displayName: "Install bundler 2.2.7"
 
   - script: |
       set -e
