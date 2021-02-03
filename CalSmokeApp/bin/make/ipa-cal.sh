@@ -143,7 +143,7 @@ gem 'xcpretty', '~> 0.1'
 gem 'rspec', '~> 3.0'
 gem 'pry'
 gem 'pry-nav'
-gem 'luffa', '~> 1.0', '>= 1.0.2'
+gem 'luffa'
 gem 'chronic', '>= 0.10.2', '< 1.0'
 EOF
 
