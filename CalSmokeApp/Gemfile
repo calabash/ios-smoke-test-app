@@ -1,26 +1,24 @@
 source 'https://rubygems.org'
 
 gem 'calabash-cucumber', :github => "calabash/calabash-ios", :branch => "develop"
-gem "cucumber", "2.99.0"
+gem "cucumber", "7.1.0"
 gem "run_loop", :github => "calabash/run_loop", :branch => "develop"
-gem "json", "2.5.1"
+gem "json", "2.6.1"
 
 # workflow and build tools
-gem 'retriable', '~> 2.0'
-gem 'rake', '~> 13.0.3'
-gem 'bundler', '2.2.7'
-gem 'xcpretty', '~> 0.1'
-gem "xamarin-test-cloud", "~> 2.0"
-gem 'rspec', '~> 3.0'
-gem 'chronic', '>= 0.10', '< 1.0'
-gem 'pry'
-gem 'pry-nav'
-gem 'luffa'
-gem 'guard-rspec', '~> 4.3'
-gem 'guard-bundler', '~> 2.0'
-gem 'growl', '~> 1.0'
-gem 'stub_env', '>= 1.0.1', '< 2.0'
-gem 'briar', "~> 2.0"
-
-# Pin to 3.0.6; >= 3.1.0 requires ruby 2.2. This is guard dependency.
-gem "listen", "3.0.6"
+gem 'retriable', "2.0.2"
+gem 'rake', "13.0.6"
+gem 'bundler', "2.3.13"
+gem 'xcpretty', "0.3.0"
+gem "xamarin-test-cloud", "2.3.0"
+gem 'rspec', "3.11.0"
+gem 'chronic', "0.10.2"
+gem 'pry', "0.14.1"
+gem 'pry-nav', "1.0.0"
+gem 'luffa', "2.1.0"
+gem 'guard-rspec', "4.7.3"
+gem 'guard-bundler', "3.0.0"
+gem 'growl', "1.0.3"
+gem 'stub_env', "1.0.4"
+gem 'briar', "2.0.5"
+gem "listen", "3.7.1"
