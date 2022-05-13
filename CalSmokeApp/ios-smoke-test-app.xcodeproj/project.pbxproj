@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -24,8 +24,8 @@
 		1a6fb43aa140ae563e019cce /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB1B1987EF8700299AEF /* main.m */; };
 		4306c7a674ae559b3806ebb3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = a66015686499dbb45da8c3c4 /* CFNetwork.framework */; };
 		4d0c7f3c9aec5f7df4bec8e1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BFB0F1987EF8700299AEF /* Foundation.framework */; };
-		50dcfd2fda33dd49fb5c0808 /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42539422bf8ed8e8569bc355 /* calabash.framework */; };
 		814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BFB111987EF8700299AEF /* CoreGraphics.framework */; };
+		DD0B5D4D282E38A900B930A0 /* calabash.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0B5D4C282E38A900B930A0 /* calabash.xcframework */; };
 		F5097D071B6B7C0E00326D6A /* CalGestureListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */; };
 		F5097D081B6B7C0E00326D6A /* CalGestureListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */; };
 		F51ADFE81B9F2D4B008C02F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F51ADFE61B9F2D4B008C02F0 /* LaunchScreen.xib */; };
@@ -169,7 +169,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		42539422bf8ed8e8569bc355 /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
+		DD0B5D4C282E38A900B930A0 /* calabash.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = calabash.xcframework; sourceTree = "<group>"; };
 		F5097D061B6B7C0E00326D6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalGestureListController.xib; sourceTree = "<group>"; };
 		F51ADFE71B9F2D4B008C02F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F52252BB1B75FD27004235EF /* CalAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CalAnimatedView.h; sourceTree = "<group>"; tabWidth = 2; };
@@ -300,12 +300,12 @@
 			files = (
 				F574ED0F1D9281990040AF2E /* RevealServer.framework in Frameworks */,
 				F58C9FB71B7262F2007D307B /* MapKit.framework in Frameworks */,
+				DD0B5D4D282E38A900B930A0 /* calabash.xcframework in Frameworks */,
 				F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */,
 				814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */,
 				ab943fbf9d0ac91728d35abe /* UIKit.framework in Frameworks */,
 				4d0c7f3c9aec5f7df4bec8e1 /* Foundation.framework in Frameworks */,
 				4306c7a674ae559b3806ebb3 /* CFNetwork.framework in Frameworks */,
-				50dcfd2fda33dd49fb5c0808 /* calabash.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +350,7 @@
 		F52BFB0E1987EF8700299AEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD0B5D4C282E38A900B930A0 /* calabash.xcframework */,
 				F574ED0D1D92818B0040AF2E /* RevealServer.framework */,
 				F5A5CB641C8A5E22001ECC15 /* OpenGLES.framework */,
 				F5A5CB621C8A5E11001ECC15 /* QuartzCore.framework */,
@@ -359,7 +360,6 @@
 				F52BFB111987EF8700299AEF /* CoreGraphics.framework */,
 				F52BFB131987EF8700299AEF /* UIKit.framework */,
 				a66015686499dbb45da8c3c4 /* CFNetwork.framework */,
-				42539422bf8ed8e8569bc355 /* calabash.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -749,7 +749,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bin/xcode-build-phase/stage-CalSmoke-cal-products.sh";
+			shellScript = "bin/xcode-build-phase/stage-CalSmoke-cal-products.sh\n";
 			showEnvVarsInLog = 0;
 		};
 		F51FA0E41BC5723900B6BF70 /* Run Script Stage Binaries to Products */ = {
@@ -1075,11 +1075,7 @@
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-force_load",
-					"\"$(SRCROOT)/calabash.framework/calabash\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "03b6a358-8de9-401b-99ff-7dd3c76d3888";
@@ -1311,11 +1307,7 @@
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-force_load",
-					"\"$(SRCROOT)/calabash.framework/calabash\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "03b6a358-8de9-401b-99ff-7dd3c76d3888";
