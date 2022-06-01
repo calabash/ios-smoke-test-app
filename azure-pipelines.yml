@@ -61,7 +61,7 @@ jobs:
   - script: |
       set -e
       echo -e "install: --no-document --env-shebang\nupdate:  --no-document --env-shebang" > ~/.gemrc
-      bundle install
+      bundle _2.2.33_ install
     displayName: "Bundle install"
 
   - script: |
