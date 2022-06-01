@@ -56,12 +56,13 @@ jobs:
   - script: |
       gem uninstall bundler
       gem install bundler -v 2.2.33
+      gem install bundler -v 2.3.13
     displayName: "Install bundler 2.2.33"
 
   - script: |
       set -e
       echo -e "install: --no-document --env-shebang\nupdate:  --no-document --env-shebang" > ~/.gemrc
-      bundle _2.2.33_ install
+      bundle install
     displayName: "Bundle install"
 
   - script: |
