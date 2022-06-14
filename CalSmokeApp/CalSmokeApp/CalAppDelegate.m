@@ -250,7 +250,7 @@ typedef struct {
 
     // 4. and unescape spaces, if necessary (i.e. in the simulator)
     NSString *unsanitizedPlistPath = [plistRootPath stringByAppendingPathComponent:relativePlistPath];
-    path = [[unsanitizedPlistPath stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] copy];
+    path = [[unsanitizedPlistPath stringByRemovingPercentEncoding] copy];
   });
   NSLog(@"sim pref path = %@", path);
   return path;

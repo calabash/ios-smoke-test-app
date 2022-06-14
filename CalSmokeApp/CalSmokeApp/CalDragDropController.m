@@ -199,15 +199,15 @@ typedef enum : NSInteger {
                                     @"The title of the default button on the Smoke Test alert.");
   NSString *lcancel = NSLocalizedString(@"Cancel",
                                         @"The title of the cancel button on the Smoke Test alert.");
-
-  UIAlertView *alert = [[UIAlertView alloc]
-                        initWithTitle:lat
-                        message:lam
-                        delegate:self
-                        cancelButtonTitle:lcancel
-                        otherButtonTitles:lok, nil];
-  alert.accessibilityIdentifier = @"alert";
-  [alert show];
+  UIAlertController *alert = [UIAlertController alertControllerWithTitle:lat message:lam preferredStyle:UIAlertControllerStyleAlert];
+  [alert addAction:[UIAlertAction actionWithTitle:lcancel
+                                            style:UIAlertActionStyleCancel
+                                          handler:^(UIAlertAction *action) {}]];
+  [alert addAction:[UIAlertAction actionWithTitle:lok
+                                            style:UIAlertActionStyleDefault
+                                          handler:^(UIAlertAction *action) {}]];
+  alert.view.accessibilityIdentifier = @"alert";
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)buttonToucheShowSheet:(id)sender {
@@ -217,26 +217,28 @@ typedef enum : NSInteger {
                                           @"The title of the cancel button on the Smoke Test sheet.");
   NSString *locDelete = NSLocalizedString(@"Delete",
                                           @"The title of the delete button on the Smoke Test sheet.");
+  UIAlertController *sheet = [UIAlertController alertControllerWithTitle:locTitle
+                                                                 message:nil
+                                                          preferredStyle:UIAlertControllerStyleActionSheet];
 
-  UIActionSheet *sheet = nil;
   if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-    sheet = [[UIActionSheet alloc]
-             initWithTitle:locTitle
-             delegate:self
-             cancelButtonTitle:nil
-             destructiveButtonTitle:locDelete
-             otherButtonTitles:locCancel, nil];
+    [sheet addAction:[UIAlertAction actionWithTitle:locDelete
+                                              style:UIAlertActionStyleDestructive
+                                            handler:^(UIAlertAction *action) {}]];
+    [sheet addAction:[UIAlertAction actionWithTitle:locCancel
+                                              style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction *action) {}]];
   } else {
-    sheet = [[UIActionSheet alloc]
-             initWithTitle:locTitle
-             delegate:self
-             cancelButtonTitle:locCancel
-             destructiveButtonTitle:locDelete
-             otherButtonTitles:nil];
+    [sheet addAction:[UIAlertAction actionWithTitle:locDelete
+                                              style:UIAlertActionStyleDestructive
+                                            handler:^(UIAlertAction *action) {}]];
+    [sheet addAction:[UIAlertAction actionWithTitle:locCancel
+                                              style:UIAlertActionStyleCancel
+                                            handler:^(UIAlertAction *action) {}]];
   }
 
-  sheet.accessibilityIdentifier = @"sheet";
-  [sheet showFromTabBar:self.tabBarController.tabBar];
+  sheet.view.accessibilityIdentifier = @"sheet";
+  [self.tabBarController presentViewController:sheet animated:YES completion:nil];
 }
 
 - (IBAction) buttonTouchedShowOpenGL:(id) sender {
@@ -249,17 +251,6 @@ typedef enum : NSInteger {
                    completion:^{
                      NSLog(@"Presented");
                    }];
-}
-
-#pragma mark - Alert View Delegate
-
-- (void) alertView:(UIAlertView *) aAlertView clickedButtonAtIndex:(NSInteger) aIndex {
-}
-
-#pragma mark - Action Sheet Delegate
-
-- (void) actionSheet:(UIActionSheet *) aActionSheet clickedButtonAtIndex:(NSInteger) aButtonIndex {
-
 }
 
 #pragma mark - Animations
