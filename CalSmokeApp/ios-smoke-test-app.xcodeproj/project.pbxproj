@@ -604,7 +604,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Cal;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1330;
 				ORGANIZATIONNAME = Calabash;
 				TargetAttributes = {
 					F52BFB0B1987EF8700299AEF = {
