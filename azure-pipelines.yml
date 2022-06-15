@@ -54,11 +54,6 @@ jobs:
     displayName: "Ruby info"
 
   - script: |
-      gem uninstall bundler
-      gem install bundler -v 2.3.13
-    displayName: "Install bundler 2.3.13"
-
-  - script: |
       set -e
       echo -e "install: --no-document --env-shebang\nupdate:  --no-document --env-shebang" > ~/.gemrc
       bundle install

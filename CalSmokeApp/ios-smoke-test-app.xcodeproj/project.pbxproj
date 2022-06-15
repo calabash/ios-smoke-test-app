@@ -69,8 +69,6 @@
 		F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		F558C47B1CEF7CF5006E8525 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F558C4791CEF7CF5006E8525 /* Localizable.strings */; };
 		F558C47C1CEF7CF5006E8525 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F558C4791CEF7CF5006E8525 /* Localizable.strings */; };
-		F574ED0E1D92818B0040AF2E /* RevealServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F574ED0D1D92818B0040AF2E /* RevealServer.framework */; };
-		F574ED0F1D9281990040AF2E /* RevealServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F574ED0D1D92818B0040AF2E /* RevealServer.framework */; };
 		F574ED171D9298660040AF2E /* MBFingerTipWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F574ED151D9298660040AF2E /* MBFingerTipWindow.m */; };
 		F574ED181D9298B40040AF2E /* FINGERTIPS_LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = F574ED131D9298660040AF2E /* FINGERTIPS_LICENSE.md */; };
 		F574ED1A1D9298CB0040AF2E /* MBFingerTipWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F574ED151D9298660040AF2E /* MBFingerTipWindow.m */; };
@@ -227,7 +225,6 @@
 		F558C4781CEF7C5C006E8525 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F558C47A1CEF7CF5006E8525 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F558C47D1CEF7CFA006E8525 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F574ED0D1D92818B0040AF2E /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RevealServer.framework; sourceTree = "<group>"; };
 		F574ED131D9298660040AF2E /* FINGERTIPS_LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = FINGERTIPS_LICENSE.md; sourceTree = "<group>"; };
 		F574ED141D9298660040AF2E /* MBFingerTipWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBFingerTipWindow.h; sourceTree = "<group>"; };
 		F574ED151D9298660040AF2E /* MBFingerTipWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBFingerTipWindow.m; sourceTree = "<group>"; };
@@ -298,7 +295,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F574ED0F1D9281990040AF2E /* RevealServer.framework in Frameworks */,
 				F58C9FB71B7262F2007D307B /* MapKit.framework in Frameworks */,
 				DD0B5D4D282E38A900B930A0 /* calabash.xcframework in Frameworks */,
 				F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */,
@@ -313,7 +309,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F574ED0E1D92818B0040AF2E /* RevealServer.framework in Frameworks */,
 				F5A5CB651C8A5E22001ECC15 /* OpenGLES.framework in Frameworks */,
 				F5A5CB631C8A5E11001ECC15 /* QuartzCore.framework in Frameworks */,
 				F58C9FB81B72630C007D307B /* WebKit.framework in Frameworks */,
@@ -351,7 +346,6 @@
 			isa = PBXGroup;
 			children = (
 				DD0B5D4C282E38A900B930A0 /* calabash.xcframework */,
-				F574ED0D1D92818B0040AF2E /* RevealServer.framework */,
 				F5A5CB641C8A5E22001ECC15 /* OpenGLES.framework */,
 				F5A5CB621C8A5E11001ECC15 /* QuartzCore.framework */,
 				F58C9FB51B7262E6007D307B /* MapKit.framework */,
@@ -610,7 +604,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Cal;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1330;
 				ORGANIZATIONNAME = Calabash;
 				TargetAttributes = {
 					F52BFB0B1987EF8700299AEF = {
@@ -638,10 +632,9 @@
 			};
 			buildConfigurationList = F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "ios-smoke-test-app" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				de,
@@ -1074,7 +1067,6 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
@@ -1115,6 +1107,8 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7/**";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1139,8 +1133,6 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lz",
-					"-weak_framework",
-					RevealServer,
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1178,6 +1170,8 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7/**";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1194,8 +1188,6 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lz",
-					"-weak_framework",
-					RevealServer,
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1219,7 +1211,6 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1248,7 +1239,6 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1305,7 +1295,6 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
