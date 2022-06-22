@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -24,8 +24,8 @@
 		1a6fb43aa140ae563e019cce /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F52BFB1B1987EF8700299AEF /* main.m */; };
 		4306c7a674ae559b3806ebb3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = a66015686499dbb45da8c3c4 /* CFNetwork.framework */; };
 		4d0c7f3c9aec5f7df4bec8e1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BFB0F1987EF8700299AEF /* Foundation.framework */; };
-		50dcfd2fda33dd49fb5c0808 /* calabash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42539422bf8ed8e8569bc355 /* calabash.framework */; };
 		814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BFB111987EF8700299AEF /* CoreGraphics.framework */; };
+		DD0B5D4D282E38A900B930A0 /* calabash.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0B5D4C282E38A900B930A0 /* calabash.xcframework */; };
 		F5097D071B6B7C0E00326D6A /* CalGestureListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */; };
 		F5097D081B6B7C0E00326D6A /* CalGestureListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */; };
 		F51ADFE81B9F2D4B008C02F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F51ADFE61B9F2D4B008C02F0 /* LaunchScreen.xib */; };
@@ -69,8 +69,6 @@
 		F55185561AC34BB600CE06DC /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F55185541AC34BB600CE06DC /* iTunesArtwork */; };
 		F558C47B1CEF7CF5006E8525 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F558C4791CEF7CF5006E8525 /* Localizable.strings */; };
 		F558C47C1CEF7CF5006E8525 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F558C4791CEF7CF5006E8525 /* Localizable.strings */; };
-		F574ED0E1D92818B0040AF2E /* RevealServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F574ED0D1D92818B0040AF2E /* RevealServer.framework */; };
-		F574ED0F1D9281990040AF2E /* RevealServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F574ED0D1D92818B0040AF2E /* RevealServer.framework */; };
 		F574ED171D9298660040AF2E /* MBFingerTipWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F574ED151D9298660040AF2E /* MBFingerTipWindow.m */; };
 		F574ED181D9298B40040AF2E /* FINGERTIPS_LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = F574ED131D9298660040AF2E /* FINGERTIPS_LICENSE.md */; };
 		F574ED1A1D9298CB0040AF2E /* MBFingerTipWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F574ED151D9298660040AF2E /* MBFingerTipWindow.m */; };
@@ -169,7 +167,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		42539422bf8ed8e8569bc355 /* calabash.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; path = calabash.framework; sourceTree = "<group>"; };
+		DD0B5D4C282E38A900B930A0 /* calabash.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = calabash.xcframework; sourceTree = "<group>"; };
 		F5097D061B6B7C0E00326D6A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CalGestureListController.xib; sourceTree = "<group>"; };
 		F51ADFE71B9F2D4B008C02F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F52252BB1B75FD27004235EF /* CalAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = CalAnimatedView.h; sourceTree = "<group>"; tabWidth = 2; };
@@ -227,7 +225,6 @@
 		F558C4781CEF7C5C006E8525 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F558C47A1CEF7CF5006E8525 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F558C47D1CEF7CFA006E8525 /* de */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F574ED0D1D92818B0040AF2E /* RevealServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RevealServer.framework; sourceTree = "<group>"; };
 		F574ED131D9298660040AF2E /* FINGERTIPS_LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = FINGERTIPS_LICENSE.md; sourceTree = "<group>"; };
 		F574ED141D9298660040AF2E /* MBFingerTipWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBFingerTipWindow.h; sourceTree = "<group>"; };
 		F574ED151D9298660040AF2E /* MBFingerTipWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBFingerTipWindow.m; sourceTree = "<group>"; };
@@ -298,14 +295,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F574ED0F1D9281990040AF2E /* RevealServer.framework in Frameworks */,
 				F58C9FB71B7262F2007D307B /* MapKit.framework in Frameworks */,
+				DD0B5D4D282E38A900B930A0 /* calabash.xcframework in Frameworks */,
 				F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */,
 				814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */,
 				ab943fbf9d0ac91728d35abe /* UIKit.framework in Frameworks */,
 				4d0c7f3c9aec5f7df4bec8e1 /* Foundation.framework in Frameworks */,
 				4306c7a674ae559b3806ebb3 /* CFNetwork.framework in Frameworks */,
-				50dcfd2fda33dd49fb5c0808 /* calabash.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +309,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F574ED0E1D92818B0040AF2E /* RevealServer.framework in Frameworks */,
 				F5A5CB651C8A5E22001ECC15 /* OpenGLES.framework in Frameworks */,
 				F5A5CB631C8A5E11001ECC15 /* QuartzCore.framework in Frameworks */,
 				F58C9FB81B72630C007D307B /* WebKit.framework in Frameworks */,
@@ -350,7 +345,7 @@
 		F52BFB0E1987EF8700299AEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F574ED0D1D92818B0040AF2E /* RevealServer.framework */,
+				DD0B5D4C282E38A900B930A0 /* calabash.xcframework */,
 				F5A5CB641C8A5E22001ECC15 /* OpenGLES.framework */,
 				F5A5CB621C8A5E11001ECC15 /* QuartzCore.framework */,
 				F58C9FB51B7262E6007D307B /* MapKit.framework */,
@@ -359,7 +354,6 @@
 				F52BFB111987EF8700299AEF /* CoreGraphics.framework */,
 				F52BFB131987EF8700299AEF /* UIKit.framework */,
 				a66015686499dbb45da8c3c4 /* CFNetwork.framework */,
-				42539422bf8ed8e8569bc355 /* calabash.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -610,7 +604,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Cal;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1330;
 				ORGANIZATIONNAME = Calabash;
 				TargetAttributes = {
 					F52BFB0B1987EF8700299AEF = {
@@ -638,10 +632,9 @@
 			};
 			buildConfigurationList = F52BFB071987EF8700299AEF /* Build configuration list for PBXProject "ios-smoke-test-app" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				de,
@@ -749,7 +742,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bin/xcode-build-phase/stage-CalSmoke-cal-products.sh";
+			shellScript = "bin/xcode-build-phase/stage-CalSmoke-cal-products.sh\n";
 			showEnvVarsInLog = 0;
 		};
 		F51FA0E41BC5723900B6BF70 /* Run Script Stage Binaries to Products */ = {
@@ -1074,12 +1067,7 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-force_load",
-					"\"$(SRCROOT)/calabash.framework/calabash\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "03b6a358-8de9-401b-99ff-7dd3c76d3888";
@@ -1119,6 +1107,8 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7/**";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1143,8 +1133,6 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lz",
-					"-weak_framework",
-					RevealServer,
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1182,6 +1170,8 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7/**";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator/**";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1198,8 +1188,6 @@
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lz",
-					"-weak_framework",
-					RevealServer,
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1223,7 +1211,6 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1252,7 +1239,6 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1309,13 +1295,8 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-force_load",
-					"\"$(SRCROOT)/calabash.framework/calabash\"",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "03b6a358-8de9-401b-99ff-7dd3c76d3888";
