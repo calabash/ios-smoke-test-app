@@ -19,7 +19,7 @@ end
 
 Dir.chdir(working_directory) do
 
-  Bundler.with_clean_env do
+  Bundler.with_original_env do
 
     FileUtils.rm_rf("reports")
     FileUtils.mkdir_p("reports")
