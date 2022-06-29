@@ -8,9 +8,9 @@
 #import "CalDatePickerController.h"
 #import "MBFingerTipWindow.h"
 
-#if LOAD_CALABASH_DYLIB
-#import <dlfcn.h>
-#endif
+//#if LOAD_CALABASH_DYLIB
+//#import <dlfcn.h>
+//#endif
 
 typedef struct {
   NSInteger code;
@@ -31,29 +31,29 @@ typedef struct {
 
 @synthesize tabBarController = _tabBarController;
 
-#if LOAD_CALABASH_DYLIB
-- (void) loadCalabashDylib {
-  NSBundle *bundle = [NSBundle mainBundle];
-  NSString *dylibPath;
-  dylibPath = [bundle pathForResource:@"libCalabashDynFAT" ofType:@"dylib"];
-
-  NSLog(@"Attempting to load Calabash dylib: '%@'", dylibPath);
-  void *dylib = NULL;
-  dylib = dlopen([dylibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
-
-  if (dylib == NULL) {
-    char *error = dlerror();
-    NSString *message = @"Could not load the Calabash dylib.";
-    NSLog(@"%@: %s", message, error);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calabash"
-                                                    message:message
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-  }
-}
-#endif
+//#if LOAD_CALABASH_DYLIB
+//- (void) loadCalabashDylib {
+//  NSBundle *bundle = [NSBundle mainBundle];
+//  NSString *dylibPath;
+//  dylibPath = [bundle pathForResource:@"libCalabashDynFAT" ofType:@"dylib"];
+//
+//  NSLog(@"Attempting to load Calabash dylib: '%@'", dylibPath);
+//  void *dylib = NULL;
+//  dylib = dlopen([dylibPath cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);
+//
+//  if (dylib == NULL) {
+//    char *error = dlerror();
+//    NSString *message = @"Could not load the Calabash dylib.";
+//    NSLog(@"%@: %s", message, error);
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calabash"
+//                                                    message:message
+//                                                   delegate:nil
+//                                          cancelButtonTitle:@"OK"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//  }
+//}
+//#endif
 
 
 #pragma mark - Calabash Backdoors
@@ -509,9 +509,9 @@ typedef struct {
   self.window.rootViewController = self.tabBarController;
   [self.window makeKeyAndVisible];
 
-#if LOAD_CALABASH_DYLIB
-  [self loadCalabashDylib];
-#endif
+//#if LOAD_CALABASH_DYLIB
+//  [self loadCalabashDylib];
+//#endif
   return YES;
 }
 

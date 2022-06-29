@@ -1,5 +1,5 @@
 Given(/^I see the (controls|gestures|scrolls|special|date picker) tab$/) do |tab|
-  wait_for_element_exists("tabBarButton")
+  wait_for_view("* marked:'Special'")
   case tab
   when 'controls'
     index = 0
