@@ -45,13 +45,7 @@ if [ ! -e "${KEYCHAIN}" ]; then
   exit 1
 fi
 
-if [ ! -e "${HOME}/.calabash/find-keychain-credential.sh" ]; then
-  echo "Cannot find S3 credentials: no find-keychain-credential.sh script"
-  echo "  ${HOME}/.calabash/find-keychain-credential.sh"
-  exit 1
-fi
-
-APPCENTER_TOKEN=$("${HOME}/.calabash/find-keychain-credential.sh" api-token)
+APPCENTER_TOKEN=$APPCENTER_ACCESS_TOKEN
 
 if [ -z "${APPCENTER_TOKEN}" ]; then
   error "Failed to load appcenter token"
