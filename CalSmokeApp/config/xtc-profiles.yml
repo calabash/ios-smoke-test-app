@@ -1,8 +1,8 @@
-not_xtc:     --tags 'not @not_xtc'
-not_sim:     --tags 'not @simulator' --tags 'not @simulator_only'
-no_launch:   --tags 'not @no_launch'
-iphone_only: --tags 'not @ipad' --tags 'not @ipad_only'
-ipad_only:   --tags 'not @iphone' --tags 'not @iphone_only'
+not_xtc:     --tags ~@not_xtc
+not_sim:     --tags ~@simulator --tags ~@simulator_only
+no_launch:   --tags ~@no_launch
+iphone_only: --tags ~@ipad --tags ~@ipad_only
+ipad_only:   --tags ~@iphone --tags ~@iphone_only
 
 args:         --expand --backtrace --no-multiline
 tags:        -p not_xtc -p not_sim -p no_launch

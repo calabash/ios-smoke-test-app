@@ -44,12 +44,12 @@ verbose: DEBUG=1
 common: -f pretty SCREENSHOT_PATH=<%= ss_path %>
 
 # Simulators
-simulator:     APP=<%= APP %> -p common --tags 'not @device_only' --tags 'not @device'
+simulator:     APP=<%= APP %> -p common --tags ~@device_only --tags ~@device
 default:       -p simulator
 
 # Devices
 # Run with -p device if your device is not list above
-device:  APP=sh.calaba.CalSmoke-cal -p common --tags 'not @simulator' --tags 'not @simulator_only'
+device:  APP=sh.calaba.CalSmoke-cal -p common --tags ~@simulator --tags ~@simulator_only
 neptune: DEVICE_TARGET=<%= devices[:neptune][:udid] %> DEVICE_ENDPOINT=<%= devices[:neptune][:ip] %> -p device
 venus: DEVICE_TARGET=<%= devices[:venus][:udid] %>   DEVICE_ENDPOINT=<%= devices[:venus][:ip] %> -p device
 earp: DEVICE_TARGET=<%= devices[:earp][:udid] %> DEVICE_ENDPOINT=<%= devices[:earp][:ip] %> -p device
