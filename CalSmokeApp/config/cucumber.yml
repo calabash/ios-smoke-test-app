@@ -44,7 +44,7 @@ verbose: DEBUG=1
 common: -f pretty SCREENSHOT_PATH=<%= ss_path %>
 
 # Simulators
-simulator:     APP=<%= APP %> -p common --tags ~@device_only --tags ~@device
+simulator:     APP=<%= APP %> -p common --tags 'not @device_only' --tags ~@device
 default:       -p simulator
 
 # Devices
