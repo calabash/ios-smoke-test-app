@@ -263,6 +263,12 @@ typedef enum : NSInteger {
   self.navigationItem.backBarButtonItem = nil;
   self.navigationItem.leftBarButtonItem = backButton;
 
+  //added for iOS >= 13.
+  //Since iOS 13 swipe back gesture should start out of a screen border, so tests stopped working
+  UISwipeGestureRecognizer* swipeLeftToRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTouchedBack:)];
+  swipeLeftToRight.direction = UISwipeGestureRecognizerDirectionRight;
+  [self.view addGestureRecognizer:swipeLeftToRight];
+  
   UINavigationController *navcon = self.navigationController;
   if ([navcon respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
     navcon.interactivePopGestureRecognizer.enabled = YES;
