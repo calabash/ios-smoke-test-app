@@ -1207,7 +1207,10 @@
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
@@ -1231,7 +1234,10 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
