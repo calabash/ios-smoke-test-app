@@ -1207,25 +1207,9 @@
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					CFNetwork,
-				);
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
-					"-ObjC",
-					"-force_load",
-					"$(PROJECT_DIR)/calabash.xcframework/ios-arm64_armv7/libcalabash.a",
-					"-framework",
-					CFNetwork,
-				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-ObjC",
-					"-force_load",
-					"$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator/libcalabash.a",
-					"-framework",
-					CFNetwork,
-				);
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7";
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
@@ -1247,25 +1231,9 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					CFNetwork,
-				);
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
-					"-ObjC",
-					"-force_load",
-					"$(PROJECT_DIR)/calabash.xcframework/ios-arm64_armv7/libcalabash.a",
-					"-framework",
-					CFNetwork,
-				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-ObjC",
-					"-force_load",
-					"$(PROJECT_DIR)/calabash.xcframework/ios-arm64_x86_64-simulator",
-					"-framework",
-					CFNetwork,
-				);
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7";
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
