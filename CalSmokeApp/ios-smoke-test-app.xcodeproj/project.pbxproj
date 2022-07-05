@@ -1254,12 +1254,7 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CalSmoke;
 				PROVISIONING_PROFILE = "";
