@@ -1278,8 +1278,8 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FYD86LA7RE;
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "";
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator";
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				PRODUCT_NAME = CalSmoke;
@@ -1291,8 +1291,8 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FYD86LA7RE;
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "";
-				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_armv7";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator";
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				PRODUCT_NAME = CalSmoke;
