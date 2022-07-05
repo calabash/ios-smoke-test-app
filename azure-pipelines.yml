@@ -59,6 +59,7 @@ jobs:
   - script: |
       set -e
       echo -e "install: --no-document --env-shebang\nupdate:  --no-document --env-shebang" > ~/.gemrc
+      gem install bundler:2.3.16
       bundle install
     displayName: "Bundle install"
 
