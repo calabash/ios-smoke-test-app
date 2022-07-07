@@ -37,7 +37,15 @@ BUILD_RUN_LOOP: iff 1, then rebuild Calabash iOS gem before uploading.
   exit 64
 fi
 
-APPCENTER_TOKEN=$("${HOME}/.calabash/find-keychain-credential.sh" api-token)
+KEYCHAIN="${HOME}/.calabash/Calabash.keychain"
+
+if [ ! -e "${KEYCHAIN}" ]; then
+  echo "Cannot find S3 credentials: there is no Calabash.keychain"
+  echo "  ${KEYCHAIN}"
+  exit 1
+fi
+
+APPCENTER_TOKEN=$APPCENTER_ACCESS_TOKEN
 
 if [ -z "${APPCENTER_TOKEN}" ]; then
   error "Failed to load appcenter token"

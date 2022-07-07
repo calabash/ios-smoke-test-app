@@ -104,6 +104,24 @@ $ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8QEQJFT59F)" \
    be cucumber -p device
 ```
 
+#### Running Simulator
+
+```
+$ cd ios-smoke-test-app/CalSmokeApp
+$ bundle
+$ make ipa-cal
+$ CODE_SIGN_IDENTITY="iPhone Developer: Your Name (ABCDE12345)" \
+  DEVICE_TARGET=< device name | udid > \
+  DEVICE_ENDPOINT=http://<ip>:37265 \
+  be cucumber -p simulator
+  
+Example:
+
+$ CODE_SIGN_IDENTITY="iPhone Developer: Joshua Moody (8QEQJFT59F)" \
+   DEVICE_TARGET=iPhone6 \
+   DEVICE_ENDPOINT=http://localhost:37265 \
+   be cucumber -p simulator
+```
 
 ### Problems building?
 

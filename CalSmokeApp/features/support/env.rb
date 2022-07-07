@@ -10,6 +10,6 @@ require 'chronic'
 # error if you mistakenly submit a binding.pry to the Test Cloud.
 if !ENV['XAMARIN_TEST_CLOUD']
   require 'pry'
-  Pry.config.history.file = '.pry-history'
+  Pry.config.history_file = '.pry-history'
   require 'pry-nav'
 end

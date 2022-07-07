@@ -228,6 +228,15 @@ typedef enum : NSInteger {
     [sheet addAction:[UIAlertAction actionWithTitle:locCancel
                                               style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction *action) {}]];
+  
+    [sheet setModalPresentationStyle:UIModalPresentationPopover];
+    
+    UIButton *button = sender;
+    UIPopoverPresentationController *popPresenter = [sheet
+                                                  popoverPresentationController];
+    popPresenter.sourceView = button;
+    popPresenter.sourceRect = button.bounds;
+    
   } else {
     [sheet addAction:[UIAlertAction actionWithTitle:locDelete
                                               style:UIAlertActionStyleDestructive

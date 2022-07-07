@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -25,7 +25,6 @@
 		4306c7a674ae559b3806ebb3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = a66015686499dbb45da8c3c4 /* CFNetwork.framework */; };
 		4d0c7f3c9aec5f7df4bec8e1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BFB0F1987EF8700299AEF /* Foundation.framework */; };
 		814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F52BFB111987EF8700299AEF /* CoreGraphics.framework */; };
-		DD0B5D4D282E38A900B930A0 /* calabash.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD0B5D4C282E38A900B930A0 /* calabash.xcframework */; };
 		F5097D071B6B7C0E00326D6A /* CalGestureListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */; };
 		F5097D081B6B7C0E00326D6A /* CalGestureListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5097D051B6B7C0E00326D6A /* CalGestureListController.xib */; };
 		F51ADFE81B9F2D4B008C02F0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F51ADFE61B9F2D4B008C02F0 /* LaunchScreen.xib */; };
@@ -296,7 +295,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F58C9FB71B7262F2007D307B /* MapKit.framework in Frameworks */,
-				DD0B5D4D282E38A900B930A0 /* calabash.xcframework in Frameworks */,
 				F55081B51ACD4F5400F226A1 /* WebKit.framework in Frameworks */,
 				814483887d80377735a56b6a /* CoreGraphics.framework in Frameworks */,
 				ab943fbf9d0ac91728d35abe /* UIKit.framework in Frameworks */,
@@ -1057,17 +1055,32 @@
 				CODE_SIGN_ENTITLEMENTS = "CalSmoke-cal.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = FYD86LA7RE;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)",
-					"$(PROJECT_DIR)",
-				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					CFNetwork,
+				);
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+					"-ObjC",
+					"-force_load",
+					"$(PROJECT_DIR)/calabash.xcframework/ios-arm64_armv7/libcalabash.a",
+					"-framework",
+					CFNetwork,
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-ObjC",
+					"-force_load",
+					"$(PROJECT_DIR)/calabash.xcframework/ios-arm64_x86_64-simulator",
+					"-framework",
+					CFNetwork,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "03b6a358-8de9-401b-99ff-7dd3c76d3888";
@@ -1211,10 +1224,7 @@
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
@@ -1234,15 +1244,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
 				INFOPLIST_FILE = "CalSmokeApp/CalSmoke-Info.plist";
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = CalSmoke;
@@ -1280,11 +1289,8 @@
 				CODE_SIGN_ENTITLEMENTS = "CalSmoke-cal.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = FYD86LA7RE;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)",
-					"$(PROJECT_DIR)",
-				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = "";
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalSmokeApp/CalSmoke-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1296,7 +1302,25 @@
 				INFOPLIST_PREFIX_HEADER = CalSmokeApp/InfoPlist.h;
 				INFOPLIST_PREPROCESS = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					CFNetwork,
+				);
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+					"-ObjC",
+					"-force_load",
+					"$(PROJECT_DIR)/calabash.xcframework/ios-arm64_armv7/libcalabash.a",
+					"-framework",
+					CFNetwork,
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-ObjC",
+					"-force_load",
+					"$(SRCROOT)/calabash.xcframework/ios-arm64_x86_64-simulator/libcalabash.a",
+					"-framework",
+					CFNetwork,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sh.calaba.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CalSmoke-cal";
 				PROVISIONING_PROFILE = "03b6a358-8de9-401b-99ff-7dd3c76d3888";
