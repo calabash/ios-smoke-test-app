@@ -81,15 +81,15 @@ jobs:
     workingDirectory: 'CalSmokeApp'
     displayName: "Make ipa-cal"
 
+  - script: bundle exec bin/ci/cucumber.rb
+    displayName: "Cucumber tests"
+    
   - script: SKIP_IPA_BUILD=1 bin/appcenter.sh App-Center-Test-Cloud/Calabash.iOS.CI
     env:
       APPCENTER_ACCESS_TOKEN: $(AppCenterAPITokenProd)
     workingDirectory: 'CalSmokeApp'
     displayName: "App Center Test"
     condition: eq(variables['Agent.JobName'], variables['RunTestCloudTestsWhen'])
-
-  - script: bundle exec bin/ci/cucumber.rb
-    displayName: "Cucumber tests"
 
   - task: PublishTestResults@2
     displayName: 'Publish Test Results'
