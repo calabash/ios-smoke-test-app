@@ -66,9 +66,6 @@ jobs:
   - script: |
       set -e
       git clone https://$(CalabashKeychainGitHubAccessToken)@github.com/xamarinhq/calabash-codesign.git
-      cd calabash-codesign
-      git checkout v-abudynkov/calabashwildcard_profile_fix
-      cd ..
       calabash-codesign/apple/create-keychain.sh
     displayName: "Download and install keychain"
 
