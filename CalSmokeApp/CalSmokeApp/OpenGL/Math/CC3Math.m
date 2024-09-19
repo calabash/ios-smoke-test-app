@@ -59,7 +59,7 @@ float CyclicDifference(float minuend, float subtrahend, float period) {
 
 #define kRandomUIntMax 0x100000000LL
 
-unsigned int RandomUInt() {
+unsigned int RandomUInt(void) {
   return arc4random();
 }
 
@@ -67,7 +67,7 @@ unsigned int RandomUIntBelow(unsigned int max) {
   return RandomUInt() % max;
 }
 
-double RandomDouble() {
+double RandomDouble(void) {
   return (double)RandomUInt() / (double)kRandomUIntMax;
 }
 
@@ -75,7 +75,7 @@ double RandomDoubleBetween(double min, double max) {
   return min + (RandomDouble() * (max - min));
 }
 
-float RandomFloat() {
+float RandomFloat(void) {
   return (float)RandomDouble();
 }
 

@@ -57,8 +57,6 @@ if [ -z "${CODE_SIGN_IDENTITY}" ]; then
     -target "${XC_TARGET}" \
     -configuration "${XC_CONFIG}" \
     -sdk iphonesimulator \
-    ARCHS="i386 x86_64" \
-    VALID_ARCHS="i386 x86_64" \
     ONLY_ACTIVE_ARCH=NO \
     build | $XC_PIPE
 else
@@ -73,8 +71,6 @@ else
     -target "${XC_TARGET}" \
     -configuration "${XC_CONFIG}" \
     -sdk iphonesimulator \
-    ARCHS="i386 x86_64" \
-    VALID_ARCHS="i386 x86_64" \
     ONLY_ACTIVE_ARCH=NO \
     build | $XC_PIPE
 fi
