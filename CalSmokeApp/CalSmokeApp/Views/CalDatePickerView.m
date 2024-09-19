@@ -298,6 +298,7 @@ static NSString *const k_12H_date_format = @"EEE MMM d yyyy";
     case UIDatePickerModeDate: return @"date picker";
     case UIDatePickerModeDateAndTime: return @"date and time picker";
     case UIDatePickerModeTime: return @"time picker";
+    case UIDatePickerModeYearAndMonth: return @"year and month picker";
   }
 }
 
@@ -309,6 +310,7 @@ static NSString *const k_12H_date_format = @"EEE MMM d yyyy";
     case UIDatePickerModeDate: { fmt = [self stringForDateFormat];  break;}
     case UIDatePickerModeDateAndTime: { fmt = [self stringForDateTimeFormat]; break;}
     case UIDatePickerModeTime: { fmt = [self stringForTimeFormat]; break; }
+    case UIDatePickerModeYearAndMonth: { break; }
   }
 
   NSDateFormatter *df = [self dateFormatterWithFormat:fmt];
@@ -322,6 +324,7 @@ static NSString *const k_12H_date_format = @"EEE MMM d yyyy";
     case UIDatePickerModeDate: return @"date";
     case UIDatePickerModeDateAndTime: return @"date and time";
     case UIDatePickerModeTime: return @"time";
+    case UIDatePickerModeYearAndMonth: return @"year and month";
   }
 }
 
